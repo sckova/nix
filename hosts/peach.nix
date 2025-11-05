@@ -13,5 +13,10 @@
     extractPeripheralFirmware = true;
     peripheralFirmwareDirectory = ../firmware;
   };
+
+  swapDevices = [{
+    device = "/swapfile";
+    size = 32000; # 32GB
+  }];
 }
 
