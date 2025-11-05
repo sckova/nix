@@ -10,6 +10,8 @@
   };
 
   hardware.asahi = {
+    enable = true;
+    setupAsahiSound = true;
     extractPeripheralFirmware = true;
     peripheralFirmwareDirectory = ../firmware;
   };
