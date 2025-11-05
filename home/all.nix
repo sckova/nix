@@ -23,6 +23,7 @@
     ncdu
     fzf
     wl-clipboard
+    openmw
 
     kde-rounded-corners
     kdePackages.partitionmanager
