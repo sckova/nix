@@ -59,6 +59,9 @@
           name = "alien";
           system = "x86_64-linux";
           hostModule = ./hosts/alien.nix;
+          extraModules = [
+            ./hardware/alien.nix
+          ];
         };
       };
 
