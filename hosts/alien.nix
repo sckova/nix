@@ -31,8 +31,9 @@
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
-    nvidiaSettings = true;
-    package = pkgs.linuxPackages.nvidiaPackages.stable;
+    nvidiaSettings = false;
+    open = true;
+    # package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
 }
 
