@@ -27,7 +27,7 @@
           inherit system;
           specialArgs = { inherit catppuccin; };
           modules = [
-            ./configuration.nix
+            ./hosts/all.nix
             hostModule
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
@@ -38,7 +38,7 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system; };
           modules = [
-            ./home.nix
+            ./home/all.nix
             catppuccin.homeModules.catppuccin
           ];
         };
@@ -50,6 +50,7 @@
           system = "aarch64-linux";
           hostModule = ./hosts/peach.nix;
           extraModules = [
+            ./hardware/peach.nix
             apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
           ];
