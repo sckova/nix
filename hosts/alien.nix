@@ -1,15 +1,14 @@
 { config, pkgs, lib, catppuccin, ... }: {
   networking.hostName = "alien";
 
-  catppuccin = {
-    accent = "lavender";
-  };
+  catppuccin.accent = "blue";
 
   home-manager.users.sckova = {
     imports = [ catppuccin.homeModules.catppuccin ];
   };
 
   boot.kernelPackages = pkgs.linuxPackages;
+  boot.loader.systemd-boot.consoleMode = "max";
 
   programs = {
     gamescope = {
@@ -32,8 +31,8 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     nvidiaSettings = false;
-    open = true;
-    # package = pkgs.linuxPackages.nvidiaPackages.stable;
+    open = false;
+    package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
 }
 
