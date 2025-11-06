@@ -14,62 +14,97 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, catppuccin, home-manager, apple-silicon, ... }:
+  outputs =
+    {
+      nixpkgs,
+      catppuccin,
+      home-manager,
+      plasma-manager,
+      apple-silicon,
+      ...
+    }:
     let
-      mkNixosSystem = { name, system, hostModule, extraModules ? [] }:
+      mkNixosSystem =
+        {
+          hostname,
+          system,
+          extraModules ? [ ],
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit catppuccin; };
           modules = [
             ./hosts/all.nix
-            hostModule
+            ./hosts/${hostname}.nix
+            ./hardware/${hostname}.nix
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
-          ] ++ extraModules;
+            {
+              home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+            }
+          ]
+          ++ extraModules;
         };
 
-      mkHomeConfig = { user, system }:
+      mkHomeConfig =
+        {
+          user,
+          hostname,
+          system,
+        }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system; };
+          home.username = user;
+          home.homeDirectory = "/home/${user}";
           modules = [
             ./home/all.nix
+            ./home/${hostname}.nix
             catppuccin.homeModules.catppuccin
+            home-manager.homeModules.home-manager
+            plasma-manager.homeModules.plasma-manager
           ];
         };
     in
     {
       nixosConfigurations = {
         peach = mkNixosSystem {
-          name = "peach";
+          hostname = "peach";
           system = "aarch64-linux";
-          hostModule = ./hosts/peach.nix;
           extraModules = [
-            ./hardware/peach.nix
             apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
           ];
         };
 
         alien = mkNixosSystem {
-          name = "alien";
+          hostname = "alien";
           system = "x86_64-linux";
-          hostModule = ./hosts/alien.nix;
-          extraModules = [
-            ./hardware/alien.nix
-          ];
         };
       };
 
       homeConfigurations = {
-        peach = mkHomeConfig { user = "sckova"; system = "aarch64-linux"; };
-        alien = mkHomeConfig { user = "sckova"; system = "x86_64-linux"; };
+        peach = mkHomeConfig {
+          user = "sckova";
+          hostname = "peach";
+          system = "aarch64-linux";
+        };
+        alien = mkHomeConfig {
+          user = "sckova";
+          hostname = "alien";
+          system = "x86_64-linux";
+        };
       };
     };
 }
-
