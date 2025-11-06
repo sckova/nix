@@ -2,20 +2,34 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.sckova = {
     imports = [
       ../home/all.nix
+      ../home/${config.networking.hostName}.nix
     ];
   };
-  
+
   boot = {
+
+    plymouth = {
+      enable = true;
+    };
+
     loader = {
       timeout = 3;
       systemd-boot = {
@@ -38,6 +52,11 @@
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
+  };
+
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
   };
 
   networking.networkmanager.enable = true;
@@ -72,7 +91,7 @@
       enable = true;
       useRoutingFeatures = "client";
     };
-  }; 
+  };
 
   services.printing.enable = true;
 
@@ -86,20 +105,24 @@
   users.users.sckova = {
     isNormalUser = true;
     description = "Sean Kovacs";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
     hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
   };
+
   security.sudo.wheelNeedsPassword = false;
 
   programs.bash = {
-  interactiveShellInit = ''
-    if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-    then
-      shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-      exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-    fi
-  '';
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
   };
 
   programs.firefox.enable = true;
@@ -142,4 +165,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-
