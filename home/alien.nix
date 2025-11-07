@@ -8,7 +8,6 @@
 
   programs.plasma = {
     workspace = {
-      # lookAndFeel = "Catppuccin-Mocha-Blue";
       colorScheme = "CatppuccinMochaBlue";
       cursor.theme = "catppuccin-mocha-blue-cursors";
       splashScreen.theme = "Catpppuccin-Mocha-Blue";
