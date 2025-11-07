@@ -3,18 +3,16 @@
 {
   home.packages = with pkgs; [
     vesktop
-    fish
     gh
     adwsteamgtk
     prismlauncher
     tmux
     fastfetch
     btop
-    neovim
+    # neovim
     killall
     wget
     ripgrep
-    kitty
     ncdu
     fzf
     wl-clipboard
@@ -48,6 +46,172 @@
     };
   };
 
+  programs.kitty = {
+    enable = true;
+    enableGitIntegration = true;
+    themeFile = "Catppuccin-Mocha";
+    font = {
+      name = "Noto Sans Mono";
+      size = 10;
+    };
+    shellIntegration.enableFishIntegration = true;
+    extraConfig = "\nwheel_scroll_multiplier 5.0";
+  };
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+  };
+
+  programs.nixvim = {
+    enable = true;
+    defaultEditor = true;
+    waylandSupport = true;
+    viAlias = true;
+    vimAlias = true;
+    clipboard = {
+      register = "unnamedplus";
+      providers.wl-copy.enable = true;
+    };
+    opts = {
+      tabstop = 2;
+      softtabstop = 2;
+      shiftwidth = 2;
+      expandtab = true;
+      number = true;
+    };
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "mocha";
+      };
+    };
+    keymaps = [
+      # --- Normal mode mappings ---
+      {
+        mode = "n";
+        key = "<C-c>";
+        action = "\"+y";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<C-p>";
+        action = "\"+p";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+
+      # --- Visual mode mappings ---
+      {
+        mode = "v";
+        key = "<C-c>";
+        action = "\"+y";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+      {
+        mode = "v";
+        key = "<C-p>";
+        action = "\"+p";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+    ];
+    plugins = {
+      nvim-autopairs = {
+        enable = true;
+        # autoLoad = true;
+      };
+      cmp = {
+        autoEnableSources = true;
+        enable = true;
+        # autoLoad = true;
+      };
+      copilot-lua = {
+        enable = true;
+        # autoLoad = true;
+      };
+      conform-nvim = {
+        enable = true;
+        # autoLoad = true;
+        settings = {
+          formatters_by_ft = {
+            lua = [ "stylua" ];
+            python = [
+              "isort"
+              "black"
+            ];
+            nix = [ "nixfmt" ];
+            javascript = [
+              "deno fmt"
+              "prettier"
+            ];
+            css = [
+              "deno fmt"
+              "prettier"
+            ];
+            json = [
+              "deno fmt"
+              "prettier"
+            ];
+            jsonc = [
+              "deno fmt"
+              "prettier"
+            ];
+          };
+
+          # Default formatting options
+          default_format_opts = {
+            lsp_format = "fallback";
+          };
+
+          # Format-on-save behavior
+          format_on_save = {
+            timeout_ms = 500;
+          };
+
+          # Custom formatter settings
+          formatters = {
+            shfmt = {
+              append_args = [
+                "-i"
+                "2"
+              ];
+            };
+          };
+        };
+      };
+      fzf-lua = {
+        enable = true;
+        # autoLoad = true;
+      };
+      kitty-scrollback = {
+        enable = true;
+        # autoLoad = true;
+      };
+      lsp = {
+        enable = true;
+        # autoLoad = true;
+      };
+      lualine = {
+        enable = true;
+        # autoLoad = true;
+      };
+    };
+  };
+
   programs.plasma = {
     enable = true;
     overrideConfig = true;
@@ -63,6 +227,22 @@
         theme = "Breeze";
       };
       cursor.size = 24;
+    };
+
+    kwin = {
+      titlebarButtons = {
+        left = [
+          "application-menu"
+          "on-all-desktops"
+          "keep-below-windows"
+          "keep-above-windows"
+        ];
+        right = [
+          "minimize"
+          "maximize"
+          "close"
+        ];
+      };
     };
 
     configFile = {
@@ -109,7 +289,8 @@
               launchers = [
                 "applications:firefox.desktop"
                 "applications:org.kde.dolphin.desktop"
-                "applications:org.kde.konsole.desktop"
+                "applications:vesktop.desktop"
+                "applications:kitty.desktop"
               ];
             };
           }
@@ -131,12 +312,14 @@
               shown = [
                 "org.kde.plasma.battery"
                 "org.kde.plasma.bluetooth"
-              ];
-              # And explicitly hide networkmanagement and volume
-              hidden = [
                 "org.kde.plasma.networkmanagement"
                 "org.kde.plasma.volume"
               ];
+              # And explicitly hide networkmanagement and volume
+              # hidden = [
+              #   "org.kde.plasma.networkmanagement"
+              #   "org.kde.plasma.volume"
+              # ];
             };
           }
           {
