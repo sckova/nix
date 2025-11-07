@@ -2,8 +2,8 @@
 
 {
   catppuccin = {
-    accent = "mocha";
-    flavor = "blue";
+    accent = "blue";
+    flavor = "mocha";
   };
 
   programs.plasma = {
@@ -13,10 +13,11 @@
       splashScreen.theme = "Catpppuccin-Mocha-Blue";
     };
 
-  configFile = {
-    kdeglobals.KDE = {
-      DefaultDarkLookAndFeel = "Catppuccin-Mocha-Blue";
-      DefaultLightLookAndFeel = "Catppuccin-Latte-Blue";
+    configFile = {
+      kdeglobals.KDE = {
+        DefaultDarkLookAndFeel = "Catppuccin-Mocha-Blue";
+        DefaultLightLookAndFeel = "Catppuccin-Latte-Blue";
+      };
     };
   };
 }
