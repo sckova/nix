@@ -196,7 +196,12 @@
     ];
   };
 
-  fileSystems."/mnt/nas" = {
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  fileSystems."/home/sckova/Synology" = {
     device = "synology:/home";
     fsType = "rclone";
     options = [
@@ -204,13 +209,9 @@
       "nofail"
       "allow_other"
       "args2env"
-      "config=/etc/nixos/configs/rclone.conf"
+      "config=/home/sckova/.config/rclone/rclone.conf"
+      "vfs-cache-mode=full"
     ];
-  };
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
   };
 
   services.openssh.enable = true;
