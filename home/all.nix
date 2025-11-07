@@ -213,6 +213,16 @@
     };
   };
 
+  programs.kate = {
+    enable = true;
+    editor = {
+      font = {
+        family = "Noto Sans Mono";
+        pointSize = 10;
+      };
+    };
+  };
+
   programs.plasma = {
     enable = true;
     overrideConfig = true;
