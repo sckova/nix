@@ -115,6 +115,68 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  programs.firefox = {
+    enable = true;
+    preferences = {
+      "widget.use-xdg-desktop-portal.file-picker" = 1;
+      "widget.gtk.global-menu.enabled" = true;
+      "widget.gtk.global-menu.wayland.enabled" = true;
+      "browser.tabs.inTitlebar" = 0;
+      "extensions.pocket.enabled" = false;
+      "extensions.screenshots.disabled" = true;
+      "browser.topsites.contile.enabled" = false;
+      "browser.formfill.enable" = false;
+      "browser.search.suggest.enabled" = false;
+      "browser.search.suggest.enabled.private" = false;
+      "browser.urlbar.suggest.searches" = false;
+      "browser.urlbar.showSearchSuggestionsFirst" = false;
+      "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+      "browser.newtabpage.activity-stream.feeds.snippets" = false;
+      "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+      "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+      "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
+      "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+      "browser.newtabpage.activity-stream.showSponsored" = false;
+      "browser.newtabpage.activity-stream.system.showSponsored" = false;
+      "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+    };
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      DisablePocket = true;
+      DisableFirefoxScreenshots = true;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+      DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
+      DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+      SearchBar = "unified"; # alternative: "separate"
+
+      # ---- EXTENSIONS ----
+      # Check about:support for extension/add-on ID strings.
+      # Valid strings for installation_mode are "allowed", "blocked",
+      # "force_installed" and "normal_installed".
+      # ExtensionSettings = {
+      #   # blocks all addons except the ones specified below
+      #   "*".installation_mode = "blocked";
+      #   "uBlock0@raymondhill.net" = {
+      #     install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+      #     installation_mode = "force_installed";
+      #   };
+      #   "plasma-browser-integration@kde.org" = {
+      #     install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
+      #     installation_mode = "force_installed";
+      #   };
+      # };
+    };
+  };
+
   programs.bash = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -124,8 +186,6 @@
       fi
     '';
   };
-
-  programs.firefox.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
