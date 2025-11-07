@@ -7,8 +7,21 @@
   };
 
   programs.plasma = {
+
+    input.touchpads = [
+      {
+      name = "Apple MTP multi-touch";
+      vendorId = "05ac";
+      productId = "0352";
+      disableWhileTyping = false;
+      enable = true;
+      tapToClick = false;
+      naturalScroll = true;
+      accelerationProfile = "default";
+      }
+    ];
+
     workspace = {
-      # lookAndFeel = "Catppuccin-Mocha-Peach";
       colorScheme = "CatppuccinMochaPeach";
       cursor.theme = "catppuccin-mocha-peach-cursors";
       splashScreen.theme = "Catpppuccin-Mocha-Peach";

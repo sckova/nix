@@ -20,6 +20,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +37,7 @@
       catppuccin,
       home-manager,
       plasma-manager,
+      nixvim,
       apple-silicon,
       ...
     }:
@@ -52,7 +58,10 @@
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             {
-              home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+              home-manager.sharedModules = [
+                plasma-manager.homeModules.plasma-manager
+                nixvim.homeModules.nixvim
+              ];
             }
           ]
           ++ extraModules;
@@ -74,6 +83,7 @@
             catppuccin.homeModules.catppuccin
             home-manager.homeModules.home-manager
             plasma-manager.homeModules.plasma-manager
+            nixvim.homeModules.nixvim
           ];
         };
     in
