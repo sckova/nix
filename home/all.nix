@@ -18,6 +18,7 @@
     wl-clipboard
     openmw
     nixfmt-rfc-style
+    rclone
 
     kde-rounded-corners
     kdePackages.partitionmanager
