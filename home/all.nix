@@ -238,6 +238,12 @@
         theme = "Breeze";
       };
       cursor.size = 24;
+      wallpaperPictureOfTheDay.provider = "bing";
+      wallpaperFillMode = "preserveAspectCrop";
+    };
+
+    kscreenlocker = {
+      wallpaperPictureOfTheDay.provider = "bing";
     };
 
     kwin = {
