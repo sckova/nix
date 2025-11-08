@@ -57,35 +57,23 @@
               };
               layout = {
                 elements = [ "windowTitle" ];
-                horizontalAlignment = "left";
+                horizontalAlignment = "right";
                 showDisabledElements = "deactivated";
                 verticalAlignment = "center";
               };
               overrideForMaximized.enable = false;
-              titleReplacements = [
-                {
-                  type = "regexp";
-                  originalTitle = "^Brave Web Browser$";
-                  newTitle = "Brave";
-                }
-                {
-                  type = "regexp";
-                  originalTitle = ''\\bDolphin\\b'';
-                  newTitle = "File manager";
-                }
-              ];
               windowTitle = {
                 font = {
                   bold = false;
                   fit = "fixedSize";
-                  size = 12;
+                  size = 10;
                 };
                 hideEmptyTitle = true;
                 margins = {
-                  bottom = 0;
+                  bottom = 5;
                   left = 10;
-                  right = 5;
-                  top = 0;
+                  right = 0;
+                  top = 5;
                 };
                 source = "appName";
               };
@@ -93,7 +81,6 @@
           }
           "org.kde.plasma.appmenu"
           "org.kde.plasma.panelspacer"
-          "org.kde.plasma.activitypager"
           {
             plasmusicToolbar = {
               panelIcon = {
@@ -107,7 +94,7 @@
               musicControls.showPlaybackControls = true;
               songText = {
                 displayInSeparateLines = true;
-                maximumWidth = 640;
+                maximumWidth = 300;
                 scrolling = {
                   behavior = "alwaysScroll";
                   speed = 3;
@@ -122,7 +109,20 @@
                 "org.kde.plasma.battery"
                 "org.kde.plasma.bluetooth"
                 "org.kde.plasma.networkmanagement"
+                "org.kde.plasma.brightness"
                 "org.kde.plasma.volume"
+              ];
+              hidden = [
+                "org.kde.plasma.clipboard"
+                "org.kde.plasma.manage-inputmethod"
+                "org.kde.plasma.cameraindicator"
+                "org.kde.plasma.keyboardlayout"
+                "org.kde.plasma.devicenotifier"
+                "org.kde.plasma.notifications"
+                "org.kde.plasma.weather"
+                "org.kde.plasma.printmanager"
+                "org.kde.plasma.keyboardindicator"
+                "org.kde.plasma.mediacontroller"
               ];
             };
           }

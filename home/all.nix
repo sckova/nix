@@ -259,10 +259,20 @@
           "close"
         ];
       };
+      nightLight = {
+        enable = true;
+        mode = "location";
+        # Atlanta
+        location.latitude = "33.7501";
+        location.longitude = "-84.3885";
+        temperature.day = 6000;
+        temperature.night = 3500;
+        transitionTime = 60;
+      };
     };
 
     configFile = {
-      kwinrc.Desktops.Number = 3;
+      kwinrc.Desktops.Number = 4;
       # kdeglobals.KDE.AutomaticLookAndFeel = true;
       kwinrc.Round-Corners.ActiveOutlinePalette = 3;
       kwinrc.Round-Corners.ActiveOutlineUseCustom = false;
@@ -280,7 +290,7 @@
     };
 
     panels = [
-      # Windows-like panel at the bottom
+      # Small dock at the bottom right
       {
         location = "bottom";
         height = 40;
@@ -305,6 +315,7 @@
               ];
             };
           }
+          "org.kde.plasma.pager"
         ];
       }
     ];
