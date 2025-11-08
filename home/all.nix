@@ -244,6 +244,60 @@
       appearance.wallpaperPictureOfTheDay.provider = "bing";
     };
 
+    window-rules = [
+      {
+        description = "OpenMW";
+        match = {
+          window-class = {
+            value = "openmw";
+            type = "substring";
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          noborder = {
+            value = true;
+            apply = "force";
+          };
+          maximizehoriz = {
+            value = true;
+            apply = "force";
+          };
+          maximizevert = {
+            value = true;
+            apply = "force";
+          };
+          desktops = {
+            value = "Desktop_4";
+            apply = "force";
+          };
+        };
+      }
+      {
+        description = "Firefox Picture-in-Picture";
+        match = {
+          window-class = {
+            value = "firefox";
+            type = "exact";
+          };
+          title = {
+            value = "Picture-in-Picture";
+            type = "exact";
+          };
+        };
+        apply = {
+          above = {
+            value = true;
+            apply = "force";
+          };
+          desktops = {
+            value = "\\0";
+            apply = "force";
+          };
+        };
+      }
+    ];
+
     kwin = {
       titlebarButtons = {
         left = [
@@ -268,10 +322,18 @@
         temperature.night = 3500;
         transitionTime = 60;
       };
+      virtualDesktops = {
+        names = [
+          "1"
+          "2"
+          "3"
+          "4"
+        ];
+        rows = 1;
+      };
     };
 
     configFile = {
-      kwinrc.Desktops.Number = 4;
       # kdeglobals.KDE.AutomaticLookAndFeel = true;
       kwinrc.Round-Corners.ActiveOutlinePalette = 3;
       kwinrc.Round-Corners.ActiveOutlineUseCustom = false;
