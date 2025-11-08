@@ -316,6 +316,7 @@
           "close"
         ];
       };
+
       nightLight = {
         enable = true;
         mode = "location";
@@ -334,6 +335,22 @@
           "4"
         ];
         rows = 1;
+      };
+      effects = {
+        desktopSwitching = {
+          animation = "slide";
+          navigationWrapping = true;
+        };
+        dimAdminMode.enable = true;
+        dimInactive.enable = true;
+        minimization = {
+          animation = "magiclamp";
+          duration = 50;
+        };
+        shakeCursor.enable = true;
+        snapHelper.enable = true;
+        translucency.enable = true;
+        windowOpenClose.animation = "fade";
       };
     };
 
