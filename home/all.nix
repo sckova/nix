@@ -9,7 +9,6 @@
     tmux
     fastfetch
     btop
-    # neovim
     killall
     wget
     ripgrep
@@ -243,7 +242,7 @@
     };
 
     kscreenlocker = {
-      wallpaperPictureOfTheDay.provider = "bing";
+      appearance.wallpaperPictureOfTheDay.provider = "bing";
     };
 
     kwin = {
@@ -277,6 +276,7 @@
       kwinrc.Round-Corners.InactiveSecondOutlinePalette = 2;
       kwinrc.Round-Corners.InactiveSecondOutlineUseCustom = false;
       kwinrc.Round-Corners.InactiveSecondOutlineUsePalette = true;
+      kdeglobals.Sounds.Enable = false;
     };
 
     panels = [
