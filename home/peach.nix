@@ -34,6 +34,16 @@
       };
     };
 
+    shortcuts = {
+      # my volume down key broke as hell boy
+      kmix.decrease_volume = "Volume Mute";
+      kmix.decrease_volume_small = "Shift+Volume Mute";
+      kmix.increase_volume = "Volume Up";
+      kmix.increase_volume_small = "Shift+Volume Up";
+      kmix.mute = "Sleep";
+      org_kde_powerdevil.Sleep = [ ];
+    };
+
     panels = [
       # Application name, Global menu and Song information and playback controls at the top
       {
