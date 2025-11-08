@@ -19,6 +19,8 @@
     nixfmt-rfc-style
     chromium
     widevine-cdm
+    strawberry-master
+    spotify-player
 
     kde-rounded-corners
     kdePackages.partitionmanager
@@ -303,7 +305,7 @@
     kwin = {
       titlebarButtons = {
         left = [
-          "application-menu"
+          "more-window-actions"
           "on-all-desktops"
           "keep-below-windows"
           "keep-above-windows"
@@ -375,6 +377,7 @@
                 "applications:org.kde.dolphin.desktop"
                 "applications:vesktop.desktop"
                 "applications:kitty.desktop"
+                "applications:org.strawberrymusicplayer.strawberry.desktop"
               ];
             };
           }
