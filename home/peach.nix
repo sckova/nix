@@ -56,6 +56,7 @@
       {
         location = "top";
         height = 37;
+        floating = false;
         widgets = [
           {
             applicationTitleBar = {
@@ -95,13 +96,13 @@
                   useAsIcon = false;
                   radius = 8;
                 };
-                icon = "view-media-track";
+                icon = "";
               };
               playbackSource = "auto";
-              musicControls.showPlaybackControls = true;
+              musicControls.showPlaybackControls = false;
               songText = {
                 displayInSeparateLines = true;
-                maximumWidth = 300;
+                maximumWidth = 360;
                 scrolling = {
                   behavior = "alwaysScroll";
                   speed = 3;
