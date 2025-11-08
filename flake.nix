@@ -52,6 +52,11 @@
           inherit system;
           specialArgs = { inherit catppuccin; };
           modules = [
+            {
+              nixpkgs.overlays = [
+                (import ./packages/strawberry/overlay.nix)
+              ];
+            }
             ./hosts/all.nix
             ./hosts/${hostname}.nix
             ./hardware/${hostname}.nix
@@ -74,7 +79,9 @@
           system,
         }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = import nixpkgs {
+            inherit system;
+          };
           home.username = user;
           home.homeDirectory = "/home/${user}";
           modules = [
