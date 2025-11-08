@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    asahi-nvram
+    asahi-bless
+    asahi-btsync
+    asahi-wifisync
+  ];
+
   catppuccin = {
     accent = "peach";
     flavor = "mocha";
