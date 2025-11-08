@@ -1,4 +1,11 @@
-{ config, pkgs, lib, catppuccin, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  catppuccin,
+  ...
+}:
+{
   networking.hostName = "peach";
 
   catppuccin.accent = "peach";
@@ -10,13 +17,16 @@
   hardware.asahi = {
     enable = true;
     setupAsahiSound = true;
-    extractPeripheralFirmware = true;
-    peripheralFirmwareDirectory = ../firmware;
+    extractPeripheralFirmware = false;
+    # This is broken because of flake git tracking.
+    # I can't figure out how to make it work.
+    # peripheralFirmwareDirectory = ../firmware;
   };
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 32000; # 32GB
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 32000; # 32GB
+    }
+  ];
 }
-
