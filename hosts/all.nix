@@ -6,6 +6,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -65,6 +66,8 @@
   };
 
   networking.networkmanager.enable = true;
+  hardware.bluetooth.enable = true;
+
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -197,6 +200,7 @@
   environment = {
     systemPackages = with pkgs; [
       git
+      inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";

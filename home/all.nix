@@ -21,6 +21,7 @@
     widevine-cdm
     strawberry-master
     spotify-player
+    input-leap
 
     kde-rounded-corners
     kdePackages.partitionmanager
@@ -210,6 +211,103 @@
       };
       lualine = {
         enable = true;
+        settings = {
+          options = {
+            theme = {
+              normal = {
+                a = {
+                  fg = "#1e1e2e";
+                  bg = "#cba6f7";
+                };
+                b = {
+                  fg = "#cdd6f4";
+                  bg = "#313244";
+                };
+                c = {
+                  fg = "#cdd6f4";
+                };
+              };
+              insert = {
+                a = {
+                  fg = "#1e1e2e";
+                  bg = "#89b4fa";
+                };
+              };
+              visual = {
+                a = {
+                  fg = "#1e1e2e";
+                  bg = "#94e2d5";
+                };
+              };
+              replace = {
+                a = {
+                  fg = "#1e1e2e";
+                  bg = "#f38ba8";
+                };
+              };
+              inactive = {
+                a = {
+                  fg = "#cdd6f4";
+                  bg = "#1e1e2e";
+                };
+                b = {
+                  fg = "#cdd6f4";
+                  bg = "#1e1e2e";
+                };
+                c = {
+                  fg = "#cdd6f4";
+                };
+              };
+            };
+            component_separators = "";
+            section_separators = {
+              left = "";
+              right = "";
+            };
+          };
+
+          sections = {
+            lualine_a = [
+              {
+                __unkeyed-1 = "mode";
+                separator = {
+                  left = "  ";
+                };
+                right_padding = 2;
+              }
+            ];
+            lualine_b = [
+              "filename"
+              "branch"
+            ];
+            lualine_c = [ "%=" ];
+            lualine_x = [ ];
+            lualine_y = [
+              "filetype"
+              "progress"
+            ];
+            lualine_z = [
+              {
+                __unkeyed-1 = "location";
+                separator = {
+                  right = "  ";
+                };
+                left_padding = 2;
+              }
+            ];
+          };
+
+          inactive_sections = {
+            lualine_a = [ "filename" ];
+            lualine_b = [ ];
+            lualine_c = [ ];
+            lualine_x = [ ];
+            lualine_y = [ ];
+            lualine_z = [ "location" ];
+          };
+          tabline = { };
+          extensions = [ ];
+        };
         # autoLoad = true;
       };
     };
@@ -249,6 +347,26 @@
     };
 
     window-rules = [
+      {
+        description = "Global Changes";
+        match = {
+          window-class = {
+            value = "";
+            type = "substring";
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          opacityactive = {
+            value = 100;
+            apply = "force";
+          };
+          opacityinactive = {
+            value = 95;
+            apply = "force";
+          };
+        };
+      }
       {
         description = "OpenMW";
         match = {
@@ -305,7 +423,6 @@
     kwin = {
       titlebarButtons = {
         left = [
-          "more-window-actions"
           "on-all-desktops"
           "keep-below-windows"
           "keep-above-windows"
@@ -342,15 +459,20 @@
           navigationWrapping = true;
         };
         dimAdminMode.enable = true;
-        dimInactive.enable = true;
+        # dimInactive.enable = true;
         minimization = {
           animation = "magiclamp";
-          duration = 50;
+          duration = 500;
         };
         shakeCursor.enable = true;
         snapHelper.enable = true;
         translucency.enable = true;
         windowOpenClose.animation = "fade";
+        blur = {
+          enable = false;
+          noiseStrength = 8;
+          strength = 5;
+        };
       };
     };
 
@@ -369,6 +491,15 @@
       kwinrc.Round-Corners.InactiveSecondOutlineUseCustom = false;
       kwinrc.Round-Corners.InactiveSecondOutlineUsePalette = true;
       kdeglobals.Sounds.Enable = false;
+      kwinrc.Plugins.forceblurEnabled = true;
+      kwinrc.Effect-blurplus.BlurDecorations = true;
+      kwinrc.Effect-blurplus.BlurMatching = false;
+      kwinrc.Effect-blurplus.BlurMenus = true;
+      kwinrc.Effect-blurplus.BlurNonMatching = true;
+      kwinrc.Effect-blurplus.TopCornerRadius = 10;
+      kwinrc.Effect-blurplus.BottomCornerRadius = 10;
+      kwinrc.Effect-blurplus.NoiseStrength = 6;
+      kwinrc.Effect-blurplus.RefractionStrength = 10;
     };
 
     panels = [

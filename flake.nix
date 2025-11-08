@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +43,7 @@
       home-manager,
       plasma-manager,
       nixvim,
+      kwin-effects-forceblur,
       apple-silicon,
       ...
     }:
@@ -50,7 +56,10 @@
         }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit catppuccin; };
+          specialArgs = {
+            inherit catppuccin;
+            inputs = { inherit kwin-effects-forceblur; };
+          };
           modules = [
             {
               nixpkgs.overlays = [
