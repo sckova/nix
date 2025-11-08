@@ -17,10 +17,10 @@
   hardware.asahi = {
     enable = true;
     setupAsahiSound = true;
-    extractPeripheralFirmware = false;
+    # extractPeripheralFirmware = false;
     # This is broken because of flake git tracking.
     # I can't figure out how to make it work.
-    # peripheralFirmwareDirectory = ../firmware;
+    peripheralFirmwareDirectory = ../firmware;
   };
 
   swapDevices = [
