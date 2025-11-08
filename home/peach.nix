@@ -10,14 +10,14 @@
 
     input.touchpads = [
       {
-      name = "Apple MTP multi-touch";
-      vendorId = "05ac";
-      productId = "0352";
-      disableWhileTyping = false;
-      enable = true;
-      tapToClick = false;
-      naturalScroll = true;
-      accelerationProfile = "default";
+        name = "Apple MTP multi-touch";
+        vendorId = "05ac";
+        productId = "0352";
+        disableWhileTyping = false;
+        enable = true;
+        tapToClick = false;
+        naturalScroll = true;
+        accelerationProfile = "default";
       }
     ];
 
@@ -83,6 +83,7 @@
           }
           "org.kde.plasma.appmenu"
           "org.kde.plasma.panelspacer"
+          "org.kde.plasma.activitypager"
           {
             plasmusicToolbar = {
               panelIcon = {
@@ -102,6 +103,23 @@
                   speed = 3;
                 };
               };
+            };
+          }
+          "org.kde.plasma.marginsseparator"
+          {
+            systemTray.items = {
+              shown = [
+                "org.kde.plasma.battery"
+                "org.kde.plasma.bluetooth"
+                "org.kde.plasma.networkmanagement"
+                "org.kde.plasma.volume"
+              ];
+            };
+          }
+          {
+            digitalClock = {
+              calendar.firstDayOfWeek = "sunday";
+              time.format = "12h";
             };
           }
         ];
