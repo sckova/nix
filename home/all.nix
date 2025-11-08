@@ -17,6 +17,8 @@
     wl-clipboard
     openmw
     nixfmt-rfc-style
+    chromium
+    widevine-cdm
 
     kde-rounded-corners
     kdePackages.partitionmanager
