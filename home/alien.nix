@@ -60,7 +60,20 @@
                 "org.kde.plasma.battery"
                 "org.kde.plasma.bluetooth"
                 "org.kde.plasma.networkmanagement"
+                "org.kde.plasma.brightness"
                 "org.kde.plasma.volume"
+              ];
+              hidden = [
+                "org.kde.plasma.clipboard"
+                "org.kde.plasma.manage-inputmethod"
+                "org.kde.plasma.cameraindicator"
+                "org.kde.plasma.keyboardlayout"
+                "org.kde.plasma.devicenotifier"
+                "org.kde.plasma.notifications"
+                "org.kde.plasma.weather"
+                "org.kde.plasma.printmanager"
+                "org.kde.plasma.keyboardindicator"
+                "org.kde.plasma.mediacontroller"
               ];
             };
           }
