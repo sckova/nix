@@ -191,7 +191,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      rclone
       git
     ];
   };
@@ -199,19 +198,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  };
-
-  fileSystems."/home/sckova/Synology" = {
-    device = "synology:/home";
-    fsType = "rclone";
-    options = [
-      "nodev"
-      "nofail"
-      "allow_other"
-      "args2env"
-      "config=/home/sckova/.config/rclone/rclone.conf"
-      "vfs-cache-mode=full"
-    ];
   };
 
   services.openssh.enable = true;
