@@ -15,6 +15,11 @@
     "flakes"
   ];
 
+  nix.settings.trusted-users = [
+    "root"
+    "sckova"
+  ];
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.sckova = {
@@ -193,6 +198,9 @@
     systemPackages = with pkgs; [
       git
     ];
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
 
   programs.gnupg.agent = {
