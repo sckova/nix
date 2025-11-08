@@ -51,8 +51,6 @@
               };
             };
           }
-          "org.kde.plasma.panelspacer"
-          "org.kde.plasma.activitypager"
           "org.kde.plasma.marginsseparator"
           {
             systemTray.items = {
