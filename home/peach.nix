@@ -102,7 +102,7 @@
               musicControls.showPlaybackControls = false;
               songText = {
                 displayInSeparateLines = true;
-                maximumWidth = 360;
+                maximumWidth = 320;
                 scrolling = {
                   behavior = "alwaysScroll";
                   speed = 3;

@@ -22,6 +22,7 @@
     strawberry-master
     spotify-player
     input-leap
+    libreoffice-qt-fresh
 
     kde-rounded-corners
     kdePackages.partitionmanager
@@ -399,8 +400,8 @@
         description = "Firefox Picture-in-Picture";
         match = {
           window-class = {
-            value = "firefox";
-            type = "exact";
+            value = "";
+            type = "substring";
           };
           title = {
             value = "Picture-in-Picture";
@@ -526,6 +527,7 @@
                 "applications:vesktop.desktop"
                 "applications:kitty.desktop"
                 "applications:org.strawberrymusicplayer.strawberry.desktop"
+                "applications:writer.desktop"
               ];
             };
           }
