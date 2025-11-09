@@ -10,6 +10,16 @@
   ...
 }:
 
+let
+  lock-false = {
+    Value = false;
+    Status = "locked";
+  };
+  lock-true = {
+    Value = true;
+    Status = "locked";
+  };
+in
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -158,30 +168,64 @@
         Fingerprinting = true;
       };
       DisablePocket = true;
+      DisableFirefoxAccounts = true;
+      DisableAccounts = true;
       DisableFirefoxScreenshots = true;
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
-      DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+      DisplayMenuBar = "always"; # alternatives: "always", "never" or "default-on"
       SearchBar = "unified"; # alternative: "separate"
 
       # ---- EXTENSIONS ----
       # Check about:support for extension/add-on ID strings.
       # Valid strings for installation_mode are "allowed", "blocked",
       # "force_installed" and "normal_installed".
-      # ExtensionSettings = {
-      #   # blocks all addons except the ones specified below
-      #   "*".installation_mode = "blocked";
-      #   "uBlock0@raymondhill.net" = {
-      #     install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-      #     installation_mode = "force_installed";
-      #   };
-      #   "plasma-browser-integration@kde.org" = {
-      #     install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
-      #     installation_mode = "force_installed";
-      #   };
-      # };
+      ExtensionSettings = {
+        # blocks all addons except the ones specified below
+        "*".installation_mode = "blocked";
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "plasma-browser-integration@kde.org" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/styl-us/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "gdpr@cavi.au.dk" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/consent-o-matic/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "dont-track-me-google@robwu.nl" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/dont-track-me-google1/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "jid1-MnnxcxisBPnSXQ@jetpack" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "FirefoxColor@mozilla.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-color/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "sponsorBlocker@ajay.app" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # "" = {
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/_/latest.xpi";
+        #   installation_mode = "force_installed";
+        # };
+      };
     };
   };
 
@@ -201,6 +245,7 @@
     systemPackages = with pkgs; [
       git
       inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
+      firefoxpwa
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
