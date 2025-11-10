@@ -133,6 +133,10 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
+  environment.sessionVariables = rec {
+    MOZ_GMP_PATH = "${pkgs.widevine-firefox}/gmp-widevinecdm/system-installed";
+  };
+
   programs.firefox = {
     enable = true;
     preferences = {
@@ -157,6 +161,14 @@ in
       "browser.newtabpage.activity-stream.showSponsored" = false;
       "browser.newtabpage.activity-stream.system.showSponsored" = false;
       "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+      "media.gmp-widevinecdm.version" = "system-installed";
+      "media.gmp-widevinecdm.visible" = true;
+      "media.gmp-widevinecdm.enabled" = true;
+      "media.gmp-widevinecdm.autoupdate" = false;
+
+      "media.eme.enabled" = true;
+      "media.eme.encrypted-media-encryption-scheme.enabled" = true;
     };
     policies = {
       DisableTelemetry = true;
