@@ -63,6 +63,7 @@
           modules = [
             {
               nixpkgs.overlays = [
+                (import ./packages/widevine-firefox/overlay.nix)
                 (import ./packages/strawberry/overlay.nix)
               ];
             }
