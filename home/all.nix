@@ -17,12 +17,15 @@
     wl-clipboard
     openmw
     nixfmt-rfc-style
-    chromium
+    (chromium.override {
+      enableWideVine = true;
+    })
     widevine-cdm
     strawberry-master
     spotify-player
     input-leap
     libreoffice-qt-fresh
+    spotdl
 
     kde-rounded-corners
     kdePackages.partitionmanager
