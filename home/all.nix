@@ -54,6 +54,8 @@
     };
   };
 
+  programs.konsole.enable = false;
+
   programs.kitty = {
     enable = true;
     enableGitIntegration = true;
@@ -317,6 +319,14 @@
     };
   };
 
+  programs.ghostwriter = {
+    enable = true;
+    font = {
+      family = "Noto Sans";
+      pointSize = 12;
+    };
+  };
+
   programs.kate = {
     enable = true;
     editor = {
@@ -470,8 +480,8 @@
         };
         shakeCursor.enable = true;
         snapHelper.enable = true;
-        translucency.enable = true;
-        windowOpenClose.animation = "fade";
+        # translucency.enable = true;
+        # windowOpenClose.animation = "fade";
         blur = {
           enable = false;
           noiseStrength = 8;
