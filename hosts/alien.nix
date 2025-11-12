@@ -1,4 +1,11 @@
-{ config, pkgs, lib, catppuccin, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  catppuccin,
+  ...
+}:
+{
   networking.hostName = "alien";
 
   catppuccin.accent = "blue";
@@ -27,6 +34,12 @@
     "nvidia"
   ];
 
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "sckova";
+  };
+  security.sudo.wheelNeedsPassword = true;
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -35,4 +48,3 @@
     package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
 }
-

@@ -29,4 +29,6 @@
       size = 32000; # 32GB
     }
   ];
+
+  security.sudo.wheelNeedsPassword = false;
 }
