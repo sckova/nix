@@ -14,6 +14,9 @@ stdenv.mkDerivation {
   '';
 
   meta = widevine-cdm.meta // {
-    platforms = [ "aarch64-linux" ];
+    platforms = [
+      "aarch64-linux"
+      "x86_64-linux"
+    ];
   };
 }
