@@ -20,7 +20,6 @@
     (chromium.override {
       enableWideVine = true;
     })
-    widevine-cdm
     strawberry-master
     spotify-player
     input-leap
