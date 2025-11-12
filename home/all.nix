@@ -53,6 +53,27 @@
     };
   };
 
+  systemd.user.services.input-leap = {
+    Unit = {
+      Description = "Autostart Input Leap";
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      PassEnvironment = "DISPLAY";
+      ExecStart = "${pkgs.writeShellScript "input-leap-start" ''
+        sleep 5
+        ${pkgs.input-leap}/bin/input-leap
+      ''}";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
   programs.konsole.enable = false;
 
   programs.kitty = {
