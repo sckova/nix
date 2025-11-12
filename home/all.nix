@@ -423,7 +423,7 @@
             apply = "force";
           };
           opacityinactive = {
-            value = 95;
+            value = 100;
             apply = "force";
           };
         };
@@ -539,18 +539,19 @@
 
     configFile = {
       # kdeglobals.KDE.AutomaticLookAndFeel = true;
-      kwinrc.Round-Corners.ActiveOutlinePalette = 3;
+      kwinrc.Round-Corners.ActiveOutlinePalette = 2;
       kwinrc.Round-Corners.ActiveOutlineUseCustom = false;
       kwinrc.Round-Corners.ActiveOutlineUsePalette = true;
-      kwinrc.Round-Corners.ActiveSecondOutlinePalette = 3;
+      kwinrc.Round-Corners.ActiveSecondOutlinePalette = 2;
       kwinrc.Round-Corners.ActiveSecondOutlineUseCustom = false;
       kwinrc.Round-Corners.ActiveSecondOutlineUsePalette = true;
-      kwinrc.Round-Corners.InactiveOutlinePalette = 2;
+      kwinrc.Round-Corners.InactiveOutlinePalette = 3;
       kwinrc.Round-Corners.InactiveOutlineUseCustom = false;
       kwinrc.Round-Corners.InactiveOutlineUsePalette = true;
-      kwinrc.Round-Corners.InactiveSecondOutlinePalette = 2;
+      kwinrc.Round-Corners.InactiveSecondOutlinePalette = 3;
       kwinrc.Round-Corners.InactiveSecondOutlineUseCustom = false;
       kwinrc.Round-Corners.InactiveSecondOutlineUsePalette = true;
+      plasmaparc.General.AudioFeedback = false;
       kdeglobals.Sounds.Enable = false;
       kwinrc.Plugins.forceblurEnabled = true;
       kwinrc.Effect-blurplus.BlurDecorations = true;
