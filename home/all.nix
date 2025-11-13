@@ -26,6 +26,7 @@
     libreoffice-qt-fresh
     spotdl
     rclone
+    helium-browser
 
     kde-rounded-corners
     kdePackages.partitionmanager
