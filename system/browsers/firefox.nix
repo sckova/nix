@@ -19,6 +19,7 @@ in
   programs = {
     firefox = {
       enable = true;
+      nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
       languagePacks = [ "en-US" ];
 
       # ---- POLICIES ----
