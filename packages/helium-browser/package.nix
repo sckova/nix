@@ -1,65 +1,126 @@
-# taken (stolen?) from two places:
-# https://github.com/fpletz/flake/blob/main/pkgs/by-name/helium-browser.nix
-# https://github.com/nix-community/nur-combined/blob/main/repos/Ev357/pkgs/helium/default.nix
-# so shoutout those guys
 {
   stdenv,
   lib,
-  appimageTools,
   fetchurl,
   makeDesktopItem,
   copyDesktopItems,
-  widevine-helium ? null,
+  autoPatchelfHook,
+  makeWrapper,
+
+  # runtime dependencies
+  xorg,
+  libGL,
+  mesa,
+  cairo,
+  pango,
+  systemd,
+  alsa-lib,
+  gcc-unwrapped,
+  qt5,
+  qt6,
+  glib,
+  nspr,
+  nss,
+  at-spi2-atk,
+  at-spi2-core,
+  cups,
 }:
 let
-  pname = "helium-browser";
-  version = "0.6.4.1";
-
   architectures = {
     "x86_64-linux" = {
       arch = "x86_64";
-      hash = "sha256-DlEFuFwx2Qjr9eb6uiSYzM/F3r2hdtkMW5drJyJt/YE=";
+      hash = "sha256-9xEVnGym579rR6RunS4HWYV3nLk1ODEIGfg8PtNDSUk=";
     };
     "aarch64-linux" = {
       arch = "arm64";
-      hash = "sha256-B63tvOtSRlMRJozvzC7lqG2LM0ZgLIq2G/AHABl+Qqg=";
+      hash = "sha256-S5kF+K2Kwhqa0GG691NvnU/2frUCWL9BKrVK7y3bzSE=";
     };
   };
 
-  src =
-    let
-      inherit (architectures.${stdenv.hostPlatform.system}) arch hash;
-    in
-    fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-${arch}.AppImage";
-      inherit hash;
-    };
-
-  appImageContents = appimageTools.extractType2 { inherit pname version src; };
+  platformInfo =
+    architectures.${stdenv.hostPlatform.system}
+      or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
 
 in
-appimageTools.wrapType2 {
-  inherit pname version src;
-  extraInstallCommands = ''
-    mkdir -p "$out/share/applications"
-    mkdir -p "$out/share/lib/helium"
-    cp -r ${appImageContents}/opt/helium/locales "$out/share/lib/helium"
-    cp -r ${appImageContents}/usr/share/* "$out/share"
-    cp "${appImageContents}/helium.desktop" "$out/share/applications/"
-    substituteInPlace $out/share/applications/helium.desktop \
-      --replace-fail 'Exec=AppRun' 'Exec=${pname} \
-      --replace-fail 'Icon=helium' 'Icon=web-browser
+stdenv.mkDerivation rec {
+  pname = "helium-browser";
+  version = "0.6.4.1";
+  xzName = "helium-${version}-${platformInfo.arch}_linux";
 
-      ${lib.optionalString (stdenv.hostPlatform.system == "aarch64-linux") ''
-        cp -r ${widevine-helium}/share/helium/WidevineCdm "$out/share/lib/helium/"
-      ''}
+  src = fetchurl {
+    url = "https://github.com/imputnet/helium-linux/releases/download/${version}/${xzName}.tar.xz";
+    hash = platformInfo.hash;
+  };
+
+  sourceRoot = ".";
+
+  nativeBuildInputs = [
+    autoPatchelfHook
+    makeWrapper
+    copyDesktopItems
+  ];
+
+  buildInputs = [
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXrandr
+    xorg.libxcb
+    xorg.libXdamage
+    xorg.libXcomposite
+    mesa
+    cairo
+    pango
+    systemd
+    alsa-lib
+    gcc-unwrapped.lib
+    qt5.qtbase.out
+    qt6.qtbase.out
+    glib
+    nspr
+    nss
+    at-spi2-atk
+    at-spi2-core
+    cups
+  ];
+
+  dontWrapQtApps = true;
+
+  unpackPhase = ''
+    runHook preUnpack
+    tar xf $src
+    runHook postUnpack
   '';
-  meta = {
-    description = "A private, respectful browser";
-    homepage = "https://github.com/imputnet/helium-linux";
-    downloadPage = "https://github.com/imputnet/helium-linux/releases";
-    license = lib.licenses.gpl3Only;
-    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    platforms = lib.attrNames architectures;
+
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p $out/opt/helium
+    mv ${xzName}/helium.desktop .
+    mv ${xzName}/product_logo_256.png .
+    cp -r ${xzName}/* $out/opt/helium/
+    chmod +x $out/opt/helium/chrome-wrapper $out/opt/helium/chrome
+
+    makeWrapper $out/opt/helium/chrome-wrapper $out/bin/helium-browser \
+      --chdir $out/opt/helium \
+      --prefix LD_LIBRARY_PATH : "${
+        lib.makeLibraryPath [
+          libGL
+          mesa
+        ]
+      }"
+
+    install -Dm644 product_logo_256.png $out/share/icons/hicolor/256x256/apps/helium.png
+    install -Dm644 helium.desktop $out/share/applications/helium.desktop
+    substituteInPlace $out/share/applications/helium.desktop \
+      --replace-fail 'Exec=chromium' "Exec=$out/bin/helium-browser" \
+
+    runHook postInstall
+  '';
+
+  meta = with lib; {
+    homepage = "https://helium.computer";
+    description = "Helium web browser";
+    platforms = platforms.linux;
+    mainProgram = "helium";
   };
 }
