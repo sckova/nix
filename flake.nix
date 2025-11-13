@@ -68,8 +68,9 @@
                 (import ./packages/helium-browser/overlay.nix)
               ];
             }
-            ./hosts/all.nix
-            ./hosts/${hostname}.nix
+            ./system/all.nix
+            ./system/browsers/firefox.nix
+            ./system/hosts/${hostname}/default.nix
             ./hardware/${hostname}.nix
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
