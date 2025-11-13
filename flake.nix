@@ -77,6 +77,7 @@
             }
             ./system/all.nix
             ./system/browsers/firefox.nix
+            ./system/shell/fish.nix
             ./system/hosts/${hostname}/default.nix
             ./hardware/${hostname}.nix
             catppuccin.nixosModules.catppuccin
@@ -105,7 +106,7 @@
           home.homeDirectory = "/home/${user}";
           modules = [
             ./home/all.nix
-            ./home/${hostname}.nix
+            ./home/hosts/${hostname}.nix
             catppuccin.homeModules.catppuccin
             home-manager.homeModules.home-manager
             plasma-manager.homeModules.plasma-manager

@@ -27,7 +27,12 @@
     imports = [
       ../home/all.nix
       ../home/browsers/firefox/default.nix
-      ../home/${config.networking.hostName}.nix
+      ../home/systemd/default.nix
+      ../home/terminal/nvim/default.nix
+      ../home/terminal/kitty/default.nix
+      ../home/kde/plasma.nix
+      ../home/kde/other.nix
+      ../home/hosts/${config.networking.hostName}.nix
     ];
   };
 
@@ -122,16 +127,6 @@
     hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
   };
 
-  programs.bash = {
-    interactiveShellInit = ''
-      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-      then
-        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-      fi
-    '';
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   environment = {
@@ -152,10 +147,6 @@
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
-
-  networking.extraHosts = ''
-    0.0.0.0 apresolve.spotify.com
-  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
