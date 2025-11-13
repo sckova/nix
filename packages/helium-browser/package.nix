@@ -41,7 +41,8 @@ appimageTools.wrapType2 {
     install -Dm444 ${appimageContents}/helium.png -t $out/share/pixmaps
 
     substituteInPlace $out/share/applications/helium.desktop \
-      --replace-fail 'Exec=AppRun' 'Exec=${pname}'
+      --replace-fail 'Exec=AppRun' 'Exec=${pname}' \
+      --replace-fail 'Icon=helium' 'Icon=web-browser'
   '';
   meta = {
     description = "A private, respectful browser";
