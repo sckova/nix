@@ -13,6 +13,8 @@
     Unit = {
       Description = "Mount Synology NAS with Rclone and Home Manager.";
       After = [ "network-online.target" ];
+      StartLimitIntervalSec = 30;
+      StartLimitBurst = 3;
     };
 
     Service = {
@@ -20,6 +22,7 @@
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/Synology";
       ExecStart = "${pkgs.rclone}/bin/rclone --config=%h/.config/rclone/synology.conf --vfs-cache-mode full --ignore-checksum mount \"synology:\" \"%h/Synology\"";
       ExecStop = "/run/wrappers/bin/fusermount -u %h/Synology/%i";
+      Restart = "on-failure";
     };
 
     Install = {
