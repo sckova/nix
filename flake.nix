@@ -20,6 +20,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,6 +47,7 @@
       catppuccin,
       home-manager,
       plasma-manager,
+      nur,
       nixvim,
       kwin-effects-forceblur,
       apple-silicon,
@@ -63,6 +69,7 @@
           modules = [
             {
               nixpkgs.overlays = [
+                nur.overlays.default
                 (import ./packages/widevine-firefox/overlay.nix)
                 (import ./packages/strawberry/overlay.nix)
                 (import ./packages/helium-browser/overlay.nix)
