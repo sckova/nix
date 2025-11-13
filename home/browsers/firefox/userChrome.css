@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: light) {
   :root {
     /* bookmark_text */
-    --toolbar-color: #eff1f5ff !important;
+    --toolbar-color: #4c4f69ff !important;
 
     /* button_background_active */
     --toolbarbutton-active-background: rgba(156, 160, 176, 1) !important;
@@ -94,7 +94,7 @@
     #urlbar-input,
     .searchbar-textbox {
       &:focus::selection {
-        color: #eff1f5ff;
+        color: #4c4f69ff;
       }
     }
 
@@ -113,7 +113,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* bookmark_text */
-    --toolbar-color: #1e1e2eff !important;
+    --toolbar-color: #cdd6f4ff !important;
 
     /* button_background_active */
     --toolbarbutton-active-background: rgba(108, 112, 134, 1) !important;
@@ -206,7 +206,7 @@
     #urlbar-input,
     .searchbar-textbox {
       &:focus::selection {
-        color: #1e1e2eff;
+        color: #cdd6f4ff;
       }
     }
 
