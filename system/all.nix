@@ -26,6 +26,7 @@
   home-manager.users.sckova = {
     imports = [
       ../home/all.nix
+      ../home/browsers/firefox/default.nix
       ../home/${config.networking.hostName}.nix
     ];
   };
