@@ -70,9 +70,7 @@
             {
               nixpkgs.overlays = [
                 nur.overlays.default
-                (import ./packages/widevine-firefox/overlay.nix)
-                (import ./packages/strawberry/overlay.nix)
-                (import ./packages/helium-browser/overlay.nix)
+                (import ./packages/overlay.nix)
               ];
             }
             ./system/all.nix
