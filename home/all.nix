@@ -27,6 +27,9 @@
     spotdl
     rclone
     helium-browser
+    deno
+    prettier
+    prettierd
 
     kde-rounded-corners
     kdePackages.partitionmanager
