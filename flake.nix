@@ -65,6 +65,7 @@
               nixpkgs.overlays = [
                 (import ./packages/widevine-firefox/overlay.nix)
                 (import ./packages/strawberry/overlay.nix)
+                (import ./packages/helium-browser/overlay.nix)
               ];
             }
             ./hosts/all.nix
