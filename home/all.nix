@@ -49,13 +49,8 @@
 
   catppuccin = {
     enable = true;
-    cursors = {
-      enable = true;
-      accent = "dark";
-    };
-    firefox = {
-      force = true;
-    };
+    cursors.enable = true;
+    cache.enable = true;
   };
 
   # This value determines the Home Manager release that your
