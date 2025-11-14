@@ -20,7 +20,14 @@
     # extractPeripheralFirmware = false;
     # This is broken because of flake git tracking.
     # I can't figure out how to make it work.
-    peripheralFirmwareDirectory = ./firmware;
+    peripheralFirmwareDirectory = pkgs.requireFile {
+      name = "firmware";
+      hashMode = "recursive";
+      hash = "sha256-lw8tJHRUSBwqu82ys4rZIYH0sEb+dDjQkXg1wt1afZI=";
+      message = ''
+        nix-store --add-fixed sha256 --recursive ./firmware
+      '';
+    };
   };
 
   swapDevices = [
