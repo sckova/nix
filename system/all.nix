@@ -118,12 +118,22 @@
     pulse.enable = true;
   };
 
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
+  };
+
   users.users.sckova = {
     isNormalUser = true;
     description = "Sean Kovacs";
     extraGroups = [
-      "networkmanager"
       "wheel"
+      "networkmanager"
+      "podman"
     ];
     packages = with pkgs; [ ];
     hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
@@ -136,6 +146,7 @@
       git
       inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
       firefoxpwa
+      distrobox
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
