@@ -17,33 +17,69 @@
     Unit = {
       Description = "Mount Synology NAS with Rclone and Home Manager.";
       After = [ "tailscaled.service" ];
+      Wants = [ "tailscaled.service" ];
     };
 
     Service = {
-      Type = "notify";
-      ExecStartPre = ''
-        if mountpoint -q %h/Synology; then
-          /run/wrappers/bin/fusermount -uz %h/Synology
-        fi
-        ${pkgs.coreutils}/bin/mkdir -p %h/Synology
-      '';
-      ExecStart = ''
+      Type = "simple";
+      # ExecStartPre = "${pkgs.writeShellScript "synology-prep" ''
+      #   if mountpoint -q %h/Synology; then
+      #     /run/wrappers/bin/fusermount -uz %h/Synology
+      #   fi
+      #   ${pkgs.coreutils}/bin/mkdir -p %h/Synology
+      # ''}";
+      ExecStart = "${pkgs.writeShellScript "synology-mount" ''
+        #!/usr/bin/env bash
+        set -euo pipefail
+
+        # Ensure mount point exists
+        mkdir -p $HOME/Synology || true
+
+        # Unmount stale mount if present
+        /run/wrappers/bin/umount "$HOME/Synology" || true
+
+        # Mount rclone in foreground
         ${pkgs.rclone}/bin/rclone \
-         --config=%h/.config/rclone/synology.conf \
-         --vfs-cache-mode full \
-         --vfs-cache-max-size 10G \
-         --vfs-cache-max-age 12h \
-         --vfs-read-chunk-size 128M \
-         --vfs-read-chunk-size-limit 2G \
-         --buffer-size 64M \
-         --dir-cache-time 72h \
-         --ignore-checksum \
-         --log-level INFO \
-         mount "synology:" "%h/Synology"
-      '';
+          --config=$HOME/.config/rclone/synology.conf \
+          --vfs-cache-mode full \
+          --vfs-cache-max-size 10G \
+          --vfs-cache-max-age 12h \
+          --vfs-read-chunk-size 128M \
+          --vfs-read-chunk-size-limit 2G \
+          --buffer-size 64M \
+          --dir-cache-time 72h \
+          --ignore-checksum \
+          --log-level INFO \
+          --rc --rc-serve \
+          mount "synology:" "$HOME/Synology"
+      ''}";
       ExecStop = "/run/wrappers/bin/fusermount -uz %h/Synology/%i";
       StandardOutput = "journal";
       StandardError = "journal";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.services.synology-prefill = {
+    Unit = {
+      Description = "Prefill Synology NAS rclone cache";
+      After = [ "synology-mount.service" ];
+      Wants = [ "synology-mount.service" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.writeShellScript "synology-prefill" ''
+        #!/usr/bin/env bash
+        set -euo pipefail
+        ${pkgs.rclone}/bin/rclone rc vfs/refresh -v --fast-list recursive=true >/dev/null
+      ''}";
+      StandardOutput = "journal";
+      StandardError = "journal";
+      Restart = "on-failure";
     };
 
     Install = {
