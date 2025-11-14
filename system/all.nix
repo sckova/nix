@@ -28,6 +28,7 @@
       ../home/all.nix
       ../home/browsers/firefox/default.nix
       ../home/systemd/default.nix
+      ../home/terminal/btop/default.nix
       ../home/terminal/nvim/default.nix
       ../home/terminal/kitty/default.nix
       ../home/kde/plasma.nix
@@ -69,6 +70,7 @@
   catppuccin = {
     enable = true;
     flavor = "mocha";
+    cache.enable = true;
   };
 
   networking.networkmanager.enable = true;
