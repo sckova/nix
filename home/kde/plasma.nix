@@ -72,15 +72,15 @@
         };
       }
       {
-        description = "Firefox Picture-in-Picture";
+        description = "Picture-in-Picture";
         match = {
           window-class = {
             value = "";
             type = "substring";
           };
           title = {
-            value = "Picture-in-Picture";
-            type = "exact";
+            value = "(?i)picture[- ]in[- ]picture";
+            type = "regex";
           };
         };
         apply = {
