@@ -24,6 +24,8 @@
   at-spi2-atk,
   at-spi2-core,
   cups,
+  gsettings-desktop-schemas,
+  gtk3,
 }:
 let
   architectures = {
@@ -81,6 +83,8 @@ stdenv.mkDerivation rec {
     at-spi2-atk
     at-spi2-core
     cups
+    gsettings-desktop-schemas
+    gtk3
   ];
 
   dontWrapQtApps = true;
@@ -102,6 +106,7 @@ stdenv.mkDerivation rec {
 
     makeWrapper $out/opt/helium/chrome-wrapper $out/bin/helium-browser \
       --chdir $out/opt/helium \
+      --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH:${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}" \
       --prefix LD_LIBRARY_PATH : "${
         lib.makeLibraryPath [
           libGL
