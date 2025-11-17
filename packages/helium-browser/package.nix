@@ -31,11 +31,11 @@ let
   architectures = {
     "x86_64-linux" = {
       arch = "x86_64";
-      hash = "sha256-9xEVnGym579rR6RunS4HWYV3nLk1ODEIGfg8PtNDSUk=";
+      hash = "sha256-hpb1mXaMJ2XTNxr49tGzmTopwuBUut1OldJsQkU8+1k=";
     };
     "aarch64-linux" = {
       arch = "arm64";
-      hash = "sha256-S5kF+K2Kwhqa0GG691NvnU/2frUCWL9BKrVK7y3bzSE=";
+      hash = "sha256-xR4Zy7O2srLwAu+E7gcwK/dPlL3VC2ptYn1/FVGQw2c=";
     };
   };
 
@@ -46,7 +46,7 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "helium-browser";
-  version = "0.6.4.1";
+  version = "0.6.5.1";
   xzName = "helium-${version}-${platformInfo.arch}_linux";
 
   src = fetchurl {
