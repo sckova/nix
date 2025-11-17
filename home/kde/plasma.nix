@@ -94,6 +94,22 @@
           };
         };
       }
+      {
+        description = "Steam (Distrobox)";
+        match = {
+          window-class = {
+            value = "steamwebhelper";
+            type = "substring";
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          desktopfile = {
+            value = "distrobox-steam";
+            apply = "force";
+          };
+        };
+      }
     ];
 
     kwin = {
