@@ -8,6 +8,11 @@
 {
   networking.hostName = "peach";
 
+  boot.binfmt.emulatedSystems = [
+    "x86_64-linux"
+    "riscv64-linux"
+  ];
+
   catppuccin.accent = "peach";
 
   home-manager.users.sckova = {
