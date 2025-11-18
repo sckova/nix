@@ -51,6 +51,7 @@
     enable = true;
     cursors.enable = true;
     cache.enable = true;
+    vscode.enable = false;
   };
 
   # This value determines the Home Manager release that your
