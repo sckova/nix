@@ -33,6 +33,7 @@
       ../home/terminal/kitty/default.nix
       ../home/kde/plasma.nix
       ../home/kde/other.nix
+      ../home/vscode/default.nix
       ../home/hosts/${config.networking.hostName}.nix
     ];
   };
