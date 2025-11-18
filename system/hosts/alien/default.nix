@@ -8,6 +8,11 @@
 {
   networking.hostName = "alien";
 
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "riscv64-linux"
+  ];
+
   catppuccin.accent = "blue";
 
   home-manager.users.sckova = {
