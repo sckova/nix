@@ -7,6 +7,8 @@
   autoPatchelfHook,
   makeWrapper,
 
+  helium-widevine,
+
   # runtime dependencies
   xorg,
   libGL,
@@ -103,6 +105,9 @@ stdenv.mkDerivation rec {
     mv ${xzName}/product_logo_256.png .
     cp -r ${xzName}/* $out/opt/helium/
     chmod +x $out/opt/helium/chrome-wrapper $out/opt/helium/chrome
+
+
+    cp -r ${helium-widevine}/share/helium/WidevineCdm $out/opt/helium/
 
     makeWrapper $out/opt/helium/chrome-wrapper $out/bin/helium-browser \
       --chdir $out/opt/helium \

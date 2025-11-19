@@ -5,7 +5,24 @@ final: prev: {
     else
       null;
 
-  helium-browser = prev.callPackage (builtins.path { path = ./helium-browser/package.nix; }) { };
+  # helium-browser =
+  #   prev.callPackage
+  #     (builtins.path {
+  #       path = ./helium-browser/package.nix;
+  #     })
+  #     {
+  #       helium-widevine = prev.callPackage (builtins.path {
+  #         path = ./helium-browser/widevine-aarch64-linux.nix;
+  #       }) { };
+  #     };
+
+  helium-browser =
+    let
+      helium-widevine = prev.callPackage ./helium-browser/widevine-aarch64-linux.nix { };
+    in
+    prev.callPackage ./helium-browser/package.nix {
+      inherit helium-widevine;
+    };
 
   strawberry-master = prev.callPackage (builtins.path {
     path = ./strawberry/package.nix;
