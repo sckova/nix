@@ -1,7 +1,7 @@
 {
   programs.nixvim = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     waylandSupport = true;
     viAlias = true;
     vimAlias = true;
