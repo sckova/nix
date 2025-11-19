@@ -51,7 +51,10 @@
     enable = true;
     cursors.enable = true;
     cache.enable = true;
-    vscode.enable = false;
+  };
+
+  home.sessionVariables = {
+    EDITOR = "code";
   };
 
   # This value determines the Home Manager release that your
