@@ -8,7 +8,7 @@
 }:
 
 stdenv.mkDerivation (finalAttrs: {
-  pname = "widevine-helium";
+  pname = "helium-widevine";
   version = "${finalAttrs.lacrosVersion}-${builtins.substring 0 7 finalAttrs.widevineInstaller.rev}";
   lacrosVersion = "120.0.6098.0";
 
@@ -38,11 +38,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   # Accoring to widevine-installer: "Hack because Chromium hardcodes a check for this right now..."
   postInstall = ''
-    install -vD manifest.json "$out/share/helium/WidevineCdm/manifest.json"
-    install -vD LICENSE.txt "$out/share/helium/WidevineCdm/License.txt"
+    mkdir -p                      "$out/share/helium/WidevineCdm/_platform_specific/linux_x64"
+    touch                         "$out/share/helium/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so"
+    install -vD manifest.json     "$out/share/helium/WidevineCdm/manifest.json"
+    install -vD LICENSE.txt       "$out/share/helium/WidevineCdm/License.txt"
     install -vD libwidevinecdm.so "$out/share/helium/WidevineCdm/_platform_specific/linux_arm64/libwidevinecdm.so"
-    mkdir -p "$out/share/helium/WidevineCdm/_platform_specific/linux_x64"
-    touch "$out/share/helium/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so"
   '';
 
   meta = import ./widevine-meta.nix lib;
