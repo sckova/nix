@@ -38,6 +38,11 @@
     ];
   };
 
+  environment.sessionVariables = rec {
+    NIXOS_OZONE_WL = "1";
+    EDITOR = "nvim";
+  };
+
   boot = {
 
     plymouth = {
@@ -149,9 +154,6 @@
       firefoxpwa
       distrobox
     ];
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
   };
 
   programs.gnupg.agent = {
