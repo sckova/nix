@@ -30,6 +30,8 @@
     deno
     prettier
     prettierd
+    musescore
+    mpv
 
     kde-rounded-corners
     kdePackages.partitionmanager
@@ -51,10 +53,6 @@
     enable = true;
     cursors.enable = true;
     cache.enable = true;
-  };
-
-  home.sessionVariables = {
-    EDITOR = "code";
   };
 
   # This value determines the Home Manager release that your
