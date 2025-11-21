@@ -41,13 +41,6 @@
         # Mount rclone in foreground
         ${pkgs.rclone}/bin/rclone \
           --config=$HOME/.config/rclone/synology.conf \
-          --vfs-cache-mode full \
-          --vfs-cache-max-size 10G \
-          --vfs-cache-max-age 12h \
-          --vfs-read-chunk-size 128M \
-          --vfs-read-chunk-size-limit 2G \
-          --buffer-size 64M \
-          --dir-cache-time 72h \
           --ignore-checksum \
           --log-level INFO \
           --rc --rc-serve \
@@ -63,29 +56,29 @@
     };
   };
 
-  systemd.user.services.synology-prefill = {
-    Unit = {
-      Description = "Prefill Synology NAS rclone cache";
-      After = [ "synology-mount.service" ];
-      Wants = [ "synology-mount.service" ];
-    };
+  # systemd.user.services.synology-prefill = {
+  #   Unit = {
+  #     Description = "Prefill Synology NAS rclone cache";
+  #     After = [ "synology-mount.service" ];
+  #     Wants = [ "synology-mount.service" ];
+  #   };
 
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.writeShellScript "synology-prefill" ''
-        #!/usr/bin/env bash
-        set -euo pipefail
-        ${pkgs.rclone}/bin/rclone rc vfs/refresh -v --fast-list recursive=true >/dev/null
-      ''}";
-      StandardOutput = "journal";
-      StandardError = "journal";
-      Restart = "on-failure";
-    };
+  #   Service = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.writeShellScript "synology-prefill" ''
+  #       #!/usr/bin/env bash
+  #       set -euo pipefail
+  #       ${pkgs.rclone}/bin/rclone rc vfs/refresh -v --fast-list recursive=true >/dev/null
+  #     ''}";
+  #     StandardOutput = "journal";
+  #     StandardError = "journal";
+  #     Restart = "on-failure";
+  #   };
 
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
+  #   Install = {
+  #     WantedBy = [ "default.target" ];
+  #   };
+  # };
 
   systemd.user.services.input-leap = {
     Unit = {
