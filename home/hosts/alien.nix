@@ -6,6 +6,26 @@
     flavor = "mocha";
   };
 
+  home.packages = with pkgs; [
+
+    catppuccin-cursors.latteDark
+    catppuccin-cursors.latteLight
+    catppuccin-cursors.latteBlue
+    catppuccin-cursors.mochaDark
+    catppuccin-cursors.mochaLight
+    catppuccin-cursors.mochaBlue
+
+    (catppuccin-kde.override {
+      flavour = [
+        "latte"
+        "mocha"
+      ];
+      accents = [
+        "blue"
+      ];
+    })
+  ];
+
   programs.plasma = {
     workspace = {
       colorScheme = "CatppuccinMochaBlue";

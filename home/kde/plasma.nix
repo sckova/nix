@@ -169,7 +169,11 @@
     };
 
     configFile = {
+      # KDE has an automatic light-dark that CURRENTLY
+      # isn't supported by plasma-manager.
       # kdeglobals.KDE.AutomaticLookAndFeel = true;
+      # DefaultDarkLookAndFeel =  "Catppuccin-Flavor-Accent";
+      # DefaultLightLookAndFeel = "Catppuccin-Flavor-Accent";
       kwinrc.Round-Corners.ActiveOutlinePalette = 2;
       kwinrc.Round-Corners.ActiveOutlineUseCustom = false;
       kwinrc.Round-Corners.ActiveOutlineUsePalette = true;
@@ -184,7 +188,7 @@
       kwinrc.Round-Corners.InactiveSecondOutlineUsePalette = true;
       plasmaparc.General.AudioFeedback = false;
       kdeglobals.Sounds.Enable = false;
-      kwinrc.Plugins.forceblurEnabled = true;
+      kwinrc.Plugins.forceblurEnabled = false;
       kwinrc.Effect-blurplus.BlurDecorations = true;
       kwinrc.Effect-blurplus.BlurMatching = false;
       kwinrc.Effect-blurplus.BlurMenus = true;
@@ -193,6 +197,7 @@
       kwinrc.Effect-blurplus.BottomCornerRadius = 10;
       kwinrc.Effect-blurplus.NoiseStrength = 6;
       kwinrc.Effect-blurplus.RefractionStrength = 10;
+      ksplashrc.KSplash.Engine = "KSplashQML";
     };
 
     panels = [
