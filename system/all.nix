@@ -29,8 +29,9 @@
       ../home/browsers/firefox/default.nix
       ../home/systemd/default.nix
       ../home/terminal/btop/default.nix
-      ../home/terminal/nvim/default.nix
+      ../home/terminal/fish/default.nix
       ../home/terminal/kitty/default.nix
+      ../home/terminal/nvim/default.nix
       ../home/kde/plasma.nix
       ../home/kde/other.nix
       ../home/vscode/default.nix
