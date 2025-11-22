@@ -1,17 +1,35 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    asahi-nvram
-    asahi-bless
-    asahi-btsync
-    asahi-wifisync
-  ];
-
   catppuccin = {
     accent = "peach";
     flavor = "mocha";
   };
+
+  home.packages = with pkgs; [
+
+    asahi-nvram
+    asahi-bless
+    asahi-btsync
+    asahi-wifisync
+
+    catppuccin-cursors.latteDark
+    catppuccin-cursors.latteLight
+    catppuccin-cursors.lattePeach
+    catppuccin-cursors.mochaDark
+    catppuccin-cursors.mochaLight
+    catppuccin-cursors.mochaPeach
+
+    (catppuccin-kde.override {
+      flavour = [
+        "latte"
+        "mocha"
+      ];
+      accents = [
+        "peach"
+      ];
+    })
+  ];
 
   programs.plasma = {
 
