@@ -37,21 +37,11 @@
     kdePackages.partitionmanager
 
     colloid-icon-theme
-    (catppuccin-kde.override {
-      flavour = [
-        "latte"
-        "mocha"
-      ];
-      accents = [
-        "peach"
-        "blue"
-      ];
-    })
   ];
 
   catppuccin = {
     enable = true;
-    cursors.enable = true;
+    cursors.enable = false;
     cache.enable = true;
   };
 
