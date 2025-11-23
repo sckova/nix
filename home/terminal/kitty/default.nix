@@ -4,7 +4,7 @@
     enableGitIntegration = true;
     themeFile = "Catppuccin-Mocha";
     font = {
-      name = "Noto Sans Mono";
+      name = "NotoSansM Nerd Font Mono";
       size = 10;
     };
     shellIntegration = {
