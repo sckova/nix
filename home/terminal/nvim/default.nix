@@ -1,6 +1,9 @@
+{ pkgs, ... }:
+
 {
   programs.nixvim = {
     enable = true;
+    enablePrintInit = true;
     # defaultEditor = true;
     waylandSupport = true;
     viAlias = true;
