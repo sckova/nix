@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   programs.plasma = {
     enable = true;
@@ -48,6 +50,34 @@
         match = {
           window-class = {
             value = "openmw";
+            type = "substring";
+          };
+          window-types = [ "normal" ];
+        };
+        apply = {
+          noborder = {
+            value = true;
+            apply = "force";
+          };
+          maximizehoriz = {
+            value = true;
+            apply = "force";
+          };
+          maximizevert = {
+            value = true;
+            apply = "force";
+          };
+          desktops = {
+            value = "Desktop_4";
+            apply = "force";
+          };
+        };
+      }
+      {
+        description = "Minecraft";
+        match = {
+          window-class = {
+            value = "Minecraft*";
             type = "substring";
           };
           window-types = [ "normal" ];
@@ -219,7 +249,7 @@
           {
             iconTasks = {
               launchers = [
-                # "applications:firefox.desktop"
+                "applications:firefox.desktop"
                 "applications:helium.desktop"
                 "applications:org.kde.dolphin.desktop"
                 "applications:vesktop.desktop"
