@@ -5,7 +5,7 @@
     vesktop
     gh
     adwsteamgtk
-    prismlauncher
+    prismlauncher-master
     tmux
     fastfetch
     btop

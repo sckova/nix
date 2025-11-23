@@ -24,6 +24,14 @@ final: prev: {
       inherit helium-widevine;
     };
 
+  prismlauncher-unwrapped-master = prev.callPackage (builtins.path {
+    path = ./prismlauncher-unwrapped-master/package.nix;
+  }) { };
+
+  prismlauncher-master = prev.callPackage (builtins.path {
+    path = ./prismlauncher-master/package.nix;
+  }) { };
+
   strawberry-master = prev.callPackage (builtins.path {
     path = ./strawberry/package.nix;
   }) { };
