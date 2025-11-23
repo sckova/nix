@@ -161,7 +161,7 @@
         # translucency.enable = true;
         # windowOpenClose.animation = "fade";
         blur = {
-          enable = false;
+          enable = true;
           noiseStrength = 8;
           strength = 5;
         };
