@@ -157,6 +157,7 @@
       inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
       firefoxpwa
       distrobox
+      nerd-fonts.noto
     ];
 
     plasma6.excludePackages = with pkgs.kdePackages; [
