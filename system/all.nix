@@ -27,6 +27,8 @@
     imports = [
       ../home/all.nix
       ../home/browsers/firefox/default.nix
+      ../home/tiling/niri/default.nix
+      ../home/tiling/waybar/default.nix
       ../home/systemd/default.nix
       ../home/terminal/btop/default.nix
       ../home/terminal/fish/default.nix
@@ -164,6 +166,8 @@
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
+
+  programs.niri.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
