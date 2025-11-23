@@ -44,6 +44,7 @@
   environment.sessionVariables = rec {
     NIXOS_OZONE_WL = "1";
     EDITOR = "nvim";
+    TERMINAL = "kitty";
   };
 
   boot = {
@@ -156,6 +157,12 @@
       inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
       firefoxpwa
       distrobox
+    ];
+
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      elisa
+      konsole
+      khelpcenter
     ];
   };
 
