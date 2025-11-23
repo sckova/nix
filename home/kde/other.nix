@@ -11,7 +11,7 @@
     enable = true;
     editor = {
       font = {
-        family = "Noto Sans Mono";
+        family = "NotoSansM Nerd Font Mono";
         pointSize = 10;
       };
     };
