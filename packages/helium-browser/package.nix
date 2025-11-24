@@ -33,7 +33,7 @@ let
   architectures = {
     "x86_64-linux" = {
       arch = "x86_64";
-      hash = lib.fakeHash;
+      hash = "sha256-VB218vOY/9tI97Yhx2MNlNPb46jJHv/FqY96tJaokBE=";
     };
     "aarch64-linux" = {
       arch = "arm64";
