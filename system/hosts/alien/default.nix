@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   catppuccin,
   ...
 }:
@@ -11,6 +12,11 @@
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
     "riscv64-linux"
+  ];
+
+  environment.systemPackages = [
+    pkgs.compose2nix
+    inputs.compose2nix.packages.x86_64-linux.default
   ];
 
   catppuccin.accent = "blue";
