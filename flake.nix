@@ -35,6 +35,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    compose2nix = {
+      url = "github:aksiksi/compose2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon/release-2025-11-18";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +55,7 @@
       nur,
       nixvim,
       kwin-effects-forceblur,
+      compose2nix,
       apple-silicon,
       ...
     }:
@@ -64,7 +70,7 @@
           inherit system;
           specialArgs = {
             inherit catppuccin;
-            inputs = { inherit kwin-effects-forceblur; };
+            inputs = { inherit kwin-effects-forceblur compose2nix; };
           };
           modules = [
             {
