@@ -24,6 +24,10 @@
         "blue"
       ];
     })
+
+    daggerfall-unity
+    shipwright
+    _2ship2harkinian
   ];
 
   programs.plasma = {
