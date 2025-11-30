@@ -85,19 +85,19 @@
         apply = {
           noborder = {
             value = true;
-            apply = "force";
+            apply = "initially";
           };
           maximizehoriz = {
             value = true;
-            apply = "force";
+            apply = "initially";
           };
           maximizevert = {
             value = true;
-            apply = "force";
+            apply = "initially";
           };
           desktops = {
             value = "Desktop_4";
-            apply = "force";
+            apply = "initially";
           };
         };
       }
