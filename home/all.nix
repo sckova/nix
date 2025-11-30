@@ -32,6 +32,7 @@
     prettierd
     musescore
     mpv
+    gimp
 
     kde-rounded-corners
     kdePackages.partitionmanager
