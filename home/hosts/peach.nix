@@ -60,18 +60,18 @@
     };
 
     shortcuts = {
-      # my volume down key broke as hell boy
-      kmix.decrease_volume = [
-        "Volume Mute"
-        "Volume Down"
-      ];
-      kmix.decrease_volume_small = [
-        "Shift+Volume Mute"
-        "Shift+Volume Down"
-      ];
-      kmix.increase_volume = "Volume Up";
-      kmix.increase_volume_small = "Shift+Volume Up";
-      kmix.mute = "Sleep";
+      # # my volume down key broke as hell boy
+      # kmix.decrease_volume = [
+      #   "Volume Mute"
+      #   "Volume Down"
+      # ];
+      # kmix.decrease_volume_small = [
+      #   "Shift+Volume Mute"
+      #   "Shift+Volume Down"
+      # ];
+      # kmix.increase_volume = "Volume Up";
+      # kmix.increase_volume_small = "Shift+Volume Up";
+      # kmix.mute = "Sleep";
       org_kde_powerdevil.Sleep = [ ];
     };
 
