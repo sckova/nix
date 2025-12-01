@@ -34,6 +34,8 @@
     mpv
     gimp
 
+    jdk21_headless
+
     kde-rounded-corners
     kdePackages.partitionmanager
 
