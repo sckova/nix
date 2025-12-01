@@ -32,9 +32,5 @@ final: prev: {
     path = ./prismlauncher-master/package.nix;
   }) { };
 
-  strawberry-master = prev.callPackage (builtins.path {
-    path = ./strawberry/package.nix;
-  }) { };
-
   widevine-firefox = prev.callPackage (builtins.path { path = ./widevine-firefox/package.nix; }) { };
 }

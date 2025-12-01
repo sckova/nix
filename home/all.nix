@@ -20,7 +20,7 @@
     (chromium.override {
       enableWideVine = true;
     })
-    strawberry-master
+    strawberry
     spotify-player
     input-leap
     libreoffice-qt-fresh
