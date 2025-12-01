@@ -22,9 +22,7 @@
   hardware.asahi = {
     enable = true;
     setupAsahiSound = true;
-    # extractPeripheralFirmware = false;
-    # This is broken because of flake git tracking.
-    # I can't figure out how to make it work.
+    # https://github.com/nix-community/nixos-apple-silicon/issues/299#issuecomment-2901508921
     peripheralFirmwareDirectory = pkgs.requireFile {
       name = "firmware";
       hashMode = "recursive";
