@@ -16,6 +16,17 @@
             end
           )
 
+          set -g fish_color_user 89dceb
+
+          # Set host color based on hostname
+          if test (hostname) = "peach"
+            set -g fish_color_host fab387
+          else if test (hostname) = "alien"
+            set -g fish_color_host 89b4fa
+          else if test (hostname) = "vm-aarch64"
+            set -g fish_color_host a6e3a1
+          end
+
           set -l user_host (set_color $fish_color_user)"$USER"(set_color normal)"@"(set_color $fish_color_host)(prompt_hostname)(set_color normal)
 
           set -l cwd (set_color $fish_color_cwd)(prompt_pwd)(set_color normal)
