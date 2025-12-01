@@ -134,6 +134,11 @@
           hostname = "alien";
           system = "x86_64-linux";
         };
+
+        vm-aarch64 = mkNixosSystem {
+          hostname = "vm-aarch64";
+          system = "aarch64-linux";
+        };
       };
 
       homeConfigurations = {
@@ -146,6 +151,11 @@
           user = "sckova";
           hostname = "alien";
           system = "x86_64-linux";
+        };
+        vm-aarch64 = mkHomeConfig {
+          user = "sckova";
+          hostname = "vm-aarch64";
+          system = "aarch64-linux";
         };
       };
     };
