@@ -24,5 +24,7 @@ final: prev: {
       inherit helium-widevine;
     };
 
+  spotifyd = prev.callPackage (builtins.path { path = ./spotifyd/package.nix; }) { };
+
   widevine-firefox = prev.callPackage (builtins.path { path = ./widevine-firefox/package.nix; }) { };
 }
