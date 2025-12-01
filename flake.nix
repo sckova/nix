@@ -2,7 +2,7 @@
   description = "My NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/c5ae371f1a6a7fd27823";
+    nixpkgs.url = "github:NixOS/nixpkgs";
 
     catppuccin = {
       url = "github:catppuccin/nix";
@@ -41,7 +41,7 @@
     };
 
     apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon/release-2025-11-18";
+      url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
