@@ -33,11 +33,11 @@ let
   architectures = {
     "x86_64-linux" = {
       arch = "x86_64";
-      hash = "sha256-VB218vOY/9tI97Yhx2MNlNPb46jJHv/FqY96tJaokBE=";
+      hash = "sha256-DLcJCECE5yWcwZuRwNJs3q+sqrZbTbouGF5bDTIFYWM=";
     };
     "aarch64-linux" = {
       arch = "arm64";
-      hash = "sha256-SApc3CSrYm6MSRgqtJS7IckUVJuoWeUMUgGxqgKakBg=";
+      hash = "sha256-c4XHvq6H60RfoChyrdADGeazZ0hxt72GoZE4A0bwzNU=";
     };
   };
 
@@ -48,7 +48,7 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "helium-browser";
-  version = "0.6.7.1";
+  version = "0.6.9.1";
   xzName = "helium-${version}-${platformInfo.arch}_linux";
 
   src = fetchurl {
@@ -122,7 +122,9 @@ stdenv.mkDerivation rec {
     install -Dm644 product_logo_256.png $out/share/icons/hicolor/256x256/apps/helium.png
     install -Dm644 helium.desktop $out/share/applications/helium.desktop
     substituteInPlace $out/share/applications/helium.desktop \
-      --replace-fail 'Exec=chromium' "Exec=$out/bin/helium-browser" \
+      --replace-fail 'Exec=chromium' "Exec=$out/bin/helium-browser"
+    substituteInPlace $out/share/applications/helium.desktop \
+      --replace-fail 'Icon=helium' 'Icon=web-browser'
 
     runHook postInstall
   '';
