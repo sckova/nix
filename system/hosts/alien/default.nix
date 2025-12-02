@@ -14,11 +14,6 @@
     "riscv64-linux"
   ];
 
-  environment.systemPackages = [
-    pkgs.compose2nix
-    inputs.compose2nix.packages.x86_64-linux.default
-  ];
-
   catppuccin.accent = "blue";
 
   home-manager.users.sckova = {
