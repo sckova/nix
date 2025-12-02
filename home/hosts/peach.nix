@@ -79,7 +79,7 @@
       # Application name, Global menu and Song information and playback controls at the top
       {
         location = "top";
-        height = 37;
+        height = 42; # 37 for 200%, 42 for 175%
         floating = false;
         widgets = [
           {
