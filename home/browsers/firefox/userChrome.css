@@ -1,223 +1,105 @@
-@media (prefers-color-scheme: light) {
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
   :root {
-    /* bookmark_text */
-    --toolbar-color: #4c4f69ff !important;
-
-    /* button_background_active */
-    --toolbarbutton-active-background: rgba(156, 160, 176, 1) !important;
-
-    /* button_background_hover */
-    --toolbarbutton-hover-background: rgba(204, 208, 218, 1) !important;
-
-    /* icons */
-    --toolbarbutton-icon-fill: #4c4f69ff !important;
-
-    /* icons_attention */
-    --toolbarbutton-icon-fill-attention: #4c4f69ff !important;
-
-    /* frame */
-    --toolbox-non-lwt-bgcolor: #dce0e8ff !important;
-
-    /* frame_inactive */
-    &:where([tabsintitlebar]) {
-      --toolbox-non-lwt-bgcolor-inactive: #dce0e8ff !important;
+    .tabbrowser-tab[selected="true"] .tab-background {
+      border: 1px solid #313244 !important;
     }
-
-    /* popup */
-    --arrowpanel-background: #eff1f5ff !important;
-
-    /* popup_border */
-    --arrowpanel-border-color: #9ca0b0ff !important;
-
-    /* popup_highlight */
-    --urlbarView-highlight-background: #9ca0b0ff !important;
-
-    /* popup_highlight_text */
-    --urlbarView-highlight-color: #4c4f69ff !important;
-
-    /* popup_text */
-    --arrowpanel-color: #4c4f69ff !important;
-
-    /* tab_background_text */
-    --toolbox-non-lwt-textcolor: #4c4f69ff !important;
-
-    /* tab_line */
+    --toolbar-bgcolor: rgb(30, 30, 46) !important;
+    --toolbox-non-lwt-bgcolor: rgb(17, 17, 27) !important;
+    --toolbox-non-lwt-textcolor: rgb(205, 214, 244) !important;
+    --input-bgcolor: rgb(24, 24, 37) !important;
+    --toolbar-field-background-color: var(--input-bgcolor) !important;
+    --input-color: rgb(205, 214, 244) !important;
+    --toolbar-field-color: var(--input-color) !important;
     .tab-background[selected]:not([multiselected]) {
-      outline: 1px solid #9ca0b0ff;
+      outline: 1px solid rgb(49, 50, 68);
       outline-offset: -1px;
     }
-
     .tab-background[multiselected] {
-      --focus-outline-color: #9ca0b0ff;
+      --focus-outline-color: rgb(49, 50, 68);
     }
-
-    /* tab_loading */
+    --arrowpanel-background: rgb(30, 30, 46) !important;
+    --arrowpanel-color: rgb(205, 214, 244) !important;
+    --toolbarbutton-active-background: rgb(108, 112, 134) !important;
+    &:where([tabsintitlebar]) {
+      --toolbox-non-lwt-bgcolor-inactive: rgb(17, 17, 27) !important;
+    }
+    --toolbarbutton-icon-fill-attention: rgb(249, 226, 175) !important;
+    --toolbarbutton-icon-fill: rgb(205, 214, 244) !important;
+    --arrowpanel-border-color: rgb(49, 50, 68) !important;
+    --urlbarView-highlight-color: rgb(205, 214, 244) !important;
+    --urlbarView-highlight-background: rgb(108, 112, 134) !important;
     #tabbrowser-tabs {
-      --tab-loading-fill: #9ca0b0ff !important;
+      --tab-loading-fill: rgb(249, 226, 175) !important;
     }
-
-    /* tab_selected */
-    --tab-selected-bgcolor: #eff1f5ff !important;
-
-    /* tab_text */
-    --tab-selected-textcolor: #4c4f69ff !important;
-
-    /* toolbar */
-    --toolbar-bgcolor: #eff1f5ff !important;
-
-    /* toolbar_bottom_separator */
-    --chrome-content-separator-color: #eff1f5ff !important;
-
-    /* toolbar_field */
-    --input-bgcolor: #e6e9efff !important;
-    --toolbar-field-background-color: var(--input-bgcolor) !important;
-
-    /* toolbar_field_border */
-    --input-border-color: #eff1f5ff !important;
+    --tab-selected-bgcolor: rgb(30, 30, 46) !important;
+    --tab-selected-textcolor: rgb(205, 214, 244) !important;
+    --chrome-content-separator-color: rgb(30, 30, 46) !important;
+    --toolbar-field-focus-border-color: rgb(49, 50, 68) !important;
+    --input-border-color: rgb(49, 50, 68) !important;
     --toolbar-field-border-color: var(--input-border-color) !important;
-
-    /* toolbar_field_border_focus */
-    --toolbar-field-focus-border-color: #6c7086ff !important;
-
-    /* toolbar_field_focus */
-    --toolbar-field-focus-background-color: #eff1f5ff !important;
-
-    /* toolbar_field_highlight */
-    #urlbar-input,
-    .searchbar-textbox {
-      &:focus::selection {
-        background-color: #6c7086ff;
-      }
+    --toolbar-field-focus-background-color: rgb(30, 30, 46) !important;
+    #urlbar-input:focus::selection,
+    .searchbar-textbox:focus::selection {
+      color: rgb(30, 30, 46);
     }
-
-    /* toolbar_field_highlight_text */
-    #urlbar-input,
-    .searchbar-textbox {
-      &:focus::selection {
-        color: #4c4f69ff;
-      }
+    #urlbar-input:focus::selection,
+    .searchbar-textbox:focus::selection {
+      background-color: rgb(249, 226, 175);
     }
-
-    /* toolbar_field_text */
-    --input-color: #4c4f69ff !important;
-    --toolbar-field-color: var(--input-color) !important;
-
-    /* toolbar_field_text_focus */
-    --toolbar-field-focus-color: #4c4f69ff !important;
-
-    /* toolbar_vertical_separator */
-    --toolbarseparator-color: #6c7086ff !important;
+    --toolbarseparator-color: rgb(249, 226, 175) !important;
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* Light theme */
+@media (prefers-color-scheme: light) {
   :root {
-    /* bookmark_text */
-    --toolbar-color: #cdd6f4ff !important;
-
-    /* button_background_active */
-    --toolbarbutton-active-background: rgba(108, 112, 134, 1) !important;
-
-    /* button_background_hover */
-    --toolbarbutton-hover-background: rgba(49, 50, 68, 1) !important;
-
-    /* icons */
-    --toolbarbutton-icon-fill: #cdd6f4ff !important;
-
-    /* icons_attention */
-    --toolbarbutton-icon-fill-attention: #cdd6f4ff !important;
-
-    /* frame */
-    --toolbox-non-lwt-bgcolor: #11111bff !important;
-
-    /* frame_inactive */
-    &:where([tabsintitlebar]) {
-      --toolbox-non-lwt-bgcolor-inactive: #11111bff !important;
+    .tabbrowser-tab[selected="true"] .tab-background {
+      border: 1px solid #ccd0da !important;
     }
-
-    /* popup */
-    --arrowpanel-background: #1e1e2eff !important;
-
-    /* popup_border */
-    --arrowpanel-border-color: #6c7086ff !important;
-
-    /* popup_highlight */
-    --urlbarView-highlight-background: #6c7086ff !important;
-
-    /* popup_highlight_text */
-    --urlbarView-highlight-color: #cdd6f4ff !important;
-
-    /* popup_text */
-    --arrowpanel-color: #cdd6f4ff !important;
-
-    /* tab_background_text */
-    --toolbox-non-lwt-textcolor: #cdd6f4ff !important;
-
-    /* tab_line */
+    --toolbar-bgcolor: rgb(239, 241, 245) !important;
+    --toolbox-non-lwt-bgcolor: rgb(220, 224, 232) !important;
+    --toolbox-non-lwt-textcolor: rgb(76, 79, 105) !important;
+    --input-bgcolor: rgb(230, 233, 239) !important;
+    --toolbar-field-background-color: var(--input-bgcolor) !important;
+    --input-color: rgb(76, 79, 105) !important;
+    --toolbar-field-color: var(--input-color) !important;
     .tab-background[selected]:not([multiselected]) {
-      outline: 1px solid #6c7086ff;
+      outline: 1px solid rgb(223, 142, 29);
       outline-offset: -1px;
     }
-
     .tab-background[multiselected] {
-      --focus-outline-color: #6c7086ff;
+      --focus-outline-color: rgb(223, 142, 29);
     }
-
-    /* tab_loading */
+    --arrowpanel-background: rgb(239, 241, 245) !important;
+    --arrowpanel-color: rgb(76, 79, 105) !important;
+    --toolbarbutton-active-background: rgb(156, 160, 176) !important;
+    &:where([tabsintitlebar]) {
+      --toolbox-non-lwt-bgcolor-inactive: rgb(220, 224, 232) !important;
+    }
+    --toolbarbutton-icon-fill-attention: rgb(223, 142, 29) !important;
+    --toolbarbutton-icon-fill: rgb(76, 79, 105) !important;
+    --arrowpanel-border-color: rgb(223, 142, 29) !important;
+    --urlbarView-highlight-color: rgb(76, 79, 105) !important;
+    --urlbarView-highlight-background: rgb(156, 160, 176) !important;
     #tabbrowser-tabs {
-      --tab-loading-fill: #6c7086ff !important;
+      --tab-loading-fill: rgb(223, 142, 29) !important;
     }
-
-    /* tab_selected */
-    --tab-selected-bgcolor: #1e1e2eff !important;
-
-    /* tab_text */
-    --tab-selected-textcolor: #cdd6f4ff !important;
-
-    /* toolbar */
-    --toolbar-bgcolor: #1e1e2eff !important;
-
-    /* toolbar_bottom_separator */
-    --chrome-content-separator-color: #1e1e2eff !important;
-
-    /* toolbar_field */
-    --input-bgcolor: #181825ff !important;
-    --toolbar-field-background-color: var(--input-bgcolor) !important;
-
-    /* toolbar_field_border */
-    --input-border-color: #1e1e2eff !important;
+    --tab-selected-bgcolor: rgb(239, 241, 245) !important;
+    --tab-selected-textcolor: rgb(76, 79, 105) !important;
+    --chrome-content-separator-color: rgb(239, 241, 245) !important;
+    --toolbar-field-focus-border-color: rgb(223, 142, 29) !important;
+    --input-border-color: rgb(239, 241, 245) !important;
     --toolbar-field-border-color: var(--input-border-color) !important;
-
-    /* toolbar_field_border_focus */
-    --toolbar-field-focus-border-color: #6c7086ff !important;
-
-    /* toolbar_field_focus */
-    --toolbar-field-focus-background-color: #1e1e2eff !important;
-
-    /* toolbar_field_highlight */
-    #urlbar-input,
-    .searchbar-textbox {
-      &:focus::selection {
-        background-color: #6c7086ff;
-      }
+    --toolbar-field-focus-background-color: rgb(239, 241, 245) !important;
+    #urlbar-input:focus::selection,
+    .searchbar-textbox:focus::selection {
+      color: rgb(239, 241, 245);
     }
-
-    /* toolbar_field_highlight_text */
-    #urlbar-input,
-    .searchbar-textbox {
-      &:focus::selection {
-        color: #cdd6f4ff;
-      }
+    #urlbar-input:focus::selection,
+    .searchbar-textbox:focus::selection {
+      background-color: rgb(223, 142, 29);
     }
-
-    /* toolbar_field_text */
-    --input-color: #cdd6f4ff !important;
-    --toolbar-field-color: var(--input-color) !important;
-
-    /* toolbar_field_text_focus */
-    --toolbar-field-focus-color: #cdd6f4ff !important;
-
-    /* toolbar_vertical_separator */
-    --toolbarseparator-color: #6c7086ff !important;
+    --toolbarseparator-color: rgb(223, 142, 29) !important;
   }
 }
