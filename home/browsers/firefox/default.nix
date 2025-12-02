@@ -2,8 +2,17 @@
 { pkgs, ... }:
 
 {
+  home.sessionVariables = rec {
+    MOZ_GMP_PATH = "${pkgs.widevine-firefox}/gmp-widevinecdm/system-installed";
+  };
+
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox.override {
+      nativeMessagingHosts = [
+        pkgs.firefoxpwa
+      ];
+    };
     profiles = {
       default = {
         id = 0;
@@ -21,10 +30,14 @@
             privacy-badger
             sponsorblock
             pwas-for-firefox
+            control-panel-for-twitter
           ];
           settings = {
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".settings = {
-              dbInChromeStorage = true; # required for Stylus
+              force = true;
+              settings = {
+                dbInChromeStorage = true;
+              };
             };
           };
         };
@@ -35,6 +48,7 @@
           "extensions.update.enabled" = false;
           "browser.search.defaultenginename" = "google";
           "browser.search.order.1" = "google";
+          "browser.toolbars.bookmarks.visibility" = "newtab";
 
           "signon.rememberSignons" = false;
           "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -43,15 +57,79 @@
           "browser.cache.disk.enable" = true; # Set to false if you have a HDD
           "browser.warnOnQuitShortcut" = false;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-          # "mousewheel.default.delta_multiplier_x" = 100;
-          # "mousewheel.default.delta_multiplier_y" = 100;
-          # "mousewheel.default.delta_multiplier_z" = 100;
-
-          # Firefox 75+ remembers the last workspace it was opened on as part of its session management.
-          # This is annoying, because I can have a blank workspace, click Firefox from the launcher, and
-          # then have Firefox open on some other workspace.
           "widget.disable-workspace-management" = true;
+          "browser.contentblocking.category" = {
+            Value = "strict";
+            Status = "locked";
+          };
+          "widget.gtk.global-menu.enabled" = true;
+          "widget.gtk.global-menu.wayland.enabled" = true;
+          "browser.tabs.inTitlebar" = 0;
+          "extensions.pocket.enabled" = false;
+          "extensions.screenshots.disabled" = true;
+          "browser.topsites.contile.enabled" = false;
+          "browser.formfill.enable" = false;
+          "browser.search.suggest.enabled" = false;
+          "browser.search.suggest.enabled.private" = false;
+          "browser.urlbar.suggest.searches" = false;
+          "browser.urlbar.showSearchSuggestionsFirst" = false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "browser.newtabpage.activity-stream.showWeather" = false;
+
+          "media.gmp-widevinecdm.version" = "system-installed";
+          "media.gmp-widevinecdm.visible" = true;
+          "media.gmp-widevinecdm.enabled" = true;
+          "media.gmp-widevinecdm.autoupdate" = false;
+
+          "media.eme.enabled" = true;
+          "media.eme.encrypted-media-encryption-scheme.enabled" = true;
+
+          # Vertical tabs
+          "sidebar.verticalTabs" = true;
+          "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
+          "browser.uiCustomization.navBarWhenVerticalTabs" = [
+            "back-button"
+            "forward-button"
+            "stop-reload-button"
+            "urlbar-container"
+            "downloads-button"
+            "fxa-toolbar-menu-button"
+            "unified-extensions-button"
+          ];
+        };
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "Nix sites";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "NixOS";
+                  url = "https://nixos.org/";
+                }
+              ];
+            }
+            {
+              name = "ovips.us.to";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "ovips.us.to";
+                  url = "https://ovips.us.to/";
+                }
+              ];
+            }
+          ];
         };
         search = {
           force = true;
