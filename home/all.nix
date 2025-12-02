@@ -33,6 +33,7 @@
     musescore
     mpv
     gimp
+    calibre
 
     jdk21_headless
 
