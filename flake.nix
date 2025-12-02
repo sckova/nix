@@ -2,7 +2,7 @@
   description = "My NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     catppuccin = {
       url = "github:catppuccin/nix";
@@ -30,16 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kwin-effects-forceblur = {
-      url = "github:taj-ny/kwin-effects-forceblur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    compose2nix = {
-      url = "github:aksiksi/compose2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,8 +44,6 @@
       plasma-manager,
       nur,
       nixvim,
-      kwin-effects-forceblur,
-      compose2nix,
       apple-silicon,
       ...
     }:
@@ -70,7 +58,6 @@
           inherit system;
           specialArgs = {
             inherit catppuccin;
-            inputs = { inherit kwin-effects-forceblur compose2nix; };
           };
           modules = [
             {
