@@ -117,15 +117,14 @@
       enable = true;
       useRoutingFeatures = "client";
     };
-  };
-
-  services.printing.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    udisks2.enable = true;
   };
 
   virtualisation = {
