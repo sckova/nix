@@ -1,9 +1,15 @@
 # https://discourse.nixos.org/t/combining-best-of-system-firefox-and-home-manager-firefox-settings/37721
-{ pkgs, ... }:
+# https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
+{ pkgs, config, ... }:
 
 {
   home.sessionVariables = rec {
     MOZ_GMP_PATH = "${pkgs.widevine-firefox}/gmp-widevinecdm/system-installed";
+  };
+
+  home.file.".mozilla/firefox/default/chrome" = {
+    source = ./chrome;
+    force = true;
   };
 
   programs.firefox = {
@@ -13,12 +19,68 @@
         pkgs.firefoxpwa
       ];
     };
+    policies = {
+      BlockAboutConfig = true;
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      # Check about:support for extension/add-on ID strings.
+      # Valid strings for installation_mode are "allowed", "blocked",
+      # "force_installed" and "normal_installed".
+      ExtensionSettings = {
+        "*" = {
+          "installation_mode" = "blocked";
+        };
+        "uBlock0@raymondhill.net" = {
+          installation_mode = "allowed";
+        };
+        "gdpr@cavi.au.dk" = {
+          installation_mode = "allowed";
+        };
+        "{5cce4ab5-3d47-41b9-af5e-8203eea05245}" = {
+          installation_mode = "allowed";
+        };
+        "plasma-browser-integration@kde.org" = {
+          installation_mode = "allowed";
+        };
+        "jid1-MnnxcxisBPnSXQ@jetpack" = {
+          installation_mode = "allowed";
+        };
+        "firefoxpwa@filips.si" = {
+          installation_mode = "allowed";
+        };
+        "sponsorBlocker@ajay.app" = {
+          installation_mode = "allowed";
+        };
+        "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
+          installation_mode = "allowed";
+        };
+        "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = {
+          installation_mode = "allowed";
+        };
+      };
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      DisablePocket = true;
+      DisableFirefoxAccounts = false;
+      DisableAccounts = false;
+      DisableFirefoxScreenshots = true;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+      DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
+      DisplayMenuBar = "always"; # alternatives: "always", "never" or "default-on"
+      SearchBar = "unified"; # alternative: "separate"
+    };
     profiles = {
       default = {
         id = 0;
         name = "default";
         isDefault = true;
-        userChrome = ./userChrome.css;
         extensions = {
           force = true;
           packages = with pkgs.nur.repos.rycee.firefox-addons; [

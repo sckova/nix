@@ -1,0 +1,7 @@
+#tracking-protection-icon-container {
+  display: none;
+}
+
+.bookmark-item[container] {
+  list-style-image: url("chrome://global/skin/dirListing/folder.png") !important;
+}
