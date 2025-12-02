@@ -80,7 +80,6 @@
               ];
             }
             ./system/all.nix
-            ./system/browsers/firefox.nix
             ./system/shell/fish.nix
             ./system/tailscale/default.nix
             ./system/hosts/${hostname}/default.nix
