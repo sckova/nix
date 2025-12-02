@@ -153,7 +153,6 @@
   environment = {
     systemPackages = with pkgs; [
       git
-      inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
       firefoxpwa
       distrobox
       nerd-fonts.noto
