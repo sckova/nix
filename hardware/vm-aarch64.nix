@@ -4,29 +4,29 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "usbhid" "usb_storage" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ehci_pci" "xhci_pci" "usbhid" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1f30a8f4-8d6d-47eb-a2c1-82c311b69695";
+    { device = "/dev/disk/by-uuid/48e34f6b-322d-4f45-9eae-b42eabe5c6e7";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2438-C64A";
+    { device = "/dev/disk/by-uuid/A1D8-5A25";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/5a1e7296-e7d2-4e66-9e1f-505b80f5ff3b"; }
+    [ { device = "/dev/disk/by-uuid/82d788c1-f166-4c78-9dbc-b3fd7d731307"; }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  hardware.parallels.enable = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
 }
