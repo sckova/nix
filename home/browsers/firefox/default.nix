@@ -1,9 +1,14 @@
 # https://discourse.nixos.org/t/combining-best-of-system-firefox-and-home-manager-firefox-settings/37721
 # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
-  home.sessionVariables = rec {
+  home.sessionVariables = lib.mkIf pkgs.stdenv.hostPlatform.isAarch64 {
     MOZ_GMP_PATH = "${pkgs.widevine-firefox}/gmp-widevinecdm/system-installed";
   };
 
