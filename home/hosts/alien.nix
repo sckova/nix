@@ -15,15 +15,22 @@
     catppuccin-cursors.mochaLight
     catppuccin-cursors.mochaBlue
 
-    (catppuccin-kde.override {
-      flavour = [
-        "latte"
-        "mocha"
-      ];
-      accents = [
-        "blue"
-      ];
-    })
+    (
+      (catppuccin-kde.override {
+        flavour = [
+          "latte"
+          "mocha"
+        ];
+        accents = [
+          "blue"
+        ];
+      }).overrideAttrs
+      (oldAttrs: {
+        postInstall = ''
+          rm -rf $out/share/aurorae
+        '';
+      })
+    )
 
     # steam gtk theming
     adwsteamgtk

@@ -15,15 +15,23 @@
     catppuccin-cursors.mochaLight
     catppuccin-cursors.mochaGreen
 
-    (catppuccin-kde.override {
-      flavour = [
-        "latte"
-        "mocha"
-      ];
-      accents = [
-        "green"
-      ];
-    })
+    (
+      (catppuccin-kde.override {
+        flavour = [
+          "latte"
+          "mocha"
+        ];
+        accents = [
+          "green"
+        ];
+      }).overrideAttrs
+      (oldAttrs: {
+        postInstall = ''
+          rm -rf $out/share/aurorae
+        '';
+      })
+    )
+
   ];
 
   programs.plasma = {
