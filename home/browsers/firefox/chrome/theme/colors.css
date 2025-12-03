@@ -7,7 +7,7 @@
     --toolbar-bgcolor: rgb(24, 24, 37) !important;
     --toolbox-non-lwt-bgcolor: rgb(17, 17, 27) !important;
     --toolbox-non-lwt-textcolor: rgb(205, 214, 244) !important;
-    --input-bgcolor: rgb(24, 24, 37) !important;
+    --input-bgcolor: rgb(17, 17, 27) !important;
     --toolbar-field-background-color: var(--input-bgcolor) !important;
     --input-color: rgb(205, 214, 244) !important;
     --toolbar-field-color: var(--input-color) !important;
@@ -36,7 +36,7 @@
     --tab-selected-textcolor: rgb(205, 214, 244) !important;
     --chrome-content-separator-color: rgb(49, 50, 68) !important;
     --toolbar-field-focus-border-color: rgb(49, 50, 68) !important;
-    --input-border-color: rgb(49, 50, 68) !important;
+    --input-border-color: rgb(24, 24, 37) !important;
     --toolbar-field-border-color: var(--input-border-color) !important;
     --toolbar-field-focus-background-color: rgb(30, 30, 46) !important;
     #urlbar-input:focus::selection,
@@ -60,7 +60,7 @@
     --toolbar-bgcolor: rgb(230, 233, 239) !important;
     --toolbox-non-lwt-bgcolor: rgb(220, 224, 232) !important;
     --toolbox-non-lwt-textcolor: rgb(76, 79, 105) !important;
-    --input-bgcolor: rgb(230, 233, 239) !important;
+    --input-bgcolor: rgb(220, 224, 232) !important;
     --toolbar-field-background-color: var(--input-bgcolor) !important;
     --input-color: rgb(76, 79, 105) !important;
     --toolbar-field-color: var(--input-color) !important;
@@ -89,7 +89,7 @@
     --tab-selected-textcolor: rgb(76, 79, 105) !important;
     --chrome-content-separator-color: rgb(239, 241, 245) !important;
     --toolbar-field-focus-border-color: rgb(76, 79, 105) !important;
-    --input-border-color: rgb(239, 241, 245) !important;
+    --input-border-color: rgb(230, 233, 239) !important;
     --toolbar-field-border-color: var(--input-border-color) !important;
     --toolbar-field-focus-background-color: rgb(239, 241, 245) !important;
     #urlbar-input:focus::selection,

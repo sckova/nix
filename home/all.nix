@@ -42,6 +42,7 @@
     gimp
     calibre
     helium-browser
+    bitwarden-desktop
 
     # browsers
     # (chromium.override {
