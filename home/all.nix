@@ -14,6 +14,7 @@
     wl-clipboard
     rclone
     waypipe
+    spotdl
 
     # development & tooling
     gh
@@ -30,19 +31,24 @@
 
     # gui applications
     vesktop
-    prismlauncher
-    strawberry
     input-leap
     libreoffice-qt-fresh
-    spotify-player
-    spotdl
+    helium-browser
+    bitwarden-desktop
+    qbittorrent
+
+    # gui applications ( games )
     openmw
+    prismlauncher
+
+    # gui applications ( multimedia )
+    audacity
+    strawberry
     musescore
     mpv
     gimp
     calibre
-    helium-browser
-    bitwarden-desktop
+    spotify-player
 
     # browsers
     # (chromium.override {
