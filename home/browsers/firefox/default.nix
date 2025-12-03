@@ -15,8 +15,8 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox.override {
-      nativeMessagingHosts = [
-        pkgs.firefoxpwa
+      nativeMessagingHosts = with pkgs; [
+        firefoxpwa
       ];
     };
     policies = {
@@ -27,7 +27,7 @@
       # "force_installed" and "normal_installed".
       ExtensionSettings = {
         "*" = {
-          "installation_mode" = "allowed";
+          "installation_mode" = "blocked";
         };
         "uBlock0@raymondhill.net" = {
           installation_mode = "allowed";
@@ -54,6 +54,9 @@
           installation_mode = "allowed";
         };
         "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = {
+          installation_mode = "allowed";
+        };
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           installation_mode = "allowed";
         };
       };
@@ -93,6 +96,7 @@
             sponsorblock
             pwas-for-firefox
             control-panel-for-twitter
+            bitwarden
           ];
           settings = {
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".settings = {
