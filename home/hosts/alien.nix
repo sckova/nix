@@ -25,6 +25,9 @@
       ];
     })
 
+    # steam gtk theming
+    adwsteamgtk
+
     daggerfall-unity
     shipwright
     _2ship2harkinian

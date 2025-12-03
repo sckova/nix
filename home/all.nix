@@ -2,10 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    vesktop
-    gh
-    adwsteamgtk
-    prismlauncher
+    # cli utilities
     tmux
     fastfetch
     btop
@@ -15,32 +12,41 @@
     ncdu
     fzf
     wl-clipboard
-    openmw
-    nixfmt-rfc-style
-    (chromium.override {
-      enableWideVine = true;
-    })
-    strawberry
-    spotify-player
-    input-leap
-    libreoffice-qt-fresh
-    spotdl
     rclone
-    helium-browser
+    waypipe
+
+    # development & tooling
+    gh
     deno
     prettier
     prettierd
+    nixfmt-rfc-style
+    jdk21_headless
+
+    # kde and kde theming
+    kde-rounded-corners
+    kdePackages.partitionmanager
+    colloid-icon-theme
+
+    # gui applications
+    vesktop
+    prismlauncher
+    strawberry
+    input-leap
+    libreoffice-qt-fresh
+    spotify-player
+    spotdl
+    openmw
     musescore
     mpv
     gimp
     calibre
+    helium-browser
 
-    jdk21_headless
-
-    kde-rounded-corners
-    kdePackages.partitionmanager
-
-    colloid-icon-theme
+    # browsers
+    # (chromium.override {
+    #   enableWideVine = true;
+    # })
   ];
 
   services = {
