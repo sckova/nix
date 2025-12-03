@@ -117,16 +117,15 @@
             plasmusicToolbar = {
               panelIcon = {
                 albumCover = {
-                  useAsIcon = false;
-                  radius = 8;
+                  useAsIcon = true;
+                  radius = 4;
                 };
-                icon = "";
               };
               playbackSource = "auto";
               musicControls.showPlaybackControls = false;
               songText = {
                 displayInSeparateLines = true;
-                maximumWidth = 320;
+                maximumWidth = 280;
                 scrolling = {
                   behavior = "alwaysScroll";
                   speed = 3;
