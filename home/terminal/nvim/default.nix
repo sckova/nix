@@ -1,10 +1,14 @@
 { pkgs, ... }:
 
 {
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   programs.nixvim = {
     enable = true;
     enablePrintInit = true;
-    # defaultEditor = true;
+    defaultEditor = true;
     waylandSupport = true;
     viAlias = true;
     vimAlias = true;
