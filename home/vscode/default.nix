@@ -11,9 +11,9 @@ let
     (lib.toUpper (builtins.substring 0 1 str)) + (builtins.substring 1 (builtins.stringLength str) str);
 in
 {
-  home.sessionVariables = {
-    EDITOR = "code";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "code";
+  # };
 
   catppuccin.vscode.profiles.default = {
     enable = true;
