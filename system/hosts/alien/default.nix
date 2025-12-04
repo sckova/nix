@@ -53,4 +53,11 @@
     open = false;
     package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 }
