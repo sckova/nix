@@ -21,6 +21,7 @@
       tab_bar_edge = "top";
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
+      mouse_hide_wait = "-1.0";
     };
   };
 }
