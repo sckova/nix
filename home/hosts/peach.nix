@@ -125,14 +125,14 @@
               panelIcon = {
                 albumCover = {
                   useAsIcon = true;
-                  radius = 4;
+                  radius = 2;
                 };
               };
               playbackSource = "auto";
               musicControls.showPlaybackControls = false;
               songText = {
                 displayInSeparateLines = true;
-                maximumWidth = 280;
+                maximumWidth = 250;
                 scrolling = {
                   behavior = "alwaysScroll";
                   speed = 3;
