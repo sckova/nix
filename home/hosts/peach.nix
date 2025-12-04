@@ -36,6 +36,8 @@
         '';
       })
     )
+
+    moonlight-qt
   ];
 
   programs.plasma = {
