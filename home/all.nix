@@ -15,6 +15,8 @@
     rclone
     waypipe
     spotdl
+    browsh
+    mosh
 
     # development & tooling
     gh
@@ -33,7 +35,7 @@
     vesktop
     input-leap
     libreoffice-qt-fresh
-    helium-browser
+    # helium-browser
     bitwarden-desktop
     qbittorrent
 
