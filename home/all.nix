@@ -51,6 +51,7 @@
     gimp
     calibre
     spotify-player
+    obs-studio
 
     # browsers
     # (chromium.override {
