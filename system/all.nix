@@ -83,6 +83,9 @@
     cache.enable = true;
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ ];
+
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
 

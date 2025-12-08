@@ -25,7 +25,7 @@
       ];
     };
     policies = {
-      BlockAboutConfig = true;
+      BlockAboutConfig = false;
       DefaultDownloadDirectory = "\${home}/Downloads";
       # Check about:support for extension/add-on ID strings.
       # Valid strings for installation_mode are "allowed", "blocked",
