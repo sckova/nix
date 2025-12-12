@@ -4,10 +4,9 @@ import QtQuick // for Text
 
 PanelWindow {
     anchors {
-        top: false
+        top: true
         left: true
         right: true
-        bottom: true
     }
 
     implicitHeight: 37
@@ -16,17 +15,17 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#1e1e2e"
+        color: "#000000"
         Text {
             id: clock
-            // center the bar in its parent component (the window)
-            anchors.centerIn: parent
-            anchors.right: parent
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.rightMargin: 10
             color: "#cdd6f4"
 
             Process {
                 id: dateProc
-                command: ["date"]
+                command: ["date", "+%a, %b %d @ %I:%M%P"]
                 running: true
                 stdout: StdioCollector {
                     onStreamFinished: clock.text = this.text
