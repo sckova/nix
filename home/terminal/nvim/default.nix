@@ -5,6 +5,8 @@
     EDITOR = "nvim";
   };
 
+  home.packages = with pkgs; [ kdePackages.qtdeclarative ];
+
   programs.nixvim = {
     enable = true;
     enablePrintInit = true;
@@ -73,20 +75,20 @@
     plugins = {
       nvim-autopairs = {
         enable = true;
-        # autoLoad = true;
+        autoLoad = true;
       };
       cmp = {
         autoEnableSources = true;
         enable = true;
-        # autoLoad = true;
+        autoLoad = true;
       };
       copilot-lua = {
         enable = true;
-        # autoLoad = true;
+        autoLoad = true;
       };
       conform-nvim = {
         enable = true;
-        # autoLoad = true;
+        autoLoad = true;
         settings = {
           formatters_by_ft = {
             lua = [ "stylua" ];
@@ -136,15 +138,24 @@
       };
       fzf-lua = {
         enable = true;
-        # autoLoad = true;
+        autoLoad = true;
       };
       kitty-scrollback = {
         enable = true;
-        # autoLoad = true;
+        autoLoad = true;
       };
       lsp = {
         enable = true;
-        # autoLoad = true;
+        servers = {
+          qmlls = {
+            enable = true;
+            cmd = [
+              "qmlls"
+              "-E"
+            ];
+          };
+        };
+        autoLoad = true;
       };
       lualine = {
         enable = true;
@@ -245,7 +256,7 @@
           tabline = { };
           extensions = [ ];
         };
-        # autoLoad = true;
+        autoLoad = true;
       };
     };
   };

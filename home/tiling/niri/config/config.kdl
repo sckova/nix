@@ -208,7 +208,7 @@ layout {
         // If you enable the border, you probably want to disable the focus ring.
         // off
 
-        width 1
+        width 2
         active-color "#a6e3a1"
         inactive-color "#313244"
         // Color of the border around windows that request your attention.
@@ -278,7 +278,10 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+// spawn-at-startup "waybar"
+
+// Instead let's start quickshell, which is similar but made with QT/QML
+spawn-at-startup "quickshell"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
