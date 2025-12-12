@@ -13,6 +13,7 @@ in
     swaylock
     fuzzel
     xdg-desktop-portal
+    brightnessctl
   ];
 
   home.file = {
@@ -29,7 +30,7 @@ in
     };
     ".config/fuzzel/fuzzel.ini" = {
       text = ''
-        include = ./colors.ini
+        include = /home/sckova/.config/fuzzel/colors.ini
         font = "NotoSansM Nerd Font Mono:size=10"
         terminal = "kitty"
         icons-enabled = yes
