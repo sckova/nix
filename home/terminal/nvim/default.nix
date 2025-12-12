@@ -82,10 +82,6 @@
         enable = true;
         autoLoad = true;
       };
-      copilot-lua = {
-        enable = true;
-        autoLoad = true;
-      };
       conform-nvim = {
         enable = true;
         autoLoad = true;
