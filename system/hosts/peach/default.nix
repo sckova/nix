@@ -13,6 +13,8 @@
     "riscv64-linux"
   ];
 
+  boot.kernelParams = [ "apple_dcp.show_notch=1" ];
+
   catppuccin.accent = "peach";
 
   home-manager.users.sckova = {

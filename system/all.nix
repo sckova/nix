@@ -29,6 +29,7 @@
       ../home/browsers/firefox/default.nix
       ../home/tiling/niri/default.nix
       ../home/tiling/quickshell/default.nix
+      ../home/tiling/waybar/default.nix
       ../home/systemd/default.nix
       ../home/terminal/btop/default.nix
       ../home/terminal/fish/default.nix
@@ -71,7 +72,6 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "boot.shell_on_fail"
-      "apple_dcp.show_notch=1"
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
@@ -82,9 +82,6 @@
     flavor = "mocha";
     cache.enable = true;
   };
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ ];
 
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
@@ -107,6 +104,10 @@
   hardware.graphics = {
     enable = true;
   };
+
+  programs.niri.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.niri.enableGnomeKeyring = true;
 
   services = {
     desktopManager.plasma6.enable = true;
@@ -175,8 +176,6 @@
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
-
-  programs.niri.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
