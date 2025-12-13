@@ -14,6 +14,9 @@ in
     fuzzel
     xdg-desktop-portal
     brightnessctl
+    qt6Packages.qt6ct
+    libsForQt5.qt5ct
+    catppuccin-qt5ct
   ];
 
   home.file = {
@@ -39,4 +42,43 @@ in
       force = true;
     };
   };
+
+  gtk = {
+    enable = true;
+
+    # theme = {
+    #   name = "adw-gtk3-dark";
+    #   package = pkgs.adw-gtk3;
+    # };
+
+    iconTheme = {
+      name = "Colloid-Dark";
+      package = pkgs.colloid-icon-theme;
+    };
+
+    # cursor theme handled in home/hosts/host.nix
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
+
+  qt.enable = true;
+
+  # Cursor / icon env vars for GTK and Qt apps
+  xsession = {
+    enable = true; # only needed for session variable injection
+    windowManager.command = "niri"; # launches niri directly
+  };
+
+  home.sessionVariables = {
+    XCURSOR_SIZE = "24";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+    QT_QPA_PLATFORMTHEME_5 = "qt5ct";
+  };
+
 }
