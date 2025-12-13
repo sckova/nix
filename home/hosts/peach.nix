@@ -13,11 +13,11 @@
     asahi-btsync
     asahi-wifisync
 
-    catppuccin-cursors.latteDark
-    catppuccin-cursors.latteLight
-    catppuccin-cursors.lattePeach
-    catppuccin-cursors.mochaDark
-    catppuccin-cursors.mochaLight
+    # catppuccin-cursors.latteDark
+    # catppuccin-cursors.latteLight
+    # catppuccin-cursors.lattePeach
+    # catppuccin-cursors.mochaDark
+    # catppuccin-cursors.mochaLight
     catppuccin-cursors.mochaPeach
 
     (catppuccin-kde.override {
@@ -32,6 +32,15 @@
 
     moonlight-qt
   ];
+
+  home.sessionVariables = {
+    XCURSOR_THEME = "catppuccin-mocha-peach-cursors";
+  };
+
+  gtk.cursorTheme = {
+    name = "catppuccin-mocha-peach-cursors";
+    package = pkgs.catppuccin-cursors.mochaPeach;
+  };
 
   programs.plasma = {
 

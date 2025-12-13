@@ -8,11 +8,11 @@
 
   home.packages = with pkgs; [
 
-    catppuccin-cursors.latteDark
-    catppuccin-cursors.latteLight
-    catppuccin-cursors.latteGreen
-    catppuccin-cursors.mochaDark
-    catppuccin-cursors.mochaLight
+    # catppuccin-cursors.latteDark
+    # catppuccin-cursors.latteLight
+    # catppuccin-cursors.latteGreen
+    # catppuccin-cursors.mochaDark
+    # catppuccin-cursors.mochaLight
     catppuccin-cursors.mochaGreen
 
     (catppuccin-kde.override {
@@ -26,6 +26,15 @@
     })
 
   ];
+
+  home.sessionVariables = {
+    XCURSOR_THEME = "catppuccin-mocha-green-cursors";
+  };
+
+  gtk.cursorTheme = {
+    name = "catppuccin-mocha-green-cursors";
+    package = pkgs.catppuccin-cursors.mochaGreen;
+  };
 
   programs.plasma = {
 
