@@ -179,7 +179,7 @@ layout {
         // off
 
         width 1
-        active-color "#6c7086"
+        active-color "#fab387"
         // active-gradient from="#fab387" to="#89b4fa" angle=90
         inactive-color "#313244"
         // inactive-gradient from="#313244" to="#6c7086" angle=90
@@ -251,6 +251,10 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+
+// run tailscale system tray
+spawn-at-startup "sudo tailscale set --operator=$USER"
+spawn-at-startup "tailscale systray"
 
 // Instead let's start quickshell, which is similar but made with Qt/QML
 // spawn-at-startup "quickshell"
@@ -374,8 +378,8 @@ binds {
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
     // but you need to manually put each argument in separate "" quotes.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "/home/sckova/.config/niri/scripts/brightness.sh" "5"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "/home/sckova/.config/niri/scripts/brightness.sh" "-5"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

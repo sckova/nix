@@ -105,7 +105,10 @@
     enable = true;
   };
 
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    useNautilus = false;
+  };
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.niri.enableGnomeKeyring = true;
 
