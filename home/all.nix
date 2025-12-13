@@ -51,7 +51,6 @@
     gimp
     calibre
     spotify-player
-    obs-studio
 
     # browsers
     # (chromium.override {
@@ -78,7 +77,7 @@
   };
 
   catppuccin = {
-    enable = true;
+    enable = false;
     cursors.enable = false;
     cache.enable = true;
   };
