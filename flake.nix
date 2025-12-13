@@ -9,6 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin-palette = {
+      url = "github:abhinandh-s/catppuccin-nix/b482f6e3ee1ae61c83e52f50653e54bf72900b13";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/e1680d594a9281651cbf7d126941a8c8e2396183";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +22,16 @@
       url = "github:nix-community/plasma-manager/b24ed4b272256dfc1cc2291f89a9821d5f9e14b4";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake/46e723aa46565b67910187b4b7ad48b615d7f576";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell/6b2661e1d4d0e223d631be87931029929431de6f";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {
@@ -40,8 +54,11 @@
     {
       nixpkgs,
       catppuccin,
+      catppuccin-palette,
       home-manager,
       plasma-manager,
+      niri,
+      noctalia,
       nur,
       nixvim,
       apple-silicon,
@@ -62,6 +79,8 @@
           modules = [
             {
               nixpkgs.overlays = [
+                catppuccin-palette.overlays.default
+                noctalia.overlays.default
                 nur.overlays.default
                 (import ./packages/overlay.nix)
               ];
@@ -73,9 +92,12 @@
             ./hardware/${hostname}.nix
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
+            noctalia.nixosModules.default
             {
               home-manager.sharedModules = [
                 plasma-manager.homeModules.plasma-manager
+                niri.homeModules.niri
+                noctalia.homeModules.default
                 nixvim.homeModules.nixvim
               ];
             }
@@ -101,6 +123,8 @@
             catppuccin.homeModules.catppuccin
             home-manager.homeModules.home-manager
             plasma-manager.homeModules.plasma-manager
+            niri.homeModules.default
+            noctalia.homeModules.noctalia
             nixvim.homeModules.nixvim
           ];
         };

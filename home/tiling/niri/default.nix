@@ -19,6 +19,10 @@ in
     catppuccin-qt5ct
   ];
 
+  programs.niri = {
+    # wip: put config in here
+  };
+
   home.file = {
     ".config/niri" = {
       source = ./config;
@@ -37,7 +41,7 @@ in
         font = "Noto Sans:size=12"
         terminal = "kitty"
         icons-enabled = yes
-        icon-theme = "${config.gtk.iconTheme.name}"
+        icon-theme = "Colloid-Dark"
         layer = "overlay"
       '';
       force = true;
