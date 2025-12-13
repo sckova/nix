@@ -111,6 +111,7 @@
   };
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.niri.enableGnomeKeyring = true;
+  programs.dconf.enable = true;
 
   services = {
     desktopManager.plasma6.enable = true;
