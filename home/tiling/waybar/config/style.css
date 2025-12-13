@@ -4,14 +4,16 @@
   border-radius: 0;
   min-height: 0;
   font-family: "Noto Sans";
-  /*font-weight: bold;*/
   font-size: 12px;
   padding: 0;
 }
 
 window#waybar {
-  background: transparent;
-  border-bottom-color: @mantle;
+  background: black;
+  border: 2px solid @base;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
 }
 
 tooltip {
@@ -19,12 +21,14 @@ tooltip {
   border-color: @peach;
 }
 
+#custom-niri-window,
 #custom-clock,
 #tray,
 #cpu,
 #memory,
 #battery,
 #network,
+#custom-brightness,
 #pulseaudio {
   background-color: @base;
   color: @text;
@@ -56,6 +60,11 @@ tooltip {
   color: #1d2021;
 }
 
+#custom-niri-window {
+  margin-left: 6px;
+  border-color: @yellow;
+}
+
 #cpu {
   border-color: @maroon;
 }
@@ -70,6 +79,10 @@ tooltip {
 
 #network {
   border-color: @teal;
+}
+
+#custom-brightness {
+  border-color: @sky;
 }
 
 #pulseaudio {
