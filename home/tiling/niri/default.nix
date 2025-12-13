@@ -34,11 +34,22 @@ in
     ".config/fuzzel/fuzzel.ini" = {
       text = ''
         include = /home/sckova/.config/fuzzel/colors.ini
-        font = "NotoSansM Nerd Font Mono:size=10"
+        font = "Noto Sans:size=12"
         terminal = "kitty"
         icons-enabled = yes
+        icon-theme = "${config.gtk.iconTheme.name}"
         layer = "overlay"
       '';
+      force = true;
+    };
+    ".config/qt5ct" = {
+      source = ./qt/qt5ct;
+      recursive = true;
+      force = true;
+    };
+    ".config/qt6ct" = {
+      source = ./qt/qt6ct;
+      recursive = true;
       force = true;
     };
   };
@@ -56,7 +67,7 @@ in
       package = pkgs.colloid-icon-theme;
     };
 
-    # cursor theme handled in home/hosts/host.nix
+    # cursor theme handled in home/hosts/host.nix and in config.kdl
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -67,18 +78,39 @@ in
     };
   };
 
-  qt.enable = true;
+  qt = {
+    enable = true;
+    # the following will be possible in NixOS 26.05
+    # https://github.com/nix-community/home-manager/commit/f9d45d664ed06a11861d0ba29e34f390c07bf62e
+    # until this flake is updated, it will use the configs as implemented above
+    # qt5ctSettings = {
+    #   Appearance = {
+    #     style = "Breeze";
+    #     icon_theme = config.gtk.iconTheme.name;
+    #     standar_dialogs = "kde";
+    #   };
+    #   Fonts = {
+    #     fixed = "\"NotoSansM Nerd Font Mono,12\"";
+    #     general = "\"Noto Sans,12\"";
+    #   };
+    # };
+    # qt6ctSettings = {
+    #   Appearance = {
+    #     style = "Breeze";
+    #     icon_theme = config.gtk.iconTheme.name;
+    #     standar_dialogs = "kde";
+    #   };
+    #   Fonts = {
+    #     fixed = "\"NotoSansM Nerd Font Mono,12\"";
+    #     general = "\"Noto Sans,12\"";
+    #   };
+    # };
+  };
 
   # Cursor / icon env vars for GTK and Qt apps
   xsession = {
     enable = true; # only needed for session variable injection
     windowManager.command = "niri"; # launches niri directly
-  };
-
-  home.sessionVariables = {
-    XCURSOR_SIZE = "24";
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-    QT_QPA_PLATFORMTHEME_5 = "qt5ct";
   };
 
 }
