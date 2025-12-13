@@ -24,6 +24,10 @@ final: prev: {
       inherit helium-widevine;
     };
 
+  noctalia-shell-custom = prev.callPackage (builtins.path {
+    path = ./noctalia-shell-custom/package.nix;
+  }) { };
+
   spotifyd = prev.callPackage (builtins.path { path = ./spotifyd/package.nix; }) { };
 
   widevine-firefox = prev.callPackage (builtins.path { path = ./widevine-firefox/package.nix; }) { };

@@ -30,6 +30,7 @@
       ../home/tiling/niri/default.nix
       ../home/tiling/quickshell/default.nix
       ../home/tiling/waybar/default.nix
+      ../home/tiling/noctalia/default.nix
       ../home/systemd/default.nix
       ../home/terminal/btop/default.nix
       ../home/terminal/fish/default.nix
@@ -105,10 +106,7 @@
     enable = true;
   };
 
-  programs.niri = {
-    enable = true;
-    useNautilus = true;
-  };
+  programs.niri.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.niri.enableGnomeKeyring = true;
   programs.dconf.enable = true;
@@ -180,6 +178,11 @@
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
+
+  documentation.man = {
+    enable = true;
+    generateCaches = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
