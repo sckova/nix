@@ -8,24 +8,24 @@
   "margin-bottom": 0,
   "margin-left": 0,
 
-  "modules-left": ["sway/workspaces"],
+  "modules-left": ["custom/niri-window"],
 
   "modules-center": [],
 
   "modules-right": [
     "tray",
-    "cpu_text",
     "cpu",
     "memory",
     "battery",
     "network",
+    "custom/brightness",
     "pulseaudio",
     "custom/clock",
   ],
 
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
+  "custom/niri-window": {
+    "exec": "/home/sckova/.config/waybar/scripts/niri-window.sh",
+    "restart-interval": 1,
     "tooltip": false,
   },
 
@@ -72,6 +72,13 @@
     "format-wifi": "wifi up",
     "format-ethernet": "enth up",
     "format-disconnected": "no network",
+    "tooltip": false,
+  },
+
+  "custom/brightness": {
+    "exec": "/home/sckova/.config/waybar/scripts/brightness.sh",
+    "restart-interval": 10,
+    "signal": 8,
     "tooltip": false,
   },
 
