@@ -182,7 +182,7 @@
 
   documentation.man = {
     enable = true;
-    generateCaches = true;
+    generateCaches = false;
   };
 
   # This value determines the NixOS release from which the default
