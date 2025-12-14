@@ -8,23 +8,6 @@
 
   home.packages = with pkgs; [
 
-    # catppuccin-cursors.latteDark
-    # catppuccin-cursors.latteLight
-    # catppuccin-cursors.latteBlue
-    # catppuccin-cursors.mochaDark
-    # catppuccin-cursors.mochaLight
-    catppuccin-cursors.mochaBlue
-
-    (catppuccin-kde.override {
-      flavour = [
-        "latte"
-        "mocha"
-      ];
-      accents = [
-        "blue"
-      ];
-    })
-
     # steam gtk theming
     adwsteamgtk
 
@@ -33,25 +16,7 @@
     _2ship2harkinian
   ];
 
-  gtk.cursorTheme = {
-    name = "catppuccin-mocha-blue-cursors";
-    package = pkgs.catppuccin-cursors.mochaBlue;
-    size = 24;
-  };
-
   programs.plasma = {
-    workspace = {
-      colorScheme = "CatppuccinMochaBlue";
-      cursor.theme = "catppuccin-mocha-blue-cursors";
-      splashScreen.theme = "Catpppuccin-Mocha-Blue";
-    };
-
-    configFile = {
-      kdeglobals.KDE = {
-        DefaultDarkLookAndFeel = "Catppuccin-Mocha-Blue";
-        DefaultLightLookAndFeel = "Catppuccin-Latte-Blue";
-      };
-    };
     panels = [
       # Alternative global menu to fit the modified taskbar
       {
