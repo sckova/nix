@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
 
@@ -13,7 +13,7 @@
     };
 
     workspace = {
-      iconTheme = "Colloid-Dark";
+      iconTheme = config.gtk.iconTheme.name;
       windowDecorations = {
         library = "org.kde.breeze";
         theme = "Breeze";

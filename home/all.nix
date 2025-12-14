@@ -23,6 +23,56 @@
           + builtins.substring 1 (-1) config.catppuccin.flavor;
       };
     };
+    userOptions = {
+      name = lib.mkOption {
+        type = lib.types.str;
+        readOnly = true;
+        default = "Sean Kovacs";
+      };
+      username = lib.mkOption {
+        type = lib.types.str;
+        readOnly = true;
+        default = "sckova";
+      };
+      hostname = lib.mkOption {
+        type = lib.types.str;
+        readOnly = true;
+        default = config.system.name;
+      };
+      fontSans = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "Noto Sans";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          default = 12;
+        };
+      };
+      fontSerif = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "Noto Serif";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          default = 12;
+        };
+      };
+      fontMono = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "NotoSansM Nerd Font Mono";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          default = 10;
+        };
+      };
+    };
   };
 
   config = {
@@ -51,11 +101,11 @@
         prettierd
         nixfmt-rfc-style
         jdk21_headless
+        nerd-fonts.noto
 
         # kde and kde theming
         kde-rounded-corners
         kdePackages.partitionmanager
-        colloid-icon-theme
 
         # gui applications
         vesktop
@@ -100,6 +150,73 @@
         pkgs.catppuccin-cursors."${config.catppuccin.flavor}Light"
         pkgs.catppuccin-cursors."${config.catppuccin.flavor}${config.catppuccinUpper.accent}"
       ];
+
+    home.file = {
+      ".config/qt5ct" = {
+        source = ./qt/qt5ct;
+        recursive = true;
+        force = true;
+      };
+      ".config/qt6ct" = {
+        source = ./qt/qt6ct;
+        recursive = true;
+        force = true;
+      };
+    };
+
+    gtk = {
+      enable = true;
+
+      iconTheme = {
+        name = "Colloid-Dark";
+        package = pkgs.colloid-icon-theme;
+      };
+
+      cursorTheme = {
+        name = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
+        package = pkgs.catppuccin-cursors."${config.catppuccin.flavor}${config.catppuccinUpper.accent}";
+        size = 24;
+      };
+
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+    };
+
+    # qt = {
+    #   enable = true;
+    #   # the following will be possible in NixOS 26.05
+    #   # https://github.com/nix-community/home-manager/commit/f9d45d664ed06a11861d0ba29e34f390c07bf62e
+    #   # until this flake is updated, it will use the configs as implemented above
+    #   qt5ctSettings = {
+    #     Appearance = {
+    #       style = "Breeze";
+    #       icon_theme = config.gtk.iconTheme.name;
+    #       color_scheme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
+    #       standard_dialogs = "default";
+    #     };
+    #     Fonts = {
+    #       fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
+    #       general = "\"${config.userOptions.fontSans.name},${config.userOptions.fontSans.size}\"";
+    #     };
+    #   };
+    #   qt6ctSettings = {
+    #     Appearance = {
+    #       style = "Breeze";
+    #       icon_theme = config.gtk.iconTheme.name;
+    #       color_scheme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
+    #       standard_dialogs = "default";
+    #     };
+    #     Fonts = {
+    #       fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
+    #       general = "\"${config.userOptions.fontSans.name},${config.userOptions.fontSans.size}\"";
+    #     };
+    #   };
+    # };
 
     services = {
       spotifyd = {

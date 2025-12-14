@@ -1,11 +1,10 @@
 { pkgs, config, ... }:
-
 let
   bingWallpaperScript = pkgs.writeShellScript "bing-wallpaper" ''
     set -euo pipefail
 
     # Configuration
-    SIZE="1920x1080"
+    SIZE="UHD"
     MARKET="en-US"
     OUTPUT_PATH="''${XDG_DATA_HOME:-$HOME/.local/share}/dailywallpaper.jpg"
     DAY="0"
@@ -30,7 +29,6 @@ let
 
     # Extract title
     TITLE=$(echo "$API_RESP" | ${pkgs.gnugrep}/bin/grep -oP 'title":"[^"]*' | ${pkgs.coreutils}/bin/cut -d '"' -f 3)
-
     echo "Bing Image of the day: $TITLE"
 
     # Check if specific size exists, fallback to default
@@ -44,7 +42,6 @@ let
     IMG_NAME="''${REQ_IMG_URL##*/}"
     IMG_NAME="''${IMG_NAME#th?id=OHR.}"
     IMG_NAME="''${IMG_NAME%&rf=*}"
-
     echo "$IMG_NAME"
 
     # Create parent directory
@@ -52,16 +49,19 @@ let
 
     # Download image, overwrite if exists
     ${pkgs.wget}/bin/wget --quiet --output-document="$OUTPUT_PATH" "$REQ_IMG_URL"
-
     echo "Wallpaper saved to $OUTPUT_PATH"
 
     # Send notification
     if command -v ${pkgs.libnotify}/bin/notify-send &> /dev/null; then
-      ${pkgs.libnotify}/bin/notify-send -u low -t 10 -i preferences-desktop-wallpaper \
+      ${pkgs.libnotify}/bin/notify-send -u low -t 10000 -i preferences-desktop-wallpaper \
         "Bing Wallpaper of the Day" "$TITLE"
     fi
 
-    echo "Wallpaper downloaded successfully."
+    # Kill existing swaybg instances and start new one
+    ${pkgs.procps}/bin/pkill swaybg || true
+    ${pkgs.swaybg}/bin/swaybg -i "/home/${config.userOptions.username}/.local/share/dailywallpaper.jpg" &
+
+    echo "Wallpaper downloaded and applied successfully."
   '';
 in
 {
