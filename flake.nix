@@ -87,11 +87,11 @@
               ];
             }
             ./system/all.nix
-            ./system/widevine/default.nix
+            ./system/widevine
             ./system/shell/fish.nix
-            ./system/tailscale/default.nix
-            ./system/hosts/${hostname}/default.nix
-            ./hardware/${hostname}.nix
+            ./system/tailscale
+            ./system/hosts/${hostname}
+            ./hardware/${hostname}
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             noctalia.nixosModules.default

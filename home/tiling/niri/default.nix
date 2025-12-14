@@ -9,6 +9,10 @@ let
   };
 in
 {
+  imports = [
+    ./niri.nix
+    ./noctalia.nix
+  ];
   home.packages = with pkgs; [
     xdg-desktop-portal
     brightnessctl
