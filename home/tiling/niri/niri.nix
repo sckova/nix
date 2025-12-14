@@ -40,6 +40,7 @@
     };
     environment = {
       QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
       DISPLAY = null;
       XCURSOR_THEME = config.userOptions.cursor.name;
       XCURSOR_SIZE = toString config.userOptions.cursor.size;
