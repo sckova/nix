@@ -10,6 +10,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    swaybg
     swaylock
     fuzzel
     xdg-desktop-portal
