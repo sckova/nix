@@ -27,13 +27,10 @@
 
   ];
 
-  home.sessionVariables = {
-    XCURSOR_THEME = "catppuccin-mocha-green-cursors";
-  };
-
   gtk.cursorTheme = {
     name = "catppuccin-mocha-green-cursors";
     package = pkgs.catppuccin-cursors.mochaGreen;
+    size = 24;
   };
 
   programs.plasma = {

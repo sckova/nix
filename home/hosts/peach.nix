@@ -33,13 +33,10 @@
     moonlight-qt
   ];
 
-  home.sessionVariables = {
-    XCURSOR_THEME = "catppuccin-mocha-peach-cursors";
-  };
-
   gtk.cursorTheme = {
     name = "catppuccin-mocha-peach-cursors";
     package = pkgs.catppuccin-cursors.mochaPeach;
+    size = 24;
   };
 
   programs.plasma = {
