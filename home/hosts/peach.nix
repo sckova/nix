@@ -3,7 +3,7 @@
 {
   catppuccin = {
     accent = "peach";
-    flavor = "macchiato";
+    flavor = "mocha";
   };
 
   home.packages = with pkgs; [

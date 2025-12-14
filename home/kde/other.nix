@@ -1,9 +1,11 @@
+{ config, ... }:
+
 {
   programs.ghostwriter = {
     enable = true;
     font = {
-      family = "Noto Sans";
-      pointSize = 12;
+      family = config.userOptions.fontSans.name;
+      pointSize = config.userOptions.fontSans.size;
     };
   };
 
@@ -11,8 +13,8 @@
     enable = true;
     editor = {
       font = {
-        family = "NotoSansM Nerd Font Mono";
-        pointSize = 10;
+        family = config.userOptions.fontMono.name;
+        pointSize = config.userOptions.fontMono.size;
       };
     };
   };

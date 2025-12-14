@@ -34,10 +34,11 @@
       ../home/all.nix
       ../home/browsers/firefox/default.nix
       ../home/tiling/niri/default.nix
+      ../home/tiling/niri/niri.nix
+      ../home/tiling/niri/noctalia.nix
       ../home/tiling/quickshell/default.nix
       ../home/tiling/wallpaper/bing-wallpaper.nix
       ../home/tiling/waybar/default.nix
-      ../home/tiling/noctalia/default.nix
       ../home/systemd/default.nix
       ../home/terminal/btop/default.nix
       ../home/terminal/fish/default.nix
@@ -168,7 +169,6 @@
       git
       firefoxpwa
       distrobox
-      nerd-fonts.noto
     ];
 
     plasma6.excludePackages = with pkgs.kdePackages; [

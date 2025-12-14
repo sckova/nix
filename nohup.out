@@ -1,6 +1,0 @@
-[2025-12-12 15:14:41.470] [info] Using configuration file /home/sckova/.config/waybar/config.jsonc
-[2025-12-12 15:14:41.471] [info] Discovered appearance 'dark'
-[2025-12-12 15:14:41.483] [info] Using CSS file /home/sckova/.config/waybar/style.css
-[2025-12-12 15:14:41.490] [warning] module sway/workspaces: Disabling module "sway/workspaces", Socket path is empty
-[2025-12-12 15:14:41.490] [warning] module cpu_text: Unknown module: cpu_text
-[2025-12-12 15:14:41.602] [info] Bar configured (width: 1728, height: 40) for output: eDP-1

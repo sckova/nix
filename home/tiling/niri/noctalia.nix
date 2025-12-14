@@ -139,17 +139,14 @@ in
               hideMode = "hidden";
               hideWhenIdle = false;
               id = "MediaMini";
-              maxWidth = 350;
+              maxWidth = 275;
               scrollingMode = "always";
               showAlbumArt = false;
               showArtistFirst = true;
               showProgressRing = true;
-              showVisualizer = false;
+              showVisualizer = true;
               useFixedWidth = false;
               visualizerType = "linear";
-            }
-            {
-              id = "ScreenRecorder";
             }
             {
               id = "Tray";
@@ -180,7 +177,7 @@ in
         };
       };
       general = {
-        avatarImage = "";
+        avatarImage = "/home/${config.userOptions.username}/.face";
         dimmerOpacity = 0.6;
         showScreenCorners = true;
         forceBlackScreenCorners = true;
@@ -203,8 +200,8 @@ in
         allowPanelsOnScreenWithoutBar = true;
       };
       ui = {
-        fontDefault = "Noto Sans";
-        fontFixed = "NotoSansM Nerd Font Mono";
+        fontDefault = config.userOptions.fontSans.name;
+        fontFixed = config.userOptions.fontMono.name;
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
@@ -236,11 +233,11 @@ in
           }
           {
             enabled = true;
-            id = "timer-card";
+            id = "weather-card";
           }
           {
             enabled = true;
-            id = "weather-card";
+            id = "timer-card";
           }
         ];
       };
@@ -283,7 +280,7 @@ in
         wallhavenResolutionHeight = "";
       };
       appLauncher = {
-        enableClipboardHistory = false;
+        enableClipboardHistory = true;
         enableClipPreview = true;
         position = "center";
         pinnedExecs = [ ];
@@ -342,10 +339,6 @@ in
           }
           {
             enabled = true;
-            id = "weather-card";
-          }
-          {
-            enabled = true;
             id = "media-sysmon-card";
           }
         ];
@@ -387,7 +380,7 @@ in
       };
       sessionMenu = {
         enableCountdown = true;
-        countdownDuration = 10000;
+        countdownDuration = 5000;
         position = "center";
         showHeader = true;
         powerOptions = [
@@ -435,7 +428,7 @@ in
           criticalSoundFile = "";
           normalSoundFile = "";
           lowSoundFile = "";
-          excludedApps = "discord,firefox,chrome,chromium,edge";
+          excludedApps = "";
         };
       };
       osd = {
@@ -501,7 +494,7 @@ in
       };
       nightLight = {
         enabled = true;
-        forced = false;
+        forced = true;
         autoSchedule = true;
         nightTemp = "4000";
         dayTemp = "6500";
