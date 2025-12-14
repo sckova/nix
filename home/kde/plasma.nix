@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
-  gtk.theme.name = "Breeze";
-
   programs.plasma = {
     enable = true;
     overrideConfig = true;
