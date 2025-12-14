@@ -29,6 +29,7 @@
       ../home/browsers/firefox/default.nix
       ../home/tiling/niri/default.nix
       ../home/tiling/quickshell/default.nix
+      ../home/tiling/wallpaper/bing-wallpaper.nix
       ../home/tiling/waybar/default.nix
       ../home/tiling/noctalia/default.nix
       ../home/systemd/default.nix
