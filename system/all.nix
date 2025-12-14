@@ -21,6 +21,12 @@
     "sckova"
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.sckova = {
@@ -60,7 +66,7 @@
       timeout = 3;
       systemd-boot = {
         enable = true;
-        configurationLimit = null;
+        configurationLimit = 10;
       };
       efi = {
         canTouchEfiVariables = false;
