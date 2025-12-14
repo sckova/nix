@@ -1,6 +1,24 @@
 { config, pkgs, ... }:
 
 {
+  programs.ghostwriter = {
+    enable = true;
+    font = {
+      family = config.userOptions.fontSans.name;
+      pointSize = config.userOptions.fontSans.size;
+    };
+  };
+
+  programs.kate = {
+    enable = true;
+    editor = {
+      font = {
+        family = config.userOptions.fontMono.name;
+        pointSize = config.userOptions.fontMono.size;
+      };
+    };
+  };
+
   programs.plasma = {
     enable = true;
     overrideConfig = true;
