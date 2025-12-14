@@ -41,6 +41,8 @@
     environment = {
       QT_QPA_PLATFORM = "wayland";
       DISPLAY = null;
+      XCURSOR_THEME = config.userOptions.cursor.name;
+      XCURSOR_SIZE = toString config.userOptions.cursor.size;
     };
     outputs = {
       "eDP-1" = {
@@ -56,8 +58,8 @@
     cursor = {
       hide-when-typing = true;
       hide-after-inactive-ms = 2000;
-      size = config.gtk.cursorTheme.size;
-      theme = config.gtk.cursorTheme.name;
+      size = config.userOptions.cursor.size;
+      theme = config.userOptions.cursor.name;
     };
     layout = {
       gaps = 4;
