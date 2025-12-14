@@ -40,9 +40,12 @@
     "nvidia"
   ];
 
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "sckova";
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "sckova";
+    };
+    defaultSession = "niri";
   };
   security.sudo.wheelNeedsPassword = true;
 

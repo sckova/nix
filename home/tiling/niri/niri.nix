@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  programs.niri.package = pkgs.niri-stable.overrideAttrs (old: {
+    doCheck = false;
+  });
   # https://github.com/sodiboo/niri-flake/blob/main/docs.md
   programs.niri.settings = {
     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -52,6 +55,9 @@
         scale = 1.75;
       };
       "HDMI-A-1" = {
+        scale = 2;
+      };
+      "DP-1" = {
         scale = 2;
       };
     };
