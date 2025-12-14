@@ -29,12 +29,12 @@
   '';
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/8a3cb91f-2e3f-498d-8613-230976dff36e";
+    device = "/dev/disk/by-label/NixOS";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FA86-1704";
+    device = "/dev/disk/by-label/EFI";
     fsType = "vfat";
     options = [
       "fmask=0022"
