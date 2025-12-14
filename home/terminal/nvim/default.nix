@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.sessionVariables = {
@@ -28,7 +28,7 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        flavour = "mocha";
+        flavour = config.catppuccin.flavor;
       };
     };
     keymaps = [

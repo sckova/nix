@@ -3,7 +3,7 @@
 {
   catppuccin = {
     accent = "peach";
-    flavor = "mocha";
+    flavor = "macchiato";
   };
 
   home.packages = with pkgs; [
@@ -13,34 +13,10 @@
     asahi-btsync
     asahi-wifisync
 
-    # catppuccin-cursors.latteDark
-    # catppuccin-cursors.latteLight
-    # catppuccin-cursors.lattePeach
-    # catppuccin-cursors.mochaDark
-    # catppuccin-cursors.mochaLight
-    catppuccin-cursors.mochaPeach
-
-    (catppuccin-kde.override {
-      flavour = [
-        "latte"
-        "mocha"
-      ];
-      accents = [
-        "peach"
-      ];
-    })
-
     moonlight-qt
   ];
 
-  gtk.cursorTheme = {
-    name = "catppuccin-mocha-peach-cursors";
-    package = pkgs.catppuccin-cursors.mochaPeach;
-    size = 24;
-  };
-
   programs.plasma = {
-
     input.touchpads = [
       {
         name = "Apple MTP multi-touch";
@@ -54,32 +30,8 @@
       }
     ];
 
-    workspace = {
-      colorScheme = "CatppuccinMochaPeach";
-      cursor.theme = "catppuccin-mocha-peach-cursors";
-      splashScreen.theme = "Catpppuccin-Mocha-Peach";
-    };
-
-    configFile = {
-      kdeglobals.KDE = {
-        DefaultDarkLookAndFeel = "Catppuccin-Mocha-Peach";
-        DefaultLightLookAndFeel = "Catppuccin-Latte-Peach";
-      };
-    };
-
     shortcuts = {
-      # # my volume down key broke as hell boy
-      # kmix.decrease_volume = [
-      #   "Volume Mute"
-      #   "Volume Down"
-      # ];
-      # kmix.decrease_volume_small = [
-      #   "Shift+Volume Mute"
-      #   "Shift+Volume Down"
-      # ];
-      # kmix.increase_volume = "Volume Up";
-      # kmix.increase_volume_small = "Shift+Volume Up";
-      # kmix.mute = "Sleep";
+      # this is really annoying on asahi laptops
       org_kde_powerdevil.Sleep = [ ];
     };
 
