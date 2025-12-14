@@ -138,7 +138,7 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-stable.overrideAttrs (old: {
+    package = pkgs.niri-unstable.overrideAttrs (old: {
       doCheck = false;
     });
   };
