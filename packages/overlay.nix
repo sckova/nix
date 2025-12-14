@@ -24,8 +24,6 @@ final: prev: {
       inherit helium-widevine;
     };
 
-  linux-asahi = prev.callPackage (builtins.path { path = ./linux-asahi-bleeding/package.nix; }) { };
-
   spotifyd = prev.callPackage (builtins.path { path = ./spotifyd/package.nix; }) { };
 
   widevine-firefox = prev.callPackage (builtins.path { path = ./widevine-firefox/package.nix; }) { };
