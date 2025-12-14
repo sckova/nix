@@ -446,11 +446,6 @@ in
         preferredPlayer = "";
         externalMixer = "pwvucontrol || pavucontrol";
       };
-      brightness = {
-        brightnessStep = 5;
-        enforceMinimum = true;
-        enableDdcSupport = true;
-      };
       colorSchemes = {
         useWallpaperColors = false;
         predefinedScheme = "Cat-Custom";

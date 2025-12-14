@@ -16,6 +16,12 @@
     _2ship2harkinian
   ];
 
+  programs.noctalia-shell.settings.brightness = {
+    brightnessStep = 5;
+    enforceMinimum = false;
+    enableDdcSupport = true;
+  };
+
   programs.plasma = {
     panels = [
       # Alternative global menu to fit the modified taskbar
