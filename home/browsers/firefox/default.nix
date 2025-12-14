@@ -8,10 +8,6 @@
 }:
 
 {
-  home.sessionVariables = lib.mkIf pkgs.stdenv.hostPlatform.isAarch64 {
-    MOZ_GMP_PATH = "${pkgs.widevine-firefox}/gmp-widevinecdm/system-installed";
-  };
-
   home.file.".mozilla/firefox/default/chrome" = {
     source = ./chrome;
     force = true;
