@@ -179,16 +179,6 @@
       ];
 
     home.file = {
-      ".config/qt5ct" = {
-        source = ./qt/qt5ct;
-        recursive = true;
-        force = true;
-      };
-      ".config/qt6ct" = {
-        source = ./qt/qt6ct;
-        recursive = true;
-        force = true;
-      };
       ".icons/default/index.theme" = {
         text = ''
           [Icon Theme]
@@ -230,36 +220,33 @@
       };
     };
 
-    # qt = {
-    #   enable = true;
-    #   # the following will be possible in NixOS 26.05
-    #   # https://github.com/nix-community/home-manager/commit/f9d45d664ed06a11861d0ba29e34f390c07bf62e
-    #   # until this flake is updated, it will use the configs as implemented above
-    #   qt5ctSettings = {
-    #     Appearance = {
-    #       style = "Breeze";
-    #       icon_theme = config.gtk.iconTheme.name;
-    #       color_scheme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
-    #       standard_dialogs = "default";
-    #     };
-    #     Fonts = {
-    #       fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
-    #       general = "\"${config.userOptions.fontSans.name},${config.userOptions.fontSans.size}\"";
-    #     };
-    #   };
-    #   qt6ctSettings = {
-    #     Appearance = {
-    #       style = "Breeze";
-    #       icon_theme = config.gtk.iconTheme.name;
-    #       color_scheme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
-    #       standard_dialogs = "default";
-    #     };
-    #     Fonts = {
-    #       fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
-    #       general = "\"${config.userOptions.fontSans.name},${config.userOptions.fontSans.size}\"";
-    #     };
-    #   };
-    # };
+    qt = {
+      enable = true;
+      qt5ctSettings = {
+        Appearance = {
+          style = "Breeze";
+          icon_theme = config.gtk.iconTheme.name;
+          color_scheme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
+          standard_dialogs = "default";
+        };
+        Fonts = {
+          fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
+          general = "\"${config.userOptions.fontSans.name},${toString config.userOptions.fontSans.size}\"";
+        };
+      };
+      qt6ctSettings = {
+        Appearance = {
+          style = "Breeze";
+          icon_theme = config.gtk.iconTheme.name;
+          color_scheme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
+          standard_dialogs = "default";
+        };
+        Fonts = {
+          fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
+          general = "\"${config.userOptions.fontSans.name},${toString config.userOptions.fontSans.size}\"";
+        };
+      };
+    };
 
     services = {
       spotifyd = {
