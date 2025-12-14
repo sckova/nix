@@ -72,6 +72,32 @@
           default = 10;
         };
       };
+      cursor =
+        let
+          attrName = config.catppuccin.flavor + config.catppuccinUpper.accent;
+        in
+        {
+          name = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+            default = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
+          };
+          package = lib.mkOption {
+            type = lib.types.package;
+            readOnly = true;
+            default = pkgs.catppuccin-cursors.${attrName};
+          };
+          size = lib.mkOption {
+            type = lib.types.int;
+            readOnly = true;
+            default = 24;
+          };
+          path = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+            default = "${pkgs.catppuccin-cursors.${attrName}}/share/icons";
+          };
+        };
     };
   };
 
@@ -102,6 +128,7 @@
         nixfmt-rfc-style
         jdk21_headless
         nerd-fonts.noto
+        xorg.xcursorgen
 
         # kde and kde theming
         kde-rounded-corners
@@ -162,6 +189,22 @@
         recursive = true;
         force = true;
       };
+      ".icons/default/index.theme" = {
+        text = ''
+          [Icon Theme]
+          Name=Default
+          Comment=Default Cursor Theme
+          Inherits=${config.userOptions.cursor.name}
+        '';
+        force = true;
+      };
+    };
+
+    home.pointerCursor = {
+      gtk.enable = true;
+      name = config.userOptions.cursor.name;
+      package = config.userOptions.cursor.package;
+      size = config.userOptions.cursor.size;
     };
 
     gtk = {
@@ -173,9 +216,9 @@
       };
 
       cursorTheme = {
-        name = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
-        package = pkgs.catppuccin-cursors."${config.catppuccin.flavor}${config.catppuccinUpper.accent}";
-        size = 24;
+        name = config.home.pointerCursor.name;
+        package = config.home.pointerCursor.package;
+        size = config.home.pointerCursor.size;
       };
 
       gtk3.extraConfig = {

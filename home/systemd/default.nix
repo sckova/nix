@@ -1,6 +1,17 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
+  systemd.user.sessionVariables = {
+    XCURSOR_THEME = config.userOptions.cursor.name;
+    XCURSOR_SIZE = toString config.userOptions.cursor.size;
+    XCURSOR_PATH = config.userOptions.cursor.path;
+  };
+
   xdg.configFile."rclone/synology.conf".text = ''
     [synology]
     type = sftp
