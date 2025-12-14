@@ -10,15 +10,7 @@
     hotkey-overlay.skip-at-startup = true;
     prefer-no-csd = true;
     gestures.hot-corners.enable = false;
-    spawn-at-startup = [
-      {
-        command = [
-          "${pkgs.swaybg}"
-          "-i"
-          "/home/${config.userOptions.username}/.local/share/dailywallpaper.jpg"
-        ];
-      }
-    ];
+    spawn-at-startup = [ ];
     overview = {
       backdrop-color = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
       workspace-shadow.enable = false;
@@ -36,7 +28,7 @@
       mouse = {
         enable = true;
         accel-profile = "adaptive";
-        natural-scroll = true;
+        natural-scroll = false;
       };
       touchpad = {
         enable = true;
@@ -365,6 +357,7 @@
       "Mod+W".action.toggle-column-tabbed-display = { };
 
       "Print".action.screenshot = { };
+      "Mod+Shift+S".action.screenshot = { };
       "Ctrl+Print".action.screenshot-screen = { };
       "Alt+Print".action.screenshot-window = { };
 
