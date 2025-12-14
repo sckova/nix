@@ -6,77 +6,9 @@
     flavor = "mocha";
   };
 
-  home.packages = with pkgs; [
-
-    # catppuccin-cursors.latteDark
-    # catppuccin-cursors.latteLight
-    # catppuccin-cursors.latteGreen
-    # catppuccin-cursors.mochaDark
-    # catppuccin-cursors.mochaLight
-    catppuccin-cursors.mochaGreen
-
-    (catppuccin-kde.override {
-      flavour = [
-        "latte"
-        "mocha"
-      ];
-      accents = [
-        "green"
-      ];
-    })
-
-  ];
-
-  gtk.cursorTheme = {
-    name = "catppuccin-mocha-green-cursors";
-    package = pkgs.catppuccin-cursors.mochaGreen;
-    size = 24;
-  };
+  home.packages = with pkgs; [ ];
 
   programs.plasma = {
-
-    input.touchpads = [
-      {
-        name = "Apple MTP multi-touch";
-        vendorId = "05ac";
-        productId = "0352";
-        disableWhileTyping = false;
-        enable = true;
-        tapToClick = false;
-        naturalScroll = true;
-        accelerationProfile = "default";
-      }
-    ];
-
-    workspace = {
-      colorScheme = "CatppuccinMochaGreen";
-      cursor.theme = "catppuccin-mocha-green-cursors";
-      splashScreen.theme = "Catpppuccin-Mocha-Green";
-    };
-
-    configFile = {
-      kdeglobals.KDE = {
-        DefaultDarkLookAndFeel = "Catppuccin-Mocha-Green";
-        DefaultLightLookAndFeel = "Catppuccin-Latte-Green";
-      };
-    };
-
-    shortcuts = {
-      # # my volume down key broke as hell boy
-      # kmix.decrease_volume = [
-      #   "Volume Mute"
-      #   "Volume Down"
-      # ];
-      # kmix.decrease_volume_small = [
-      #   "Shift+Volume Mute"
-      #   "Shift+Volume Down"
-      # ];
-      # kmix.increase_volume = "Volume Up";
-      # kmix.increase_volume_small = "Shift+Volume Up";
-      # kmix.mute = "Sleep";
-      org_kde_powerdevil.Sleep = [ ];
-    };
-
     panels = [
       # Application name, Global menu and Song information and playback controls at the top
       {

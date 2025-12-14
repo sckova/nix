@@ -63,7 +63,11 @@ in
       package = pkgs.colloid-icon-theme;
     };
 
-    # cursor theme handled in home/hosts/host.nix and in config.kdl
+    cursorTheme = {
+      name = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
+      package = pkgs.catppuccin-cursors."${config.catppuccin.flavor}${config.catppuccinUpper.accent}";
+      size = 24;
+    };
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -103,7 +107,6 @@ in
     # };
   };
 
-  # Cursor / icon env vars for GTK and Qt apps
   xsession = {
     enable = true; # only needed for session variable injection
     windowManager.command = "niri"; # launches niri directly
@@ -114,6 +117,7 @@ in
     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
     hotkey-overlay.skip-at-startup = true;
     prefer-no-csd = true;
+    gestures.hot-corners.enable = false;
     spawn-at-startup = [
       {
         command = [
@@ -149,6 +153,10 @@ in
         tap = false;
         drag = false;
       };
+    };
+    environment = {
+      QT_QPA_PLATFORM = "wayland";
+      DISPLAY = null;
     };
     outputs = {
       "eDP-1" = {
