@@ -87,6 +87,7 @@
               ];
             }
             ./system/all.nix
+            ./system/widevine/default.nix
             ./system/shell/fish.nix
             ./system/tailscale/default.nix
             ./system/hosts/${hostname}/default.nix
