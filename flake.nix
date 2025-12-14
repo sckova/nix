@@ -80,6 +80,7 @@
             {
               nixpkgs.overlays = [
                 catppuccin-palette.overlays.default
+                niri.overlays.niri
                 noctalia.overlays.default
                 nur.overlays.default
                 (import ./packages/overlay.nix)

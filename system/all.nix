@@ -21,6 +21,28 @@
     "sckova"
   ];
 
+  nix.settings = {
+    # Increase file descriptor limit for builds
+    sandbox = "relaxed";
+    extra-sandbox-paths = [ ];
+    build-users-group = "nixbld";
+  };
+
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "65536";
+    }
+    {
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "65536";
+    }
+  ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -114,7 +136,12 @@
     enable = true;
   };
 
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-stable.overrideAttrs (old: {
+      doCheck = false;
+    });
+  };
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.niri.enableGnomeKeyring = true;
   programs.dconf.enable = true;
