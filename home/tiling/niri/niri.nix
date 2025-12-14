@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  programs.niri.package = pkgs.niri-stable.overrideAttrs (old: {
+  programs.niri.package = pkgs.niri-unstable.overrideAttrs (old: {
     doCheck = false;
   });
   # https://github.com/sodiboo/niri-flake/blob/main/docs.md
