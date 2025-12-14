@@ -15,23 +15,14 @@
 
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
 
-  # fixes a regression that crashes firefox by upgrading
-  # from 25.3.1 to 25.3.2 (very unstable)
-  # https://github.com/nix-community/nixos-apple-silicon/issues/380
-  nixpkgs.overlays = [
-    (final: prev: {
-      mesa = prev.mesa.overrideAttrs (oldAttrs: {
-        version = "25.3.2";
-        src = prev.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "mesa";
-          repo = "mesa";
-          rev = "11000ba6afe0f32cbeed45d4db3c65ff51487dec";
-          hash = "sha256-YZg17uATScPwjUEEMEuY3NFNdpMdOOYbD6Zoh5psl6I=";
-        };
-      });
-    })
-  ];
+  hardware.graphics.package =
+    # Workaround for Mesa 25.3.0 regression
+    # https://github.com/nix-community/nixos-apple-silicon/issues/380
+    assert pkgs.mesa.version == "25.3.1";
+    (import (fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/c5ae371f1a6a7fd27823bc500d9390b38c05fa55.tar.gz";
+      sha256 = "sha256-4PqRErxfe+2toFJFgcRKZ0UI9NSIOJa+7RXVtBhy4KE=";
+    }) { localSystem = pkgs.stdenv.hostPlatform; }).mesa;
 
   catppuccin.accent = "peach";
 
