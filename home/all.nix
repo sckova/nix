@@ -47,7 +47,7 @@
         };
         size = lib.mkOption {
           type = lib.types.int;
-          default = 12;
+          default = 11;
         };
       };
       fontSerif = {
@@ -58,7 +58,7 @@
         };
         size = lib.mkOption {
           type = lib.types.int;
-          default = 12;
+          default = 11;
         };
       };
       fontMono = {
@@ -134,6 +134,11 @@
         jdk21_headless
         nerd-fonts.noto
         xorg.xcursorgen
+        kdePackages.qtstyleplugin-kvantum
+        (catppuccin-kvantum.override {
+          variant = config.catppuccin.flavor;
+          accent = config.catppuccin.accent;
+        })
 
         # kde and kde theming
         kde-rounded-corners
@@ -193,6 +198,12 @@
         '';
         force = true;
       };
+      ".config/Kvantum/kvantum.kvconfig" = {
+        text = lib.generators.toINI { } {
+          General.theme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
+        };
+        force = true;
+      };
     };
 
     home.pointerCursor = {
@@ -229,7 +240,7 @@
       enable = true;
       qt5ctSettings = {
         Appearance = {
-          style = "Breeze";
+          style = "kvantum";
           icon_theme = config.gtk.iconTheme.name;
           color_scheme_path = "/home/${config.userOptions.username}/.config/qt5ct/qt5ct.conf";
           custom_palette = true;
@@ -240,14 +251,14 @@
       };
       qt6ctSettings = {
         Appearance = {
-          style = "Breeze";
+          style = "kvantum";
           icon_theme = config.gtk.iconTheme.name;
           color_scheme_path = "/home/${config.userOptions.username}/.config/qt6ct/qt6ct.conf";
           custom_palette = true;
           standard_dialogs = "default";
         };
         Fonts = {
-          fixed = "\"${config.userOptions.fontMono.name},${config.userOptions.fontMono.name}\"";
+          fixed = "\"${config.userOptions.fontMono.name},${toString config.userOptions.fontMono.size}\"";
           general = "\"${config.userOptions.fontSans.name},${toString config.userOptions.fontSans.size}\"";
         };
         ColorScheme =
