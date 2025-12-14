@@ -6,8 +6,8 @@
     enableGitIntegration = true;
     themeFile = "Catppuccin-${config.catppuccinUpper.flavor}";
     font = {
-      name = "NotoSansM Nerd Font Mono";
-      size = 10;
+      name = config.userOptions.fontMono.name;
+      size = config.userOptions.fontMono.size;
     };
     shellIntegration = {
       enableFishIntegration = true;
