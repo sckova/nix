@@ -6,7 +6,7 @@ let
     # Configuration
     SIZE="UHD"
     MARKET="en-US"
-    OUTPUT_PATH="''${XDG_DATA_HOME:-$HOME/.local/share}/dailywallpaper.jpg"
+    OUTPUT_PATH="''${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper/daily.jpg"
     DAY="0"
 
     # API configuration
@@ -56,10 +56,6 @@ let
       ${pkgs.libnotify}/bin/notify-send -u low -t 10000 -i preferences-desktop-wallpaper \
         "Bing Wallpaper of the Day" "$TITLE"
     fi
-
-    # Kill existing swaybg instances and start new one
-    ${pkgs.procps}/bin/pkill swaybg || true
-    ${pkgs.swaybg}/bin/swaybg -i "/home/${config.userOptions.username}/.local/share/dailywallpaper.jpg" &
 
     echo "Wallpaper downloaded and applied successfully."
   '';
