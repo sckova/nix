@@ -278,7 +278,7 @@ in
         pinnedExecs = [ ];
         useApp2Unit = false;
         sortByMostUsed = true;
-        terminalCommand = "kitty";
+        terminalCommand = "kitty -e";
         customLaunchPrefixEnabled = false;
         customLaunchPrefix = "";
         viewMode = "list";
