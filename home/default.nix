@@ -161,7 +161,6 @@
         audacity
         strawberry
         musescore
-        mpv
         gimp
         calibre
         spotify-player

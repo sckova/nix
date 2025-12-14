@@ -10,7 +10,7 @@
     hotkey-overlay.skip-at-startup = true;
     prefer-no-csd = true;
     gestures.hot-corners.enable = false;
-    spawn-at-startup = [ ];
+    spawn-at-startup = [ ]; # systemd is based sorry
     overview = {
       backdrop-color = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
       workspace-shadow.enable = false;
@@ -75,14 +75,14 @@
       ];
       border = {
         enable = true;
-        width = 1;
+        width = 2;
         active.color = pkgs.catppuccin.${config.catppuccin.flavor}.${config.catppuccin.accent};
         inactive.color = pkgs.catppuccin.${config.catppuccin.flavor}.surface0;
         urgent.color = pkgs.catppuccin.${config.catppuccin.flavor}.maroon;
       };
       focus-ring = {
         enable = false;
-        width = 1;
+        width = 2;
         active.color = pkgs.catppuccin.${config.catppuccin.flavor}.${config.catppuccin.accent};
         inactive.color = pkgs.catppuccin.${config.catppuccin.flavor}.surface0;
         urgent.color = pkgs.catppuccin.${config.catppuccin.flavor}.maroon;
