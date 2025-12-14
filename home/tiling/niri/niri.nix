@@ -125,6 +125,10 @@
             app-id = "openmw";
             title = "OpenMW";
           }
+          {
+            app-id = "Minecraft";
+            title = "Minecraft";
+          }
         ];
         open-maximized = true;
         focus-ring.enable = false;
@@ -371,7 +375,10 @@
       "Mod+Shift+E".action.quit = { };
       "Ctrl+Alt+Delete".action.quit = { };
 
-      "Mod+Shift+P".action.power-off-monitors = { };
+      "Mod+Shift+P" = {
+        action.power-off-monitors = { };
+        hotkey-overlay.title = "Turn off the display";
+      };
     };
   };
 }
