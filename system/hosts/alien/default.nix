@@ -4,6 +4,7 @@
   lib,
   inputs,
   catppuccin,
+  nix-cachyos-kernel,
   ...
 }:
 {
@@ -20,8 +21,20 @@
     imports = [ catppuccin.homeModules.catppuccin ];
   };
 
-  boot.kernelPackages = pkgs.linuxPackages;
   boot.loader.systemd-boot.consoleMode = "max";
+  # boot.kernelPackages = pkgs.linuxPackages;
+
+  # let's use the CachyOS kernel instead!
+  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
+  nix.settings.substituters = [
+    "https://attic.xuyh0120.win/lantian"
+    "https://cache.garnix.io"
+  ];
+  nix.settings.trusted-public-keys = [
+    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+  ];
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
   programs = {
     gamescope = {
@@ -62,7 +75,7 @@
     powerManagement.enable = false;
     nvidiaSettings = false;
     open = false;
-    package = pkgs.linuxPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   services.sunshine = {
