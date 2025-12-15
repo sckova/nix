@@ -47,6 +47,14 @@
     };
     defaultSession = "niri";
   };
+
+  environment = {
+    systemPackages = [ pkgs.mangohud ];
+    loginShellInit = ''
+      [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
+    '';
+  };
+
   security.sudo.wheelNeedsPassword = true;
 
   hardware.nvidia = {
