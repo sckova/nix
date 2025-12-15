@@ -10,6 +10,18 @@
 {
   networking.hostName = "alien";
 
+  environment.systemPackages = with pkgs; [
+    pkgs.ddcutil
+    pkgs.mangohud
+  ];
+
+  # enable ddcutil
+  users.users.sckova.extraGroups = [ "i2c" ];
+  boot.initrd.kernelModules = [ "i2c-dev" ];
+  services.udev.extraRules = ''
+    KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+  '';
+
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
     "riscv64-linux"
@@ -62,7 +74,6 @@
   };
 
   environment = {
-    systemPackages = [ pkgs.mangohud ];
     loginShellInit = ''
       [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
     '';
