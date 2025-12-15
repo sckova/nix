@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +55,7 @@
   outputs =
     {
       nixpkgs,
+      nix-cachyos-kernel,
       catppuccin,
       catppuccin-palette,
       home-manager,
@@ -70,12 +73,14 @@
           hostname,
           system,
           extraModules ? [ ],
+          extraSpecialArgs ? { },
         }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit catppuccin;
-          };
+          }
+          // extraSpecialArgs;
           modules = [
             {
               nixpkgs.overlays = [
@@ -145,6 +150,9 @@
         alien = mkNixosSystem {
           hostname = "alien";
           system = "x86_64-linux";
+          extraSpecialArgs = {
+            inherit nix-cachyos-kernel;
+          };
         };
 
         vm-aarch64 = mkNixosSystem {
