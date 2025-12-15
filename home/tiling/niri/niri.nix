@@ -52,9 +52,6 @@
       "HDMI-A-1" = {
         scale = 2;
       };
-      "DP-1" = {
-        scale = 2;
-      };
     };
     cursor = {
       hide-when-typing = true;
