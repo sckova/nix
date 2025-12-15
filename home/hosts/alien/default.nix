@@ -22,6 +22,15 @@
     enableDdcSupport = true;
   };
 
+  programs.niri.settings.outputs."DP-1" = {
+    mode = {
+      width = 3840;
+      height = 2160;
+      refresh = 143.999;
+    };
+    scale = 1.75;
+  };
+
   programs.plasma = {
     panels = [
       # Alternative global menu to fit the modified taskbar
