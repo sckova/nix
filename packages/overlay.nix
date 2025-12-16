@@ -24,5 +24,7 @@ final: prev: {
       inherit helium-widevine;
     };
 
+  spotify-webapp = prev.callPackage (builtins.path { path = ./spotify/package.nix; }) { };
+
   spotifyd = prev.callPackage (builtins.path { path = ./spotifyd/package.nix; }) { };
 }
