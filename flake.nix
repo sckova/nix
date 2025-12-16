@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +67,7 @@
       plasma-manager,
       niri,
       noctalia,
+      spicetify-nix,
       nur,
       nixvim,
       apple-silicon,
@@ -105,8 +111,12 @@
                 plasma-manager.homeModules.plasma-manager
                 niri.homeModules.niri
                 noctalia.homeModules.default
+                spicetify-nix.homeManagerModules.default
                 nixvim.homeModules.nixvim
               ];
+              home-manager.extraSpecialArgs = {
+                inherit spicetify-nix;
+              };
             }
           ]
           ++ extraModules;
