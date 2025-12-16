@@ -60,6 +60,9 @@
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           installation_mode = "allowed";
         };
+        "{FirefoxColor@mozilla.com}" = {
+          installation_mode = "allowed";
+        };
       };
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -98,6 +101,7 @@
             pwas-for-firefox
             control-panel-for-twitter
             bitwarden
+            firefox-color
           ];
           settings = {
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".settings = {
@@ -152,47 +156,23 @@
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.activity-stream.showWeather" = false;
 
-          "media.gmp-widevinecdm.version" = "system-installed";
-          "media.gmp-widevinecdm.visible" = true;
-          "media.gmp-widevinecdm.enabled" = true;
-          "media.gmp-widevinecdm.autoupdate" = false;
-
-          "media.eme.enabled" = true;
-          "media.eme.encrypted-media-encryption-scheme.enabled" = true;
+          # For browser toolbox/live editing user CSS
+          "devtools.chrome.enabled" = true;
+          "devtools.debugger.remote-enabled" = true;
 
           # Vertical tabs
           "sidebar.verticalTabs" = true;
           "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
+          # these are ordered right to left for some fucking reason
           "browser.uiCustomization.navBarWhenVerticalTabs" = [
-            "back-button"
-            "forward-button"
-            "stop-reload-button"
-            "urlbar-container"
-            "downloads-button"
-            "fxa-toolbar-menu-button"
             "unified-extensions-button"
+            "fxa-toolbar-menu-button"
+            "downloads-button"
+            "urlbar-container"
+            "stop-reload-button"
+            "forward-button"
+            "back-button"
           ];
-
-          # Undo a bunch of stuff that LibreWolf does
-          # "browser.safebrowsing.malware.enabled" = true;
-          # "browser.safebrowsing.phishing.enabled" = true;
-          # "browser.safebrowsing.blockedURIs.enabled" = true;
-          # "browser.safebrowsing.provider.google4.gethashURL" =
-          #   "https://safebrowsing.googleapis.com/v4/fullHashes:find?$ct=application/x-protobuf&key=%GOOGLE_SAFEBROWSING_API_KEY%&$httpMethod=POST";
-          # "browser.safebrowsing.provider.google4.updateURL" =
-          #   "https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=%GOOGLE_SAFEBROWSING_API_KEY%&$httpMethod=POST";
-          # "browser.safebrowsing.provider.google.gethashURL" =
-          #   "https://safebrowsing.google.com/safebrowsing/gethash?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2";
-          # "browser.safebrowsing.provider.google.updateURL" =
-          #   "https://safebrowsing.google.com/safebrowsing/downloads?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2&key=%GOOGLE_SAFEBROWSING_API_KEY%";
-          # "browser.safebrowsing.downloads.enabled" = true;
-          # "privacy.resistFingerprinting.letterboxing" = false;
-          # "webgl.disabled" = false;
-          # "identity.fxaccounts.enabled" = true;
-          # "privacy.clearOnShutdown.history" = false;
-          # "privacy.clearOnShutdown.downloads" = false;
-          # "privacy.fingerprintingProtection" = false;
-          # "network.cookie.lifetimePolicy" = 0;
         };
         bookmarks = {
           force = true;
@@ -204,6 +184,10 @@
                 {
                   name = "NixOS";
                   url = "https://nixos.org/";
+                }
+                {
+                  name = "Home Manager Appendix A";
+                  url = "https://nix-community.github.io/home-manager/options.xhtml";
                 }
               ];
             }
