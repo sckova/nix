@@ -125,6 +125,7 @@
         spotdl
         browsh
         mosh
+        spotify-player
 
         # development & tooling
         gh
@@ -163,7 +164,7 @@
         musescore
         gimp
         calibre
-        spotify-player
+        spotify-qt
 
         # overrides
         # (chromium.override {
