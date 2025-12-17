@@ -5,7 +5,14 @@
     EDITOR = "nvim";
   };
 
-  home.packages = with pkgs; [ kdePackages.qtdeclarative ];
+  home.packages = with pkgs; [
+    kdePackages.qtdeclarative
+    prettier
+    prettierd
+    nixfmt-rfc-style
+    stylua
+    black
+  ];
 
   programs.nixvim = {
     enable = true;
@@ -88,27 +95,12 @@
         settings = {
           formatters_by_ft = {
             lua = [ "stylua" ];
-            python = [
-              "isort"
-              "black"
-            ];
+            python = [ "black" ];
             nix = [ "nixfmt" ];
-            javascript = [
-              "deno fmt"
-              "prettier"
-            ];
-            css = [
-              "deno fmt"
-              "prettier"
-            ];
-            json = [
-              "deno fmt"
-              "prettier"
-            ];
-            jsonc = [
-              "deno fmt"
-              "prettier"
-            ];
+            javascript = [ "prettier" ];
+            css = [ "prettier" ];
+            json = [ "prettier" ];
+            jsonc = [ "prettier" ];
           };
 
           # Default formatting options
