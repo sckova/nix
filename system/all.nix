@@ -54,6 +54,7 @@
   home-manager.users.sckova = {
     imports = [
       ../home
+      ../home/graphical/discord
       ../home/graphical/firefox
       ../home/graphical/mpv
       ../home/tiling/niri
