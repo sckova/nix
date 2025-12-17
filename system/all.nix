@@ -58,9 +58,7 @@
       ../home/graphical/firefox
       ../home/graphical/mpv
       ../home/tiling/niri
-      ../home/tiling/quickshell
       ../home/tiling/wallpaper
-      ../home/tiling/waybar
       ../home/systemd
       ../home/terminal/btop
       ../home/terminal/fish
