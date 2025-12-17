@@ -67,8 +67,12 @@ in
       After = [
         "network-online.target"
         "niri.service"
+        "noctalia.service"
       ];
-      Wants = [ "network-online.target" ];
+      Wants = [
+        "network-online.target"
+        "noctalia.service"
+      ];
     };
 
     Service = {
