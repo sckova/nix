@@ -26,7 +26,7 @@ let
     mOnSurfaceVariant = palette.lavender;
     mOutline = palette.surface2;
     mShadow = palette.crust;
-    mHover = palette.teal;
+    mHover = palette.subtext1;
     mOnHover = palette.crust;
   };
 
