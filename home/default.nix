@@ -129,10 +129,6 @@
 
         # development & tooling
         gh
-        deno
-        prettier
-        prettierd
-        nixfmt-rfc-style
         jdk21_headless
         nerd-fonts.noto
         xorg.xcursorgen
