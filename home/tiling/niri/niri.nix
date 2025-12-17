@@ -193,29 +193,37 @@
 
       "XF86MonBrightnessUp" = {
         action.spawn = [
-          "/home/${config.userOptions.username}/.config/niri/scripts/brightness.sh"
-          "5"
+          "brightnessctl"
+          "--class=backlight"
+          "set"
+          "+5%"
         ];
         allow-when-locked = true;
       };
       "XF86MonBrightnessDown" = {
         action.spawn = [
-          "/home/${config.userOptions.username}/.config/niri/scripts/brightness.sh"
-          "-5"
+          "brightnessctl"
+          "--class=backlight"
+          "set"
+          "5%-"
         ];
         allow-when-locked = true;
       };
       "Shift+XF86MonBrightnessUp" = {
         action.spawn = [
-          "/home/${config.userOptions.username}/.config/niri/scripts/brightness.sh"
-          "1"
+          "brightnessctl"
+          "--class=backlight"
+          "set"
+          "+1%"
         ];
         allow-when-locked = true;
       };
       "Shift+XF86MonBrightnessDown" = {
         action.spawn = [
-          "/home/${config.userOptions.username}/.config/niri/scripts/brightness.sh"
-          "-1"
+          "brightnessctl"
+          "--class=backlight"
+          "set"
+          "1%-"
         ];
         allow-when-locked = true;
       };
