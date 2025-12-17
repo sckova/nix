@@ -147,7 +147,6 @@
         kdePackages.partitionmanager
 
         # gui applications
-        vesktop
         input-leap
         libreoffice-qt-fresh
         # helium-browser
@@ -217,46 +216,7 @@
     gtk = {
       enable = true;
 
-      theme =
-        let
-          mapping = {
-            maroon = "red";
-            red = "red";
-            peach = "orange";
-            yellow = "yellow";
-            green = "green";
-            teal = "teal";
-            sky = "teal";
-            sapphire = "default";
-            blue = "default";
-            mauve = "purple";
-            lavender = "purple";
-            pink = "pink";
-            flamingo = "pink";
-            rosewater = "pink";
-          };
-          rawThemeVariant = lib.attrByPath [ config.catppuccin.accent ] "default" mapping;
-          rawColorVariant = if config.userOptions.isDark then "dark" else "light";
-          capitalize =
-            s:
-            if s == "" then
-              ""
-            else
-              (lib.strings.toUpper (builtins.substring 0 1 s))
-              + (builtins.substring 1 (builtins.stringLength s) s);
-          formattedThemeColor = if rawThemeVariant == "default" then "" else "-${capitalize rawThemeVariant}";
-        in
-        {
-          name = "Colloid${formattedThemeColor}-${capitalize rawColorVariant}-Catppuccin";
-          package = (
-            pkgs.colloid-gtk-theme.override {
-              themeVariants = [ rawThemeVariant ];
-              sizeVariants = [ "standard" ];
-              colorVariants = [ rawColorVariant ];
-              tweaks = [ "catppuccin" ];
-            }
-          );
-        };
+      colorScheme = if config.userOptions.isDark then "dark" else "light";
 
       iconTheme = {
         name = if config.userOptions.isDark then "Colloid-Dark" else "Colloid-Light";
