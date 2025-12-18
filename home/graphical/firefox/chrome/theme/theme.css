@@ -1,5 +1,9 @@
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
+  #nav-bar,
+  #PersonalToolbar {
+    background-color: rgb(24, 24, 37) !important;
+  }
   :root {
     .tabbrowser-tab[selected="true"] .tab-background {
       border: 1px solid #313244 !important;
