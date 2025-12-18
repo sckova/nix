@@ -512,7 +512,6 @@ in
         "TZDIR=${pkgs.tzdata}/share/zoneinfo"
         "NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json"
         "QT_QPA_PLATFORM=wayland"
-        "QT_QPA_PLATFORMTHEME_5=qt5ct"
         "QT_QPA_PLATFORMTHEME=qt6ct"
       ];
     };

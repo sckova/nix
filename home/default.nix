@@ -209,10 +209,19 @@
       size = config.userOptions.cursor.size;
     };
 
+    home.sessionVariables = {
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+    };
+
     gtk = {
       enable = true;
 
       colorScheme = if config.userOptions.isDark then "dark" else "light";
+
+      theme = {
+        package = pkgs.kdePackages.breeze-gtk;
+        name = if config.userOptions.isDark then "Breeze-Dark" else "Breeze";
+      };
 
       iconTheme = {
         name = if config.userOptions.isDark then "Colloid-Dark" else "Colloid-Light";
@@ -238,7 +247,7 @@
       enable = true;
       qt5ctSettings = {
         Appearance = {
-          style = "kvantum";
+          style = "Breeze";
           icon_theme = config.gtk.iconTheme.name;
           color_scheme_path = "/home/${config.userOptions.username}/.config/qt5ct/qt5ct.conf";
           custom_palette = true;
@@ -249,7 +258,7 @@
       };
       qt6ctSettings = {
         Appearance = {
-          style = "kvantum";
+          style = "Breeze";
           icon_theme = config.gtk.iconTheme.name;
           color_scheme_path = "/home/${config.userOptions.username}/.config/qt6ct/qt6ct.conf";
           custom_palette = true;
