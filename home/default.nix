@@ -48,7 +48,13 @@
         };
         size = lib.mkOption {
           type = lib.types.int;
+          readOnly = true;
           default = 11;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = true;
+          default = pkgs.noto-fonts;
         };
       };
       fontSerif = {
@@ -59,7 +65,13 @@
         };
         size = lib.mkOption {
           type = lib.types.int;
+          readOnly = true;
           default = 11;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = true;
+          default = pkgs.noto-fonts;
         };
       };
       fontMono = {
@@ -70,7 +82,30 @@
         };
         size = lib.mkOption {
           type = lib.types.int;
+          readOnly = true;
           default = 10;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = true;
+          default = pkgs.nerd-fonts.noto;
+        };
+      };
+      fontEmoji = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "Noto Emoji";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = true;
+          default = 10;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = true;
+          default = pkgs.noto-fonts-color-emoji;
         };
       };
       cursor =
@@ -130,13 +165,7 @@
         # development & tooling
         gh
         jdk21_headless
-        nerd-fonts.noto
         xorg.xcursorgen
-        kdePackages.qtstyleplugin-kvantum
-        (catppuccin-kvantum.override {
-          variant = config.catppuccin.flavor;
-          accent = config.catppuccin.accent;
-        })
 
         # kde and kde theming
         kde-rounded-corners
@@ -192,12 +221,6 @@
           Comment=Default Cursor Theme
           Inherits=${config.userOptions.cursor.name}
         '';
-        force = true;
-      };
-      ".config/Kvantum/kvantum.kvconfig" = {
-        text = lib.generators.toINI { } {
-          General.theme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
-        };
         force = true;
       };
     };
