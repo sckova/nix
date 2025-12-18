@@ -8,8 +8,49 @@
 }:
 
 {
-  home.file.".mozilla/firefox/default/chrome" = {
-    source = ./chrome;
+  home.file.".mozilla/firefox/default/chrome/theme" = {
+    source = ./chrome/theme;
+    force = true;
+    recursive = true;
+  };
+
+  home.file.".mozilla/firefox/default/chrome/userChrome.css" = {
+    source = ./chrome/userChrome.css;
+    force = true;
+  };
+
+  home.file.".mozilla/firefox/default/chrome/colors.css" = {
+    text = ''
+      * {
+        --accent: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.${config.catppuccin.accent}};
+        --rosewater: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.rosewater};
+        --flamingo: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.flamingo};
+        --pink: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.pink};
+        --mauve: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.mauve};
+        --red: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.red};
+        --maroon: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.maroon};
+        --peach: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.peach};
+        --yellow: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.yellow};
+        --green: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.green};
+        --teal: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.teal};
+        --sky: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.sky};
+        --sapphire: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.sapphire};
+        --blue: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.blue};
+        --lavender: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.lavender};
+        --text: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.text};
+        --subtext1: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.subtext1};
+        --subtext0: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.subtext0};
+        --overlay2: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.overlay2};
+        --overlay1: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.overlay1};
+        --overlay0: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.overlay0};
+        --surface2: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.surface2};
+        --surface1: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.surface1};
+        --surface0: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.surface0};
+        --base: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.base};
+        --mantle: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.mantle};
+        --crust: ${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.crust};
+      }
+    '';
     force = true;
   };
 
