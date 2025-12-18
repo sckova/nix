@@ -72,7 +72,7 @@
 
   services.displayManager = {
     autoLogin = {
-      enable = true;
+      enable = false;
       user = "sckova";
     };
     defaultSession = "niri";
@@ -84,7 +84,7 @@
     '';
   };
 
-  security.sudo.wheelNeedsPassword = true;
+  security.sudo.wheelNeedsPassword = false;
 
   hardware.nvidia = {
     modesetting.enable = true;
