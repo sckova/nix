@@ -16,14 +16,6 @@ final: prev: {
   #       }) { };
   #     };
 
-  helium-browser =
-    let
-      helium-widevine = prev.callPackage ./helium-browser/widevine-aarch64-linux.nix { };
-    in
-    prev.callPackage ./helium-browser/package.nix {
-      inherit helium-widevine;
-    };
-
   spotify-webapp = prev.callPackage (builtins.path { path = ./spotify/package.nix; }) { };
 
   spotifyd = prev.callPackage (builtins.path { path = ./spotifyd/package.nix; }) { };
