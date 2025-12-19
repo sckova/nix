@@ -173,7 +173,7 @@
         # gui applications
         input-leap
         libreoffice-qt-fresh
-        # helium-browser
+        nur.repos.forkprince.helium-nightly
         bitwarden-desktop
         qbittorrent
 
