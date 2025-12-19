@@ -161,11 +161,10 @@
         browsh
         mosh
         spotify-player
+        gh
 
         # development & tooling
-        gh
         jdk21_headless
-        xorg.xcursorgen
 
         # kde and kde theming
         kde-rounded-corners
@@ -177,10 +176,6 @@
         # helium-browser
         bitwarden-desktop
         qbittorrent
-
-        # gui applications ( games )
-        openmw
-        prismlauncher
 
         # gui applications ( multimedia )
         audacity
