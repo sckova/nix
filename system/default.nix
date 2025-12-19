@@ -54,6 +54,8 @@
   home-manager.users.sckova = {
     imports = [
       ../home
+      ../home/games/minecraft
+      ../home/games/morrowind
       ../home/graphical/discord
       ../home/graphical/firefox
       ../home/graphical/mpv
