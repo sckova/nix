@@ -97,7 +97,7 @@
                 (import ./packages/overlay.nix)
               ];
             }
-            ./system/all.nix
+            ./system
             ./system/widevine
             ./system/shell/fish.nix
             ./system/tailscale
@@ -135,7 +135,7 @@
           home.username = user;
           home.homeDirectory = "/home/${user}";
           modules = [
-            ./home/all.nix
+            ./home
             ./home/hosts/${hostname}.nix
             catppuccin.homeModules.catppuccin
             home-manager.homeModules.home-manager
