@@ -4,8 +4,7 @@
   lib,
   catppuccin,
   ...
-}:
-{
+}: {
   networking.hostName = "peach";
 
   boot.binfmt.emulatedSystems = [
@@ -13,12 +12,12 @@
     "riscv64-linux"
   ];
 
-  boot.kernelParams = [ "apple_dcp.show_notch=1" ];
+  boot.kernelParams = ["apple_dcp.show_notch=1"];
 
   catppuccin.accent = "peach";
 
   home-manager.users.sckova = {
-    imports = [ catppuccin.homeModules.catppuccin ];
+    imports = [catppuccin.homeModules.catppuccin];
   };
 
   hardware.asahi = {
