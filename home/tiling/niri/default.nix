@@ -1,14 +1,15 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   catppuccin-fuzzel = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "fuzzel";
     rev = "0af0e26901b60ada4b20522df739f032797b07c3";
     sha256 = "sha256-XpItMGsYq4XvLT+7OJ9YRILfd/9RG1GMuO6J4hSGepg=";
   };
-in
-{
+in {
   imports = [
     ./niri.nix
     ./noctalia.nix

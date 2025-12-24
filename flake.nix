@@ -57,37 +57,36 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      nix-cachyos-kernel,
-      catppuccin,
-      catppuccin-palette,
-      home-manager,
-      plasma-manager,
-      niri,
-      noctalia,
-      spicetify-nix,
-      nur,
-      nixvim,
-      apple-silicon,
-      ...
+  outputs = {
+    nixpkgs,
+    nix-cachyos-kernel,
+    catppuccin,
+    catppuccin-palette,
+    home-manager,
+    plasma-manager,
+    niri,
+    noctalia,
+    spicetify-nix,
+    nur,
+    nixvim,
+    apple-silicon,
+    ...
+  }: let
+    mkNixosSystem = {
+      hostname,
+      system,
+      extraModules ? [],
+      extraSpecialArgs ? {},
     }:
-    let
-      mkNixosSystem =
-        {
-          hostname,
-          system,
-          extraModules ? [ ],
-          extraSpecialArgs ? { },
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs =
+          {
             inherit catppuccin;
           }
           // extraSpecialArgs;
-          modules = [
+        modules =
+          [
             {
               nixpkgs.overlays = [
                 catppuccin-palette.overlays.default
@@ -120,73 +119,71 @@
             }
           ]
           ++ extraModules;
-        };
+      };
 
-      mkHomeConfig =
-        {
-          user,
-          hostname,
-          system,
-        }:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-          };
-          home.username = user;
-          home.homeDirectory = "/home/${user}";
-          modules = [
-            ./home
-            ./home/hosts/${hostname}.nix
-            catppuccin.homeModules.catppuccin
-            home-manager.homeModules.home-manager
-            plasma-manager.homeModules.plasma-manager
-            niri.homeModules.default
-            noctalia.homeModules.noctalia
-            nixvim.homeModules.nixvim
-          ];
+    mkHomeConfig = {
+      user,
+      hostname,
+      system,
+    }:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
         };
-    in
-    {
-      nixosConfigurations = {
-        peach = mkNixosSystem {
-          hostname = "peach";
-          system = "aarch64-linux";
-          extraModules = [
-            apple-silicon.nixosModules.default
-            { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
-          ];
-        };
+        home.username = user;
+        home.homeDirectory = "/home/${user}";
+        modules = [
+          ./home
+          ./home/hosts/${hostname}.nix
+          catppuccin.homeModules.catppuccin
+          home-manager.homeModules.home-manager
+          plasma-manager.homeModules.plasma-manager
+          niri.homeModules.default
+          noctalia.homeModules.noctalia
+          nixvim.homeModules.nixvim
+        ];
+      };
+  in {
+    nixosConfigurations = {
+      peach = mkNixosSystem {
+        hostname = "peach";
+        system = "aarch64-linux";
+        extraModules = [
+          apple-silicon.nixosModules.default
+          {nixpkgs.overlays = [apple-silicon.overlays.apple-silicon-overlay];}
+        ];
+      };
 
-        alien = mkNixosSystem {
-          hostname = "alien";
-          system = "x86_64-linux";
-          extraSpecialArgs = {
-            inherit nix-cachyos-kernel;
-          };
-        };
-
-        vm-aarch64 = mkNixosSystem {
-          hostname = "vm-aarch64";
-          system = "aarch64-linux";
+      alien = mkNixosSystem {
+        hostname = "alien";
+        system = "x86_64-linux";
+        extraSpecialArgs = {
+          inherit nix-cachyos-kernel;
         };
       };
 
-      homeConfigurations = {
-        peach = mkHomeConfig {
-          user = "sckova";
-          hostname = "peach";
-          system = "aarch64-linux";
-        };
-        alien = mkHomeConfig {
-          user = "sckova";
-          hostname = "alien";
-          system = "x86_64-linux";
-        };
-        vm-aarch64 = mkHomeConfig {
-          user = "sckova";
-          hostname = "vm-aarch64";
-          system = "aarch64-linux";
-        };
+      vm-aarch64 = mkNixosSystem {
+        hostname = "vm-aarch64";
+        system = "aarch64-linux";
       };
     };
+
+    homeConfigurations = {
+      peach = mkHomeConfig {
+        user = "sckova";
+        hostname = "peach";
+        system = "aarch64-linux";
+      };
+      alien = mkHomeConfig {
+        user = "sckova";
+        hostname = "alien";
+        system = "x86_64-linux";
+      };
+      vm-aarch64 = mkHomeConfig {
+        user = "sckova";
+        hostname = "vm-aarch64";
+        system = "aarch64-linux";
+      };
+    };
+  };
 }

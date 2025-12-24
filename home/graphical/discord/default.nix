@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   catppuccin-discord-src = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
@@ -52,7 +54,7 @@ let
 
   catppuccin-discord = "${catppuccin-discord-pkg}/dist/catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}.theme.css";
 
-  mergedThemes = pkgs.runCommand "mergedConfig" { } ''
+  mergedThemes = pkgs.runCommand "mergedConfig" {} ''
     mkdir -p $out
     cp ${catppuccin-discord} $out/catppuccin.css
   '';
@@ -79,9 +81,8 @@ let
       height = 1071;
     };
   };
-in
-{
-  home.packages = with pkgs; [ vesktop ];
+in {
+  home.packages = with pkgs; [vesktop];
 
   home.file.".config/vesktop/settings.json" = {
     text = builtins.toJSON vesktopSettings;
