@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ kdePackages.qttools ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [kdePackages.qttools];
 
   programs.fish = {
     enable = true;

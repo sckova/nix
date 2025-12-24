@@ -4,8 +4,7 @@
   lib,
   catppuccin,
   ...
-}:
-{
+}: {
   networking.hostName = "vm-aarch64";
 
   boot.binfmt.emulatedSystems = [
@@ -16,7 +15,7 @@
   catppuccin.accent = "green";
 
   home-manager.users.sckova = {
-    imports = [ catppuccin.homeModules.catppuccin ];
+    imports = [catppuccin.homeModules.catppuccin];
   };
 
   services.spice-vdagentd.enable = true;

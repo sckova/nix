@@ -20,7 +20,6 @@
   withPortAudio ? stdenv.hostPlatform.isDarwin,
   withPulseAudio ? config.pulseaudio or stdenv.hostPlatform.isLinux,
 }:
-
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "spotifyd";
   version = "0.4.2";
@@ -41,7 +40,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ];
 
   buildInputs =
-    lib.optionals stdenv.hostPlatform.isLinux [ openssl ]
+    lib.optionals stdenv.hostPlatform.isLinux [openssl]
     # The `dbus_mpris` feature works on other platforms, but only requires `dbus` on Linux
     ++ lib.optional (withMpris && stdenv.hostPlatform.isLinux) dbus
     ++ lib.optional (withALSA || withJack) alsa-lib
@@ -50,7 +49,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ++ lib.optional withPortAudio portaudio;
 
   # `aws-lc-sys` fails with this enabled
-  hardeningDisable = [ "strictoverflow" ];
+  hardeningDisable = ["strictoverflow"];
 
   buildNoDefaultFeatures = true;
   buildFeatures =
@@ -68,8 +67,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ];
 
   passthru = {
-    tests.version = testers.testVersion { package = finalAttrs.finalPackage; };
-    updateScript = nix-update-script { };
+    tests.version = testers.testVersion {package = finalAttrs.finalPackage;};
+    updateScript = nix-update-script {};
   };
 
   meta = {

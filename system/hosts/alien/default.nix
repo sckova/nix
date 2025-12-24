@@ -6,8 +6,7 @@
   catppuccin,
   nix-cachyos-kernel,
   ...
-}:
-{
+}: {
   networking.hostName = "alien";
 
   environment.systemPackages = with pkgs; [
@@ -16,8 +15,8 @@
   ];
 
   # enable ddcutil
-  users.users.sckova.extraGroups = [ "i2c" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+  users.users.sckova.extraGroups = ["i2c"];
+  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
   boot.kernelModules = [
     "i2c-dev"
     "ddcci_backlight"
@@ -35,14 +34,14 @@
   catppuccin.accent = "blue";
 
   home-manager.users.sckova = {
-    imports = [ catppuccin.homeModules.catppuccin ];
+    imports = [catppuccin.homeModules.catppuccin];
   };
 
   boot.loader.systemd-boot.consoleMode = "max";
   # boot.kernelPackages = pkgs.linuxPackages;
 
   # let's use the CachyOS kernel instead!
-  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
+  nixpkgs.overlays = [nix-cachyos-kernel.overlays.default];
   nix.settings.substituters = [
     "https://attic.xuyh0120.win/lantian"
     "https://cache.garnix.io"

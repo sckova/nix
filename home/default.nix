@@ -4,9 +4,7 @@
   lib,
   types,
   ...
-}:
-
-{
+}: {
   options = {
     catppuccinUpper = {
       accent = lib.mkOption {
@@ -108,32 +106,30 @@
           default = pkgs.noto-fonts-color-emoji;
         };
       };
-      cursor =
-        let
-          attrName = config.catppuccin.flavor + config.catppuccinUpper.accent;
-        in
-        {
-          name = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-            default = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
-          };
-          package = lib.mkOption {
-            type = lib.types.package;
-            readOnly = true;
-            default = pkgs.catppuccin-cursors.${attrName};
-          };
-          size = lib.mkOption {
-            type = lib.types.int;
-            readOnly = true;
-            default = 24;
-          };
-          path = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-            default = "${pkgs.catppuccin-cursors.${attrName}}/share/icons";
-          };
+      cursor = let
+        attrName = config.catppuccin.flavor + config.catppuccinUpper.accent;
+      in {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
         };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = true;
+          default = pkgs.catppuccin-cursors.${attrName};
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = true;
+          default = 24;
+        };
+        path = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "${pkgs.catppuccin-cursors.${attrName}}/share/icons";
+        };
+      };
       isDark = lib.mkOption {
         type = lib.types.bool;
         readOnly = true;
@@ -173,7 +169,7 @@
         # gui applications
         input-leap
         libreoffice-qt-fresh
-        nur.repos.forkprince.helium-nightly
+        # nur.repos.forkprince.helium-nightly
         bitwarden-desktop
         qbittorrent
 
@@ -234,15 +230,24 @@
     gtk = {
       enable = true;
 
-      colorScheme = if config.userOptions.isDark then "dark" else "light";
+      colorScheme =
+        if config.userOptions.isDark
+        then "dark"
+        else "light";
 
       theme = {
         package = pkgs.kdePackages.breeze-gtk;
-        name = if config.userOptions.isDark then "Breeze-Dark" else "Breeze";
+        name =
+          if config.userOptions.isDark
+          then "Breeze-Dark"
+          else "Breeze";
       };
 
       iconTheme = {
-        name = if config.userOptions.isDark then "Colloid-Dark" else "Colloid-Light";
+        name =
+          if config.userOptions.isDark
+          then "Colloid-Dark"
+          else "Colloid-Light";
         package = pkgs.colloid-icon-theme;
       };
 
@@ -286,86 +291,84 @@
           fixed = "\"${config.userOptions.fontMono.name},${toString config.userOptions.fontMono.size}\"";
           general = "\"${config.userOptions.fontSans.name},${toString config.userOptions.fontSans.size}\"";
         };
-        ColorScheme =
-          let
-            c = pkgs.catppuccin.bare.${config.catppuccin.flavor};
-            accent = c.${config.catppuccin.accent};
-            mkColors = roles: builtins.concatStringsSep ", " (map (r: "#ff${r}") roles);
-          in
-          {
-            active_colors = mkColors [
-              c.text
-              c.surface0
-              c.surface1
-              c.surface0
-              c.base
-              c.mantle
-              c.text
-              c.text
-              c.text
-              c.base
-              c.mantle
-              c.crust
-              accent
-              c.base
-              accent
-              c.mauve
-              c.mantle
-              "000000"
-              c.base
-              c.text
-              c.overlay0
-              accent
-            ];
-            disabled_colors = mkColors [
-              c.overlay0
-              c.surface0
-              c.surface1
-              c.surface0
-              c.overlay0
-              c.mantle
-              c.overlay0
-              c.text
-              c.overlay0
-              c.surface0
-              c.surface0
-              c.mantle
-              c.overlay1
-              c.text
-              "0000ff"
-              "ff00ff"
-              c.surface0
-              "000000"
-              c.surface0
-              c.base
-              "80000000"
-              c.overlay1
-            ];
-            inactive_colors = mkColors [
-              c.text
-              c.surface0
-              c.surface1
-              c.surface0
-              c.base
-              c.mantle
-              c.text
-              c.text
-              c.text
-              c.base
-              c.mantle
-              c.crust
-              accent
-              c.base
-              accent
-              c.mauve
-              c.mantle
-              "000000"
-              c.base
-              c.text
-              c.overlay0
-              accent
-            ];
-          };
+        ColorScheme = let
+          c = pkgs.catppuccin.bare.${config.catppuccin.flavor};
+          accent = c.${config.catppuccin.accent};
+          mkColors = roles: builtins.concatStringsSep ", " (map (r: "#ff${r}") roles);
+        in {
+          active_colors = mkColors [
+            c.text
+            c.surface0
+            c.surface1
+            c.surface0
+            c.base
+            c.mantle
+            c.text
+            c.text
+            c.text
+            c.base
+            c.mantle
+            c.crust
+            accent
+            c.base
+            accent
+            c.mauve
+            c.mantle
+            "000000"
+            c.base
+            c.text
+            c.overlay0
+            accent
+          ];
+          disabled_colors = mkColors [
+            c.overlay0
+            c.surface0
+            c.surface1
+            c.surface0
+            c.overlay0
+            c.mantle
+            c.overlay0
+            c.text
+            c.overlay0
+            c.surface0
+            c.surface0
+            c.mantle
+            c.overlay1
+            c.text
+            "0000ff"
+            "ff00ff"
+            c.surface0
+            "000000"
+            c.surface0
+            c.base
+            "80000000"
+            c.overlay1
+          ];
+          inactive_colors = mkColors [
+            c.text
+            c.surface0
+            c.surface1
+            c.surface0
+            c.base
+            c.mantle
+            c.text
+            c.text
+            c.text
+            c.base
+            c.mantle
+            c.crust
+            accent
+            c.base
+            accent
+            c.mauve
+            c.mantle
+            "000000"
+            c.base
+            c.text
+            c.overlay0
+            accent
+          ];
+        };
       };
     };
 

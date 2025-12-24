@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   catppuccin-mpv = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "mpv";
@@ -8,14 +10,13 @@ let
     sha256 = "sha256-oUheJNWk2R6gNEmkK8H6PWX0iofx2KMGDoFWtnr420A=";
   };
 
-  mergedConfig = pkgs.runCommand "mergedConfig" { } ''
+  mergedConfig = pkgs.runCommand "mergedConfig" {} ''
     mkdir -p $out
     ${pkgs.gnused}/bin/sed 's/#1e1e2e/#000000/g' \
       ${catppuccin-mpv}/themes/${config.catppuccin.flavor}/${config.catppuccin.accent}.conf \
       > $out/mpv.conf
   '';
-in
-{
+in {
   home.packages = with pkgs; [
     (mpv.override {
       scripts = with mpvScripts; [

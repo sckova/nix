@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.ghostwriter = {
     enable = true;
     font = {
@@ -50,7 +52,7 @@
             value = "";
             type = "substring";
           };
-          window-types = [ "normal" ];
+          window-types = ["normal"];
         };
         apply = {
           opacityactive = {
@@ -70,7 +72,7 @@
             value = "openmw";
             type = "substring";
           };
-          window-types = [ "normal" ];
+          window-types = ["normal"];
         };
         apply = {
           noborder = {
@@ -98,7 +100,7 @@
             value = "Minecraft*";
             type = "substring";
           };
-          window-types = [ "normal" ];
+          window-types = ["normal"];
         };
         apply = {
           noborder = {
@@ -149,7 +151,7 @@
             value = "steamwebhelper";
             type = "substring";
           };
-          window-types = [ "normal" ];
+          window-types = ["normal"];
         };
         apply = {
           desktopfile = {

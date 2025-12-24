@@ -3,9 +3,7 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   # Get the actual color palettes
   darkPalette = pkgs.catppuccin.${config.catppuccin.flavor};
   lightPalette = pkgs.catppuccin.latte;
@@ -44,45 +42,48 @@ let
 
   customPackage = pkgs.noctalia-shell.overrideAttrs (oldAttrs: {
     pname = "noctalia-shell-custom";
-    nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.jq ];
+    nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.jq];
 
-    postPatch = (oldAttrs.postPatch or "") + ''
-            echo "Patching noctalia-shell with Cat-Custom theme..."
-            echo "  Dark: ${config.catppuccin.flavor} / Light: latte"
-            echo "  Accent: ${config.catppuccin.accent}"
-            
-            if [ -d Assets/ColorScheme/Catppuccin ]; then
-              mkdir -p Assets/ColorScheme/Cat-Custom
-              
-              # Write the JSON directly
-              cat > Assets/ColorScheme/Cat-Custom/Cat-Custom.json << 'COLORSCHEME_EOF'
-      ${schemeJson}
-      COLORSCHEME_EOF
-              
-              echo "Created Cat-Custom color scheme:"
-              ${pkgs.jq}/bin/jq -C '.' Assets/ColorScheme/Cat-Custom/Cat-Custom.json || true
-              
-              # Add translation entries
-              for lang in en fr de es pt zh-CN; do
-                if [ -f "Assets/Translations/$lang.json" ]; then
-                  ${pkgs.jq}/bin/jq \
-                    '.["color-scheme"].predefined.schemes["Cat-Custom"] = "Cat-Custom"' \
-                    "Assets/Translations/$lang.json" > "Assets/Translations/$lang.json.tmp" \
-                    && mv "Assets/Translations/$lang.json.tmp" "Assets/Translations/$lang.json"
-                fi
-              done
-            else
-              echo "ERROR: ColorScheme directory not found"
-              exit 1
-            fi
-    '';
+    postPatch =
+      (oldAttrs.postPatch or "")
+      + ''
+              echo "Patching noctalia-shell with Cat-Custom theme..."
+              echo "  Dark: ${config.catppuccin.flavor} / Light: latte"
+              echo "  Accent: ${config.catppuccin.accent}"
 
-    meta = oldAttrs.meta // {
-      description = "${oldAttrs.meta.description} (Cat-Custom: ${config.catppuccin.flavor}/${config.catppuccin.accent})";
-    };
+              if [ -d Assets/ColorScheme/Catppuccin ]; then
+                mkdir -p Assets/ColorScheme/Cat-Custom
+
+                # Write the JSON directly
+                cat > Assets/ColorScheme/Cat-Custom/Cat-Custom.json << 'COLORSCHEME_EOF'
+        ${schemeJson}
+        COLORSCHEME_EOF
+
+                echo "Created Cat-Custom color scheme:"
+                ${pkgs.jq}/bin/jq -C '.' Assets/ColorScheme/Cat-Custom/Cat-Custom.json || true
+
+                # Add translation entries
+                for lang in en fr de es pt zh-CN; do
+                  if [ -f "Assets/Translations/$lang.json" ]; then
+                    ${pkgs.jq}/bin/jq \
+                      '.["color-scheme"].predefined.schemes["Cat-Custom"] = "Cat-Custom"' \
+                      "Assets/Translations/$lang.json" > "Assets/Translations/$lang.json.tmp" \
+                      && mv "Assets/Translations/$lang.json.tmp" "Assets/Translations/$lang.json"
+                  fi
+                done
+              else
+                echo "ERROR: ColorScheme directory not found"
+                exit 1
+              fi
+      '';
+
+    meta =
+      oldAttrs.meta
+      // {
+        description = "${oldAttrs.meta.description} (Cat-Custom: ${config.catppuccin.flavor}/${config.catppuccin.accent})";
+      };
   });
-in
-{
+in {
   programs.noctalia-shell = {
     enable = true;
     package = customPackage;
@@ -91,7 +92,7 @@ in
       bar = {
         position = "top";
         backgroundOpacity = 1;
-        monitors = [ ];
+        monitors = [];
         density = "comfortable";
         showCapsule = true;
         capsuleOpacity = 1;
@@ -256,7 +257,7 @@ in
         enabled = true;
         overviewEnabled = false;
         directory = "/home/sckova/.local/share/wallpaper";
-        monitorDirectories = [ ];
+        monitorDirectories = [];
         enableMultiMonitorDirectories = false;
         recursiveSearch = false;
         setWallpaperOnAllMonitors = true;
@@ -275,7 +276,7 @@ in
         enableClipboardHistory = true;
         enableClipPreview = true;
         position = "top_left";
-        pinnedExecs = [ ];
+        pinnedExecs = [];
         useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "kitty -e";
@@ -360,8 +361,8 @@ in
         floatingRatio = 1;
         size = 1;
         onlySameOutput = true;
-        monitors = [ ];
-        pinnedApps = [ ];
+        monitors = [];
+        pinnedApps = [];
         colorizeIcons = false;
         pinnedStatic = false;
         inactiveIndicators = false;
@@ -404,7 +405,7 @@ in
       };
       notifications = {
         enabled = true;
-        monitors = [ ];
+        monitors = [];
         location = "top_right";
         overlayLayer = true;
         backgroundOpacity = 1;
@@ -434,7 +435,7 @@ in
           1
           2
         ];
-        monitors = [ ];
+        monitors = [];
       };
       audio = {
         volumeStep = 5;
@@ -442,7 +443,7 @@ in
         cavaFrameRate = 30;
         visualizerType = "linear";
         visualizerQuality = "high";
-        mprisBlacklist = [ ];
+        mprisBlacklist = [];
         preferredPlayer = "";
         externalMixer = "pwvucontrol || pavucontrol";
       };
@@ -498,8 +499,8 @@ in
 
   systemd.user.services.noctalia-shell = {
     Unit = {
-      After = [ "niri.service" ];
-      PartOf = [ "niri.service" ];
+      After = ["niri.service"];
+      PartOf = ["niri.service"];
       Description = "Noctalia Shell - Wayland desktop shell";
       Documentation = "https://docs.noctalia.dev/docs";
     };
@@ -517,7 +518,7 @@ in
     };
 
     Install = {
-      WantedBy = [ "niri.service" ];
+      WantedBy = ["niri.service"];
     };
   };
 }

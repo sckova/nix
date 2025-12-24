@@ -1,13 +1,14 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   catppuccin = {
     accent = "peach";
     flavor = "mocha";
   };
 
   home.packages = with pkgs; [
-
     asahi-nvram
     asahi-bless
     asahi-btsync
@@ -44,7 +45,7 @@
 
     shortcuts = {
       # this is really annoying on asahi laptops
-      org_kde_powerdevil.Sleep = [ ];
+      org_kde_powerdevil.Sleep = [];
     };
 
     panels = [
@@ -60,7 +61,7 @@
                 activeTaskSource = "activeTask";
               };
               layout = {
-                elements = [ "windowTitle" ];
+                elements = ["windowTitle"];
                 horizontalAlignment = "right";
                 showDisabledElements = "deactivated";
                 verticalAlignment = "center";

@@ -3,16 +3,13 @@
   pkgs,
   spicetify-nix,
   ...
-}:
-
-{
+}: {
   catppuccin = {
     accent = "blue";
     flavor = "mocha";
   };
 
   home.packages = with pkgs; [
-
     # steam gtk theming
     adwsteamgtk
 
@@ -36,30 +33,28 @@
     scale = 1.75;
   };
 
-  programs.spicetify =
-    let
-      spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-    in
-    {
-      enable = true;
+  programs.spicetify = let
+    spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  in {
+    enable = true;
 
-      enabledExtensions = with spicePkgs.extensions; [
-        adblock
-        hidePodcasts
-        shuffle # shuffle+ (special characters are sanitized out of extension names)
-      ];
-      enabledCustomApps = with spicePkgs.apps; [
-        newReleases
-        ncsVisualizer
-      ];
-      enabledSnippets = with spicePkgs.snippets; [
-        rotatingCoverart
-        pointer
-      ];
+    enabledExtensions = with spicePkgs.extensions; [
+      adblock
+      hidePodcasts
+      shuffle # shuffle+ (special characters are sanitized out of extension names)
+    ];
+    enabledCustomApps = with spicePkgs.apps; [
+      newReleases
+      ncsVisualizer
+    ];
+    enabledSnippets = with spicePkgs.snippets; [
+      rotatingCoverart
+      pointer
+    ];
 
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = config.catppuccin.flavor;
-    };
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = config.catppuccin.flavor;
+  };
 
   programs.plasma = {
     panels = [

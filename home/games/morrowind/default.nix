@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
-
 {
-  home.packages = with pkgs; [ openmw ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [openmw];
 }
