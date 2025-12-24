@@ -197,6 +197,9 @@
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.activity-stream.showWeather" = false;
 
+          # Disable Firefox's machine learning (AI) features
+          "browser.ml.enable" = false;
+
           # For browser toolbox/live editing user CSS
           "devtools.chrome.enabled" = true;
           "devtools.debugger.remote-enabled" = true;
