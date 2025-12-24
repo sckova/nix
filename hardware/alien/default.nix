@@ -7,9 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}:
-
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -21,13 +19,13 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = [
     "v4l2loopback"
     "snd-aloop"
     "kvm-intel"
   ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
   boot.extraModprobeConfig = ''
     # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
     # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
@@ -38,7 +36,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/d83ec136-df01-4b9e-a523-6d75726fb904";
     fsType = "btrfs";
-    options = [ "subvol=@" ];
+    options = ["subvol=@"];
   };
 
   fileSystems."/nix" = {
@@ -61,7 +59,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/056af100-9382-4cbd-b3d5-90df7da69585"; }
+    {device = "/dev/disk/by-uuid/056af100-9382-4cbd-b3d5-90df7da69585";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

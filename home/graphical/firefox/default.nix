@@ -5,9 +5,7 @@
   config,
   lib,
   ...
-}:
-
-{
+}: {
   home.file.".mozilla/firefox/default/chrome/theme" = {
     source = ./chrome/theme;
     force = true;

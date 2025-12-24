@@ -1,12 +1,14 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   catppuccin = {
     accent = "green";
     flavor = "mocha";
   };
 
-  home.packages = with pkgs; [ ];
+  home.packages = with pkgs; [];
 
   programs.plasma = {
     panels = [
@@ -22,7 +24,7 @@
                 activeTaskSource = "activeTask";
               };
               layout = {
-                elements = [ "windowTitle" ];
+                elements = ["windowTitle"];
                 horizontalAlignment = "right";
                 showDisabledElements = "deactivated";
                 verticalAlignment = "center";

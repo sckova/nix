@@ -1,16 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   config,
   lib,
   pkgs,
   inputs,
   ...
-}:
-
-{
+}: {
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -24,7 +21,7 @@
   nix.settings = {
     # Increase file descriptor limit for builds
     sandbox = "relaxed";
-    extra-sandbox-paths = [ ];
+    extra-sandbox-paths = [];
     build-users-group = "nixbld";
   };
 
@@ -79,7 +76,6 @@
   };
 
   boot = {
-
     plymouth = {
       enable = true;
     };
@@ -184,7 +180,7 @@
       "networkmanager"
       "podman"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
     hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
   };
 
@@ -227,5 +223,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

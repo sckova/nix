@@ -1,6 +1,8 @@
-{ pkgs, config, ... }:
-
 {
+  pkgs,
+  config,
+  ...
+}: {
   home.sessionVariables = {
     EDITOR = "nvim";
   };
@@ -9,7 +11,7 @@
     kdePackages.qtdeclarative
     prettier
     prettierd
-    nixfmt-rfc-style
+    alejandra
     stylua
     black
   ];
@@ -94,13 +96,13 @@
         autoLoad = true;
         settings = {
           formatters_by_ft = {
-            lua = [ "stylua" ];
-            python = [ "black" ];
-            nix = [ "nixfmt" ];
-            javascript = [ "prettier" ];
-            css = [ "prettier" ];
-            json = [ "prettier" ];
-            jsonc = [ "prettier" ];
+            lua = ["stylua"];
+            python = ["black"];
+            nix = ["alejandra"];
+            javascript = ["prettier"];
+            css = ["prettier"];
+            json = ["prettier"];
+            jsonc = ["prettier"];
           };
 
           # Default formatting options
@@ -216,8 +218,8 @@
               "filename"
               "branch"
             ];
-            lualine_c = [ "%=" ];
-            lualine_x = [ ];
+            lualine_c = ["%="];
+            lualine_x = [];
             lualine_y = [
               "filetype"
               "progress"
@@ -234,15 +236,15 @@
           };
 
           inactive_sections = {
-            lualine_a = [ "filename" ];
-            lualine_b = [ ];
-            lualine_c = [ ];
-            lualine_x = [ ];
-            lualine_y = [ ];
-            lualine_z = [ "location" ];
+            lualine_a = ["filename"];
+            lualine_b = [];
+            lualine_c = [];
+            lualine_x = [];
+            lualine_y = [];
+            lualine_z = ["location"];
           };
-          tabline = { };
-          extensions = [ ];
+          tabline = {};
+          extensions = [];
         };
         autoLoad = true;
       };

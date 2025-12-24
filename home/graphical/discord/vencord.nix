@@ -2,9 +2,9 @@
   autoUpdate = true;
   autoUpdateNotification = true;
   useQuickCss = true;
-  themeLinks = [ ];
+  themeLinks = [];
   eagerPatches = false;
-  enabledThemes = [ "catppuccin.css" ];
+  enabledThemes = ["catppuccin.css"];
   enableReactDevtools = false;
   frameless = false;
   transparent = true;
@@ -330,8 +330,8 @@
     ImageFilename.enabled = false;
   };
   uiElements = {
-    chatBarButtons = { };
-    messagePopoverButtons = { };
+    chatBarButtons = {};
+    messagePopoverButtons = {};
   };
   notifications = {
     timeout = 5000;

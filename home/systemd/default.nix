@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-
-{
+}: {
   systemd.user.sessionVariables = {
     XCURSOR_THEME = config.userOptions.cursor.name;
     XCURSOR_SIZE = toString config.userOptions.cursor.size;
@@ -27,8 +25,8 @@
   systemd.user.services.synology-mount = {
     Unit = {
       Description = "Mount Synology NAS with Rclone and Home Manager.";
-      After = [ "tailscaled.service" ];
-      Wants = [ "tailscaled.service" ];
+      After = ["tailscaled.service"];
+      Wants = ["tailscaled.service"];
     };
 
     Service = {
@@ -63,7 +61,7 @@
     };
 
     Install = {
-      WantedBy = [ "default.target" ];
+      WantedBy = ["default.target"];
     };
   };
 

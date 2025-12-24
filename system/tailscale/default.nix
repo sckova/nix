@@ -4,9 +4,7 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   tailscaleWaitScript = pkgs.writeShellScript "tailscale-wait-for-ip" ''
     echo "Waiting for tailscale0 to get an IP address..."
     for i in {1..15}; do
@@ -20,8 +18,7 @@ let
     echo "Warning: tailscale0 did not get IP address within 15 seconds"
     exit 0
   '';
-in
-{
+in {
   systemd.services.tailscaled = {
     serviceConfig = {
       ExecStartPost = tailscaleWaitScript;
