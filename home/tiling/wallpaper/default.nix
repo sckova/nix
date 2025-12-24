@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
-let
+{
+  pkgs,
+  config,
+  ...
+}: let
   bingWallpaperScript = pkgs.writeShellScript "bing-wallpaper" ''
     set -euo pipefail
 
@@ -59,8 +62,7 @@ let
 
     echo "Wallpaper downloaded and applied successfully."
   '';
-in
-{
+in {
   systemd.user.services.bing-wallpaper = {
     Unit = {
       Description = "Download and set Bing wallpaper of the day";
@@ -81,7 +83,7 @@ in
     };
 
     Install = {
-      WantedBy = [ "niri.service" ];
+      WantedBy = ["niri.service"];
     };
   };
 }

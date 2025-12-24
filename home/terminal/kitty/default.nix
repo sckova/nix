@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   catppuccin-kitty = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "kitty";
@@ -13,15 +11,14 @@ let
     sha256 = "sha256-59ON7CzVgfZUo7F81qQZQ1r6kpcjR3OPvTl99gzDP8E=";
   };
 
-  mergedConfig = pkgs.runCommand "mergedConfig" { } ''
+  mergedConfig = pkgs.runCommand "mergedConfig" {} ''
     mkdir -p $out
     ${pkgs.gnused}/bin/sed 's/#cba6f7/${
       pkgs.catppuccin.${config.catppuccin.flavor}.${config.catppuccin.accent}
     }/g' ${catppuccin-kitty}/themes/${config.catppuccin.flavor}.conf > \
     $out/${config.catppuccinUpper.flavor}${config.catppuccinUpper.accent}.conf
   '';
-in
-{
+in {
   home.file.".config/kitty/themes" = {
     source = mergedConfig;
     recursive = true;
