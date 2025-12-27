@@ -91,6 +91,8 @@
         enable = true;
         autoLoad = true;
       };
+      cmp-nvim-lsp.enable = true;
+      cmp-fish.enable = true;
       conform-nvim = {
         enable = true;
         autoLoad = true;
@@ -144,6 +146,7 @@
               "-E"
             ];
           };
+          nixd.enable = true;
         };
         autoLoad = true;
       };
