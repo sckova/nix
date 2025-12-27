@@ -131,9 +131,7 @@
           }
         ];
         open-maximized = true;
-        focus-ring.enable = false;
-        border.enable = false;
-        shadow.enable = false;
+        open-focused = true;
       }
     ];
     binds = {
@@ -194,39 +192,51 @@
       };
 
       "XF86MonBrightnessUp" = {
-        action.spawn = [
-          "brightnessctl"
-          "--class=backlight"
-          "set"
-          "+5%"
-        ];
+        action.spawn = ["brightnessctl" "--class=backlight" "set" "+5%"];
         allow-when-locked = true;
       };
+
       "XF86MonBrightnessDown" = {
-        action.spawn = [
-          "brightnessctl"
-          "--class=backlight"
-          "set"
-          "5%-"
-        ];
+        action.spawn = ["brightnessctl" "--class=backlight" "set" "5%-"];
         allow-when-locked = true;
       };
+
       "Shift+XF86MonBrightnessUp" = {
-        action.spawn = [
-          "brightnessctl"
-          "--class=backlight"
-          "set"
-          "+1%"
-        ];
+        action.spawn = ["brightnessctl" "--class=backlight" "set" "+1%"];
         allow-when-locked = true;
       };
+
       "Shift+XF86MonBrightnessDown" = {
-        action.spawn = [
-          "brightnessctl"
-          "--class=backlight"
-          "set"
-          "1%-"
-        ];
+        action.spawn = ["brightnessctl" "--class=backlight" "set" "1%-"];
+        allow-when-locked = true;
+      };
+
+      "XF86AudioPrev" = {
+        action.spawn = ["playerctl" "previous"];
+        allow-when-locked = true;
+      };
+
+      "XF86AudioPlay" = {
+        action.spawn = ["playerctl" "play-pause"];
+        allow-when-locked = true;
+      };
+
+      "XF86AudioNext" = {
+        action.spawn = ["playerctl" "next"];
+        allow-when-locked = true;
+      };
+
+      "XF86Sleep" = {
+        action.power-off-monitors = {};
+      };
+
+      "XF86Search" = {
+        action.spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
+        allow-when-locked = true;
+      };
+
+      "XF86LaunchA" = {
+        action.spawn = ["niri" "msg" "action" "toggle-overview"];
         allow-when-locked = true;
       };
 
@@ -351,7 +361,7 @@
       "Mod+Shift+R".action.switch-preset-window-height = {};
       "Mod+Ctrl+R".action.reset-window-height = {};
       "Mod+F".action.maximize-column = {};
-      "Mod+Shift+F".action.fullscreen-window = {};
+      "Mod+Shift+F".action.maximize-window-to-edges = {};
 
       "Mod+Ctrl+F".action.expand-column-to-available-width = {};
 
