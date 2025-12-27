@@ -145,7 +145,6 @@
         tmux
         fastfetch
         btop
-        killall
         wget
         ripgrep
         ncdu

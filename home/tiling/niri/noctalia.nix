@@ -99,7 +99,7 @@ in {
         floating = false;
         marginVertical = 0.25;
         marginHorizontal = 0.25;
-        outerCorners = true;
+        outerCorners = false;
         exclusive = true;
         widgets = {
           left = [
@@ -141,11 +141,11 @@ in {
               hideWhenIdle = false;
               id = "MediaMini";
               maxWidth = 275;
-              scrollingMode = "always";
+              scrollingMode = "hover";
               showAlbumArt = false;
-              showArtistFirst = true;
+              showArtistFirst = false;
               showProgressRing = true;
-              showVisualizer = true;
+              showVisualizer = false;
               useFixedWidth = false;
               visualizerType = "linear";
             }
@@ -254,7 +254,7 @@ in {
         videoSource = "portal";
       };
       wallpaper = {
-        enabled = true;
+        enabled = false;
         overviewEnabled = false;
         directory = "/home/sckova/.local/share/wallpaper";
         monitorDirectories = [];

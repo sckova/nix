@@ -21,6 +21,7 @@ in {
     libsForQt5.qt5ct
     catppuccin-qt5ct
     xwayland-satellite
+    playerctl
   ];
 
   home.file = {
