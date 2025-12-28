@@ -84,18 +84,72 @@
     plugins = {
       nvim-autopairs = {
         enable = true;
-        autoLoad = true;
       };
       cmp = {
-        autoEnableSources = true;
         enable = true;
-        autoLoad = true;
+        settings = {
+          autoEnableSources = true;
+          performance = {
+            debounce = 60;
+            fetchingTimeout = 200;
+            maxViewEntries = 30;
+          };
+          snippet = {
+            expand = "luasnip";
+          };
+          formatting = {
+            fields = [
+              "kind"
+              "abbr"
+              "menu"
+            ];
+          };
+          sources = [
+            {name = "git";}
+            {name = "nvim_lsp";}
+            {name = "path";}
+            {name = "buffer";}
+            {name = "fish";}
+            {name = "emoji";}
+            {
+              name = "buffer"; # text within current buffer
+              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+              keywordLength = 3;
+            }
+            {name = "copilot";}
+            {
+              name = "path"; # file system paths
+              keywordLength = 3;
+            }
+            {
+              name = "luasnip"; # snippets
+              keywordLength = 3;
+            }
+          ];
+        };
+        window = {
+          completion = {
+            border = "solid";
+          };
+          documentation = {
+            border = "solid";
+          };
+        };
+
+        mapping = {
+          "<C-Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          "<C-j>" = "cmp.mapping.select_next_item()";
+          "<C-k>" = "cmp.mapping.select_prev_item()";
+          "<C-e>" = "cmp.mapping.abort()";
+          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-CR>" = "cmp.mapping.confirm({ select = true })";
+          "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+        };
       };
-      cmp-nvim-lsp.enable = true;
-      cmp-fish.enable = true;
       conform-nvim = {
         enable = true;
-        autoLoad = true;
         settings = {
           formatters_by_ft = {
             lua = ["stylua"];
@@ -130,11 +184,9 @@
       };
       fzf-lua = {
         enable = true;
-        autoLoad = true;
       };
       kitty-scrollback = {
         enable = true;
-        autoLoad = true;
       };
       lsp = {
         enable = true;
@@ -148,55 +200,56 @@
           };
           nixd.enable = true;
         };
-        autoLoad = true;
       };
-      lualine = {
+      lualine = let
+        palette = pkgs.catppuccin.${config.catppuccin.flavor};
+      in {
         enable = true;
         settings = {
           options = {
             theme = {
               normal = {
                 a = {
-                  fg = "#1e1e2e";
-                  bg = "#cba6f7";
+                  fg = palette.base;
+                  bg = palette.mauve;
                 };
                 b = {
-                  fg = "#cdd6f4";
-                  bg = "#313244";
+                  fg = palette.text;
+                  bg = palette.surface0;
                 };
                 c = {
-                  fg = "#cdd6f4";
+                  fg = palette.text;
                 };
               };
               insert = {
                 a = {
-                  fg = "#1e1e2e";
-                  bg = "#89b4fa";
+                  fg = palette.base;
+                  bg = palette.blue;
                 };
               };
               visual = {
                 a = {
-                  fg = "#1e1e2e";
-                  bg = "#94e2d5";
+                  fg = palette.base;
+                  bg = palette.teal;
                 };
               };
               replace = {
                 a = {
-                  fg = "#1e1e2e";
-                  bg = "#f38ba8";
+                  fg = palette.base;
+                  bg = palette.red;
                 };
               };
               inactive = {
                 a = {
-                  fg = "#cdd6f4";
-                  bg = "#1e1e2e";
+                  fg = palette.text;
+                  bg = palette.base;
                 };
                 b = {
-                  fg = "#cdd6f4";
-                  bg = "#1e1e2e";
+                  fg = palette.text;
+                  bg = palette.base;
                 };
                 c = {
-                  fg = "#cdd6f4";
+                  fg = palette.text;
                 };
               };
             };
@@ -249,7 +302,6 @@
           tabline = {};
           extensions = [];
         };
-        autoLoad = true;
       };
     };
   };
