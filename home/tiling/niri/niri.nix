@@ -192,12 +192,12 @@
       };
 
       "XF86MonBrightnessUp" = {
-        action.spawn = ["brightnessctl" "--class=backlight" "set" "+5%"];
+        action.spawn = ["noctalia-shell" "ipc" "call" "brightness" "increase"];
         allow-when-locked = true;
       };
 
       "XF86MonBrightnessDown" = {
-        action.spawn = ["brightnessctl" "--class=backlight" "set" "5%-"];
+        action.spawn = ["noctalia-shell" "ipc" "call" "brightness" "decrease"];
         allow-when-locked = true;
       };
 
