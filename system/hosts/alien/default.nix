@@ -52,6 +52,10 @@
   ];
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
 
+  # enable hyper-v for guests
+  virtualisation.hypervGuest.enable = true;
+  boot.blacklistedKernelModules = ["hyperv_fb"];
+
   programs = {
     gamescope = {
       enable = true;
