@@ -2,7 +2,8 @@
   description = "My NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # https://github.com/NixOS/nixpkgs/issues/476669
+    nixpkgs.url = "github:NixOS/nixpkgs/pull/476347/head";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 

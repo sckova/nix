@@ -99,9 +99,6 @@
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           installation_mode = "allowed";
         };
-        "{FirefoxColor@mozilla.com}" = {
-          installation_mode = "allowed";
-        };
       };
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -140,7 +137,6 @@
             pwas-for-firefox
             control-panel-for-twitter
             bitwarden
-            firefox-color
           ];
           settings = {
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".settings = {
