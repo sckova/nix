@@ -171,6 +171,7 @@
         # nur.repos.forkprince.helium-nightly
         bitwarden-desktop
         qbittorrent
+        whatsapp-electron
 
         # gui applications ( multimedia )
         audacity
