@@ -24,4 +24,9 @@ in {
       ExecStartPost = tailscaleWaitScript;
     };
   };
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 }

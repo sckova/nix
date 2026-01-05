@@ -149,10 +149,6 @@
       enableHidpi = true;
     };
     libinput.enable = true;
-    tailscale = {
-      enable = true;
-      useRoutingFeatures = "client";
-    };
     printing.enable = true;
     pipewire = {
       enable = true;
