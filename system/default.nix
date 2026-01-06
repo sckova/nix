@@ -46,29 +46,6 @@
     options = "--delete-older-than 30d";
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.sckova = {
-    imports = [
-      ../home
-      ../home/games/minecraft
-      ../home/games/morrowind
-      ../home/graphical/discord
-      ../home/graphical/firefox
-      ../home/graphical/mpv
-      ../home/tiling/niri
-      ../home/tiling/wallpaper
-      ../home/systemd
-      ../home/terminal/btop
-      ../home/terminal/fish
-      ../home/terminal/kitty
-      ../home/terminal/nvim
-      ../home/kde
-      ../home/vscode
-      ../home/hosts/${config.networking.hostName}
-    ];
-  };
-
   environment.sessionVariables = rec {
     NIXOS_OZONE_WL = "1";
     EDITOR = "nvim";

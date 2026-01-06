@@ -16,6 +16,8 @@
       url = "github:abhinandh-s/catppuccin-nix";
     };
 
+    gtk-nix.url = "github:the-argus/gtk-nix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +65,7 @@
     nix-cachyos-kernel,
     catppuccin,
     catppuccin-palette,
+    gtk-nix,
     home-manager,
     plasma-manager,
     niri,
@@ -111,6 +114,29 @@
             home-manager.nixosModules.home-manager
             noctalia.nixosModules.default
             {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.sckova = {
+                imports = [
+                  ./home
+                  ./home/games/minecraft
+                  ./home/games/morrowind
+                  ./home/graphical/discord
+                  ./home/graphical/firefox
+                  ./home/graphical/mpv
+                  ./home/tiling/niri
+                  ./home/tiling/wallpaper
+                  ./home/systemd
+                  ./home/terminal/btop
+                  ./home/terminal/fish
+                  ./home/terminal/kitty
+                  ./home/terminal/nvim
+                  ./home/kde
+                  ./home/theming
+                  ./home/vscode
+                  ./home/hosts/${hostname}
+                ];
+              };
               home-manager.sharedModules = [
                 plasma-manager.homeModules.plasma-manager
                 niri.homeModules.niri
@@ -119,7 +145,7 @@
                 nixvim.homeModules.nixvim
               ];
               home-manager.extraSpecialArgs = {
-                inherit spicetify-nix;
+                inherit gtk-nix spicetify-nix;
               };
             }
           ]
