@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [kdePackages.qttools];
@@ -28,5 +29,16 @@
         body = builtins.readFile ./functions/logout.fish;
       };
     };
+  };
+
+  home.file.".config/fish/colors.fish" = {
+    text = let
+      flavor = config.catppuccin.flavor;
+      palette = pkgs.catppuccin.bare.${flavor};
+    in
+      lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (name: value: "set -g color_${name} ${value}") palette
+      );
+    force = true;
   };
 }

@@ -159,6 +159,7 @@
             css = ["prettier"];
             json = ["prettier"];
             jsonc = ["prettier"];
+            fish = ["fish_indent"];
           };
 
           # Default formatting options
