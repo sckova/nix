@@ -160,6 +160,7 @@
 
         # development & tooling
         jdk21_headless
+        quickemu
 
         # kde and kde theming
         kde-rounded-corners
