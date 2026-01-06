@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
@@ -22,6 +21,12 @@ in {
   home.file.".config/kitty/themes" = {
     source = mergedConfig;
     recursive = true;
+  };
+
+  home.file.".config/kitty/ssh.conf" = {
+    text = ''
+      shell_integration inherited
+    '';
   };
 
   programs.kitty = {
