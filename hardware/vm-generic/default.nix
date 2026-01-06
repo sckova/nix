@@ -2,10 +2,9 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
   pkgs,
-  modulesPath,
+  system,
   ...
 }: {
   imports = [];
@@ -30,7 +29,12 @@
     {device = "/dev/disk/by-label/swap";}
   ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  hardware.parallels.enable = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["prl-tools"];
+  # Set platform from the system argument passed by the flake
+  nixpkgs.hostPlatform = lib.mkDefault system;
+
+  # Enable Parallels tools only on aarch64
+  hardware.parallels.enable = lib.mkIf (system == "aarch64-linux") true;
+  nixpkgs.config.allowUnfreePredicate =
+    lib.mkIf (system == "aarch64-linux")
+    (pkg: builtins.elem (lib.getName pkg) ["prl-tools"]);
 }

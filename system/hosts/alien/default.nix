@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  lib,
-  inputs,
   catppuccin,
   nix-cachyos-kernel,
   ...
@@ -10,8 +8,9 @@
   networking.hostName = "alien";
 
   environment.systemPackages = with pkgs; [
-    pkgs.ddcutil
-    pkgs.mangohud
+    ddcutil
+    mangohud
+    (bottles.override {removeWarningPopup = true;})
   ];
 
   # enable ddcutil
