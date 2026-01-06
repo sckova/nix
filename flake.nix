@@ -73,6 +73,10 @@
     apple-silicon,
     ...
   }: let
+    # All systems we want to support for the generic VM
+    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+    # to run the vm:
+    # nixos-rebuild build-vm --flake ~/nix#$(nix eval --raw --impure --expr 'builtins.currentSystem')
     mkNixosSystem = {
       hostname,
       system,
@@ -83,7 +87,7 @@
         inherit system;
         specialArgs =
           {
-            inherit catppuccin;
+            inherit catppuccin system;
           }
           // extraSpecialArgs;
         modules =
@@ -144,47 +148,54 @@
           nixvim.homeModules.nixvim
         ];
       };
-  in {
-    nixosConfigurations = {
-      peach = mkNixosSystem {
-        hostname = "peach";
-        system = "aarch64-linux";
-        extraModules = [
-          apple-silicon.nixosModules.default
-          {nixpkgs.overlays = [apple-silicon.overlays.apple-silicon-overlay];}
-        ];
-      };
+  in
+    {
+      nixosConfigurations =
+        {
+          peach = mkNixosSystem {
+            hostname = "peach";
+            system = "aarch64-linux";
+            extraModules = [
+              apple-silicon.nixosModules.default
+              {nixpkgs.overlays = [apple-silicon.overlays.apple-silicon-overlay];}
+            ];
+          };
 
-      alien = mkNixosSystem {
-        hostname = "alien";
-        system = "x86_64-linux";
-        extraSpecialArgs = {
-          inherit nix-cachyos-kernel;
+          alien = mkNixosSystem {
+            hostname = "alien";
+            system = "x86_64-linux";
+            extraSpecialArgs = {
+              inherit nix-cachyos-kernel;
+            };
+          };
+        }
+        // nixpkgs.lib.genAttrs supportedSystems (
+          system:
+            mkNixosSystem {
+              hostname = "vm-generic";
+              inherit system;
+            }
+        );
+
+      homeConfigurations = {
+        peach = mkHomeConfig {
+          user = "sckova";
+          hostname = "peach";
+          system = "aarch64-linux";
+        };
+        alien = mkHomeConfig {
+          user = "sckova";
+          hostname = "alien";
+          system = "x86_64-linux";
         };
       };
-
-      vm-aarch64 = mkNixosSystem {
-        hostname = "vm-aarch64";
-        system = "aarch64-linux";
-      };
-    };
-
-    homeConfigurations = {
-      peach = mkHomeConfig {
-        user = "sckova";
-        hostname = "peach";
-        system = "aarch64-linux";
-      };
-      alien = mkHomeConfig {
-        user = "sckova";
-        hostname = "alien";
-        system = "x86_64-linux";
-      };
-      vm-aarch64 = mkHomeConfig {
-        user = "sckova";
-        hostname = "vm-aarch64";
-        system = "aarch64-linux";
-      };
-    };
-  };
+    }
+    // nixpkgs.lib.genAttrs supportedSystems (
+      system:
+        mkHomeConfig {
+          user = "sckova";
+          hostname = "vm-generic";
+          inherit system;
+        }
+    );
 }
