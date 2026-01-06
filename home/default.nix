@@ -235,13 +235,13 @@
         then "dark"
         else "light";
 
-      theme = {
-        package = pkgs.kdePackages.breeze-gtk;
-        name =
-          if config.userOptions.isDark
-          then "Breeze-Dark"
-          else "Breeze";
-      };
+      # theme = {
+      #   package = pkgs.kdePackages.breeze-gtk;
+      #   name =
+      #     if config.userOptions.isDark
+      #     then "Breeze-Dark"
+      #     else "Breeze";
+      # };
 
       iconTheme = {
         name =
