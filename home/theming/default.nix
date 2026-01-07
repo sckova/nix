@@ -1,9 +1,122 @@
 {
   config,
   pkgs,
-  gtk-nix,
+  lib,
   ...
-}: {
+}: let
+  colors = pkgs.catppuccin.hex.${config.catppuccin.flavor};
+
+  mkColorSection = name: value: "@define-color ${name} ${value};";
+
+  gtk4CSS = ''
+    /* Catppuccin ${lib.toUpper (builtins.substring 0 1 config.catppuccin.flavor)}${builtins.substring 1 (-1) config.catppuccin.flavor} ${lib.toUpper (builtins.substring 0 1 config.catppuccin.accent)}${builtins.substring 1 (-1) config.catppuccin.accent} Palette */
+
+    /* Base colors */
+    ${mkColorSection "window_bg_color" colors.base}
+    ${mkColorSection "window_fg_color" colors.text}
+
+    /* View styling */
+    ${mkColorSection "view_bg_color" colors.base}
+    ${mkColorSection "view_fg_color" colors.text}
+
+    /* Header bar */
+    ${mkColorSection "headerbar_bg_color" colors.mantle}
+    ${mkColorSection "headerbar_backdrop_color" colors.mantle}
+    ${mkColorSection "headerbar_fg_color" colors.text}
+
+    /* Popovers and dialogs */
+    ${mkColorSection "popover_bg_color" colors.base}
+    ${mkColorSection "popover_fg_color" colors.text}
+    @define-color dialog_bg_color @popover_bg_color;
+    @define-color dialog_fg_color @popover_fg_color;
+
+    /* Cards and sidebars */
+    ${mkColorSection "card_bg_color" colors.mantle}
+    ${mkColorSection "card_fg_color" colors.text}
+    ${mkColorSection "sidebar_bg_color" colors.mantle}
+    ${mkColorSection "sidebar_fg_color" colors.text}
+    @define-color sidebar_backdrop_color @sidebar_bg_color;
+    ${mkColorSection "sidebar_border_color" colors.surface0}
+    @define-color secondary_sidebar_bg_color @sidebar_bg_color;
+    @define-color secondary_sidebar_fg_color @sidebar_fg_color;
+    @define-color secondary_sidebar_backdrop_color @sidebar_backdrop_color;
+    @define-color secondary_sidebar_border_color @sidebar_border_color;
+
+    /* Catppuccin accent colors */
+    ${mkColorSection "blue_1" colors.blue}
+    ${mkColorSection "blue_2" colors.sapphire}
+    ${mkColorSection "blue_3" colors.sky}
+    ${mkColorSection "blue_4" colors.teal}
+    ${mkColorSection "blue_5" colors.lavender}
+
+    ${mkColorSection "green_1" colors.green}
+    ${mkColorSection "green_2" colors.teal}
+    ${mkColorSection "green_3" colors.sky}
+    ${mkColorSection "green_4" colors.sapphire}
+    ${mkColorSection "green_5" colors.blue}
+
+    ${mkColorSection "yellow_1" colors.yellow}
+    ${mkColorSection "yellow_2" colors.peach}
+    ${mkColorSection "yellow_3" colors.yellow}
+    ${mkColorSection "yellow_4" colors.red}
+    ${mkColorSection "yellow_5" colors.maroon}
+
+    ${mkColorSection "orange_1" colors.peach}
+    ${mkColorSection "orange_2" colors.red}
+    ${mkColorSection "orange_3" colors.maroon}
+    ${mkColorSection "orange_4" colors.yellow}
+    ${mkColorSection "orange_5" colors.green}
+
+    ${mkColorSection "red_1" colors.red}
+    ${mkColorSection "red_2" colors.maroon}
+    ${mkColorSection "red_3" colors.pink}
+    ${mkColorSection "red_4" colors.flamingo}
+    ${mkColorSection "red_5" colors.rosewater}
+
+    ${mkColorSection "purple_1" colors.mauve}
+    ${mkColorSection "purple_2" colors.lavender}
+    ${mkColorSection "purple_3" colors.pink}
+    ${mkColorSection "purple_4" colors.flamingo}
+    ${mkColorSection "purple_5" colors.rosewater}
+
+    ${mkColorSection "brown_1" colors.surface2}
+    ${mkColorSection "brown_2" colors.overlay0}
+    ${mkColorSection "brown_3" colors.overlay1}
+    ${mkColorSection "brown_4" colors.overlay2}
+    ${mkColorSection "brown_5" colors.subtext1}
+
+    ${mkColorSection "light_1" colors.text}
+    ${mkColorSection "light_2" colors.subtext0}
+    ${mkColorSection "light_3" colors.subtext1}
+    ${mkColorSection "light_4" colors.blue}
+    ${mkColorSection "light_5" colors.overlay0}
+
+    ${mkColorSection "dark_1" colors.surface0}
+    ${mkColorSection "dark_2" colors.surface1}
+    ${mkColorSection "dark_3" colors.surface2}
+    ${mkColorSection "dark_4" colors.mantle}
+    ${mkColorSection "dark_5" colors.crust}
+
+    /* Custom rules */
+    toast {
+      background-color: @window_bg_color;
+      color: @window_fg_color;
+    }
+
+    toggle:checked {
+      background-color: @card_bg_color;
+      color: @window_fg_color;
+    }
+
+    .inline {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    /* Accent */
+    ${mkColorSection "accent_bg_color" colors.${config.catppuccin.accent}}
+    @define-color accent_fg_color @window_bg_color;
+  '';
+in {
   home.file = {
     ".icons/default/index.theme" = {
       text = ''
@@ -12,6 +125,10 @@
         Comment=Default Cursor Theme
         Inherits=${config.userOptions.cursor.name}
       '';
+      force = true;
+    };
+    ".config/gtk-4.0/gtk.css" = {
+      text = gtk4CSS;
       force = true;
     };
   };
@@ -29,7 +146,6 @@
 
   gtk = {
     enable = true;
-    theme.name = "GtkNix";
 
     colorScheme =
       if config.userOptions.isDark
@@ -64,74 +180,6 @@
 
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
-    };
-  };
-
-  imports = [gtk-nix.homeManagerModule];
-
-  gtkNix = let
-    color = pkgs.catppuccin.bare.${config.catppuccin.flavor};
-  in {
-    enable = true;
-
-    configuration = {
-      spacing-small = "0.3em";
-      spacing-medium = "0.6em";
-      spacing-large = "0.9em";
-      tint-weak = 0.3;
-      tint-medium = 0.6;
-      tint-strong = 0.9;
-      border-size = "0.2em";
-      radius = "0.5em";
-      disabled-opacity = 0.3;
-    };
-
-    defaultTransparency = 255;
-
-    palette = rec {
-      base00 = color.base;
-      base01 = color.mantle;
-      base02 = color.surface0;
-      base03 = color.surface1;
-      base04 = color.surface2;
-      base05 = color.text;
-      base06 = color.rosewater;
-      base07 = color.lavender;
-      base08 = color.red;
-      base09 = color.peach;
-      base0A = color.yellow;
-      base0B = color.green;
-      base0C = color.teal;
-      base0D = color.blue;
-      base0E = color.mauve;
-      base0F = color.flamingo;
-
-      highlight = color.${config.catppuccin.accent};
-      hialt0 = color.${config.catppuccin.accent};
-      hialt1 = base0E;
-      hialt2 = base0B;
-      urgent = base09;
-      warn = base0A;
-      confirm = base0D;
-      link = base0E;
-
-      pfg-highlight = base00;
-      pfg-hialt0 = base00;
-      pfg-hialt1 = base00;
-      pfg-hialt2 = base05;
-      pfg-urgent = base00;
-      pfg-warn = base00;
-      pfg-confirm = base00;
-      pfg-link = base00;
-
-      ansi00 = base03;
-      ansi01 = base09;
-      ansi02 = base0D;
-      ansi03 = base0A;
-      ansi04 = base0C;
-      ansi05 = base0E;
-      ansi06 = base0B;
-      ansi07 = base05;
     };
   };
 
