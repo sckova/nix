@@ -14,6 +14,7 @@
     alejandra
     stylua
     black
+    clang-tools
   ];
 
   programs.nixvim = {
@@ -160,6 +161,8 @@
             json = ["prettier"];
             jsonc = ["prettier"];
             fish = ["fish_indent"];
+            c = ["clang-format"];
+            cpp = ["clang-format"];
           };
 
           # Default formatting options
