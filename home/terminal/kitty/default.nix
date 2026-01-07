@@ -44,6 +44,7 @@ in {
       update_check_interval = 0;
       wheel_scroll_multiplier = 5.0;
       confirm_os_window_close = 0;
+      window_padding_width = 4;
       tab_bar_min_tabs = 2;
       tab_bar_edge = "top";
       tab_bar_style = "powerline";

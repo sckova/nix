@@ -4,12 +4,18 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [kdePackages.qttools];
+  home.packages = with pkgs; [
+    kdePackages.qttools
+    bat
+    eza
+  ];
 
   programs.fish = {
     enable = true;
     shellAliases = {
       ssh = "kitty-ssh";
+      cat = "bat";
+      ls = "eza";
     };
     functions = {
       fish_prompt = {
