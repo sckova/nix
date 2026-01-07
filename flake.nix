@@ -16,8 +16,6 @@
       url = "github:abhinandh-s/catppuccin-nix";
     };
 
-    gtk-nix.url = "github:the-argus/gtk-nix";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,7 +63,6 @@
     nix-cachyos-kernel,
     catppuccin,
     catppuccin-palette,
-    gtk-nix,
     home-manager,
     plasma-manager,
     niri,
@@ -145,7 +142,7 @@
                 nixvim.homeModules.nixvim
               ];
               home-manager.extraSpecialArgs = {
-                inherit gtk-nix spicetify-nix;
+                inherit spicetify-nix;
               };
             }
           ]
