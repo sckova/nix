@@ -133,6 +133,16 @@
         open-maximized = true;
         open-focused = true;
       }
+      {
+        matches = [
+          {
+            app-id = "mpv";
+          }
+        ];
+        border.enable = false;
+        border.width = 0;
+        shadow.enable = false;
+      }
     ];
     binds = {
       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
@@ -362,6 +372,7 @@
       "Mod+Ctrl+R".action.reset-window-height = {};
       "Mod+F".action.maximize-column = {};
       "Mod+Shift+F".action.maximize-window-to-edges = {};
+      "Mod+Ctrl+Shift+F".action.fullscreen-window = {};
 
       "Mod+Ctrl+F".action.expand-column-to-available-width = {};
 
