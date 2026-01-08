@@ -173,6 +173,7 @@
         bitwarden-desktop
         qbittorrent
         whatsapp-electron
+        nautilus
 
         # gui applications ( multimedia )
         audacity
