@@ -93,7 +93,7 @@ in {
         position = "top";
         backgroundOpacity = 1;
         monitors = [];
-        density = "spacious";
+        density = "comfortable";
         showCapsule = true;
         capsuleOpacity = 1;
         floating = false;
