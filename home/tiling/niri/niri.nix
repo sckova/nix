@@ -139,9 +139,7 @@
             app-id = "mpv";
           }
         ];
-        border.enable = false;
-        border.width = 0;
-        shadow.enable = false;
+        border.active.color = pkgs.catppuccin.${config.catppuccin.flavor}.surface1;
       }
     ];
     binds = {
