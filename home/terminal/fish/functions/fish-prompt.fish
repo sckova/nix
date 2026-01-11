@@ -14,9 +14,9 @@ if test (hostname) = peach
     set -g color_host $color_peach
 else if test (hostname) = alien
     set -g color_host $color_blue
-else if test (hostname) = vm-aarch64
+else if test (hostname) = vm
     set -g color_host $color_green
-    set -g color_cwd $color_red
+    set -g color_cwd normal
 else if test (uname) = Darwin
     set -g color_host $color_yellow
 end
