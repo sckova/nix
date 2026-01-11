@@ -1,21 +1,3 @@
 final: prev: {
-  widevine-helium =
-    if prev.stdenv.hostPlatform.system == "aarch64-linux"
-    then prev.callPackage ./helium-browser/widevine-aarch64-linux.nix {}
-    else null;
-
-  # helium-browser =
-  #   prev.callPackage
-  #     (builtins.path {
-  #       path = ./helium-browser/package.nix;
-  #     })
-  #     {
-  #       helium-widevine = prev.callPackage (builtins.path {
-  #         path = ./helium-browser/widevine-aarch64-linux.nix;
-  #       }) { };
-  #     };
-
   spotify-webapp = prev.callPackage (builtins.path {path = ./spotify/package.nix;}) {};
-
-  spotifyd = prev.callPackage (builtins.path {path = ./spotifyd/package.nix;}) {};
 }
