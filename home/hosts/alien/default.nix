@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   spicetify-nix,
   ...
 }: {
@@ -9,9 +10,11 @@
     flavor = "mocha";
   };
 
-  home.packages = with pkgs; [
+  home.packages = [
     # steam gtk theming
-    adwsteamgtk
+    pkgs.adwsteamgtk
+
+    pkgs-unstable.ckan
   ];
 
   programs.noctalia-shell.settings.brightness = {
