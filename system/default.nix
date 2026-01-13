@@ -1,5 +1,5 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
@@ -8,48 +8,9 @@
   inputs,
   ...
 }: {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nix.settings.trusted-users = [
-    "root"
-    "sckova"
-  ];
-
-  nix.settings = {
-    # Increase file descriptor limit for builds
-    sandbox = "relaxed";
-    extra-sandbox-paths = [];
-    build-users-group = "nixbld";
-  };
-
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "65536";
-    }
-    {
-      domain = "*";
-      type = "hard";
-      item = "nofile";
-      value = "65536";
-    }
-  ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
+    # this makes electron apps work per the wiki
     NIXOS_OZONE_WL = "1";
-    EDITOR = "nvim";
-    TERMINAL = "kitty";
   };
 
   boot = {
@@ -120,11 +81,16 @@
 
   services = {
     desktopManager.plasma6.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      enableHidpi = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        enableHidpi = true;
+      };
+
+      defaultSession = "niri";
     };
+
     libinput.enable = true;
     printing.enable = true;
     pipewire = {
@@ -134,29 +100,6 @@
       pulse.enable = true;
     };
     udisks2.enable = true;
-  };
-
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
-    };
-  };
-
-  systemd.tmpfiles.rules = ["L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"];
-
-  users.users.sckova = {
-    isNormalUser = true;
-    description = "Sean Kovacs";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "podman"
-    ];
-    packages = with pkgs; [];
-    hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
   };
 
   environment = {
@@ -185,9 +128,6 @@
   };
 
   services.openssh.enable = true;
-  users.users."sckova".openssh.authorizedKeys.keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCn/eXMq04vcXNqGVzlZOw2C2dQYBqzWsoigdFW09XqC2WPaGljbAIayzaD7Q1tIlPGGy10+nipAXAk1CHAnrQ2KSg4v/SwFphF48V3joeQmideC4vo0EIQEQibbMtj3oFezqRcRZINl/1hr4t0myZ3zkoTjh3HCkqJEMGUdArDMEVPA5mwcKSLsyshW9LMG/3C9YKKPU1/lVsoeDkj8AVZA0srhkApuRKF0IVu8KoPd6ldvSWgpQ1iuQ+MEMSeOUJytieBkzeY9zEVePaQ86oIMDUzqq8OTN37RyShiJKPskKyj12rJI2eFtI/viGaj8P6/yvKqMp3F4kAsPAuvMLLAIYCNa+139rDpkkIKB6lVtgq0jnJGRywaYXGIRyExNcVAr8I9wrNnNN2M4whVeYBxfLMzKZ+VvfK39AaGvnzPuFDLqUC87sN4c/1KZQo+TCtlaxcYvqowWylw5JHUt8uwFcO/dUebQxxAv8EdyPZGJ/54y19PsTbu9KyxSc2gIU= sckova"
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

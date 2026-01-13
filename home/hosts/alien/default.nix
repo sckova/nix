@@ -15,6 +15,7 @@
     pkgs.adwsteamgtk
 
     pkgs-unstable.ckan
+    pkgs.daggerfall-unity
   ];
 
   programs.noctalia-shell.settings.brightness = {
