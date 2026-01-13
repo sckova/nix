@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 
@@ -59,6 +60,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-unstable,
     nix-cachyos-kernel,
     catppuccin,
     catppuccin-palette,
@@ -73,9 +75,15 @@
     ...
   }: let
     # All systems we want to support for the generic VM
-    supportedSystems = ["x86_64-linux" "aarch64-linux"];
     # to run the vm:
     # nixos-rebuild build-vm --flake ~/nix#$(nix eval --raw --impure --expr 'builtins.currentSystem')
+    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+
+    # Shared config for all package sets
+    pkgConfig = {
+      allowUnfree = true;
+    };
+
     mkNixosSystem = {
       hostname,
       system,
@@ -87,11 +95,16 @@
         specialArgs =
           {
             inherit catppuccin system;
+            pkgs-unstable = import nixpkgs-unstable {
+              inherit system;
+              config = pkgConfig;
+            };
           }
           // extraSpecialArgs;
         modules =
           [
             {
+              nixpkgs.config = pkgConfig;
               nixpkgs.overlays = [
                 catppuccin-palette.overlays.default
                 niri.overlays.niri
@@ -142,6 +155,10 @@
               ];
               home-manager.extraSpecialArgs = {
                 inherit spicetify-nix;
+                pkgs-unstable = import nixpkgs-unstable {
+                  inherit system;
+                  config = pkgConfig;
+                };
               };
             }
           ]
@@ -156,6 +173,7 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
+          config = pkgConfig;
         };
         home.username = user;
         home.homeDirectory = "/home/${user}";
@@ -169,6 +187,12 @@
           noctalia.homeModules.noctalia
           nixvim.homeModules.nixvim
         ];
+        extraSpecialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config = pkgConfig;
+          };
+        };
       };
   in
     {
