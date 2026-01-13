@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  # This following block taken from the wiki:
+  # https://nixos.wiki/wiki/Fish#Setting_fish_as_your_shell
   programs.bash = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
