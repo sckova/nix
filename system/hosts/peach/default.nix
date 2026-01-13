@@ -1,24 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  catppuccin,
-  ...
-}: {
+{pkgs, ...}: {
   networking.hostName = "peach";
-
-  boot.binfmt.emulatedSystems = [
-    "x86_64-linux"
-    "riscv64-linux"
-  ];
 
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
   catppuccin.accent = "peach";
-
-  home-manager.users.sckova = {
-    imports = [catppuccin.homeModules.catppuccin];
-  };
 
   hardware.asahi = {
     enable = true;
@@ -37,7 +22,7 @@
   swapDevices = [
     {
       device = "/swapfile";
-      size = 16000; # 16GB
+      size = 8000; # 8GB
     }
   ];
 

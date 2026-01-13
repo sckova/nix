@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  catppuccin,
-  nix-cachyos-kernel,
   ...
 }: {
   networking.hostName = "alien";
@@ -25,35 +23,13 @@
   '';
   hardware.i2c.enable = true;
 
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "riscv64-linux"
-  ];
-
   catppuccin.accent = "blue";
-
-  home-manager.users.sckova = {
-    imports = [catppuccin.homeModules.catppuccin];
-  };
 
   boot.loader.systemd-boot.consoleMode = "max";
   # boot.kernelPackages = pkgs.linuxPackages;
 
   # let's use the CachyOS kernel instead!
-  nixpkgs.overlays = [nix-cachyos-kernel.overlays.default];
-  nix.settings.substituters = [
-    "https://attic.xuyh0120.win/lantian"
-    "https://cache.garnix.io"
-  ];
-  nix.settings.trusted-public-keys = [
-    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-  ];
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
-
-  # enable hyper-v for guests
-  virtualisation.hypervGuest.enable = true;
-  boot.blacklistedKernelModules = ["hyperv_fb"];
 
   programs = {
     gamescope = {
@@ -77,7 +53,6 @@
       enable = false;
       user = "sckova";
     };
-    defaultSession = "niri";
   };
 
   environment = {
@@ -102,4 +77,27 @@
     capSysAdmin = true;
     openFirewall = true;
   };
+
+  # virtualization settings
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
+  };
+
+  # enable hyper-v for guests
+  virtualisation.hypervGuest.enable = true;
+  boot.blacklistedKernelModules = ["hyperv_fb"];
+
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "riscv64-linux"
+  ];
+
+  # i don't even remember what this does or why i added it
+  systemd.tmpfiles.rules = ["L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"];
 }
