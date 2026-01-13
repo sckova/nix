@@ -104,14 +104,64 @@
         modules =
           [
             {
-              nixpkgs.config = pkgConfig;
-              nixpkgs.overlays = [
-                catppuccin-palette.overlays.default
-                niri.overlays.niri
-                noctalia.overlays.default
-                nur.overlays.default
-                (import ./packages/overlay.nix)
-              ];
+              nixpkgs = {
+                config = pkgConfig;
+                overlays = [
+                  catppuccin-palette.overlays.default
+                  niri.overlays.niri
+                  noctalia.overlays.default
+                  nur.overlays.default
+                  (import ./packages/overlay.nix)
+                ];
+              };
+              nix = {
+                settings = {
+                  experimental-features = [
+                    "nix-command"
+                    "flakes"
+                  ];
+
+                  substituters = [
+                    "https://attic.xuyh0120.win/lantian"
+                    "https://cache.garnix.io"
+                  ];
+
+                  trusted-public-keys = [
+                    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+                    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+                  ];
+
+                  trusted-users = [
+                    "root"
+                    "sckova"
+                  ];
+
+                  # Increase file descriptor limit for builds
+                  sandbox = "relaxed";
+                  extra-sandbox-paths = [];
+                  build-users-group = "nixbld";
+                };
+
+                gc = {
+                  automatic = true;
+                  dates = "weekly";
+                  options = "--delete-older-than 30d";
+                };
+              };
+
+              users.users.sckova = {
+                isNormalUser = true;
+                description = "Sean Kovacs";
+                extraGroups = [
+                  "wheel"
+                  "networkmanager"
+                  "podman"
+                ];
+                hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
+                openssh.authorizedKeys.keys = [
+                  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCn/eXMq04vcXNqGVzlZOw2C2dQYBqzWsoigdFW09XqC2WPaGljbAIayzaD7Q1tIlPGGy10+nipAXAk1CHAnrQ2KSg4v/SwFphF48V3joeQmideC4vo0EIQEQibbMtj3oFezqRcRZINl/1hr4t0myZ3zkoTjh3HCkqJEMGUdArDMEVPA5mwcKSLsyshW9LMG/3C9YKKPU1/lVsoeDkj8AVZA0srhkApuRKF0IVu8KoPd6ldvSWgpQ1iuQ+MEMSeOUJytieBkzeY9zEVePaQ86oIMDUzqq8OTN37RyShiJKPskKyj12rJI2eFtI/viGaj8P6/yvKqMp3F4kAsPAuvMLLAIYCNa+139rDpkkIKB6lVtgq0jnJGRywaYXGIRyExNcVAr8I9wrNnNN2M4whVeYBxfLMzKZ+VvfK39AaGvnzPuFDLqUC87sN4c/1KZQo+TCtlaxcYvqowWylw5JHUt8uwFcO/dUebQxxAv8EdyPZGJ/54y19PsTbu9KyxSc2gIU= sckova"
+                ];
+              };
             }
             ./system
             ./system/widevine
@@ -120,44 +170,47 @@
             ./system/hosts/${hostname}
             ./hardware/${hostname}
             catppuccin.nixosModules.catppuccin
+            niri.nixosModules.niri
             home-manager.nixosModules.home-manager
             noctalia.nixosModules.default
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.sckova = {
-                imports = [
-                  ./home
-                  ./home/games/minecraft
-                  ./home/games/morrowind
-                  ./home/graphical/discord
-                  ./home/graphical/firefox
-                  ./home/graphical/mpv
-                  ./home/tiling/niri
-                  ./home/tiling/wallpaper
-                  ./home/systemd
-                  ./home/terminal/btop
-                  ./home/terminal/fish
-                  ./home/terminal/kitty
-                  ./home/terminal/nvim
-                  ./home/kde
-                  ./home/theming
-                  ./home/vscode
-                  ./home/hosts/${hostname}
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.sckova = {
+                  imports = [
+                    ./home
+                    ./home/games/minecraft
+                    ./home/games/morrowind
+                    ./home/graphical/discord
+                    ./home/graphical/firefox
+                    ./home/graphical/mpv
+                    ./home/tiling/niri
+                    ./home/tiling/wallpaper
+                    ./home/systemd
+                    ./home/terminal/btop
+                    ./home/terminal/fish
+                    ./home/terminal/kitty
+                    ./home/terminal/nvim
+                    ./home/kde
+                    ./home/theming
+                    ./home/vscode
+                    ./home/hosts/${hostname}
+                  ];
+                };
+                sharedModules = [
+                  catppuccin.homeModules.catppuccin
+                  plasma-manager.homeModules.plasma-manager
+                  noctalia.homeModules.default
+                  spicetify-nix.homeManagerModules.default
+                  nixvim.homeModules.nixvim
                 ];
-              };
-              home-manager.sharedModules = [
-                plasma-manager.homeModules.plasma-manager
-                niri.homeModules.niri
-                noctalia.homeModules.default
-                spicetify-nix.homeManagerModules.default
-                nixvim.homeModules.nixvim
-              ];
-              home-manager.extraSpecialArgs = {
-                inherit spicetify-nix;
-                pkgs-unstable = import nixpkgs-unstable {
-                  inherit system;
-                  config = pkgConfig;
+                extraSpecialArgs = {
+                  inherit spicetify-nix;
+                  pkgs-unstable = import nixpkgs-unstable {
+                    inherit system;
+                    config = pkgConfig;
+                  };
                 };
               };
             }
@@ -175,6 +228,10 @@
           inherit system;
           config = pkgConfig;
         };
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          config = pkgConfig;
+        };
         home.username = user;
         home.homeDirectory = "/home/${user}";
         modules = [
@@ -187,33 +244,25 @@
           noctalia.homeModules.noctalia
           nixvim.homeModules.nixvim
         ];
-        extraSpecialArgs = {
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config = pkgConfig;
-          };
-        };
       };
-  in
-    {
-      nixosConfigurations =
-        {
-          peach = mkNixosSystem {
-            hostname = "peach";
-            system = "aarch64-linux";
-            extraModules = [
-              apple-silicon.nixosModules.default
-              {nixpkgs.overlays = [apple-silicon.overlays.apple-silicon-overlay];}
-            ];
-          };
+  in {
+    nixosConfigurations = {
+      peach = mkNixosSystem {
+        hostname = "peach";
+        system = "aarch64-linux";
+        extraModules = [
+          apple-silicon.nixosModules.default
+          {nixpkgs.overlays = [apple-silicon.overlays.apple-silicon-overlay];}
+        ];
+      };
 
-          alien = mkNixosSystem {
-            hostname = "alien";
-            system = "x86_64-linux";
-            extraSpecialArgs = {
-              inherit nix-cachyos-kernel;
-            };
-          };
+      alien =
+        mkNixosSystem {
+          hostname = "alien";
+          system = "x86_64-linux";
+          extraModules = [
+            {nixpkgs.overlays = [nix-cachyos-kernel.overlays.default];}
+          ];
         }
         // nixpkgs.lib.genAttrs supportedSystems (
           system:
@@ -222,8 +271,10 @@
               inherit system;
             }
         );
+    };
 
-      homeConfigurations = {
+    homeConfigurations =
+      {
         peach = mkHomeConfig {
           user = "sckova";
           hostname = "peach";
@@ -234,14 +285,14 @@
           hostname = "alien";
           system = "x86_64-linux";
         };
-      };
-    }
-    // nixpkgs.lib.genAttrs supportedSystems (
-      system:
-        mkHomeConfig {
-          user = "sckova";
-          hostname = "vm-generic";
-          inherit system;
-        }
-    );
+      }
+      // nixpkgs.lib.genAttrs supportedSystems (
+        system:
+          mkHomeConfig {
+            user = "sckova";
+            hostname = "vm-generic";
+            inherit system;
+          }
+      );
+  };
 }

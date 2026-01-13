@@ -1,7 +1,8 @@
+# https://github.com/nix-community/nixos-apple-silicon/issues/145
+# This should work with both x86_64 and aarch64. (hopefully)
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
   nixpkgs.overlays = lib.mkIf (config.nixpkgs.hostPlatform.isLinux) [
