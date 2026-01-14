@@ -4,6 +4,7 @@
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
   catppuccin.accent = "peach";
+  services.displayManager.gdm.enable = true;
 
   hardware.asahi = {
     enable = true;
