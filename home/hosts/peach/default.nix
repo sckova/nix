@@ -15,7 +15,7 @@
     asahi-wifisync
 
     moonlight-qt
-    spotify-webapp
+    # spotify-webapp
   ];
 
   # https://github.com/YaLTeR/niri/issues/2330#issuecomment-3256864777
