@@ -3,7 +3,11 @@
 
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
-  catppuccin.accent = "peach";
+  catppuccin = {
+    accent = "lavender";
+    flavor = "macchiato";
+  };
+
   services.displayManager.gdm.enable = true;
 
   hardware.asahi = {

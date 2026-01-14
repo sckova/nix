@@ -1,11 +1,7 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   catppuccin = {
-    accent = "peach";
-    flavor = "mocha";
+    accent = "lavender";
+    flavor = "macchiato";
   };
 
   home.packages = with pkgs; [
@@ -15,7 +11,6 @@
     asahi-wifisync
 
     moonlight-qt
-    # spotify-webapp
   ];
 
   # https://github.com/YaLTeR/niri/issues/2330#issuecomment-3256864777
@@ -44,7 +39,7 @@
     ];
 
     shortcuts = {
-      # this is really annoying on asahi laptops
+      # this is really annoying on apple laptops
       org_kde_powerdevil.Sleep = [];
     };
 
