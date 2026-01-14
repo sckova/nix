@@ -170,9 +170,7 @@
         input-leap
         libreoffice-qt-fresh
         # nur.repos.forkprince.helium-nightly
-        bitwarden-desktop
         qbittorrent
-        whatsapp-electron
         nautilus
 
         # gui applications ( multimedia )
