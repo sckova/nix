@@ -23,7 +23,10 @@
   '';
   hardware.i2c.enable = true;
 
-  catppuccin.accent = "blue";
+  catppuccin = {
+    accent = "blue";
+    flavor = "mocha";
+  };
 
   boot.loader.systemd-boot.consoleMode = "max";
   boot.kernelPackages = pkgs.linuxPackages;
