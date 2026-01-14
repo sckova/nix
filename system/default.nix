@@ -87,8 +87,6 @@
       #   wayland.enable = true;
       #   enableHidpi = true;
       # };
-      gdm.enable = true;
-
       defaultSession = "niri";
     };
 
