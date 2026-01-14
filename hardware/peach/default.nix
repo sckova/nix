@@ -2,9 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -13,18 +11,6 @@
   ];
 
   boot.initrd.availableKernelModules = ["sdhci_pci"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [
-    "v4l2loopback"
-    "snd-aloop"
-  ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
-  boot.extraModprobeConfig = ''
-    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
-    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
-    # https://github.com/umlaeute/v4l2loopback
-    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
-  '';
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/NixOS";

@@ -3,16 +3,12 @@
 # to /etc/nixos/configuration.nix instead.
 {
   lib,
-  pkgs,
   system,
   ...
 }: {
   imports = [];
 
   boot.initrd.availableKernelModules = ["ehci_pci" "xhci_pci" "usbhid" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
