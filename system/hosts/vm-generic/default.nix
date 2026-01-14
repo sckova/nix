@@ -1,7 +1,10 @@
 {catppuccin, ...}: {
   networking.hostName = "vm";
 
-  catppuccin.accent = "green";
+  catppuccin = {
+    accent = "green";
+    flavor = "mocha";
+  };
 
   home-manager.users.sckova = {
     imports = [catppuccin.homeModules.catppuccin];

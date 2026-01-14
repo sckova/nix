@@ -41,9 +41,11 @@
     text = let
       flavor = config.catppuccin.flavor;
       palette = pkgs.catppuccin.bare.${flavor};
+      accent = config.catppuccin.accent;
     in
       lib.concatStringsSep "\n" (
-        lib.mapAttrsToList (name: value: "set -g color_${name} ${value}") palette
+        (lib.mapAttrsToList (name: value: "set -g color_${name} ${value}") palette)
+        ++ ["set -g color_accent ${palette.${accent}}"]
       );
     force = true;
   };
