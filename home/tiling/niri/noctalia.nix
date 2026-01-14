@@ -127,7 +127,7 @@ in {
               colorizeIcons = false;
               hideMode = "hidden";
               id = "ActiveWindow";
-              maxWidth = 375;
+              maxWidth = 500;
               scrollingMode = "always";
               showIcon = true;
               useFixedWidth = false;
@@ -140,7 +140,7 @@ in {
               hideMode = "hidden";
               hideWhenIdle = false;
               id = "MediaMini";
-              maxWidth = 275;
+              maxWidth = 300;
               scrollingMode = "hover";
               showAlbumArt = false;
               showArtistFirst = false;
