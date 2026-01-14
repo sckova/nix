@@ -11,11 +11,11 @@ set -g color_cwd $color_green
 
 # Set host color based on hostname
 if test (hostname) = peach
-    set -g color_host $color_peach
+    set -g color_host $color_accent
 else if test (hostname) = alien
-    set -g color_host $color_blue
+    set -g color_host $color_accent
 else if test (hostname) = vm
-    set -g color_host $color_green
+    set -g color_host $color_accent
     set -g color_cwd normal
 else if test (uname) = Darwin
     set -g color_host $color_yellow
