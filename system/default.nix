@@ -82,11 +82,12 @@
   services = {
     desktopManager.plasma6.enable = true;
     displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        enableHidpi = true;
-      };
+      # sddm = {
+      #   enable = true;
+      #   wayland.enable = true;
+      #   enableHidpi = true;
+      # };
+      gdm.enable = true;
 
       defaultSession = "niri";
     };
