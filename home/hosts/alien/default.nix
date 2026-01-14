@@ -24,15 +24,6 @@
     enableDdcSupport = true;
   };
 
-  programs.niri.settings.outputs."DP-1" = {
-    mode = {
-      width = 3840;
-      height = 2160;
-      refresh = 143.999;
-    };
-    scale = 1.5;
-  };
-
   programs.spicetify = let
     spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   in {
