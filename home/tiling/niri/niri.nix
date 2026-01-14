@@ -54,7 +54,20 @@
           scale = 1.75;
         };
         "HDMI-A-1" = {
-          scale = 2;
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 144.000;
+          };
+          scale = 1.5;
+        };
+        "DP-1" = {
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 143.999;
+          };
+          scale = 1.5;
         };
       };
       cursor = {
