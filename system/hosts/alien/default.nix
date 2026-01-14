@@ -54,6 +54,11 @@
       enable = false;
       user = "sckova";
     };
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      enableHidpi = true;
+    };
   };
 
   environment = {
