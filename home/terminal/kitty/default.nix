@@ -99,32 +99,38 @@ in {
     '';
   };
 
-  programs.kitty = {
-    enable = true;
-    enableGitIntegration = true;
-    font = {
-      name = config.userOptions.fontMono.name;
-      size = config.userOptions.fontMono.size;
+  programs = {
+    kitty = {
+      enable = true;
+      enableGitIntegration = true;
+      font = {
+        name = config.userOptions.fontMono.name;
+        size = config.userOptions.fontMono.size;
+      };
+      shellIntegration.enableFishIntegration = true;
+      keybindings = {
+        "ctrl+k" = ''combine : clear_terminal scroll active : clear_terminal scrollback active'';
+      };
+      settings = {
+        include = "/home/${config.userOptions.username}/.config/kitty/themes/kitty-colors.conf";
+        scrollback_lines = 10000;
+        enable_audio_bell = false;
+        update_check_interval = 0;
+        wheel_scroll_multiplier = 5.0;
+        confirm_os_window_close = 0;
+        window_padding_width = 4;
+        tab_bar_min_tabs = 2;
+        tab_bar_edge = "top";
+        tab_bar_style = "powerline";
+        tab_powerline_style = "slanted";
+        mouse_hide_wait = "-1.0";
+        wayland_titlebar_color = "system";
+        macos_titlebar_color = "system";
+      };
     };
-    shellIntegration.enableFishIntegration = true;
-    keybindings = {
-      "ctrl+k" = ''combine : clear_terminal scroll active : clear_terminal scrollback active'';
-    };
-    settings = {
-      include = "/home/${config.userOptions.username}/.config/kitty/themes/kitty-colors.conf";
-      scrollback_lines = 10000;
-      enable_audio_bell = false;
-      update_check_interval = 0;
-      wheel_scroll_multiplier = 5.0;
-      confirm_os_window_close = 0;
-      window_padding_width = 4;
-      tab_bar_min_tabs = 2;
-      tab_bar_edge = "top";
-      tab_bar_style = "powerline";
-      tab_powerline_style = "slanted";
-      mouse_hide_wait = "-1.0";
-      wayland_titlebar_color = "system";
-      macos_titlebar_color = "system";
+    bat = {
+      enable = true;
+      config.theme = "Catppuccin ${config.catppuccinUpper.flavor}";
     };
   };
 }
