@@ -5,9 +5,8 @@
 }: {
   # https://github.com/sodiboo/niri-flake/blob/main/docs.md
   programs.niri = {
-    package = pkgs.niri-unstable.overrideAttrs (old: {
-      doCheck = false;
-    });
+    # handle package systemwide
+    package = null;
 
     settings = {
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -51,7 +50,7 @@
       };
       outputs = {
         "eDP-1" = {
-          scale = 1.75;
+          scale = 1.66666;
         };
         "HDMI-A-1" = {
           mode = {
@@ -114,7 +113,7 @@
         {
           matches = [
             {
-              app-id = "firefox$";
+              app-id = "librewolf$";
               title = "^Picture-in-Picture$";
             }
           ];
@@ -386,8 +385,6 @@
         "Mod+F".action.maximize-column = {};
         "Mod+Shift+F".action.maximize-window-to-edges = {};
         "Mod+Ctrl+Shift+F".action.fullscreen-window = {};
-
-        "Mod+Ctrl+F".action.expand-column-to-available-width = {};
 
         "Mod+C".action.center-column = {};
 
