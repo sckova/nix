@@ -1,6 +1,10 @@
 final: prev: {
   spotify-webapp = final.callPackage ./spotify-webapp {};
   altserver-linux = final.callPackage ./altserver {};
+  openmw = final.callPackage ./openmw {
+    openmw = prev.openmw;
+    inherit (final) openmw-git;
+  };
 
   linuxPackages_asahi = prev.linuxPackages_asahi.override {
     _kernelPatches = [
