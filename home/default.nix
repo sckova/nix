@@ -157,10 +157,15 @@
         mosh
         spotify-player
         gh
+        altserver-linux
 
         # development & tooling
         jdk21_headless
         quickemu
+        nerd-fonts.noto
+        noto-fonts
+        noto-fonts-color-emoji
+        nix-prefetch
 
         # kde and kde theming
         kde-rounded-corners
