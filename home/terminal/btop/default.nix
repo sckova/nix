@@ -15,7 +15,7 @@
     ${pkgs.gnused}/bin/sed 's/blankFlavor/${config.catppuccin.flavor}/g' \
       ${./btop.conf} > $out/btop.conf
     cp ${catppuccin-btop}/themes/catppuccin_latte.theme $out/themes/
-    cp ${catppuccin-btop}/themes/catppuccin_${config.catppuccin.flavor}.theme $out/themes/
+    cp ${catppuccin-btop}/themes/catppuccin_${config.catppuccin.flavor}.theme $out/themes/nixos.theme
   '';
 in {
   home.file.".config/btop" = {
