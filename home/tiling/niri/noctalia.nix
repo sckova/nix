@@ -290,7 +290,7 @@ in {
         shortcuts = {
           left = [
             {
-              id = "WiFi";
+              id = "Network";
             }
             {
               id = "Bluetooth";
