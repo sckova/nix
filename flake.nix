@@ -151,6 +151,8 @@
                 };
               };
 
+              networking.hostName = hostname;
+
               users.users.sckova = {
                 isNormalUser = true;
                 description = "Sean Kovacs";
