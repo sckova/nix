@@ -18,4 +18,5 @@
       alias edit "nvim"
     '';
   };
+  documentation.man.generateCaches = false;
 }

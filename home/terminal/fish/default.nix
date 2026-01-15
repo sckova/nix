@@ -35,6 +35,7 @@
       };
     };
   };
+  programs.man.generateCaches = false;
 
   home.file.".config/fish/colors.fish" = {
     text = let
