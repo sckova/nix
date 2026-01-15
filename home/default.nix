@@ -1,8 +1,8 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   lib,
-  types,
   ...
 }: {
   options = {
@@ -186,27 +186,18 @@
         #   enableWideVine = true;
         # })
         (catppuccin-kde.override {
-          flavour = [
-            "latte"
-            config.catppuccin.flavor
-          ];
-          accents = [
-            config.catppuccin.accent
-          ];
+          flavour = [config.catppuccin.flavor];
+          accents = [config.catppuccin.accent];
         })
       ])
       ++ [
-        pkgs.catppuccin-cursors.latteDark
-        pkgs.catppuccin-cursors.latteLight
-        pkgs.catppuccin-cursors."latte${config.catppuccinUpper.accent}"
-        pkgs.catppuccin-cursors."${config.catppuccin.flavor}Dark"
-        pkgs.catppuccin-cursors."${config.catppuccin.flavor}Light"
         pkgs.catppuccin-cursors."${config.catppuccin.flavor}${config.catppuccinUpper.accent}"
       ];
 
     services = {
       spotifyd = {
         enable = true;
+        package = pkgs-unstable.spotifyd;
         settings = {
           global = {
             device_type = "computer";
@@ -216,7 +207,7 @@
             bitrate = 320;
             initial_volume = 100;
             volume_normalisation = true;
-            normalisation_pregain = -10;
+            normalisation_pregain = 0;
           };
         };
       };
