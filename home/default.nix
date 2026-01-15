@@ -157,7 +157,6 @@
         mosh
         spotify-player
         gh
-        altserver-linux
 
         # development & tooling
         jdk21_headless
