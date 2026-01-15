@@ -50,7 +50,7 @@
       };
       outputs = {
         "eDP-1" = {
-          scale = 1.5;
+          scale = 1.75;
         };
         "HDMI-A-1" = {
           mode = {
