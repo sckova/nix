@@ -493,6 +493,22 @@
         "type": "github"
       }
     },
+    "openmw": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768342692,
+        "narHash": "sha256-XLlg+JKE7mvbytjPq4iue9JTVA/Uv2bn1mYS1OEIWFY=",
+        "owner": "OpenMW",
+        "repo": "openmw",
+        "rev": "3ac8eb07876e1d0a5fe52baca70d0b972cf1e33c",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "OpenMW",
+        "repo": "openmw",
+        "type": "gitlab"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -529,6 +545,7 @@
         "nixvim": "nixvim",
         "noctalia": "noctalia",
         "nur": "nur",
+        "openmw": "openmw",
         "plasma-manager": "plasma-manager",
         "spicetify-nix": "spicetify-nix"
       }
