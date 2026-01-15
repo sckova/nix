@@ -6,7 +6,6 @@
 }: {
   home.packages = with pkgs; [
     kdePackages.qttools
-    bat
     eza
   ];
 
