@@ -1,6 +1,4 @@
 {catppuccin, ...}: {
-  networking.hostName = "vm";
-
   catppuccin = {
     accent = "green";
     flavor = "mocha";

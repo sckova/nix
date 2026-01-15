@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  networking.hostName = "peach";
-
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
   catppuccin = {
