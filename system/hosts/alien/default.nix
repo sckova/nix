@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  networking.hostName = "alien";
-
   environment.systemPackages = with pkgs; [
     ddcutil
     mangohud
