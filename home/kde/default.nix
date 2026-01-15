@@ -269,8 +269,7 @@
           {
             iconTasks = {
               launchers = [
-                "applications:firefox.desktop"
-                # "applications:helium.desktop"
+                "applications:librewolf.desktop"
                 "applications:org.kde.dolphin.desktop"
                 "applications:vesktop.desktop"
                 "applications:kitty.desktop"
