@@ -56,6 +56,11 @@
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    openmw = {
+      url = "gitlab:OpenMW/openmw";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -72,6 +77,7 @@
     nur,
     nixvim,
     apple-silicon,
+    openmw,
     ...
   }: let
     # All systems we want to support for the generic VM
@@ -112,6 +118,13 @@
                   noctalia.overlays.default
                   nur.overlays.default
                   (import ./packages/overlay.nix)
+                  (final: prev: {
+                    openmw-git = {
+                      src = openmw;
+                      version = openmw.shortRev or openmw.rev or "unknown";
+                      date = openmw.lastModifiedDate or "unknown";
+                    };
+                  })
                 ];
               };
               nix = {
