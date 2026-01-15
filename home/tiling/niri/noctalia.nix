@@ -18,7 +18,7 @@
     mOnTertiary = palette.crust;
     mError = palette.red;
     mOnError = palette.crust;
-    mSurface = palette.base;
+    mSurface = palette.mantle;
     mOnSurface = palette.text;
     mSurfaceVariant = palette.surface0;
     mOnSurfaceVariant = palette.lavender;
@@ -36,9 +36,6 @@
 
   # Convert to JSON
   schemeJson = builtins.toJSON customScheme;
-
-  # Write to file - escape for shell
-  schemeJsonEscaped = lib.escapeShellArg schemeJson;
 
   customPackage = pkgs.noctalia-shell.overrideAttrs (oldAttrs: {
     pname = "noctalia-shell-custom";
@@ -93,7 +90,7 @@ in {
         position = "top";
         backgroundOpacity = 1;
         monitors = [];
-        density = "comfortable";
+        density = "spacious";
         showCapsule = true;
         capsuleOpacity = 1;
         floating = false;

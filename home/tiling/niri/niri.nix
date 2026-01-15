@@ -50,7 +50,11 @@
       };
       outputs = {
         "eDP-1" = {
-          scale = 1.75;
+          scale = 1.5;
+          position = {
+            x = 272;
+            y = 1440;
+          };
         };
         "HDMI-A-1" = {
           mode = {
@@ -59,6 +63,10 @@
             refresh = 144.000;
           };
           scale = 1.5;
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
         "DP-1" = {
           mode = {
@@ -67,6 +75,10 @@
             refresh = 143.999;
           };
           scale = 1.5;
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
       };
       cursor = {
