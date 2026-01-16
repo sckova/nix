@@ -3,6 +3,7 @@
   openmw-git,
 }:
 openmw.overrideAttrs (oldAttrs: {
-  version = "unstable-${openmw-git.date}-${openmw-git.version}";
-  src = openmw-git.src;
+  pname = "openmw-unstable";
+  version = "unstable-${openmw-git.rev}";
+  src = openmw-git;
 })
