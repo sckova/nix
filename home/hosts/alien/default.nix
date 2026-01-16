@@ -18,12 +18,6 @@
     pkgs.daggerfall-unity
   ];
 
-  programs.noctalia-shell.settings.brightness = {
-    brightnessStep = 5;
-    enforceMinimum = false;
-    enableDdcSupport = true;
-  };
-
   programs.spicetify = let
     spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   in {
