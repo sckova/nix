@@ -10,9 +10,9 @@
 }:
 stdenv.mkDerivation rec {
   pname = "catppuccin-discord";
-  version = "unstable-${catppuccin-discord-git.date}-${catppuccin-discord-git.version}";
+  version = "unstable-${catppuccin-discord-git.rev}";
 
-  src = catppuccin-discord-git.src;
+  src = catppuccin-discord-git;
 
   yarnOfflineCache = fetchYarnDeps {
     yarnLock = "${src}/yarn.lock";
