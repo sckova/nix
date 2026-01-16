@@ -1,5 +1,8 @@
 final: prev: {
   spotify-webapp = final.callPackage ./spotify-webapp {};
+  catppuccin-discord = final.callPackage ./catppuccin-discord {
+    inherit (final) catppuccin-discord-git;
+  };
   openmw = final.callPackage ./openmw {
     openmw = prev.openmw;
     inherit (final) openmw-git;

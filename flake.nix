@@ -61,6 +61,21 @@
       url = "gitlab:OpenMW/openmw";
       flake = false;
     };
+
+    catppuccin-discord = {
+      url = "github:catppuccin/discord";
+      flake = false;
+    };
+
+    catppuccin-btop = {
+      url = "github:catppuccin/btop";
+      flake = false;
+    };
+
+    catppuccin-mpv = {
+      url = "github:catppuccin/mpv";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -78,6 +93,9 @@
     nixvim,
     apple-silicon,
     openmw,
+    catppuccin-discord,
+    catppuccin-btop,
+    catppuccin-mpv,
     ...
   }: let
     # All systems we want to support for the generic VM
@@ -88,6 +106,13 @@
     # Shared config for all package sets
     pkgConfig = {
       allowUnfree = true;
+    };
+
+    # Helper to create source metadata
+    mkSource = src: {
+      inherit src;
+      version = src.shortRev or src.rev or "unknown";
+      date = src.lastModifiedDate or "unknown";
     };
 
     mkNixosSystem = {
@@ -119,11 +144,10 @@
                   nur.overlays.default
                   (import ./packages/overlay.nix)
                   (final: prev: {
-                    openmw-git = {
-                      src = openmw;
-                      version = openmw.shortRev or openmw.rev or "unknown";
-                      date = openmw.lastModifiedDate or "unknown";
-                    };
+                    openmw-git = mkSource openmw;
+                    catppuccin-discord-git = mkSource catppuccin-discord;
+                    catppuccin-btop-git = mkSource catppuccin-btop;
+                    catppuccin-mpv-git = mkSource catppuccin-mpv;
                   })
                 ];
               };

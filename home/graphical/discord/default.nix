@@ -3,56 +3,7 @@
   pkgs,
   ...
 }: let
-  catppuccin-discord-src = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "discord";
-    rev = "1b2dffbabf75a294a0fb9245f9f7244a853e7ada";
-    hash = "sha256-LdUPnnbbSwgaw37FJD2s1vPiTaISaYbtOWRxQIekQkQ=";
-  };
-
-  yarnOfflineCache = pkgs.fetchYarnDeps {
-    yarnLock = "${catppuccin-discord-src}/yarn.lock";
-    hash = "sha256-BhE3aKyA/LBErjWx+lbEVb/CIXhqHkXbV+9U2djIBhs=";
-  };
-
-  catppuccin-discord-pkg = pkgs.stdenv.mkDerivation {
-    pname = "catppuccin-discord";
-    version = "unstable";
-
-    src = catppuccin-discord-src;
-
-    nativeBuildInputs = with pkgs; [
-      yarn
-      nodejs
-      fixup-yarn-lock
-      nodePackages.sass
-    ];
-
-    postPatch = ''
-      substituteInPlace package.json \
-        --replace-fail "--no-charset --no-source-map" ""
-    '';
-
-    configurePhase = ''
-      export HOME=$TMPDIR
-      yarn config --offline set yarn-offline-mirror ${yarnOfflineCache}
-      fixup-yarn-lock yarn.lock
-      yarn install --offline --frozen-lockfile --ignore-scripts --ignore-platform
-    '';
-
-    buildPhase = ''
-      yarn --offline build
-      yarn --offline release
-    '';
-
-    installPhase = ''
-      mkdir -p $out
-      find .
-      cp -r dist/* $out
-    '';
-  };
-
-  catppuccin-discord = "${catppuccin-discord-pkg}/dist/catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}.theme.css";
+  catppuccin-discord = "${pkgs.catppuccin-discord}/share/catppuccin-discord/catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}.theme.css";
 
   mergedThemes = pkgs.runCommand "mergedConfig" {} ''
     mkdir -p $out
