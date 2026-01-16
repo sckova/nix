@@ -39,7 +39,6 @@ stdenv.mkDerivation rec {
   '';
 
   buildPhase = ''
-    yarn --offline build
     yarn --offline release
   '';
 
