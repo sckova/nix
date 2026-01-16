@@ -73,6 +73,54 @@
         "type": "github"
       }
     },
+    "catppuccin-btop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727050041,
+        "narHash": "sha256-mEGZwScVPWGu+Vbtddc/sJ+mNdD2kKienGZVUcTSl+c=",
+        "owner": "catppuccin",
+        "repo": "btop",
+        "rev": "f437574b600f1c6d932627050b15ff5153b58fa3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "btop",
+        "type": "github"
+      }
+    },
+    "catppuccin-discord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768037813,
+        "narHash": "sha256-ExRNnxvG2PSGmpuaPxzCKL6GK6ETs7Gq4Roa74HXp+s=",
+        "owner": "catppuccin",
+        "repo": "discord",
+        "rev": "0fcfe2e15ed91f8c5f1f3c6855f3b2024f78d86c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "discord",
+        "type": "github"
+      }
+    },
+    "catppuccin-mpv": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754544320,
+        "narHash": "sha256-oUheJNWk2R6gNEmkK8H6PWX0iofx2KMGDoFWtnr420A=",
+        "owner": "catppuccin",
+        "repo": "mpv",
+        "rev": "08e90daf511eee2c10c98f0031b51bb9de240d60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "mpv",
+        "type": "github"
+      }
+    },
     "catppuccin-palette": {
       "locked": {
         "lastModified": 1760672867,
@@ -536,6 +584,9 @@
       "inputs": {
         "apple-silicon": "apple-silicon",
         "catppuccin": "catppuccin",
+        "catppuccin-btop": "catppuccin-btop",
+        "catppuccin-discord": "catppuccin-discord",
+        "catppuccin-mpv": "catppuccin-mpv",
         "catppuccin-palette": "catppuccin-palette",
         "home-manager": "home-manager",
         "niri": "niri",
