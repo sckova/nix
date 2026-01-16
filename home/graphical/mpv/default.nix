@@ -6,7 +6,7 @@
   mergedConfig = pkgs.runCommand "mergedConfig" {} ''
     mkdir -p $out
     ${pkgs.gnused}/bin/sed 's/#1e1e2e/#000000/g' \
-      ${pkgs.catppuccin-mpv-git.src}/themes/${config.catppuccin.flavor}/${config.catppuccin.accent}.conf \
+      ${pkgs.catppuccin-mpv-git}/themes/${config.catppuccin.flavor}/${config.catppuccin.accent}.conf \
       > $out/mpv.conf
   '';
 in {

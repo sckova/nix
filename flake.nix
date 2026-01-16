@@ -108,13 +108,6 @@
       allowUnfree = true;
     };
 
-    # Helper to create source metadata
-    mkSource = src: {
-      inherit src;
-      version = src.shortRev or src.rev or "unknown";
-      date = src.lastModifiedDate or "unknown";
-    };
-
     mkNixosSystem = {
       hostname,
       system,
@@ -142,13 +135,13 @@
                   niri.overlays.niri
                   noctalia.overlays.default
                   nur.overlays.default
-                  (import ./packages/overlay.nix)
                   (final: prev: {
-                    openmw-git = mkSource openmw;
-                    catppuccin-discord-git = mkSource catppuccin-discord;
-                    catppuccin-btop-git = mkSource catppuccin-btop;
-                    catppuccin-mpv-git = mkSource catppuccin-mpv;
+                    openmw-git = openmw;
+                    catppuccin-discord-git = catppuccin-discord;
+                    catppuccin-btop-git = catppuccin-btop;
+                    catppuccin-mpv-git = catppuccin-mpv;
                   })
+                  (import ./packages/overlay.nix)
                 ];
               };
               nix = {
