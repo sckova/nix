@@ -15,6 +15,12 @@
       ssh = "kitty-ssh";
       cat = "bat";
       ls = "eza";
+      gl = "git log";
+      ga = "git add -v .";
+      gac = "git add -v . && git commit";
+      gaca = "git add -v . && git commit --amend --no-edit";
+      gp = "git push";
+      gpf = "git push --force";
     };
     functions = {
       fish_prompt = {

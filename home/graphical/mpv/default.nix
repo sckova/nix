@@ -5,7 +5,7 @@
 }: let
   mergedConfig = pkgs.runCommand "mergedConfig" {} ''
     mkdir -p $out
-    ${pkgs.gnused}/bin/sed 's/#1e1e2e/#000000/g' \
+    ${pkgs.gnused}/bin/sed 's/${pkgs.catppuccin.${config.catppuccin.flavor}.base}/#000000/g' \
       ${pkgs.catppuccin-mpv-git}/themes/${config.catppuccin.flavor}/${config.catppuccin.accent}.conf \
       > $out/mpv.conf
   '';
