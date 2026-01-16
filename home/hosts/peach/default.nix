@@ -18,12 +18,6 @@
     render-drm-device = "/dev/dri/card2";
   };
 
-  programs.noctalia-shell.settings.brightness = {
-    brightnessStep = 5;
-    enforceMinimum = false;
-    enableDdcSupport = false;
-  };
-
   programs.plasma = {
     input.touchpads = [
       {

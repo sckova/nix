@@ -86,6 +86,11 @@ in {
     package = customPackage;
     settings = {
       settingsVersion = 0;
+      brightness = {
+        brightnessStep = 5;
+        enforceMinimum = false;
+        enableDdcSupport = true;
+      };
       bar = {
         position = "top";
         backgroundOpacity = 1;
