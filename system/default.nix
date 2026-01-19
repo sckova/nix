@@ -79,7 +79,7 @@
   programs.dconf.enable = true;
 
   services = {
-    desktopManager.plasma6.enable = true;
+    desktopManager.plasma6.enable = false;
     displayManager = {
       sddm = {
         enable = true;
@@ -107,11 +107,11 @@
       distrobox
     ];
 
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      elisa
-      konsole
-      khelpcenter
-    ];
+    # plasma6.excludePackages = with pkgs.kdePackages; [
+    #   elisa
+    #   konsole
+    #   khelpcenter
+    # ];
   };
 
   programs.gnupg.agent = {
