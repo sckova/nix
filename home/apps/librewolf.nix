@@ -6,7 +6,7 @@
   ...
 }: {
   home.file.".librewolf/default/chrome/" = {
-    source = ./chrome;
+    source = ./librewolf_css;
     force = true;
     recursive = true;
   };

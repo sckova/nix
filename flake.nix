@@ -214,22 +214,13 @@
                 users.sckova = {
                   imports = [
                     ./home
-                    ./home/games/minecraft
-                    ./home/games/morrowind
-                    ./home/graphical/discord
-                    ./home/graphical/firefox
-                    ./home/graphical/mpv
-                    ./home/tiling/niri
-                    ./home/tiling/wallpaper
-                    ./home/systemd
-                    ./home/terminal/btop
-                    ./home/terminal/fish
-                    ./home/terminal/kitty
-                    ./home/terminal/nvim
-                    ./home/kde
-                    ./home/theming
-                    ./home/vscode
+                    ./home/apps
+                    ./home/games
                     ./home/hosts/${hostname}
+                    ./home/kde
+                    ./home/services
+                    ./home/terminal
+                    ./home/tiling
                   ];
                 };
                 sharedModules = [
