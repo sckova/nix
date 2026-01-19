@@ -3,7 +3,11 @@
   pkgs,
   ...
 }: {
-  imports = [./gtk.nix ./qt.nix];
+  imports = [
+    ./gtk.nix
+    ./qt.nix
+    ./systemd.nix
+  ];
 
   home.file = {
     ".icons/default/index.theme" = {
