@@ -10,17 +10,6 @@ final: prev: {
     inherit (final) openmw-git;
   };
 
-  # Noctalia shell is parameterized by catppuccin theme, so we create a function
-  # that home-manager configs can call with their specific theme settings
-  mkNoctaliaShellCustom = {
-    catppuccin-flavor,
-    catppuccin-accent,
-  }:
-    final.callPackage ./noctalia-shell {
-      noctalia-shell = final.noctalia-shell;
-      inherit catppuccin-flavor catppuccin-accent;
-    };
-
   linuxPackages_asahi = prev.linuxPackages_asahi.override {
     _kernelPatches = [
       {

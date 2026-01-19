@@ -2,15 +2,27 @@
   pkgs,
   config,
   ...
-}: let
-  customPackage = pkgs.mkNoctaliaShellCustom {
-    catppuccin-flavor = config.catppuccin.flavor;
-    catppuccin-accent = config.catppuccin.accent;
-  };
-in {
+}: {
   programs.noctalia-shell = {
     enable = true;
-    package = customPackage;
+    colors = {
+      mPrimary = pkgs.catppuccin.${config.catppuccin.flavor}.${config.catppuccin.accent};
+      mOnPrimary = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+      mSecondary = pkgs.catppuccin.${config.catppuccin.flavor}.subtext0;
+      mOnSecondary = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+      mTertiary = pkgs.catppuccin.${config.catppuccin.flavor}.teal;
+      mOnTertiary = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+      mError = pkgs.catppuccin.${config.catppuccin.flavor}.red;
+      mOnError = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+      mSurface = pkgs.catppuccin.${config.catppuccin.flavor}.mantle;
+      mOnSurface = pkgs.catppuccin.${config.catppuccin.flavor}.text;
+      mSurfaceVariant = pkgs.catppuccin.${config.catppuccin.flavor}.surface0;
+      mOnSurfaceVariant = pkgs.catppuccin.${config.catppuccin.flavor}.lavender;
+      mOutline = pkgs.catppuccin.${config.catppuccin.flavor}.surface2;
+      mShadow = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+      mHover = pkgs.catppuccin.${config.catppuccin.flavor}.subtext1;
+      mOnHover = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+    };
     settings = {
       settingsVersion = 0;
       brightness = {
@@ -378,7 +390,6 @@ in {
       };
       colorSchemes = {
         useWallpaperColors = false;
-        predefinedScheme = "Cat-Custom";
         darkMode = true;
         schedulingMode = "off";
         manualSunrise = "06:30";
@@ -435,7 +446,7 @@ in {
     };
 
     Service = {
-      ExecStart = "${customPackage}/bin/noctalia-shell";
+      ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
       Restart = "on-failure";
       Environment = [
         "LOCALE_ARCHIVE=${pkgs.glibcLocales}/lib/locale"
