@@ -88,14 +88,13 @@
         theme = config.userOptions.cursor.name;
       };
       layout = {
-        gaps = 4;
+        gaps = 2;
         background-color = pkgs.catppuccin.${config.catppuccin.flavor}.mantle;
         default-column-width = {
           proportion = 0.5;
         };
         preset-column-widths = [
           {proportion = 1.0 / 3.0;}
-          {proportion = 1.0 / 2.0;}
           {proportion = 2.0 / 3.0;}
         ];
         border = {
@@ -131,8 +130,8 @@
           ];
           open-floating = true;
           default-floating-position = {
-            x = 32;
-            y = 32;
+            x = 16;
+            y = 16;
             relative-to = "bottom-left";
           };
         }

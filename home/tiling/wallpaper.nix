@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  bingWallpaperScript = pkgs.writeShellScript "bing-wallpaper" ''
+  script = pkgs.writeShellScript "bing-wallpaper" ''
     set -euo pipefail
 
     # Configuration
@@ -63,27 +63,72 @@
     echo "Wallpaper downloaded and applied successfully."
   '';
 in {
+  home.packages = with pkgs; [
+    wpaperd
+  ];
+
+  home.file.".config/wpaperd/config.toml" = {
+    text = ''
+      [default]
+      mode = "center"
+
+      [any]
+      path = "/home/${config.userOptions.username}/.local/share/wallpaper/daily.jpg"
+    '';
+    force = true;
+  };
+
+  systemd.user.services.wpaperd = {
+    Unit = {
+      Description = "Modern wallpaper daemon for Wayland";
+      PartOf = ["niri.service"];
+      Requires = ["niri.service"];
+      After = ["niri.service"];
+    };
+    Service = {
+      ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
+    };
+    Install = {
+      WantedBy = [
+        "niri.service"
+      ];
+    };
+  };
+
   systemd.user.services.bing-wallpaper = {
     Unit = {
       Description = "Download and set Bing wallpaper of the day";
       After = [
         "network-online.target"
-        "niri.service"
-        "noctalia.service"
       ];
       Wants = [
         "network-online.target"
-        "noctalia.service"
       ];
     };
 
     Service = {
       Type = "oneshot";
-      ExecStart = "${bingWallpaperScript}";
+      ExecStart = "${script}";
+      ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wpaperd.service";
     };
 
     Install = {
-      WantedBy = ["niri.service"];
+      WantedBy = [
+        "niri.service"
+      ];
+    };
+  };
+
+  systemd.user.timers.bing-wallpaper = {
+    Unit = {
+      Description = "Run bing wallpaper retrieval daily";
+    };
+    Timer = {
+      OnCalendar = "*-*-* 10:00:00 GMT";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = ["timers.target"];
     };
   };
 }
