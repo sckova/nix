@@ -121,8 +121,8 @@
       general = {
         avatarImage = "/home/${config.userOptions.username}/.face";
         dimmerOpacity = 0.6;
-        showScreenCorners = true;
-        forceBlackScreenCorners = true;
+        showScreenCorners = false;
+        forceBlackScreenCorners = false;
         scaleRatio = 1;
         radiusRatio = 1;
         iRadiusRatio = 1;
@@ -356,13 +356,9 @@
         criticalUrgencyDuration = 15;
         enableKeyboardLayoutToast = true;
         sounds = {
-          enabled = false;
+          enabled = true;
           volume = 0.5;
           separateSounds = false;
-          criticalSoundFile = "";
-          normalSoundFile = "";
-          lowSoundFile = "";
-          excludedApps = "";
         };
       };
       osd = {
