@@ -2,6 +2,7 @@
   imports = [
     ./niri.nix
     ./noctalia.nix
+    ./wallpaper.nix
   ];
 
   home.packages = with pkgs; [
