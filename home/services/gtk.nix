@@ -3,13 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   colors = pkgs.catppuccin.hex.${config.catppuccin.flavor};
 
   mkColorSection = name: value: "@define-color ${name} ${value};";
 
   generateCSS = ''
-    /* Catppuccin ${lib.toUpper (builtins.substring 0 1 config.catppuccin.flavor)}${builtins.substring 1 (-1) config.catppuccin.flavor} ${lib.toUpper (builtins.substring 0 1 config.catppuccin.accent)}${builtins.substring 1 (-1) config.catppuccin.accent} Palette */
+    /* Catppuccin ${lib.toUpper (builtins.substring 0 1 config.catppuccin.flavor)}${
+      builtins.substring 1 (-1) config.catppuccin.flavor
+    } ${lib.toUpper (builtins.substring 0 1 config.catppuccin.accent)}${
+      builtins.substring 1 (-1) config.catppuccin.accent
+    } Palette */
 
     /* Base colors */
     ${mkColorSection "window_bg_color" colors.base}
@@ -116,7 +121,8 @@
     ${mkColorSection "accent_bg_color" colors.${config.catppuccin.accent}}
     @define-color accent_fg_color @window_bg_color;
   '';
-in {
+in
+{
   home.file = {
     ".config/gtk-4.0/gtk.css" = {
       text = generateCSS;

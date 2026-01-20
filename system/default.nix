@@ -7,7 +7,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   environment.sessionVariables = {
     # this makes electron apps work per the wiki
     NIXOS_OZONE_WL = "1";

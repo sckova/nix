@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     kdePackages.qttools
     eza
@@ -44,14 +45,15 @@
   programs.man.generateCaches = false;
 
   home.file.".config/fish/colors.fish" = {
-    text = let
-      flavor = config.catppuccin.flavor;
-      palette = pkgs.catppuccin.bare.${flavor};
-      accent = config.catppuccin.accent;
-    in
+    text =
+      let
+        flavor = config.catppuccin.flavor;
+        palette = pkgs.catppuccin.bare.${flavor};
+        accent = config.catppuccin.accent;
+      in
       lib.concatStringsSep "\n" (
         (lib.mapAttrsToList (name: value: "set -g color_${name} ${value}") palette)
-        ++ ["set -g color_accent ${palette.${accent}}"]
+        ++ [ "set -g color_accent ${palette.${accent}}" ]
       );
     force = true;
   };

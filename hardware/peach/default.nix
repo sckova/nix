@@ -5,12 +5,13 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["sdhci_pci"];
+  boot.initrd.availableKernelModules = [ "sdhci_pci" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/NixOS";
@@ -26,7 +27,7 @@
     ];
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

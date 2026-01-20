@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.noctalia-shell = {
     enable = true;
     colors = {
@@ -33,7 +34,7 @@
       bar = {
         position = "top";
         backgroundOpacity = 1;
-        monitors = [];
+        monitors = [ ];
         density = "spacious";
         showCapsule = true;
         capsuleOpacity = 1;
@@ -198,7 +199,7 @@
         enabled = false;
         overviewEnabled = false;
         directory = "/home/sckova/.local/share/wallpaper";
-        monitorDirectories = [];
+        monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
         recursiveSearch = false;
         setWallpaperOnAllMonitors = true;
@@ -217,7 +218,7 @@
         enableClipboardHistory = true;
         enableClipPreview = true;
         position = "top_left";
-        pinnedExecs = [];
+        pinnedExecs = [ ];
         useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "kitty -e";
@@ -302,8 +303,8 @@
         floatingRatio = 1;
         size = 1;
         onlySameOutput = true;
-        monitors = [];
-        pinnedApps = [];
+        monitors = [ ];
+        pinnedApps = [ ];
         colorizeIcons = false;
         pinnedStatic = false;
         inactiveIndicators = false;
@@ -346,7 +347,7 @@
       };
       notifications = {
         enabled = true;
-        monitors = [];
+        monitors = [ ];
         location = "top_right";
         overlayLayer = true;
         backgroundOpacity = 1;
@@ -372,7 +373,7 @@
           1
           2
         ];
-        monitors = [];
+        monitors = [ ];
       };
       audio = {
         volumeStep = 5;
@@ -380,7 +381,7 @@
         cavaFrameRate = 30;
         visualizerType = "linear";
         visualizerQuality = "high";
-        mprisBlacklist = [];
+        mprisBlacklist = [ ];
         preferredPlayer = "";
         externalMixer = "pwvucontrol || pavucontrol";
       };
@@ -435,8 +436,8 @@
 
   systemd.user.services.noctalia-shell = {
     Unit = {
-      After = ["niri.service"];
-      PartOf = ["niri.service"];
+      After = [ "niri.service" ];
+      PartOf = [ "niri.service" ];
       Description = "Noctalia Shell - Wayland desktop shell";
       Documentation = "https://docs.noctalia.dev/docs";
     };
@@ -454,7 +455,7 @@
     };
 
     Install = {
-      WantedBy = ["niri.service"];
+      WantedBy = [ "niri.service" ];
     };
   };
 }

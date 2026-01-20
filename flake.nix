@@ -78,46 +78,51 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    nixpkgs-unstable,
-    nix-cachyos-kernel,
-    catppuccin,
-    catppuccin-palette,
-    home-manager,
-    plasma-manager,
-    niri,
-    noctalia,
-    spicetify-nix,
-    nur,
-    nixvim,
-    apple-silicon,
-    openmw,
-    catppuccin-discord,
-    catppuccin-btop,
-    catppuccin-mpv,
-    ...
-  }: let
-    # All systems we want to support for the generic VM
-    # to run the vm:
-    # nixos-rebuild build-vm --flake ~/nix#$(nix eval --raw --impure --expr 'builtins.currentSystem')
-    supportedSystems = ["x86_64-linux" "aarch64-linux"];
-
-    # Shared config for all package sets
-    pkgConfig = {
-      allowUnfree = true;
-    };
-
-    mkNixosSystem = {
-      hostname,
-      system,
-      extraModules ? [],
-      extraSpecialArgs ? {},
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      nix-cachyos-kernel,
+      catppuccin,
+      catppuccin-palette,
+      home-manager,
+      plasma-manager,
+      niri,
+      noctalia,
+      spicetify-nix,
+      nur,
+      nixvim,
+      apple-silicon,
+      openmw,
+      catppuccin-discord,
+      catppuccin-btop,
+      catppuccin-mpv,
+      ...
     }:
-      nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs =
-          {
+    let
+      # All systems we want to support for the generic VM
+      # to run the vm:
+      # nixos-rebuild build-vm --flake ~/nix#$(nix eval --raw --impure --expr 'builtins.currentSystem')
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+
+      # Shared config for all package sets
+      pkgConfig = {
+        allowUnfree = true;
+      };
+
+      mkNixosSystem =
+        {
+          hostname,
+          system,
+          extraModules ? [ ],
+          extraSpecialArgs ? { },
+        }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
             inherit catppuccin system;
             pkgs-unstable = import nixpkgs-unstable {
               inherit system;
@@ -125,8 +130,7 @@
             };
           }
           // extraSpecialArgs;
-        modules =
-          [
+          modules = [
             {
               nixpkgs = {
                 config = pkgConfig;
@@ -170,7 +174,7 @@
 
                   # Increase file descriptor limit for builds
                   sandbox = "relaxed";
-                  extra-sandbox-paths = [];
+                  extra-sandbox-paths = [ ];
                   build-users-group = "nixbld";
                 };
 
@@ -241,65 +245,66 @@
             }
           ]
           ++ extraModules;
-      };
-
-    mkHomeConfig = {
-      user,
-      hostname,
-      system,
-    }:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          config = pkgConfig;
         };
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config = pkgConfig;
-        };
-        home.username = user;
-        home.homeDirectory = "/home/${user}";
-        modules = [
-          ./home
-          ./home/hosts/${hostname}.nix
-          catppuccin.homeModules.catppuccin
-          home-manager.homeModules.home-manager
-          plasma-manager.homeModules.plasma-manager
-          niri.homeModules.default
-          noctalia.homeModules.noctalia
-          nixvim.homeModules.nixvim
-        ];
-      };
-  in {
-    nixosConfigurations = {
-      peach = mkNixosSystem {
-        hostname = "peach";
-        system = "aarch64-linux";
-        extraModules = [
-          apple-silicon.nixosModules.default
-          {nixpkgs.overlays = [apple-silicon.overlays.apple-silicon-overlay];}
-        ];
-      };
 
-      alien =
-        mkNixosSystem {
-          hostname = "alien";
-          system = "x86_64-linux";
-          extraModules = [
-            {nixpkgs.overlays = [nix-cachyos-kernel.overlays.default];}
+      mkHomeConfig =
+        {
+          user,
+          hostname,
+          system,
+        }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            config = pkgConfig;
+          };
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config = pkgConfig;
+          };
+          home.username = user;
+          home.homeDirectory = "/home/${user}";
+          modules = [
+            ./home
+            ./home/hosts/${hostname}.nix
+            catppuccin.homeModules.catppuccin
+            home-manager.homeModules.home-manager
+            plasma-manager.homeModules.plasma-manager
+            niri.homeModules.default
+            noctalia.homeModules.noctalia
+            nixvim.homeModules.nixvim
           ];
-        }
-        // nixpkgs.lib.genAttrs supportedSystems (
-          system:
+        };
+    in
+    {
+      nixosConfigurations = {
+        peach = mkNixosSystem {
+          hostname = "peach";
+          system = "aarch64-linux";
+          extraModules = [
+            apple-silicon.nixosModules.default
+            { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
+          ];
+        };
+
+        alien =
+          mkNixosSystem {
+            hostname = "alien";
+            system = "x86_64-linux";
+            extraModules = [
+              { nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ]; }
+            ];
+          }
+          // nixpkgs.lib.genAttrs supportedSystems (
+            system:
             mkNixosSystem {
               hostname = "vm-generic";
               inherit system;
             }
-        );
-    };
+          );
+      };
 
-    homeConfigurations =
-      {
+      homeConfigurations = {
         peach = mkHomeConfig {
           user = "sckova";
           hostname = "peach";
@@ -313,11 +318,11 @@
       }
       // nixpkgs.lib.genAttrs supportedSystems (
         system:
-          mkHomeConfig {
-            user = "sckova";
-            hostname = "vm-generic";
-            inherit system;
-          }
+        mkHomeConfig {
+          user = "sckova";
+          hostname = "vm-generic";
+          inherit system;
+        }
       );
-  };
+    };
 }

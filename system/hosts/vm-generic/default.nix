@@ -1,11 +1,12 @@
-{catppuccin, ...}: {
+{ catppuccin, ... }:
+{
   catppuccin = {
     accent = "green";
     flavor = "mocha";
   };
 
   home-manager.users.sckova = {
-    imports = [catppuccin.homeModules.catppuccin];
+    imports = [ catppuccin.homeModules.catppuccin ];
   };
 
   services.spice-vdagentd.enable = true;

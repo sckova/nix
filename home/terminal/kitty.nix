@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   colors = pkgs.catppuccin.hex.${config.catppuccin.flavor};
   accent = colors.${config.catppuccin.accent};
 
@@ -87,7 +88,8 @@
     text = kitty-colors;
     destination = "/kitty-colors.conf";
   };
-in {
+in
+{
   home.file.".config/kitty/themes" = {
     source = kitty-colors-file;
     recursive = true;
@@ -109,7 +111,7 @@ in {
       };
       shellIntegration.enableFishIntegration = true;
       keybindings = {
-        "ctrl+k" = ''combine : clear_terminal scroll active : clear_terminal scrollback active'';
+        "ctrl+k" = "combine : clear_terminal scroll active : clear_terminal scrollback active";
       };
       settings = {
         include = "/home/${config.userOptions.username}/.config/kitty/themes/kitty-colors.conf";
