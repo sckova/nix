@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./gtk.nix
     ./qt.nix
@@ -35,10 +36,7 @@
   gtk = {
     enable = true;
 
-    colorScheme =
-      if config.userOptions.isDark
-      then "dark"
-      else "light";
+    colorScheme = if config.userOptions.isDark then "dark" else "light";
 
     # theme = {
     #   package = pkgs.kdePackages.breeze-gtk;
@@ -49,10 +47,7 @@
     # };
 
     iconTheme = {
-      name =
-        if config.userOptions.isDark
-        then "Colloid-Dark"
-        else "Colloid-Light";
+      name = if config.userOptions.isDark then "Colloid-Dark" else "Colloid-Light";
       package = pkgs.colloid-icon-theme;
     };
 

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # This following block taken from the wiki:
   # https://nixos.wiki/wiki/Fish#Setting_fish_as_your_shell
   programs.bash = {

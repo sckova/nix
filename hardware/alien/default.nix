@@ -7,7 +7,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -23,7 +24,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/d83ec136-df01-4b9e-a523-6d75726fb904";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = [ "subvol=@" ];
   };
 
   fileSystems."/nix" = {
@@ -46,7 +47,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/056af100-9382-4cbd-b3d5-90df7da69585";}
+    { device = "/dev/disk/by-uuid/056af100-9382-4cbd-b3d5-90df7da69585"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

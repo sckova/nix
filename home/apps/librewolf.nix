@@ -4,50 +4,53 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   home.file.".librewolf/default/chrome/" = {
     source = ./librewolf_css;
     force = true;
     recursive = true;
   };
 
-  home.file.".librewolf/default/chrome/colors.css" = let
-    color = pkgs.catppuccin.rgb.${config.catppuccin.flavor};
-    accent = color.${config.catppuccin.accent};
-  in {
-    text = ''
-      * {
-        --accent: ${accent};
-        --rosewater: ${color.rosewater};
-        --flamingo: ${color.flamingo};
-        --pink: ${color.pink};
-        --mauve: ${color.mauve};
-        --red: ${color.red};
-        --maroon: ${color.maroon};
-        --peach: ${color.peach};
-        --yellow: ${color.yellow};
-        --green: ${color.green};
-        --teal: ${color.teal};
-        --sky: ${color.sky};
-        --sapphire: ${color.sapphire};
-        --blue: ${color.blue};
-        --lavender: ${color.lavender};
-        --text: ${color.text};
-        --subtext1: ${color.subtext1};
-        --subtext0: ${color.subtext0};
-        --overlay2: ${color.overlay2};
-        --overlay1: ${color.overlay1};
-        --overlay0: ${color.overlay0};
-        --surface2: ${color.surface2};
-        --surface1: ${color.surface1};
-        --surface0: ${color.surface0};
-        --base: ${color.base};
-        --mantle: ${color.mantle};
-        --crust: ${color.crust};
-      }
-    '';
-    force = true;
-  };
+  home.file.".librewolf/default/chrome/colors.css" =
+    let
+      color = pkgs.catppuccin.rgb.${config.catppuccin.flavor};
+      accent = color.${config.catppuccin.accent};
+    in
+    {
+      text = ''
+        * {
+          --accent: ${accent};
+          --rosewater: ${color.rosewater};
+          --flamingo: ${color.flamingo};
+          --pink: ${color.pink};
+          --mauve: ${color.mauve};
+          --red: ${color.red};
+          --maroon: ${color.maroon};
+          --peach: ${color.peach};
+          --yellow: ${color.yellow};
+          --green: ${color.green};
+          --teal: ${color.teal};
+          --sky: ${color.sky};
+          --sapphire: ${color.sapphire};
+          --blue: ${color.blue};
+          --lavender: ${color.lavender};
+          --text: ${color.text};
+          --subtext1: ${color.subtext1};
+          --subtext0: ${color.subtext0};
+          --overlay2: ${color.overlay2};
+          --overlay1: ${color.overlay1};
+          --overlay0: ${color.overlay0};
+          --surface2: ${color.surface2};
+          --surface1: ${color.surface1};
+          --surface0: ${color.surface0};
+          --base: ${color.base};
+          --mantle: ${color.mantle};
+          --crust: ${color.crust};
+        }
+      '';
+      force = true;
+    };
 
   home.file.".local/share/firefoxpwa/profiles/01KEYXH9TC4B54J5CTPNE75JP0/prefs.js" = {
     text = ''
@@ -256,59 +259,61 @@
               }
             ];
           };
-          search = let
-            nixIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/nix-snowflake.svg";
-            googleIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/google.svg";
-          in {
-            force = true;
-            default = "google";
-            order = [
-              "google"
-            ];
-            engines = {
-              nix-packages = {
-                name = "Nix Packages";
-                urls = [
-                  {
-                    template = "https://search.nixos.org/packages";
-                    params = [
-                      {
-                        name = "type";
-                        value = "packages";
-                      }
-                      {
-                        name = "query";
-                        value = "{searchTerms}";
-                      }
-                    ];
-                  }
-                ];
+          search =
+            let
+              nixIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/nix-snowflake.svg";
+              googleIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/google.svg";
+            in
+            {
+              force = true;
+              default = "google";
+              order = [
+                "google"
+              ];
+              engines = {
+                nix-packages = {
+                  name = "Nix Packages";
+                  urls = [
+                    {
+                      template = "https://search.nixos.org/packages";
+                      params = [
+                        {
+                          name = "type";
+                          value = "packages";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
 
-                icon = nixIcon;
-                definedAliases = ["@np"];
-              };
+                  icon = nixIcon;
+                  definedAliases = [ "@np" ];
+                };
 
-              nixos-wiki = {
-                name = "NixOS Wiki";
-                urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
-                icon = nixIcon;
-                definedAliases = ["@nw"];
-              };
+                nixos-wiki = {
+                  name = "NixOS Wiki";
+                  urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
+                  icon = nixIcon;
+                  definedAliases = [ "@nw" ];
+                };
 
-              google = {
-                name = "Google";
-                urls = [{template = "https://google.com/search?q={searchTerms}";}];
-                icon = googleIcon;
-                definedAliases = ["@go"];
-              };
+                google = {
+                  name = "Google";
+                  urls = [ { template = "https://google.com/search?q={searchTerms}"; } ];
+                  icon = googleIcon;
+                  definedAliases = [ "@go" ];
+                };
 
-              wikipedia = {
-                name = "Wikipedia";
-                urls = [{template = "https://en.wikipedia.org/w/index.php?search={searchTerms}";}];
-                definedAliases = ["@wi"];
+                wikipedia = {
+                  name = "Wikipedia";
+                  urls = [ { template = "https://en.wikipedia.org/w/index.php?search={searchTerms}"; } ];
+                  definedAliases = [ "@wi" ];
+                };
               };
             };
-          };
         };
       };
     };

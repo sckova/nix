@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   catppuccin = {
     accent = "lavender";
     flavor = "macchiato";
@@ -34,7 +35,7 @@
 
     shortcuts = {
       # this is really annoying on apple laptops
-      org_kde_powerdevil.Sleep = [];
+      org_kde_powerdevil.Sleep = [ ];
     };
 
     panels = [
@@ -50,7 +51,7 @@
                 activeTaskSource = "activeTask";
               };
               layout = {
-                elements = ["windowTitle"];
+                elements = [ "windowTitle" ];
                 horizontalAlignment = "right";
                 showDisabledElements = "deactivated";
                 verticalAlignment = "center";
