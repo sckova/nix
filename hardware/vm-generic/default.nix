@@ -5,10 +5,16 @@
   lib,
   system,
   ...
-}: {
-  imports = [];
+}:
+{
+  imports = [ ];
 
-  boot.initrd.availableKernelModules = ["ehci_pci" "xhci_pci" "usbhid" "sr_mod"];
+  boot.initrd.availableKernelModules = [
+    "ehci_pci"
+    "xhci_pci"
+    "usbhid"
+    "sr_mod"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -18,11 +24,14 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-label/swap";}
+    { device = "/dev/disk/by-label/swap"; }
   ];
 
   # Set platform from the system argument passed by the flake
@@ -30,7 +39,7 @@
 
   # Enable Parallels tools only on aarch64
   hardware.parallels.enable = lib.mkIf (system == "aarch64-linux") true;
-  nixpkgs.config.allowUnfreePredicate =
-    lib.mkIf (system == "aarch64-linux")
-    (pkg: builtins.elem (lib.getName pkg) ["prl-tools"]);
+  nixpkgs.config.allowUnfreePredicate = lib.mkIf (system == "aarch64-linux") (
+    pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ]
+  );
 }

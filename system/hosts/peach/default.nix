@@ -2,8 +2,9 @@
   pkgs,
   config,
   ...
-}: {
-  boot.kernelParams = ["appledrm.show_notch=1"];
+}:
+{
+  boot.kernelParams = [ "appledrm.show_notch=1" ];
 
   catppuccin = {
     accent = "lavender";
@@ -14,7 +15,7 @@
     ddcutil
   ];
 
-  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   boot.kernelModules = [
     "i2c-dev"
     "ddcci_backlight"

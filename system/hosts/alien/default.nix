@@ -2,16 +2,17 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
     ddcutil
     mangohud
-    (bottles.override {removeWarningPopup = true;})
+    (bottles.override { removeWarningPopup = true; })
   ];
 
   # enable ddcutil
-  users.users.sckova.extraGroups = ["i2c"];
-  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+  users.users.sckova.extraGroups = [ "i2c" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   boot.kernelModules = [
     "i2c-dev"
     "ddcci_backlight"
@@ -92,7 +93,7 @@
 
   # enable hyper-v for guests
   virtualisation.hypervGuest.enable = true;
-  boot.blacklistedKernelModules = ["hyperv_fb"];
+  boot.blacklistedKernelModules = [ "hyperv_fb" ];
 
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
@@ -100,5 +101,5 @@
   ];
 
   # i don't even remember what this does or why i added it
-  systemd.tmpfiles.rules = ["L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"];
+  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 }

@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   script = pkgs.writeShellScript "bing-wallpaper" ''
     set -euo pipefail
 
@@ -62,7 +63,8 @@
 
     echo "Wallpaper downloaded and applied successfully."
   '';
-in {
+in
+{
   home.packages = with pkgs; [
     wpaperd
   ];
@@ -81,9 +83,9 @@ in {
   systemd.user.services.wpaperd = {
     Unit = {
       Description = "Modern wallpaper daemon for Wayland";
-      PartOf = ["niri.service"];
-      Requires = ["niri.service"];
-      After = ["niri.service"];
+      PartOf = [ "niri.service" ];
+      Requires = [ "niri.service" ];
+      After = [ "niri.service" ];
     };
     Service = {
       ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
@@ -128,7 +130,7 @@ in {
       Persistent = true;
     };
     Install = {
-      WantedBy = ["timers.target"];
+      WantedBy = [ "timers.target" ];
     };
   };
 }

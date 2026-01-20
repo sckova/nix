@@ -5,7 +5,8 @@
   copyDesktopItems,
   chromium,
   writeShellScriptBin,
-}: let
+}:
+let
   pname = "spotify-webapp";
   version = "1.0.0";
 
@@ -24,48 +25,48 @@
       "$@"
   '';
 in
-  stdenv.mkDerivation {
-    inherit pname version;
+stdenv.mkDerivation {
+  inherit pname version;
 
-    dontUnpack = true;
-    dontBuild = true;
+  dontUnpack = true;
+  dontBuild = true;
 
-    nativeBuildInputs = [copyDesktopItems];
+  nativeBuildInputs = [ copyDesktopItems ];
 
-    desktopItems = [
-      (makeDesktopItem {
-        name = "spotify-webapp";
-        exec = "spotify-webapp %U";
-        icon = "spotify";
-        desktopName = "Spotify";
-        genericName = "Music Streaming";
-        comment = "Listen to music on Spotify";
-        categories = [
-          "Audio"
-          "Music"
-          "AudioVideo"
-        ];
-        mimeTypes = ["x-scheme-handler/spotify"];
-        startupWMClass = "spotify-webapp";
-        startupNotify = true;
-      })
-    ];
+  desktopItems = [
+    (makeDesktopItem {
+      name = "spotify-webapp";
+      exec = "spotify-webapp %U";
+      icon = "spotify";
+      desktopName = "Spotify";
+      genericName = "Music Streaming";
+      comment = "Listen to music on Spotify";
+      categories = [
+        "Audio"
+        "Music"
+        "AudioVideo"
+      ];
+      mimeTypes = [ "x-scheme-handler/spotify" ];
+      startupWMClass = "spotify-webapp";
+      startupNotify = true;
+    })
+  ];
 
-    installPhase = ''
-      runHook preInstall
+  installPhase = ''
+    runHook preInstall
 
-      mkdir -p $out/bin
-      ln -s ${launchScript}/bin/spotify-webapp $out/bin/spotify-webapp
+    mkdir -p $out/bin
+    ln -s ${launchScript}/bin/spotify-webapp $out/bin/spotify-webapp
 
-      runHook postInstall
-    '';
+    runHook postInstall
+  '';
 
-    meta = with lib; {
-      description = "Spotify web app running in Chromium";
-      homepage = "https://open.spotify.com";
-      license = licenses.free;
-      maintainers = [];
-      platforms = platforms.linux;
-      mainProgram = "spotify-webapp";
-    };
-  }
+  meta = with lib; {
+    description = "Spotify web app running in Chromium";
+    homepage = "https://open.spotify.com";
+    license = licenses.free;
+    maintainers = [ ];
+    platforms = platforms.linux;
+    mainProgram = "spotify-webapp";
+  };
+}

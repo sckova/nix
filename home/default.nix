@@ -4,7 +4,8 @@
   pkgs-unstable,
   lib,
   ...
-}: {
+}:
+{
   options = {
     catppuccinUpper = {
       accent = lib.mkOption {
@@ -106,30 +107,32 @@
           default = pkgs.noto-fonts-color-emoji;
         };
       };
-      cursor = let
-        attrName = config.catppuccin.flavor + config.catppuccinUpper.accent;
-      in {
-        name = lib.mkOption {
-          type = lib.types.str;
-          readOnly = true;
-          default = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
+      cursor =
+        let
+          attrName = config.catppuccin.flavor + config.catppuccinUpper.accent;
+        in
+        {
+          name = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+            default = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
+          };
+          package = lib.mkOption {
+            type = lib.types.package;
+            readOnly = true;
+            default = pkgs.catppuccin-cursors.${attrName};
+          };
+          size = lib.mkOption {
+            type = lib.types.int;
+            readOnly = true;
+            default = 24;
+          };
+          path = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+            default = "${pkgs.catppuccin-cursors.${attrName}}/share/icons";
+          };
         };
-        package = lib.mkOption {
-          type = lib.types.package;
-          readOnly = true;
-          default = pkgs.catppuccin-cursors.${attrName};
-        };
-        size = lib.mkOption {
-          type = lib.types.int;
-          readOnly = true;
-          default = 24;
-        };
-        path = lib.mkOption {
-          type = lib.types.str;
-          readOnly = true;
-          default = "${pkgs.catppuccin-cursors.${attrName}}/share/icons";
-        };
-      };
       isDark = lib.mkOption {
         type = lib.types.bool;
         readOnly = true;
@@ -190,8 +193,8 @@
         #   enableWideVine = true;
         # })
         (catppuccin-kde.override {
-          flavour = [config.catppuccin.flavor];
-          accents = [config.catppuccin.accent];
+          flavour = [ config.catppuccin.flavor ];
+          accents = [ config.catppuccin.accent ];
         })
       ])
       ++ [
