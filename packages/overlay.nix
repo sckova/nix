@@ -5,10 +5,11 @@ final: prev: {
     inherit (final) catppuccin-discord-git;
   };
 
-  openmw = final.callPackage ./openmw {
-    openmw = prev.openmw;
-    inherit (final) openmw-git;
-  };
+  openmw = prev.openmw.overrideAttrs (oldAttrs: {
+    pname = "openmw";
+    src = final.openmw-git;
+    version = "${final.openmw-git.rev}";
+  });
 
   linuxPackages_asahi = prev.linuxPackages_asahi.override {
     _kernelPatches = [
