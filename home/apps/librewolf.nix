@@ -12,45 +12,40 @@
     recursive = true;
   };
 
-  home.file.".librewolf/default/chrome/colors.css" =
-    let
-      color = pkgs.catppuccin.rgb.${config.catppuccin.flavor};
-      accent = color.${config.catppuccin.accent};
-    in
-    {
-      text = ''
-        * {
-          --accent: ${accent};
-          --rosewater: ${color.rosewater};
-          --flamingo: ${color.flamingo};
-          --pink: ${color.pink};
-          --mauve: ${color.mauve};
-          --red: ${color.red};
-          --maroon: ${color.maroon};
-          --peach: ${color.peach};
-          --yellow: ${color.yellow};
-          --green: ${color.green};
-          --teal: ${color.teal};
-          --sky: ${color.sky};
-          --sapphire: ${color.sapphire};
-          --blue: ${color.blue};
-          --lavender: ${color.lavender};
-          --text: ${color.text};
-          --subtext1: ${color.subtext1};
-          --subtext0: ${color.subtext0};
-          --overlay2: ${color.overlay2};
-          --overlay1: ${color.overlay1};
-          --overlay0: ${color.overlay0};
-          --surface2: ${color.surface2};
-          --surface1: ${color.surface1};
-          --surface0: ${color.surface0};
-          --base: ${color.base};
-          --mantle: ${color.mantle};
-          --crust: ${color.crust};
-        }
-      '';
-      force = true;
-    };
+  home.file.".librewolf/default/chrome/colors.css" = with config.scheme.withHashtag; {
+    text = ''
+      * {
+        --accent: ${base09};
+        --rosewater: ${base06};
+        --flamingo: ${base0F};
+        --pink: ${base17};
+        --mauve: ${base0E};
+        --red: ${base08};
+        --maroon: ${base12};
+        --peach: ${base09};
+        --yellow: ${base0A};
+        --green: ${base0B};
+        --teal: ${base0C};
+        --sky: ${base15};
+        --sapphire: ${base16};
+        --blue: ${base0D};
+        --lavender: ${base07};
+        --text: ${base05};
+        --subtext1: ${base04};
+        --subtext0: ${base04};
+        --overlay2: ${base03};
+        --overlay1: ${base03};
+        --overlay0: ${base03};
+        --surface2: ${base02};
+        --surface1: ${base01};
+        --surface0: ${base01};
+        --base: ${base00};
+        --mantle: ${base10};
+        --crust: ${base11};
+      }
+    '';
+    force = true;
+  };
 
   home.file.".local/share/firefoxpwa/profiles/01KEYXH9TC4B54J5CTPNE75JP0/prefs.js" = {
     text = ''

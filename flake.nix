@@ -7,13 +7,18 @@
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    base16 = {
+      url = "github:SenchoPens/base16.nix";
     };
 
-    catppuccin-palette = {
-      url = "github:abhinandh-s/catppuccin-nix";
+    tt-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
+
+    base16-discord = {
+      url = "github:imbypass/base16-discord";
+      flake = false;
     };
 
     home-manager = {
@@ -61,21 +66,6 @@
       url = "gitlab:OpenMW/openmw";
       flake = false;
     };
-
-    catppuccin-discord = {
-      url = "github:catppuccin/discord";
-      flake = false;
-    };
-
-    catppuccin-btop = {
-      url = "github:catppuccin/btop";
-      flake = false;
-    };
-
-    catppuccin-mpv = {
-      url = "github:catppuccin/mpv";
-      flake = false;
-    };
   };
 
   outputs =
@@ -83,8 +73,9 @@
       nixpkgs,
       nixpkgs-unstable,
       nix-cachyos-kernel,
-      catppuccin,
-      catppuccin-palette,
+      base16,
+      tt-schemes,
+      base16-discord,
       home-manager,
       plasma-manager,
       niri,
@@ -94,9 +85,6 @@
       nixvim,
       apple-silicon,
       openmw,
-      catppuccin-discord,
-      catppuccin-btop,
-      catppuccin-mpv,
       ...
     }:
     let
@@ -123,7 +111,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit catppuccin system;
+            inherit system;
             pkgs-unstable = import nixpkgs-unstable {
               inherit system;
               config = pkgConfig;
@@ -135,15 +123,12 @@
               nixpkgs = {
                 config = pkgConfig;
                 overlays = [
-                  catppuccin-palette.overlays.default
                   niri.overlays.niri
                   noctalia.overlays.default
                   nur.overlays.default
                   (final: prev: {
                     openmw-git = openmw;
-                    catppuccin-discord-git = catppuccin-discord;
-                    catppuccin-btop-git = catppuccin-btop;
-                    catppuccin-mpv-git = catppuccin-mpv;
+                    base16-discord-git = base16-discord;
                   })
                   (import ./packages/overlay.nix)
                 ];
@@ -207,7 +192,6 @@
             ./system/tailscale
             ./system/hosts/${hostname}
             ./hardware/${hostname}
-            catppuccin.nixosModules.catppuccin
             niri.nixosModules.niri
             home-manager.nixosModules.home-manager
             noctalia.nixosModules.default
@@ -218,6 +202,7 @@
                 users.sckova = {
                   imports = [
                     ./home
+                    ./options.nix
                     ./home/apps
                     ./home/games
                     ./home/hosts/${hostname}
@@ -228,7 +213,13 @@
                   ];
                 };
                 sharedModules = [
-                  catppuccin.homeModules.catppuccin
+                  base16.nixosModule
+                  (
+                    { config, ... }:
+                    {
+                      scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
+                    }
+                  )
                   plasma-manager.homeModules.plasma-manager
                   noctalia.homeModules.default
                   spicetify-nix.homeManagerModules.default
@@ -267,7 +258,6 @@
           modules = [
             ./home
             ./home/hosts/${hostname}.nix
-            catppuccin.homeModules.catppuccin
             home-manager.homeModules.home-manager
             plasma-manager.homeModules.plasma-manager
             niri.homeModules.default

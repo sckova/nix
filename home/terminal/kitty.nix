@@ -4,11 +4,8 @@
   ...
 }:
 let
-  colors = pkgs.catppuccin.hex.${config.catppuccin.flavor};
-  accent = colors.${config.catppuccin.accent};
-
   # Map Catppuccin colors to Kitty theme structure
-  kitty-colors = ''
+  kitty-colors = with config.scheme.withHashtag; ''
     # vim:ft=kitty
     ## name:     Kova's Nixified Kitty
     ## author:   Catppuccin Org & sckova
@@ -17,70 +14,70 @@ let
     ## blurb:    The theme generated from the NixOS configuration!
 
     # The basic colors
-    foreground              ${colors.text}
-    background              ${colors.base}
-    selection_foreground    ${colors.base}
-    selection_background    ${colors.rosewater}
+    foreground              ${base05}
+    background              ${base00}
+    selection_foreground    ${base00}
+    selection_background    ${base06}
 
     # Cursor colors
-    cursor                  ${colors.rosewater}
-    cursor_text_color       ${colors.base}
+    cursor                  ${base06}
+    cursor_text_color       ${base00}
 
     # URL underline color when hovering with mouse
-    url_color               ${colors.rosewater}
+    url_color               ${base06}
 
     # Kitty window border colors
-    active_border_color     ${accent}
-    inactive_border_color   ${colors.overlay0}
-    bell_border_color       ${colors.yellow}
+    active_border_color     ${base09}
+    inactive_border_color   ${base03}
+    bell_border_color       ${base0A}
 
     # Tab bar colors
-    active_tab_foreground   ${colors.crust}
-    active_tab_background   ${accent}
-    inactive_tab_foreground ${colors.text}
-    inactive_tab_background ${colors.mantle}
-    tab_bar_background      ${colors.crust}
+    active_tab_foreground   ${base11}
+    active_tab_background   ${base09}
+    inactive_tab_foreground ${base05}
+    inactive_tab_background ${base10}
+    tab_bar_background      ${base11}
 
     # Colors for marks (marked text in the terminal)
-    mark1_foreground ${colors.base}
-    mark1_background ${accent}
-    mark2_foreground ${colors.base}
-    mark2_background ${colors.blue}
-    mark3_foreground ${colors.base}
-    mark3_background ${colors.sky}
+    mark1_foreground ${base00}
+    mark1_background ${base09}
+    mark2_foreground ${base00}
+    mark2_background ${base0D}
+    mark3_foreground ${base00}
+    mark3_background ${base15}
 
     # The 16 terminal colors
     # black
-    color0 ${colors.surface1}
-    color8 ${colors.surface2}
+    color0 ${base02}
+    color8 ${base02}
 
     # red
-    color1 ${colors.red}
-    color9 ${colors.red}
+    color1 ${base08}
+    color9 ${base08}
 
     # green
-    color2  ${colors.green}
-    color10 ${colors.green}
+    color2  ${base0B}
+    color10 ${base0B}
 
     # yellow
-    color3  ${colors.yellow}
-    color11 ${colors.yellow}
+    color3  ${base0A}
+    color11 ${base0A}
 
     # blue
-    color4  ${colors.blue}
-    color12 ${colors.blue}
+    color4  ${base0D}
+    color12 ${base0D}
 
     # magenta
-    color5  ${colors.pink}
-    color13 ${colors.pink}
+    color5  ${base17}
+    color13 ${base17}
 
     # cyan
-    color6  ${colors.teal}
-    color14 ${colors.teal}
+    color6  ${base0C}
+    color14 ${base0C}
 
     # white
-    color7  ${colors.subtext1}
-    color15 ${colors.subtext0}
+    color7  ${base04}
+    color15 ${base04}
   '';
 
   kitty-colors-file = pkgs.writeTextFile {
@@ -132,7 +129,7 @@ in
     };
     bat = {
       enable = true;
-      config.theme = "Catppuccin ${config.catppuccinUpper.flavor}";
+      # config.theme = "Catppuccin ${config.catppuccinUpper.flavor}";
     };
   };
 }

@@ -1,10 +1,5 @@
 { catppuccin, ... }:
 {
-  catppuccin = {
-    accent = "green";
-    flavor = "mocha";
-  };
-
   home-manager.users.sckova = {
     imports = [ catppuccin.homeModules.catppuccin ];
   };
