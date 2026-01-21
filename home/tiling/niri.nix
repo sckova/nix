@@ -90,7 +90,8 @@
       };
       layout = {
         gaps = 4;
-        background-color = pkgs.catppuccin.${config.catppuccin.flavor}.mantle;
+        # background-color = pkgs.catppuccin.${config.catppuccin.flavor}.mantle;
+        background-color = "transparent";
         default-column-width = {
           proportion = 0.5;
         };
@@ -124,6 +125,16 @@
       };
       window-rules = [
         {
+          geometry-corner-radius = {
+            top-left = 16.0;
+            top-right = 16.0;
+            bottom-left = 16.0;
+            bottom-right = 16.0;
+          };
+          clip-to-geometry = true;
+          opacity = 1.0;
+        }
+        {
           matches = [
             {
               app-id = "librewolf$";
@@ -138,15 +149,6 @@
           };
         }
         {
-          geometry-corner-radius = {
-            top-left = 16.0;
-            top-right = 16.0;
-            bottom-left = 16.0;
-            bottom-right = 16.0;
-          };
-          clip-to-geometry = true;
-        }
-        {
           matches = [
             {
               app-id = "openmw";
@@ -159,6 +161,16 @@
           ];
           open-maximized = true;
           open-focused = true;
+        }
+      ];
+      layer-rules = [
+        {
+          matches = [
+            {
+              namespace = "^wpaperd.*";
+            }
+          ];
+          place-within-backdrop = true;
         }
       ];
       binds = {
