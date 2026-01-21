@@ -168,6 +168,10 @@
         noto-fonts
         noto-fonts-color-emoji
         nix-prefetch
+        prowlarr
+        radarr
+        sonarr
+        flaresolverr
 
         # kde and kde theming
         kde-rounded-corners
