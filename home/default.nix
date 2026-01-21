@@ -158,7 +158,6 @@
         spotdl
         browsh
         mosh
-        spotify-player
         gh
 
         # development & tooling
@@ -183,6 +182,8 @@
         # nur.repos.forkprince.helium-nightly
         qbittorrent
         nautilus
+        fractal
+        tuba
 
         # gui applications ( multimedia )
         audacity
@@ -190,7 +191,8 @@
         musescore
         gimp
         calibre
-        spotify-qt
+        riff
+        dissent
 
         # overrides
         # (chromium.override {
