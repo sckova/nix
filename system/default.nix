@@ -80,7 +80,6 @@
   programs.dconf.enable = true;
 
   services = {
-    desktopManager.plasma6.enable = false;
     displayManager = {
       sddm = {
         enable = true;
@@ -99,6 +98,7 @@
       pulse.enable = true;
     };
     udisks2.enable = true;
+    gvfs.enable = true;
   };
 
   environment = {
@@ -107,12 +107,6 @@
       firefoxpwa
       distrobox
     ];
-
-    # plasma6.excludePackages = with pkgs.kdePackages; [
-    #   elisa
-    #   konsole
-    #   khelpcenter
-    # ];
   };
 
   programs.gnupg.agent = {
