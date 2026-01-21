@@ -4,19 +4,17 @@
   ...
 }:
 let
-  catppuccin-discord = "${pkgs.catppuccin-discord}/share/catppuccin-discord/catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}.theme.css";
-
   mergedThemes = pkgs.runCommand "mergedConfig" { } ''
     mkdir -p $out
-    cp ${catppuccin-discord} $out/catppuccin.css
+    cp ${pkgs.base16-discord-git}/base16.css $out/theme.css
   '';
 
   vesktopSettings = {
     discordBranch = "stable";
     minimizeToTray = true;
     arRPC = true;
-    splashColor = "${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.text}";
-    splashBackground = "${pkgs.catppuccin.rgb.${config.catppuccin.flavor}.base}";
+    splashColor = config.scheme.withHashtag.base05;
+    splashBackground = config.scheme.withHashtag.base00;
     spellCheckLanguages = [
       "en-US"
       "en"
@@ -47,11 +45,30 @@ in
     force = true;
   };
 
-  home.file.".config/vesktop/settings/quickCss.css" = {
+  home.file.".config/vesktop/settings/quickCss.css" = with config.scheme.withHashtag; {
     text = ''
       * {
         font-family: "${config.userOptions.fontSans.name}" !important;
         font-size: ${toString config.userOptions.fontSans.size}px;
+      }
+
+      :root {
+        --base00: ${base00};
+        --base01: ${base01};
+        --base02: ${base02};
+        --base03: ${base03};
+        --base04: ${base04};
+        --base05: ${base05};
+        --base06: ${base06};
+        --base07: ${base07};
+        --base08: ${base08};
+        --base09: ${base09};
+        --base0A: ${base0A};
+        --base0B: ${base0B};
+        --base0C: ${base0C};
+        --base0D: ${base0D};
+        --base0E: ${base0E};
+        --base0F: ${base0F};
       }
     '';
     force = true;

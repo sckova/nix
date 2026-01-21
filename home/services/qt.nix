@@ -34,82 +34,82 @@
       };
 
       ColorScheme =
+        with config.scheme;
         let
-          c = pkgs.catppuccin.bare.${config.catppuccin.flavor};
-          accent = c.${config.catppuccin.accent};
+          accent = base09;
           mkColors = roles: builtins.concatStringsSep ", " (map (r: "#ff${r}") roles);
         in
         {
           active_colors = mkColors [
-            c.text
-            c.surface0
-            c.surface1
-            c.surface0
-            c.base
-            c.mantle
-            c.text
-            c.text
-            c.text
-            c.base
-            c.mantle
-            c.crust
+            base05
+            base01
+            base02
+            base01
+            base00
+            base10
+            base05
+            base05
+            base05
+            base00
+            base10
+            base11
             accent
-            c.base
+            base00
             accent
-            c.mauve
-            c.mantle
+            base0E
+            base10
             "000000"
-            c.base
-            c.text
-            c.overlay0
+            base00
+            base05
+            base03
             accent
           ];
           disabled_colors = mkColors [
-            c.overlay0
-            c.surface0
-            c.surface1
-            c.surface0
-            c.overlay0
-            c.mantle
-            c.overlay0
-            c.text
-            c.overlay0
-            c.surface0
-            c.surface0
-            c.mantle
-            c.overlay1
-            c.text
+            base03
+            base01
+            base02
+            base01
+            base03
+            base10
+            base03
+            base05
+            base03
+            base01
+            base01
+            base10
+            base03
+            base05
             "0000ff"
             "ff00ff"
-            c.surface0
+            base01
             "000000"
-            c.surface0
-            c.base
+            base01
+            base00
             "80000000"
-            c.overlay1
+            base03
           ];
           inactive_colors = mkColors [
-            c.text
-            c.surface0
-            c.surface1
-            c.surface0
-            c.base
-            c.mantle
-            c.text
-            c.text
-            c.text
-            c.base
-            c.mantle
-            c.crust
+            base05
+            base01
+            base02
+            base01
+            base00
+            base10
+            base05
+            base05
+            base05
+            base00
+            base10
+            base11
             accent
-            c.base
+            base00
             accent
-            c.mauve
-            c.mantle
+            base0E
+            base10
             "000000"
-            c.base
-            c.text
-            c.overlay0
+            base00
+            base05
+            base03
             accent
           ];
         };

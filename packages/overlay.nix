@@ -1,10 +1,6 @@
 final: prev: {
   spotify-webapp = final.callPackage ./spotify-webapp { };
 
-  catppuccin-discord = final.callPackage ./catppuccin-discord {
-    inherit (final) catppuccin-discord-git;
-  };
-
   openmw = prev.openmw.overrideAttrs (oldAttrs: {
     pname = "openmw";
     src = final.openmw-git;

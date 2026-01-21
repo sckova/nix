@@ -5,7 +5,7 @@
 }:
 {
   # https://github.com/sodiboo/niri-flake/blob/main/docs.md
-  programs.niri = {
+  programs.niri = with config.scheme.withHashtag; {
     # handle package systemwide
     package = null;
 
@@ -16,7 +16,7 @@
       gestures.hot-corners.enable = false;
       spawn-at-startup = [ ]; # systemd is based sorry
       overview = {
-        backdrop-color = pkgs.catppuccin.${config.catppuccin.flavor}.crust;
+        backdrop-color = base11;
         workspace-shadow.enable = false;
       };
       input = {
@@ -90,7 +90,7 @@
       };
       layout = {
         gaps = 4;
-        # background-color = pkgs.catppuccin.${config.catppuccin.flavor}.mantle;
+        # background-color = base10;
         background-color = "transparent";
         default-column-width = {
           proportion = 0.5;
@@ -103,16 +103,16 @@
         border = {
           enable = true;
           width = 2;
-          active.color = pkgs.catppuccin.${config.catppuccin.flavor}.${config.catppuccin.accent};
-          inactive.color = pkgs.catppuccin.${config.catppuccin.flavor}.surface0;
-          urgent.color = pkgs.catppuccin.${config.catppuccin.flavor}.maroon;
+          active.color = base09;
+          inactive.color = base01;
+          urgent.color = base12;
         };
         focus-ring = {
           enable = false;
           width = 2;
-          active.color = pkgs.catppuccin.${config.catppuccin.flavor}.${config.catppuccin.accent};
-          inactive.color = pkgs.catppuccin.${config.catppuccin.flavor}.surface0;
-          urgent.color = pkgs.catppuccin.${config.catppuccin.flavor}.maroon;
+          active.color = base09;
+          inactive.color = base01;
+          urgent.color = base12;
         };
         shadow = {
           enable = true;
@@ -120,7 +120,7 @@
           offset.x = 0;
           offset.y = 5;
           softness = 30;
-          color = pkgs.catppuccin.${config.catppuccin.flavor}.base + "77";
+          color = base00 + "77";
         };
       };
       window-rules = [

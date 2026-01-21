@@ -4,9 +4,9 @@
   ...
 }:
 {
-  catppuccin = {
-    accent = "green";
-    flavor = "mocha";
+  colors = {
+    scheme = "catppuccin-mocha";
+    accent = "base0B";
   };
 
   home.packages = with pkgs; [ ];
