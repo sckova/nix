@@ -11,6 +11,8 @@ final: prev: {
     version = "${final.openmw-git.rev}";
   });
 
+  riff = final.callPackage ./riff { };
+
   linuxPackages_asahi = prev.linuxPackages_asahi.override {
     _kernelPatches = [
       {
