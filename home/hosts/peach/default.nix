@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   catppuccin = {
-    accent = "lavender";
-    flavor = "macchiato";
+    accent = "peach";
+    flavor = "mocha";
   };
 
   home.packages = with pkgs; [
