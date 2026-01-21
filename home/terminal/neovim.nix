@@ -36,12 +36,49 @@
       expandtab = true;
       number = true;
     };
-    colorschemes.catppuccin = {
+    colorschemes.palette = {
       enable = true;
       settings = {
-        flavour = config.catppuccin.flavor;
+        palettes = {
+          main = "base16_custom";
+          accent = "base16_custom";
+          state = "base16_custom";
+        };
+
+        custom_palettes = with config.scheme.withHashtag; {
+          main.base16_custom = {
+            color0 = base00; # background
+            color1 = base01; # lighter background
+            color2 = base02; # selection background
+            color3 = base03; # comments
+            color4 = base04; # dark foreground
+            color5 = base05; # default foreground
+            color6 = base06; # light foreground
+            color7 = base07; # lightest foreground
+            color8 = base05; # variables/tags
+          };
+
+          accent.base16_custom = {
+            accent0 = base09; # integers/constants
+            accent1 = base0A; # classes/search
+            accent2 = base0B; # strings/inherited
+            accent3 = base0C; # support/regex
+            accent4 = base0D; # functions/headings
+            accent5 = base0E; # keywords/bold
+            accent6 = base0F; # deprecated/embedded
+          };
+
+          state.base16_custom = {
+            error = base08; # red
+            warning = base0A; # yellow
+            hint = base0C; # cyan
+            ok = base0B; # green
+            info = base0D; # blue
+          };
+        };
       };
     };
+
     keymaps = [
       # --- Normal mode mappings ---
       {
@@ -186,110 +223,106 @@
           nixd.enable = true;
         };
       };
-      lualine =
-        let
-          palette = pkgs.catppuccin.${config.catppuccin.flavor};
-        in
-        {
-          enable = true;
-          settings = {
-            options = {
-              theme = {
-                normal = {
-                  a = {
-                    fg = palette.base;
-                    bg = palette.mauve;
-                  };
-                  b = {
-                    fg = palette.text;
-                    bg = palette.surface0;
-                  };
-                  c = {
-                    fg = palette.text;
-                  };
+      lualine = with config.scheme.withHashtag; {
+        enable = true;
+        settings = {
+          options = {
+            theme = {
+              normal = {
+                a = {
+                  fg = base00;
+                  bg = base0E;
                 };
-                insert = {
-                  a = {
-                    fg = palette.base;
-                    bg = palette.blue;
-                  };
+                b = {
+                  fg = base05;
+                  bg = base01;
                 };
-                visual = {
-                  a = {
-                    fg = palette.base;
-                    bg = palette.teal;
-                  };
-                };
-                replace = {
-                  a = {
-                    fg = palette.base;
-                    bg = palette.red;
-                  };
-                };
-                inactive = {
-                  a = {
-                    fg = palette.text;
-                    bg = palette.base;
-                  };
-                  b = {
-                    fg = palette.text;
-                    bg = palette.base;
-                  };
-                  c = {
-                    fg = palette.text;
-                  };
+                c = {
+                  fg = base05;
                 };
               };
-              component_separators = "";
-              section_separators = {
-                left = "";
-                right = "";
+              insert = {
+                a = {
+                  fg = base00;
+                  bg = base0D;
+                };
+              };
+              visual = {
+                a = {
+                  fg = base00;
+                  bg = base0C;
+                };
+              };
+              replace = {
+                a = {
+                  fg = base00;
+                  bg = base08;
+                };
+              };
+              inactive = {
+                a = {
+                  fg = base05;
+                  bg = base00;
+                };
+                b = {
+                  fg = base05;
+                  bg = base00;
+                };
+                c = {
+                  fg = base05;
+                };
               };
             };
-
-            sections = {
-              lualine_a = [
-                {
-                  __unkeyed-1 = "mode";
-                  separator = {
-                    left = "  ";
-                  };
-                  right_padding = 2;
-                }
-              ];
-              lualine_b = [
-                "filename"
-                "branch"
-              ];
-              lualine_c = [ "%=" ];
-              lualine_x = [ ];
-              lualine_y = [
-                "filetype"
-                "progress"
-              ];
-              lualine_z = [
-                {
-                  __unkeyed-1 = "location";
-                  separator = {
-                    right = "  ";
-                  };
-                  left_padding = 2;
-                }
-              ];
+            component_separators = "";
+            section_separators = {
+              left = "";
+              right = "";
             };
-
-            inactive_sections = {
-              lualine_a = [ "filename" ];
-              lualine_b = [ ];
-              lualine_c = [ ];
-              lualine_x = [ ];
-              lualine_y = [ ];
-              lualine_z = [ "location" ];
-            };
-            tabline = { };
-            extensions = [ ];
           };
+
+          sections = {
+            lualine_a = [
+              {
+                __unkeyed-1 = "mode";
+                separator = {
+                  left = "  ";
+                };
+                right_padding = 2;
+              }
+            ];
+            lualine_b = [
+              "filename"
+              "branch"
+            ];
+            lualine_c = [ "%=" ];
+            lualine_x = [ ];
+            lualine_y = [
+              "filetype"
+              "progress"
+            ];
+            lualine_z = [
+              {
+                __unkeyed-1 = "location";
+                separator = {
+                  right = "  ";
+                };
+                left_padding = 2;
+              }
+            ];
+          };
+
+          inactive_sections = {
+            lualine_a = [ "filename" ];
+            lualine_b = [ ];
+            lualine_c = [ ];
+            lualine_x = [ ];
+            lualine_y = [ ];
+            lualine_z = [ "location" ];
+          };
+          tabline = { };
+          extensions = [ ];
         };
+      };
     };
   };
 }

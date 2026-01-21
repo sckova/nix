@@ -4,7 +4,7 @@
   useQuickCss = true;
   themeLinks = [ ];
   eagerPatches = false;
-  enabledThemes = [ "catppuccin.css" ];
+  enabledThemes = [ "theme.css" ];
   enableReactDevtools = false;
   frameless = false;
   transparent = true;

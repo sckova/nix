@@ -42,11 +42,6 @@
     initrd.verbose = false;
   };
 
-  catppuccin = {
-    enable = true;
-    cache.enable = true;
-  };
-
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
 
@@ -81,11 +76,7 @@
 
   services = {
     displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        enableHidpi = true;
-      };
+      cosmic-greeter.enable = true;
       defaultSession = "niri";
     };
 

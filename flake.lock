@@ -21,6 +21,40 @@
         "type": "github"
       }
     },
+    "base16": {
+      "inputs": {
+        "fromYaml": "fromYaml"
+      },
+      "locked": {
+        "lastModified": 1755819240,
+        "narHash": "sha256-qcMhnL7aGAuFuutH4rq9fvAhCpJWVHLcHVZLtPctPlo=",
+        "owner": "SenchoPens",
+        "repo": "base16.nix",
+        "rev": "75ed5e5e3fce37df22e49125181fa37899c3ccd6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SenchoPens",
+        "repo": "base16.nix",
+        "type": "github"
+      }
+    },
+    "base16-discord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768273180,
+        "narHash": "sha256-uw7lz53YHxvPEyXZiS+NJFhKMb6AMUvVpCLH81NjM7U=",
+        "owner": "imbypass",
+        "repo": "base16-discord",
+        "rev": "d4df17db31276d94cc1a8988f34e813aae1f3fb4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "imbypass",
+        "repo": "base16-discord",
+        "type": "github"
+      }
+    },
     "cachyos-kernel": {
       "flake": false,
       "locked": {
@@ -50,89 +84,6 @@
       "original": {
         "owner": "CachyOS",
         "repo": "kernel-patches",
-        "type": "github"
-      }
-    },
-    "catppuccin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768575137,
-        "narHash": "sha256-e0SsKnkSnq+UwZNS9ZyPJjTjabzq9TRc1hqeDnvOF1Q=",
-        "owner": "catppuccin",
-        "repo": "nix",
-        "rev": "48e67b4ad22072f1ae30b0ed8e1cb020cf06c611",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "nix",
-        "type": "github"
-      }
-    },
-    "catppuccin-btop": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1727050041,
-        "narHash": "sha256-mEGZwScVPWGu+Vbtddc/sJ+mNdD2kKienGZVUcTSl+c=",
-        "owner": "catppuccin",
-        "repo": "btop",
-        "rev": "f437574b600f1c6d932627050b15ff5153b58fa3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "btop",
-        "type": "github"
-      }
-    },
-    "catppuccin-discord": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768037813,
-        "narHash": "sha256-ExRNnxvG2PSGmpuaPxzCKL6GK6ETs7Gq4Roa74HXp+s=",
-        "owner": "catppuccin",
-        "repo": "discord",
-        "rev": "0fcfe2e15ed91f8c5f1f3c6855f3b2024f78d86c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "discord",
-        "type": "github"
-      }
-    },
-    "catppuccin-mpv": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754544320,
-        "narHash": "sha256-oUheJNWk2R6gNEmkK8H6PWX0iofx2KMGDoFWtnr420A=",
-        "owner": "catppuccin",
-        "repo": "mpv",
-        "rev": "08e90daf511eee2c10c98f0031b51bb9de240d60",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "mpv",
-        "type": "github"
-      }
-    },
-    "catppuccin-palette": {
-      "locked": {
-        "lastModified": 1760672867,
-        "narHash": "sha256-hbBM+5fS39YrDXdQKBLP33D0cu54FQ5hk/7XESTTRXY=",
-        "owner": "abhinandh-s",
-        "repo": "catppuccin-nix",
-        "rev": "b482f6e3ee1ae61c83e52f50653e54bf72900b13",
-        "type": "github"
-      },
-      "original": {
-        "owner": "abhinandh-s",
-        "repo": "catppuccin-nix",
         "type": "github"
       }
     },
@@ -242,6 +193,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "fromYaml": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731966426,
+        "narHash": "sha256-lq95WydhbUTWig/JpqiB7oViTcHFP8Lv41IGtayokA8=",
+        "owner": "SenchoPens",
+        "repo": "fromYaml",
+        "rev": "106af9e2f715e2d828df706c386a685698f3223b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SenchoPens",
+        "repo": "fromYaml",
         "type": "github"
       }
     },
@@ -583,11 +550,8 @@
     "root": {
       "inputs": {
         "apple-silicon": "apple-silicon",
-        "catppuccin": "catppuccin",
-        "catppuccin-btop": "catppuccin-btop",
-        "catppuccin-discord": "catppuccin-discord",
-        "catppuccin-mpv": "catppuccin-mpv",
-        "catppuccin-palette": "catppuccin-palette",
+        "base16": "base16",
+        "base16-discord": "base16-discord",
         "home-manager": "home-manager",
         "niri": "niri",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
@@ -598,7 +562,8 @@
         "nur": "nur",
         "openmw": "openmw",
         "plasma-manager": "plasma-manager",
-        "spicetify-nix": "spicetify-nix"
+        "spicetify-nix": "spicetify-nix",
+        "tt-schemes": "tt-schemes"
       }
     },
     "spicetify-nix": {
@@ -664,6 +629,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tt-schemes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768516483,
+        "narHash": "sha256-AWTIYZ1tZab0YwAQwgt5yO4ucqZoc4iXX002Byy7pRY=",
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "rev": "43dd14f6466a782bd57419fdfb5f398c74d6ac53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "schemes",
         "type": "github"
       }
     },

@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
-  catppuccin = {
-    accent = "peach";
-    flavor = "mocha";
+  colors = {
+    scheme = "catppuccin-mocha";
+    accent = "base09";
   };
 
   home.packages = with pkgs; [

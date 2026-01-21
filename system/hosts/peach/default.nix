@@ -6,11 +6,6 @@
 {
   boot.kernelParams = [ "appledrm.show_notch=1" ];
 
-  catppuccin = {
-    accent = "peach";
-    flavor = "mocha";
-  };
-
   environment.systemPackages = with pkgs; [
     ddcutil
   ];

@@ -6,9 +6,9 @@
   ...
 }:
 {
-  catppuccin = {
-    accent = "blue";
-    flavor = "mocha";
+  colors = {
+    scheme = "catppuccin-mocha";
+    accent = "base0D";
   };
 
   home.packages = [
@@ -41,7 +41,7 @@
       ];
 
       theme = spicePkgs.themes.catppuccin;
-      colorScheme = config.catppuccin.flavor;
+      colorScheme = "mocha";
     };
 
   programs.plasma = {
