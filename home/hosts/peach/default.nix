@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
   colors = {
-    scheme = "catppuccin-mocha";
+    scheme = "espresso";
     accent = "base09";
   };
 
