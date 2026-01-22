@@ -76,7 +76,7 @@
 
   services = {
     displayManager = {
-      cosmic-greeter.enable = true;
+      gdm.enable = true;
       defaultSession = "niri";
     };
 
