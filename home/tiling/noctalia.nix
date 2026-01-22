@@ -45,7 +45,6 @@
       brightness = {
         brightnessStep = 5;
         enforceMinimum = false;
-        enableDdcSupport = true;
       };
       bar = {
         position = "top";

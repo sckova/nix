@@ -199,6 +199,7 @@
           ];
           allow-when-locked = true;
         };
+
         "Shift+XF86AudioRaiseVolume" = {
           action.spawn = [
             "wpctl"
@@ -217,6 +218,39 @@
           ];
           allow-when-locked = true;
         };
+
+        "MouseForward" = {
+          action.spawn-sh = [
+            "noctalia-shell ipc call volume increase"
+          ];
+          allow-when-locked = true;
+        };
+        "MouseBack" = {
+          action.spawn-sh = [
+            "noctalia-shell ipc call volume decrease"
+          ];
+          allow-when-locked = true;
+        };
+
+        "Shift+MouseForward" = {
+          action.spawn = [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.01+"
+          ];
+          allow-when-locked = true;
+        };
+        "Shift+MouseBack" = {
+          action.spawn = [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.01-"
+          ];
+          allow-when-locked = true;
+        };
+
         "XF86AudioMute" = {
           action.spawn-sh = [
             "noctalia-shell ipc call volume muteOutput"
