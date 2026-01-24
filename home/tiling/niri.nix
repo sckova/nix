@@ -124,7 +124,7 @@
         };
         blur = {
           enable = true;
-          passes = 2;
+          passes = 4;
           radius = 4;
           noise = 0.1;
         };
@@ -138,7 +138,7 @@
             bottom-right = 16.0;
           };
           clip-to-geometry = true;
-          opacity = 0.95;
+          opacity = 0.975;
         }
         {
           matches = [

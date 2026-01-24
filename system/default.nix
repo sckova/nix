@@ -66,9 +66,7 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable.overrideAttrs (old: {
-      doCheck = false;
-    });
+    package = pkgs.niri-unstable;
   };
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.niri.enableGnomeKeyring = true;
