@@ -33,8 +33,15 @@
     };
 
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:sckova/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.niri-stable.follows = "niri-blur";
+      inputs.niri-unstable.follows = "niri-blur";
+    };
+
+    niri-blur = {
+      url = "github:visualglitch91/niri/feat/blur";
+      flake = false;
     };
 
     noctalia = {
