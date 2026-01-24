@@ -122,6 +122,12 @@
           softness = 30;
           color = base00 + "77";
         };
+        blur = {
+          enable = true;
+          passes = 2;
+          radius = 4;
+          noise = 0.1;
+        };
       };
       window-rules = [
         {
@@ -132,7 +138,7 @@
             bottom-right = 16.0;
           };
           clip-to-geometry = true;
-          opacity = 1.0;
+          opacity = 0.95;
         }
         {
           matches = [
