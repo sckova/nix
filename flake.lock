@@ -87,6 +87,22 @@
         "type": "github"
       }
     },
+    "catppuccin-discord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768037813,
+        "narHash": "sha256-ExRNnxvG2PSGmpuaPxzCKL6GK6ETs7Gq4Roa74HXp+s=",
+        "owner": "catppuccin",
+        "repo": "discord",
+        "rev": "0fcfe2e15ed91f8c5f1f3c6855f3b2024f78d86c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "discord",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1761640442,
@@ -468,6 +484,7 @@
         "apple-silicon": "apple-silicon",
         "base16": "base16",
         "base16-discord": "base16-discord",
+        "catppuccin-discord": "catppuccin-discord",
         "home-manager": "home-manager",
         "niri": "niri",
         "niri-blur": "niri-blur",
