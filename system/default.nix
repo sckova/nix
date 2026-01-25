@@ -21,9 +21,20 @@
 
     loader = {
       timeout = 3;
-      systemd-boot = {
+      limine = {
         enable = true;
-        configurationLimit = 3;
+        maxGenerations = 3;
+        extraConfig = ''
+          timeout: 3
+        '';
+        style = {
+          wallpapers = [ ];
+          backdrop = "#1e1e2e";
+          interface = {
+            branding = "kova's nixos!";
+            brandingColor = 5;
+          };
+        };
       };
       efi = {
         canTouchEfiVariables = false;
