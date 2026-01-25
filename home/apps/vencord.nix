@@ -4,7 +4,7 @@
   useQuickCss = true;
   themeLinks = [ ];
   eagerPatches = false;
-  enabledThemes = [ "theme.css" ];
+  enabledThemes = [ "base16.css" ];
   enableReactDevtools = false;
   frameless = false;
   transparent = true;

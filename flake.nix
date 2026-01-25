@@ -73,6 +73,11 @@
       url = "gitlab:OpenMW/openmw";
       flake = false;
     };
+
+    catppuccin-discord = {
+      url = "github:catppuccin/discord";
+      flake = false;
+    };
   };
 
   outputs =
@@ -92,6 +97,7 @@
       nixvim,
       apple-silicon,
       openmw,
+      catppuccin-discord,
       ...
     }:
     let
@@ -135,6 +141,7 @@
                   nur.overlays.default
                   (final: prev: {
                     openmw-git = openmw;
+                    catppuccin-discord-git = catppuccin-discord;
                     base16-discord-git = base16-discord;
                   })
                   (import ./packages/overlay.nix)
