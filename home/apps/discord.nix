@@ -4,9 +4,12 @@
   ...
 }:
 let
+  catppuccin-discord = "${pkgs.catppuccin-discord}/share/catppuccin-discord/catppuccin-mocha-*.theme.css";
+
   mergedThemes = pkgs.runCommand "mergedConfig" { } ''
     mkdir -p $out
-    cp ${pkgs.base16-discord-git}/base16.css $out/theme.css
+    cp -rvf ${pkgs.base16-discord-git}/base16.css $out/base16.css
+    cp -rvf ${catppuccin-discord} $out
   '';
 
   vesktopSettings = {
