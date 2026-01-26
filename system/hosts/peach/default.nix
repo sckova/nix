@@ -20,6 +20,16 @@
   '';
   hardware.i2c.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+    # Use the rootless mode - run Docker daemon as non-root user
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+  users.users.sckova.extraGroups = [ "docker" ];
+
   hardware.asahi = {
     enable = true;
     setupAsahiSound = true;

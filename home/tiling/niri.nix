@@ -122,12 +122,12 @@
           softness = 30;
           color = base00 + "77";
         };
-        blur = {
-          enable = true;
-          passes = 4;
-          radius = 4;
-          noise = 0.1;
-        };
+        # blur = {
+        #   enable = true;
+        #   passes = 4;
+        #   radius = 4;
+        #   noise = 0.1;
+        # };
       };
       window-rules = [
         {
@@ -138,7 +138,7 @@
             bottom-right = 16.0;
           };
           clip-to-geometry = true;
-          opacity = 0.975;
+          opacity = 1.0;
         }
         {
           matches = [

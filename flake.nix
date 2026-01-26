@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 
@@ -33,16 +33,16 @@
     };
 
     niri = {
-      url = "github:sckova/niri-flake";
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.niri-stable.follows = "niri-blur";
-      inputs.niri-unstable.follows = "niri-blur";
+      # inputs.niri-stable.follows = "niri-blur";
+      # inputs.niri-unstable.follows = "niri-blur";
     };
 
-    niri-blur = {
-      url = "github:visualglitch91/niri/feat/blur";
-      flake = false;
-    };
+    # niri-blur = {
+    #   url = "github:visualglitch91/niri/feat/blur";
+    #   flake = false;
+    # };
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
@@ -65,7 +65,7 @@
     };
 
     apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
+      url = "github:sckova/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
