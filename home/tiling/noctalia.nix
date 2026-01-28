@@ -32,7 +32,7 @@
       mError = base12;
       mOnError = base00;
       mSurface = base00;
-      mOnSurface = base06;
+      mOnSurface = base05;
       mSurfaceVariant = base01;
       mOnSurfaceVariant = base05;
       mOutline = base02;
