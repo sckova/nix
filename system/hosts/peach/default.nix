@@ -37,19 +37,15 @@
     peripheralFirmwareDirectory = pkgs.requireFile {
       name = "firmware";
       hashMode = "recursive";
-      hash = "sha256-lw8tJHRUSBwqu82ys4rZIYH0sEb+dDjQkXg1wt1afZI=";
+      hash = "sha256-ooBrgsZ+B6Fmoy6Ze5ppP9oKQzMIk1orvx+ldxY6bQs=";
       message = ''
-        nix-store --add-fixed sha256 --recursive ./firmware
+        you need to add the firmware to the store:
+        mkdir system/hosts/peach/firmware
+        sudo cp -r /mnt/boot/asahi/{all_firmware.tar.gz,kernelcache*} system/hosts/peach/firmware
+        nix-store --add-fixed sha256 --recursive ./system/hosts/peach/firmware
       '';
     };
   };
-
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 8000; # 8GB
-    }
-  ];
 
   security.sudo.wheelNeedsPassword = false;
 }
