@@ -115,7 +115,7 @@ in
         scrollback_lines = 10000;
         enable_audio_bell = false;
         update_check_interval = 0;
-        wheel_scroll_multiplier = 5.0;
+        wheel_scroll_multiplier = 10.0;
         confirm_os_window_close = 0;
         window_padding_width = 4;
         tab_bar_min_tabs = 2;

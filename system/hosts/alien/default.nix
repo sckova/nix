@@ -23,11 +23,11 @@
   hardware.i2c.enable = true;
 
   boot.loader.systemd-boot.consoleMode = "max";
-  boot.kernelPackages = pkgs.linuxPackages;
+  # boot.kernelPackages = pkgs.linuxPackages;
 
   # let's use the CachyOS kernel instead!
-  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
   programs = {
     gamescope = {
