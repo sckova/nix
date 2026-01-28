@@ -5,7 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     base16 = {
       url = "github:SenchoPens/base16.nix";
@@ -296,7 +299,7 @@
             hostname = "alien";
             system = "x86_64-linux";
             extraModules = [
-              { nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ]; }
+              { nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ]; }
             ];
           }
           // nixpkgs.lib.genAttrs supportedSystems (
