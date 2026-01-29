@@ -99,5 +99,8 @@
   ];
 
   # i don't even remember what this does or why i added it
-  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
+  systemd.tmpfiles.rules = [
+    "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
+    "d /mnt/storage 0775 sckova users - -"
+  ];
 }
