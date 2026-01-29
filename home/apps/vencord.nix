@@ -198,8 +198,8 @@
     ShowAllMessageButtons.enabled = false;
     ShowConnections.enabled = false;
     ShowHiddenChannels = {
-      enabled = false;
-      showMode = 0;
+      enabled = true;
+      showMode = 1;
       hideUnreads = true;
       defaultAllowedUsersAndRolesDropdownState = true;
     };

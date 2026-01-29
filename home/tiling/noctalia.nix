@@ -15,7 +15,7 @@
       mOnTertiary = base00;
       mError = base12;
       mOnError = base00;
-      mSurface = base00;
+      mSurface = "#000000";
       mOnSurface = base05;
       mSurfaceVariant = base01;
       mOnSurfaceVariant = base05;
@@ -35,7 +35,7 @@
         backgroundOpacity = 1;
         monitors = [ ];
         density = "spacious";
-        showCapsule = true;
+        showCapsule = false;
         capsuleOpacity = 1;
         floating = false;
         marginVertical = 0.25;
@@ -68,7 +68,7 @@
               colorizeIcons = false;
               hideMode = "hidden";
               id = "ActiveWindow";
-              maxWidth = 500;
+              maxWidth = 600;
               scrollingMode = "always";
               showIcon = true;
               useFixedWidth = false;

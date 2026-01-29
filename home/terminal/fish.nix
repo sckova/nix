@@ -1,13 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     kdePackages.qttools
     eza
+    pigz
   ];
 
   programs.fish = {
@@ -15,6 +11,7 @@
     shellAliases = {
       ssh = "kitty-ssh";
       cat = "bat";
+      gzip = "pigz";
       ls = "eza";
       gl = "git log";
       ga = "git add -v .";

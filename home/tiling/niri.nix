@@ -132,10 +132,10 @@
       window-rules = [
         {
           geometry-corner-radius = {
-            top-left = 16.0;
-            top-right = 16.0;
-            bottom-left = 16.0;
-            bottom-right = 16.0;
+            top-left = 8.0;
+            top-right = 8.0;
+            bottom-left = 8.0;
+            bottom-right = 8.0;
           };
           clip-to-geometry = true;
           opacity = 1.0;
@@ -494,6 +494,12 @@
 
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
+
+        "Mod+Ctrl+Minus".action.set-column-width = "-1%";
+        "Mod+Ctrl+Equal".action.set-column-width = "+1%";
+
+        "Mod+Ctrl+Shift+Minus".action.set-window-height = "-1%";
+        "Mod+Ctrl+Shift+Equal".action.set-window-height = "+1%";
 
         "Mod+V".action.toggle-window-floating = { };
         "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
