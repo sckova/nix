@@ -288,6 +288,28 @@
                   definedAliases = [ "@np" ];
                 };
 
+                nix-options = {
+                  name = "Nix Options";
+                  urls = [
+                    {
+                      template = "https://search.nixos.org/options";
+                      params = [
+                        {
+                          name = "type";
+                          value = "packages";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
+
+                  icon = nixIcon;
+                  definedAliases = [ "@no" ];
+                };
+
                 nixos-wiki = {
                   name = "NixOS Wiki";
                   urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
