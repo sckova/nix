@@ -1,24 +1,30 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
+let
+  asahi-artwork = pkgs.fetchFromGitHub {
+    owner = "AsahiLinux";
+    repo = "artwork";
+    rev = "80d14f8b6f485b310e305a84b4b806361518ddd1";
+    hash = "sha256-1r7gPFsn3GmKO4YsixsK7eyQWfVjsWnuOEtSCQequn8=";
+  };
+in
 {
-  boot.kernelParams = [ "appledrm.show_notch=1" ];
+  boot = {
+    kernelParams = [ "appledrm.show_notch=1" ];
+    m1n1CustomLogo = "${asahi-artwork}/logos/png_256/AsahiLinux_logomark.png";
+    plymouth.logo = lib.mkForce "${asahi-artwork}/logos/png_64/AsahiLinux_logomark.png";
+  };
 
-  environment.systemPackages = with pkgs; [
-    ddcutil
+  programs.dconf.profiles.gdm.databases = [
+    {
+      settings."org/gnome/login-screen".logo =
+        "${asahi-artwork}/logos/svg/AsahiLinux_logo_horizontal_darkbg.svg";
+    }
   ];
-
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-  boot.kernelModules = [
-    "i2c-dev"
-    "ddcci_backlight"
-  ];
-  services.udev.extraRules = ''
-    KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
-  '';
-  hardware.i2c.enable = true;
 
   virtualisation.docker = {
     enable = true;

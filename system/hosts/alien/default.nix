@@ -8,6 +8,7 @@
     ddcutil
     mangohud
     (bottles.override { removeWarningPopup = true; })
+    openrgb
   ];
 
   # enable ddcutil
@@ -22,7 +23,9 @@
   '';
   hardware.i2c.enable = true;
 
-  boot.loader.systemd-boot.consoleMode = "max";
+  # enable rgb support
+  services.hardware.openrgb.enable = true;
+
   # boot.kernelPackages = pkgs.linuxPackages;
 
   # let's use the CachyOS kernel instead!

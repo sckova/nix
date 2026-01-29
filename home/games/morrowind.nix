@@ -4,5 +4,10 @@
   ...
 }:
 {
-  home.packages = with pkgs; [ openmw ];
+  home = {
+    packages = with pkgs; [ openmw ];
+    sessionVariables = {
+      SDL_VIDEO_DRIVER = "wayland";
+    };
+  };
 }

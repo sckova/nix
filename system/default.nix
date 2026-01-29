@@ -17,28 +17,33 @@
   boot = {
     plymouth = {
       enable = true;
+      logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
     };
 
     loader = {
       timeout = 3;
-      limine = {
+      systemd-boot = {
         enable = true;
-        maxGenerations = 3;
-        extraConfig = ''
-          timeout: 3
-        '';
-        style = {
-          wallpapers = [ ];
-          backdrop = "#1e1e2e";
-          interface = {
-            branding = "kova's nixos!";
-            brandingColor = 5;
-          };
-        };
+        consoleMode = lib.mkForce "auto";
+        configurationLimit = 10;
       };
-      efi = {
-        canTouchEfiVariables = false;
-      };
+      # limine = {
+      #   enable = true;
+      #   maxGenerations = 10;
+      #   extraConfig = ''
+      #     timeout: 3
+      #   '';
+      #   style = {
+      #     wallpapers = [ ];
+      #     wallpaperStyle = "centered";
+      #     backdrop = "#1e1e2e";
+      #     interface = {
+      #       branding = "kova's nixos!";
+      #       brandingColor = 5;
+      #     };
+      #   };
+      # };
+      # efi.canTouchEfiVariables = true;
     };
     kernelParams = [
       "quiet"
