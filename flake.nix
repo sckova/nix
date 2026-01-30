@@ -2,9 +2,11 @@
   description = "My NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # edit this to switch between stable and unstable
+    nixpkgs.follows = "nixpkgs-unstable";
 
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel";
