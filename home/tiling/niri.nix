@@ -495,11 +495,11 @@
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-        "Mod+Ctrl+Minus".action.set-column-width = "-1%";
-        "Mod+Ctrl+Equal".action.set-column-width = "+1%";
+        "Mod+Ctrl+Minus".action.set-column-width = "-0.25%";
+        "Mod+Ctrl+Equal".action.set-column-width = "+0.25%";
 
-        "Mod+Ctrl+Shift+Minus".action.set-window-height = "-1%";
-        "Mod+Ctrl+Shift+Equal".action.set-window-height = "+1%";
+        "Mod+Ctrl+Shift+Minus".action.set-window-height = "-0.25%";
+        "Mod+Ctrl+Shift+Equal".action.set-window-height = "+0.25%";
 
         "Mod+V".action.toggle-window-floating = { };
         "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
