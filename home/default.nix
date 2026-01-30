@@ -65,8 +65,6 @@
       # })
     ];
 
-    services.gpg-agent.pinentry.package = pkgs.pinentry-curses;
-
     services = {
       spotifyd = {
         enable = true;
