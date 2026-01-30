@@ -21,50 +21,69 @@
     "sd_mod"
   ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d83ec136-df01-4b9e-a523-6d75726fb904";
-    fsType = "btrfs";
-    options = [
-      "subvol=@"
-      "compress=zstd"
-    ];
-  };
+  fileSystems = {
+    "/" = {
+      label = "nixos";
+      fsType = "btrfs";
+      options = [
+        "subvol=root"
+        "compress=zstd"
+        "relatime"
+      ];
+    };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/e369d905-a82b-45c5-838a-323169233583";
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "noatime"
-    ];
-  };
+    "/boot" = {
+      label = "EFI";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6444-169A";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
+    "/home" = {
+      label = "nixos";
+      fsType = "btrfs";
+      options = [
+        "subvol=home"
+        "compress=zstd"
+        "relatime"
+      ];
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/881bdf55-1e43-4bfc-a1bf-3b2f72dbc122";
-    fsType = "btrfs";
-    options = [ "compress=zstd" ];
-  };
+    "/nix" = {
+      label = "nixos";
+      fsType = "btrfs";
+      options = [
+        "subvol=nix"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
 
-  fileSystems."/mnt/storage" = {
-    device = "/dev/disk/by-uuid/39a22912-3570-4842-bdcb-df52664745a6";
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "nofail"
-    ];
+    "/snapshots" = {
+      label = "nixos";
+      fsType = "btrfs";
+      options = [
+        "subvol=snapshots"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+
+    "/mnt/storage" = {
+      label = "storage";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "nofail"
+        "relatime"
+      ];
+    };
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/056af100-9382-4cbd-b3d5-90df7da69585"; }
+    { label = "swap"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
