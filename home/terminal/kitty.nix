@@ -132,5 +132,10 @@ in
       enable = true;
       # config.theme = "Catppuccin ${config.catppuccinUpper.flavor}";
     };
+    lazygit = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    lazysql.enable = true;
   };
 }
