@@ -174,6 +174,7 @@
             lua = [ "stylua" ];
             python = [ "black" ];
             nix = [ "nixfmt" ];
+            html = [ "prettier" ];
             javascript = [ "prettier" ];
             css = [ "prettier" ];
             json = [ "prettier" ];
