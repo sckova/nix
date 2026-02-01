@@ -15,7 +15,7 @@
       mOnTertiary = base00;
       mError = base12;
       mOnError = base00;
-      mSurface = "#000000";
+      mSurface = base00;
       mOnSurface = base05;
       mSurfaceVariant = base01;
       mOnSurfaceVariant = base05;
@@ -35,8 +35,8 @@
         backgroundOpacity = 1;
         monitors = [ ];
         density = "spacious";
-        showCapsule = false;
-        capsuleOpacity = 1;
+        showCapsule = true;
+        capsuleOpacity = 0.5;
         floating = false;
         marginVertical = 0.25;
         marginHorizontal = 0.25;
@@ -147,7 +147,7 @@
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
-        panelBackgroundOpacity = 1;
+        panelBackgroundOpacity = 0.5;
         panelsAttachedToBar = true;
         settingsPanelMode = "attached";
       };
