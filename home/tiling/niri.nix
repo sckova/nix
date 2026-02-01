@@ -10,6 +10,13 @@
     package = null;
 
     settings = {
+      environment = {
+        QT_QPA_PLATFORM = "wayland";
+        QT_QPA_PLATFORMTHEME = "qt6ct";
+        DISPLAY = null;
+        XCURSOR_THEME = config.userOptions.cursor.name;
+        XCURSOR_SIZE = toString config.userOptions.cursor.size;
+      };
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
       prefer-no-csd = true;
@@ -20,10 +27,10 @@
         workspace-shadow.enable = false;
       };
       input = {
-        focus-follows-mouse = {
-          enable = true;
-          max-scroll-amount = "0%";
-        };
+        focus-follows-mouse.enable = true;
+        focus-follows-mouse.max-scroll-amount = "0%";
+        warp-mouse-to-focus.enable = true;
+        mod-key = "Super";
         keyboard = {
           numlock = false;
           repeat-delay = 600;
@@ -41,13 +48,6 @@
           tap = false;
           drag = false;
         };
-      };
-      environment = {
-        QT_QPA_PLATFORM = "wayland";
-        QT_QPA_PLATFORMTHEME = "qt6ct";
-        DISPLAY = null;
-        XCURSOR_THEME = config.userOptions.cursor.name;
-        XCURSOR_SIZE = toString config.userOptions.cursor.size;
       };
       outputs = {
         "eDP-1" = {
@@ -83,8 +83,8 @@
         };
       };
       cursor = {
-        hide-when-typing = true;
-        hide-after-inactive-ms = 5000;
+        hide-when-typing = false;
+        hide-after-inactive-ms = 10000;
         size = config.userOptions.cursor.size;
         theme = config.userOptions.cursor.name;
       };
@@ -115,7 +115,7 @@
           urgent.color = base12;
         };
         shadow = {
-          enable = true;
+          enable = false;
           spread = 5;
           offset.x = 0;
           offset.y = 5;
