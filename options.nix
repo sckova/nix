@@ -86,7 +86,7 @@
         name = lib.mkOption {
           type = lib.types.str;
           readOnly = true;
-          default = "NotoSansM Nerd Font Mono";
+          default = "FiraMono Nerd Font Mono";
         };
         size = lib.mkOption {
           type = lib.types.int;
@@ -96,7 +96,7 @@
         package = lib.mkOption {
           type = lib.types.package;
           readOnly = true;
-          default = pkgs.nerd-fonts.noto;
+          default = pkgs.nerd-fonts.fira-mono;
         };
       };
       fontEmoji = {

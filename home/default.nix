@@ -35,6 +35,7 @@
       radarr
       sonarr
       flaresolverr
+      nerd-fonts.fira-mono
 
       # kde and kde theming
       kde-rounded-corners
