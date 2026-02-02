@@ -35,13 +35,25 @@
   programs = {
     gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
     };
     steam = {
       enable = true;
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
     };
+  };
+
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-cpp;
+    rulesProvider = pkgs.ananicy-cpp;
+    extraRules = [
+      {
+        "name" = "gamescope";
+        "nice" = -20;
+      }
+    ];
   };
 
   services.xserver.videoDrivers = [
