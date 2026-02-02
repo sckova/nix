@@ -19,6 +19,8 @@
     pkgs.daggerfall-unity
   ];
 
+  programs.noctalia-shell.settings.brightness.enableDdcSupport = true;
+
   programs.spicetify =
     let
       spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
