@@ -418,7 +418,7 @@
       };
       nightLight = {
         enabled = true;
-        forced = true;
+        forced = false;
         autoSchedule = true;
         nightTemp = "4000";
         dayTemp = "6500";
