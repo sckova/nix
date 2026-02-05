@@ -75,7 +75,7 @@
             height = 2160;
             refresh = 143.999;
           };
-          scale = 1.5;
+          scale = 1.33;
           position = {
             x = 0;
             y = 0;
@@ -84,7 +84,7 @@
       };
       cursor = {
         hide-when-typing = false;
-        hide-after-inactive-ms = 10000;
+        # hide-after-inactive-ms = 10000;
         size = config.userOptions.cursor.size;
         theme = config.userOptions.cursor.name;
       };
@@ -96,6 +96,7 @@
           proportion = 0.5;
         };
         preset-column-widths = [
+          { proportion = 3.0 / 12.0; }
           { proportion = 4.0 / 12.0; }
           { proportion = 6.0 / 12.0; }
           { proportion = 8.0 / 12.0; }
