@@ -36,6 +36,7 @@
       sonarr
       flaresolverr
       nerd-fonts.fira-mono
+      ffmpeg-full
 
       # kde and kde theming
       kde-rounded-corners

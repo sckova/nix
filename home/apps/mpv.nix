@@ -21,7 +21,6 @@
     scripts = with pkgs.mpvScripts; [
       uosc
       mpv-subtitle-lines # requires uosc
-      sponsorblock
       mpris
       autosub
       youtube-upnext
