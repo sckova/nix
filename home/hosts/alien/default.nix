@@ -17,6 +17,8 @@
 
     pkgs-unstable.ckan
     pkgs.daggerfall-unity
+
+    pkgs.vintagestory
   ];
 
   programs.noctalia-shell.settings.brightness.enableDdcSupport = true;
