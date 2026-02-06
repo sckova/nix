@@ -47,6 +47,7 @@
       input-leap
       libreoffice-qt-fresh
       # nur.repos.forkprince.helium-nightly
+      chromium
       qbittorrent
       nautilus
       fractal
