@@ -20,4 +20,18 @@
     enable = true;
     windowManager.command = "niri";
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "x-scheme-handler/http" = [ "librewolf.desktop" ];
+      "x-scheme-handler/https" = [ "librewolf.desktop" ];
+      "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+    };
+    defaultApplications = {
+      "x-scheme-handler/http" = [ "librewolf.desktop" ];
+      "x-scheme-handler/https" = [ "librewolf.desktop" ];
+      "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+    };
+  };
 }
