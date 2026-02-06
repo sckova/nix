@@ -29,8 +29,8 @@
   # boot.kernelPackages = pkgs.linuxPackages;
 
   # let's use the CachyOS kernel instead!
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   programs = {
     gamescope = {
