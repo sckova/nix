@@ -19,6 +19,7 @@
     pkgs.daggerfall-unity
 
     pkgs.vintagestory
+    pkgs.gamemode
   ];
 
   programs.noctalia-shell.settings.brightness.enableDdcSupport = true;
