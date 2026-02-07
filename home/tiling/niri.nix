@@ -96,7 +96,6 @@
           proportion = 0.5;
         };
         preset-column-widths = [
-          { proportion = 3.0 / 12.0; }
           { proportion = 4.0 / 12.0; }
           { proportion = 6.0 / 12.0; }
           { proportion = 8.0 / 12.0; }
