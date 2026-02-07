@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./niri.nix
@@ -15,6 +15,35 @@
     xwayland-satellite
     playerctl
   ];
+
+  programs.fuzzel = {
+    enable = true;
+    package = pkgs.fuzzel;
+    settings = {
+      main = {
+        terminal = "${pkgs.kitty}/bin/kitty";
+        layer = "overlay";
+        font = with config.userOptions.fontMono; name + ":size=" + toString (size + 2);
+        launch-prefix = "${pkgs.niri}/bin/niri msg action spawn --";
+      };
+      border = {
+        width = 2;
+        radius = 8;
+      };
+      colors = with config.scheme; {
+        background = base00 + "ff";
+        text = base05 + "ff";
+        prompt = base04 + "ff";
+        placeholder = base04 + "ff";
+        input = base05 + "ff";
+        match = base09 + "ff";
+        selection = base04 + "ff";
+        selection-text = base05 + "ff";
+        counter = base04 + "ff";
+        border = base09 + "ff";
+      };
+    };
+  };
 
   xsession = {
     enable = true;

@@ -31,12 +31,12 @@
         enforceMinimum = false;
       };
       bar = {
-        position = "top";
+        # position = "top";
+        # density = "spacious";
         backgroundOpacity = 1;
         monitors = [ ];
-        density = "spacious";
         showCapsule = true;
-        capsuleOpacity = 0.5;
+        capsuleOpacity = 1;
         floating = false;
         marginVertical = 0.25;
         marginHorizontal = 0.25;
@@ -44,11 +44,6 @@
         exclusive = true;
         widgets = {
           left = [
-            {
-              icon = "rocket";
-              id = "CustomButton";
-              leftClickExec = "noctalia-shell ipc call launcher toggle";
-            }
             {
               id = "Workspace";
             }
@@ -120,7 +115,7 @@
       };
       general = {
         avatarImage = "/home/${config.userOptions.username}/.face";
-        dimmerOpacity = 0.6;
+        dimmerOpacity = 0.5;
         showScreenCorners = false;
         forceBlackScreenCorners = false;
         scaleRatio = 1;
@@ -147,7 +142,7 @@
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
-        panelBackgroundOpacity = 0.5;
+        panelBackgroundOpacity = 1;
         panelsAttachedToBar = true;
         settingsPanelMode = "attached";
       };

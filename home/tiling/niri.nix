@@ -75,7 +75,7 @@
             height = 2160;
             refresh = 143.999;
           };
-          scale = 1.33;
+          scale = 1.5;
           position = {
             x = 0;
             y = 0;
@@ -188,9 +188,7 @@
           hotkey-overlay.title = "Open a Terminal: kitty";
         };
         "Mod+Space" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call launcher toggle"
-          ];
+          action.spawn = [ "fuzzel" ];
           hotkey-overlay.title = "Run an Application: Noctalia app launcher";
         };
 
