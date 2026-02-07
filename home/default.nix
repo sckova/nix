@@ -61,6 +61,7 @@
       calibre
       riff
       dissent
+      loupe
 
       # overrides
       # (chromium.override {
