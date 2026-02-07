@@ -88,6 +88,39 @@
   security.pam.services.niri.enableGnomeKeyring = true;
   programs.dconf.enable = true;
 
+  programs.dconf.profiles.user = {
+    databases = [
+      {
+        # breaks user-level indirect config of dconf
+        # lockAll = true;
+        settings = {
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+            clock-format = "12h";
+            clock-show-weekday = true;
+          };
+          "org/gnome/desktop/wm/preferences" = {
+            button-layout = ":";
+            action-double-click-titlebar = "'none'";
+          };
+          "org/gnome/desktop/media-handling" = {
+            automount = false;
+            automount-open = false;
+            autorun-never = true;
+          };
+          "org/gnome/settings-daemon/plugins/power" = {
+            sleep-inactive-ac-type = "nothing";
+          };
+          "org/gnome/mutter" = {
+            edge-tiling = true;
+            dynamic-workspaces = true;
+            experimental-features = [ "variable-refresh-rate" ];
+          };
+        };
+      }
+    ];
+  };
+
   services = {
     displayManager = {
       gdm.enable = true;

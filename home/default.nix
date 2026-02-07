@@ -62,6 +62,7 @@
       riff
       dissent
       loupe
+      spotify-player
 
       # overrides
       # (chromium.override {
