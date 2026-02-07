@@ -116,12 +116,12 @@
           urgent.color = base12;
         };
         shadow = {
-          enable = false;
-          spread = 5;
+          enable = true;
+          spread = 10;
           offset.x = 0;
-          offset.y = 5;
+          offset.y = 0;
           softness = 30;
-          color = base00 + "77";
+          color = base11 + "BF";
         };
         # blur = {
         #   enable = true;
