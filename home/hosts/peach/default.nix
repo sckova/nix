@@ -19,6 +19,11 @@
     render-drm-device = "/dev/dri/card2";
   };
 
+  programs.noctalia-shell.settings.bar = {
+    position = "top";
+    density = "spacious";
+  };
+
   programs.plasma = {
     input.touchpads = [
       {
