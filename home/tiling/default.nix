@@ -56,11 +56,65 @@
       "x-scheme-handler/http" = [ "librewolf.desktop" ];
       "x-scheme-handler/https" = [ "librewolf.desktop" ];
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+      "x-scheme-handler/spotify" = [ "riff.desktop" ];
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "image/png" = [ "loupe.desktop" ];
+      "image/jpeg" = [ "loupe.desktop" ];
     };
     defaultApplications = {
+      # Web
       "x-scheme-handler/http" = [ "librewolf.desktop" ];
       "x-scheme-handler/https" = [ "librewolf.desktop" ];
+      "text/html" = [ "librewolf.desktop" ];
+
+      # Communication & Social
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+      "x-scheme-handler/spotify" = [ "riff.desktop" ];
+
+      # File Management
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+
+      # Torrents
+      "application/x-bittorrent" = [ "org.qbittorrent.qBittorrent.desktop" ];
+      "x-scheme-handler/magnet" = [ "org.qbittorrent.qBittorrent.desktop" ];
+
+      # Documents
+      "application/pdf" = [ "librewolf.desktop" ]; # Or libreoffice-draw.desktop
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [
+        "libreoffice-writer.desktop"
+      ]; # docx
+      "application/msword" = [ "libreoffice-writer.desktop" ]; # doc
+      "application/vnd.oasis.opendocument.text" = [ "libreoffice-writer.desktop" ]; # odt
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [
+        "libreoffice-calc.desktop"
+      ]; # xlsx
+      "application/vnd.ms-excel" = [ "libreoffice-calc.desktop" ]; # xls
+      "application/vnd.oasis.opendocument.spreadsheet" = [ "libreoffice-calc.desktop" ]; # ods
+
+      # Text & Code
+      "text/plain" = [ "nvim.desktop" ];
+      "text/markdown" = [ "nvim.desktop" ];
+      "application/x-shellscript" = [ "nvim.desktop" ];
+      "application/json" = [ "nvim.desktop" ];
+      "text/x-c" = [ "nvim.desktop" ];
+      "text/x-c++" = [ "nvim.desktop" ];
+      "text/x-python" = [ "nvim.desktop" ];
+      "text/x-makefile" = [ "nvim.desktop" ];
+
+      # Media
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/mkv" = [ "mpv.desktop" ];
+      "video/webm" = [ "mpv.desktop" ];
+      "audio/mpeg" = [ "mpv.desktop" ];
+      "audio/flac" = [ "mpv.desktop" ];
+      "audio/wav" = [ "mpv.desktop" ];
+
+      # Images
+      "image/png" = [ "loupe.desktop" ];
+      "image/jpeg" = [ "loupe.desktop" ];
+      "image/webp" = [ "loupe.desktop" ];
+      "image/gif" = [ "loupe.desktop" ];
     };
   };
+
 }
