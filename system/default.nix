@@ -22,27 +22,27 @@
 
     loader = {
       timeout = 3;
-      systemd-boot = {
-        enable = true;
-        consoleMode = lib.mkForce "auto";
-        configurationLimit = 10;
-      };
-      # limine = {
+      # systemd-boot = {
       #   enable = true;
-      #   maxGenerations = 10;
-      #   extraConfig = ''
-      #     timeout: 3
-      #   '';
-      #   style = {
-      #     wallpapers = [ ];
-      #     wallpaperStyle = "centered";
-      #     backdrop = "#1e1e2e";
-      #     interface = {
-      #       branding = "kova's nixos!";
-      #       brandingColor = 5;
-      #     };
-      #   };
+      #   consoleMode = lib.mkForce "auto";
+      #   configurationLimit = 10;
       # };
+      limine = {
+        enable = true;
+        maxGenerations = 10;
+        extraConfig = ''
+          timeout: 3
+        '';
+        style = {
+          wallpapers = [ ];
+          wallpaperStyle = "stretched";
+          backdrop = "#1e1e2e";
+          interface = {
+            branding = "kova's nixos!";
+            brandingColor = 5;
+          };
+        };
+      };
       # efi.canTouchEfiVariables = true;
     };
     kernelParams = [
