@@ -179,9 +179,9 @@
                   ];
 
                   # Increase file descriptor limit for builds
-                  sandbox = "relaxed";
-                  extra-sandbox-paths = [ ];
-                  build-users-group = "nixbld";
+                  # sandbox = "relaxed";
+                  # extra-sandbox-paths = [ ];
+                  # build-users-group = "nixbld";
                 };
 
                 gc = {
