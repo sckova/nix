@@ -157,6 +157,14 @@
         {
           matches = [
             {
+              app-id = "vesktop$";
+            }
+          ];
+          block-out-from = "screen-capture";
+        }
+        {
+          matches = [
+            {
               app-id = "openmw";
               title = "OpenMW";
             }
