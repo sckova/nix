@@ -2,10 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
-  lib,
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -139,6 +136,7 @@
     gvfs.enable = true;
 
     upower.enable = true;
+    power-profiles-daemon.enable = true;
   };
 
   environment = {
