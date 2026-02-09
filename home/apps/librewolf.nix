@@ -15,7 +15,7 @@
   home.file.".librewolf/default/chrome/colors.css" = with config.scheme.withHashtag; {
     text = ''
       * {
-        --accent: ${base09};
+        --accent: ${config.scheme.withHashtag.${config.colors.accent}};
         --rosewater: ${base06};
         --flamingo: ${base0F};
         --pink: ${base17};

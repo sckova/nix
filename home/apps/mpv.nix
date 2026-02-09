@@ -33,7 +33,7 @@
           with config.scheme;
           lib.concatStringsSep "," (
             lib.mapAttrsToList (key: value: "${key}=${value}") {
-              foreground = base09;
+              foreground = config.scheme.withHashtag.${config.colors.accent};
               foreground_text = base01;
               background = base00;
               background_text = base05;

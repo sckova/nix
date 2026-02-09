@@ -36,11 +36,11 @@
         prompt = base04 + "ff";
         placeholder = base04 + "ff";
         input = base05 + "ff";
-        match = base09 + "ff";
+        match = config.scheme.withHashtag.${config.colors.accent} + "ff";
         selection = base04 + "ff";
-        selection-text = base05 + "ff";
+        selection-text = base00 + "ff";
         counter = base04 + "ff";
-        border = base09 + "ff";
+        border = config.scheme.withHashtag.${config.colors.accent} + "ff";
       };
     };
   };
