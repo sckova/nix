@@ -110,7 +110,7 @@ let
     }
 
     /* Accent */
-    ${mkColorSection "accent_bg_color" base09}
+    ${mkColorSection "accent_bg_color" config.scheme.withHashtag.${config.colors.accent}}
     @define-color accent_fg_color @window_bg_color;
   '';
 in

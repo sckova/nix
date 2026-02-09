@@ -4,7 +4,7 @@
   useQuickCss = true;
   themeLinks = [ ];
   eagerPatches = false;
-  enabledThemes = [ "catppuccin-mocha-peach.theme.css" ];
+  enabledThemes = [ "base16.css" ];
   enableReactDevtools = false;
   frameless = false;
   transparent = true;

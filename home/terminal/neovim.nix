@@ -59,7 +59,7 @@
           };
 
           accent.base16_custom = {
-            accent0 = base09; # integers/constants
+            accent0 = config.scheme.withHashtag.${config.colors.accent}; # integers/constants
             accent1 = base0A; # classes/search
             accent2 = base0B; # strings/inherited
             accent3 = base0C; # support/regex

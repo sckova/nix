@@ -103,14 +103,14 @@
         border = {
           enable = true;
           width = 2;
-          active.color = base09;
+          active.color = config.scheme.withHashtag.${config.colors.accent};
           inactive.color = base01;
           urgent.color = base12;
         };
         focus-ring = {
           enable = false;
           width = 2;
-          active.color = base09;
+          active.color = config.scheme.withHashtag.${config.colors.accent};
           inactive.color = base01;
           urgent.color = base12;
         };

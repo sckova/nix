@@ -7,7 +7,7 @@
   programs.noctalia-shell = {
     enable = true;
     colors = with config.scheme.withHashtag; {
-      mPrimary = base09;
+      mPrimary = config.scheme.withHashtag.${config.colors.accent};
       mOnPrimary = base00;
       mSecondary = base13;
       mOnSecondary = base00;
