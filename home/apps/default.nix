@@ -1,7 +1,7 @@
 {
   imports = [
     ./discord.nix
-    ./librewolf.nix
+    ./firefox.nix
     ./mpv.nix
     # ./vscode.nix
   ];

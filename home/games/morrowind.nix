@@ -11,7 +11,7 @@
     };
   };
 
-  programs.librewolf.profiles.default.search.engines.uesp = {
+  programs.firefox.profiles.default.search.engines.uesp = {
     name = "Unofficial Elder Scrolls Pages";
     urls = [
       {

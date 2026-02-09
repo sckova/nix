@@ -6,13 +6,13 @@
   ...
 }:
 {
-  home.file.".librewolf/default/chrome/" = {
-    source = ./librewolf_css;
+  home.file.".mozilla/firefox/default/chrome/" = {
+    source = ./firefox_css;
     force = true;
     recursive = true;
   };
 
-  home.file.".librewolf/default/chrome/colors.css" = with config.scheme.withHashtag; {
+  home.file.".mozilla/firefox/default/chrome/colors.css" = with config.scheme.withHashtag; {
     text = ''
       * {
         --accent: ${config.scheme.withHashtag.${config.colors.accent}};
@@ -86,9 +86,9 @@
         };
       };
     };
-    librewolf = {
+    firefox = {
       enable = true;
-      package = pkgs.librewolf.override {
+      package = pkgs.firefox.override {
         nativeMessagingHosts = with pkgs; [
           firefoxpwa
         ];
@@ -113,7 +113,6 @@
           "{446900e4-71c2-419f-a6a7-df9c091e268b}".installation_mode = "allowed";
           "CanvasBlocker@kkapsner.de".installation_mode = "allowed";
           "shinigamieyes@shinigamieyes".installation_mode = "allowed";
-          # "".installation_mode = "allowed";
         };
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
@@ -124,8 +123,8 @@
           Fingerprinting = true;
         };
         DisablePocket = true;
-        DisableFirefoxAccounts = false;
-        DisableAccounts = false;
+        DisableFirefoxAccounts = true;
+        DisableAccounts = true;
         DisableFirefoxScreenshots = true;
         OverrideFirstRunPage = "";
         OverridePostUpdatePage = "";
@@ -169,8 +168,8 @@
             "xpinstall.signatures.required" = false;
             "extensions.update.autoUpdateDefault" = false;
             "extensions.update.enabled" = false;
-            "browser.search.defaultenginename" = "google";
-            "browser.search.order.1" = "google";
+            "browser.search.defaultenginename" = "searxng";
+            "browser.search.order.1" = "searxng";
             "browser.toolbars.bookmarks.visibility" = "newtab";
 
             "signon.rememberSignons" = false;
@@ -207,6 +206,8 @@
             "browser.newtabpage.activity-stream.system.showSponsored" = false;
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
             "browser.newtabpage.activity-stream.showWeather" = false;
+            "browser.download.autoHideButton" = false;
+            "browser.startup.homepage" = "http://localhost:8080/";
 
             # Disable Firefox's machine learning (AI) features
             "browser.ml.enable" = false;
@@ -218,16 +219,61 @@
             # Vertical tabs
             "sidebar.verticalTabs" = true;
             "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
-            "browser.uiCustomization.navBarWhenVerticalTabs" = [
-              "back-button"
-              "forward-button"
-              "stop-reload-button"
-              "reload-button"
-              "urlbar-container"
-              "downloads-button"
-              "unified-extensions-button"
-              "fxa-toolbar-menu-button"
-            ];
+            "browser.uiCustomization.state" = {
+              placements = {
+                widget-overflow-fixed-list = [ ];
+                unified-extensions-area = [
+                  "sponsorblocker_ajay_app-browser-action"
+                  "ublock0_raymondhill_net-browser-action"
+                  "jid1-mnnxcxisbpnsxq_jetpack-browser-action"
+                  "gdpr_cavi_au_dk-browser-action"
+                  "firefoxpwa_filips_si-browser-action"
+                  "plasma-browser-integration_kde_org-browser-action"
+                  "canvasblocker_kkapsner_de-browser-action"
+                  "_5cce4ab5-3d47-41b9-af5e-8203eea05245_-browser-action"
+                  "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
+                  "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
+                  "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"
+                ];
+                nav-bar = [
+                  # "sidebar-button"
+                  "back-button"
+                  "forward-button"
+                  "stop-reload-button"
+                  "urlbar-container"
+                  "unified-extensions-button"
+                  "downloads-button"
+                ];
+                toolbar-menubar = [ "menubar-items" ];
+                TabsToolbar = [ ];
+                vertical-tabs = [ "tabbrowser-tabs" ];
+                PersonalToolbar = [ "personal-bookmarks" ];
+              };
+              seen = [
+                "gdpr_cavi_au_dk-browser-action"
+                "firefoxpwa_filips_si-browser-action"
+                "plasma-browser-integration_kde_org-browser-action"
+                "jid1-mnnxcxisbpnsxq_jetpack-browser-action"
+                "canvasblocker_kkapsner_de-browser-action"
+                "_5cce4ab5-3d47-41b9-af5e-8203eea05245_-browser-action"
+                "ublock0_raymondhill_net-browser-action"
+                "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
+                "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
+                "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"
+                "sponsorblocker_ajay_app-browser-action"
+                "developer-button"
+              ];
+              dirtyAreaCache = [
+                "unified-extensions-area"
+                "nav-bar"
+                "TabsToolbar"
+                "vertical-tabs"
+                "PersonalToolbar"
+                "toolbar-menubar"
+              ];
+              currentVersion = 23;
+              newElementCount = 1;
+            };
 
             "privacy.resistFingerprinting" = false;
             "privacy.clearOnShutdown.history" = false;
@@ -257,13 +303,13 @@
           search =
             let
               nixIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/nix-snowflake.svg";
-              googleIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/google.svg";
+              searchIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid-Dark/places/symbolic/folder-saved-search-symbolic.svg";
             in
             {
               force = true;
-              default = "google";
+              default = "searxng";
               order = [
-                "google"
+                "searxng"
               ];
               engines = {
                 nix-packages = {
@@ -317,10 +363,10 @@
                   definedAliases = [ "@nw" ];
                 };
 
-                google = {
-                  name = "Google";
-                  urls = [ { template = "https://google.com/search?q={searchTerms}"; } ];
-                  icon = googleIcon;
+                searxng = {
+                  name = "SearXNG";
+                  urls = [ { template = "http://localhost:8080/search?q={searchTerms}"; } ];
+                  icon = searchIcon;
                   definedAliases = [ "@go" ];
                 };
 

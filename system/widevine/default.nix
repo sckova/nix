@@ -8,7 +8,7 @@
 {
   nixpkgs.overlays = lib.mkIf (config.nixpkgs.hostPlatform.isLinux) [
     (final: prev: {
-      wrapLibrewolf =
+      wrapFirefox =
         browser: opts:
         let
           extraPrefs = (opts.extraPrefs or "") + ''
@@ -22,7 +22,7 @@
           widevineCdmDir = "${final.widevine-cdm}/share/google/chrome/WidevineCdm";
           widevineOutDir = "$out/gmp-widevinecdm/system-installed";
         in
-        (prev.wrapLibrewolf browser (opts // { inherit extraPrefs; })).overrideAttrs (previousAttrs: {
+        (prev.wrapFirefox browser (opts // { inherit extraPrefs; })).overrideAttrs (previousAttrs: {
           buildCommand = previousAttrs.buildCommand + ''
             mkdir -p "${widevineOutDir}"
             ln -s "${widevineCdmDir}/_platform_specific/linux_arm64/libwidevinecdm.so" "${widevineOutDir}/libwidevinecdm.so"
