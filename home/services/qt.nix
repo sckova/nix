@@ -36,7 +36,7 @@
       ColorScheme =
         with config.scheme;
         let
-          accent = base09;
+          accent = config.scheme.withHashtag.${config.colors.accent};
           mkColors = roles: builtins.concatStringsSep ", " (map (r: "#ff${r}") roles);
         in
         {
