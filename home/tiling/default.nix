@@ -25,6 +25,7 @@
         layer = "overlay";
         font = with config.userOptions.fontMono; name + ":size=" + toString (size + 2);
         launch-prefix = "${pkgs.niri}/bin/niri msg action spawn --";
+        icon-theme = "Colloid-Dark";
       };
       border = {
         width = 2;
@@ -53,8 +54,8 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "x-scheme-handler/http" = [ "librewolf.desktop" ];
-      "x-scheme-handler/https" = [ "librewolf.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
       "x-scheme-handler/spotify" = [ "riff.desktop" ];
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
@@ -63,9 +64,9 @@
     };
     defaultApplications = {
       # Web
-      "x-scheme-handler/http" = [ "librewolf.desktop" ];
-      "x-scheme-handler/https" = [ "librewolf.desktop" ];
-      "text/html" = [ "librewolf.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
 
       # Communication & Social
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
@@ -79,7 +80,7 @@
       "x-scheme-handler/magnet" = [ "org.qbittorrent.qBittorrent.desktop" ];
 
       # Documents
-      "application/pdf" = [ "librewolf.desktop" ]; # Or libreoffice-draw.desktop
+      "application/pdf" = [ "firefox.desktop" ]; # Or libreoffice-draw.desktop
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [
         "libreoffice-writer.desktop"
       ]; # docx
