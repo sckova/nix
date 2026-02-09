@@ -1,0 +1,392 @@
+@import "../colors.css";
+
+/* ========================================================================
+   global variables
+   ======================================================================== */
+:root {
+  /* arrow panels */
+  --arrowpanel-background: var(--surface0) !important;
+  --arrowpanel-border-color: var(--surface1) !important;
+  --arrowpanel-color: var(--text) !important;
+  --arrowpanel-dimmed-even-further: var(--overlay0) !important;
+  --arrowpanel-dimmed-further: var(--subtext1) !important;
+  --arrowpanel-dimmed: var(--subtext0) !important;
+  --default-arrowpanel-background: var(--surface0) !important;
+  --default-arrowpanel-border-color: var(--surface1) !important;
+  --default-arrowpanel-color: var(--text) !important;
+
+  /* autocomplete & popups */
+  --autocomplete-popup-background: var(--mantle) !important;
+  --autocomplete-popup-color: var(--text) !important;
+  --autocomplete-popup-highlight-background: var(--surface1) !important;
+  --autocomplete-popup-highlight-color: var(--text) !important;
+  --urlbar-popup-action-color: var(--accent) !important;
+  --urlbar-popup-url-color: var(--blue) !important;
+  --urlbar-separator-color: var(--surface0) !important;
+
+  /* buttons (global) */
+  --backbutton-active-background: var(--surface1) !important;
+  --backbutton-background: transparent !important;
+  --backbutton-border-color: transparent !important;
+  --backbutton-hover-background: var(--surface0) !important;
+  --cfr-active-color: var(--accent) !important;
+  --cfr-button-addons-icon: var(--text) !important;
+  --cfr-button-features-icon: var(--text) !important;
+
+  /* color palette (blue) */
+  --blue-40-a10: color-mix(in srgb, var(--blue), transparent 90%) !important;
+  --blue-40: var(--blue) !important;
+  --blue-50-a30: color-mix(in srgb, var(--blue), transparent 70%) !important;
+  --blue-50: var(--blue) !important;
+  --blue-60: var(--sapphire) !important;
+  --blue-70: var(--sky) !important;
+  --blue-80: var(--teal) !important;
+
+  /* color palette (green) */
+  --green-50: var(--green) !important;
+  --green-60: var(--green) !important;
+  --green-70: var(--teal) !important;
+  --green-80: var(--teal) !important;
+  --green-90: var(--teal) !important;
+
+  /* color palette (grey/overlay) */
+  --grey-20: var(--subtext1) !important;
+  --grey-30: var(--subtext0) !important;
+  --grey-40: var(--overlay2) !important;
+  --grey-60: var(--overlay0) !important;
+  --grey-70: var(--overlay2) !important;
+  --grey-80: var(--overlay2) !important;
+  --grey-90-a10: color-mix(
+    in srgb,
+    var(--surface1),
+    transparent 90%
+  ) !important;
+  --grey-90-a20: color-mix(
+    in srgb,
+    var(--surface1),
+    transparent 80%
+  ) !important;
+  --grey-90-a30: color-mix(
+    in srgb,
+    var(--surface1),
+    transparent 70%
+  ) !important;
+  --grey-90-a50: color-mix(
+    in srgb,
+    var(--surface1),
+    transparent 50%
+  ) !important;
+  --grey-90-a60: color-mix(
+    in srgb,
+    var(--surface1),
+    transparent 40%
+  ) !important;
+  --grey-90: var(--surface1) !important;
+
+  /* color palette (misc) */
+  --orange-50: var(--peach) !important;
+  --purple-70: var(--mauve) !important;
+
+  /* color palette (red) */
+  --red-50-a30: color-mix(in srgb, var(--red), transparent 70%) !important;
+  --red-50: var(--red) !important;
+  --red-60: var(--maroon) !important;
+  --red-70: var(--maroon) !important;
+  --red-80: var(--maroon) !important;
+  --red-90: var(--maroon) !important;
+
+  /* color palette (yellow) */
+  --yellow-10: var(--yellow) !important;
+  --yellow-50: var(--yellow) !important;
+  --yellow-60-a30: color-mix(
+    in srgb,
+    var(--yellow),
+    transparent 70%
+  ) !important;
+  --yellow-60: var(--yellow) !important;
+  --yellow-70: var(--peach) !important;
+  --yellow-80: var(--peach) !important;
+  --yellow-90: var(--peach) !important;
+
+  /* context menus */
+  --menu-background-color: var(--base) !important;
+  --menu-border-color: var(--surface1) !important;
+  --menu-color: var(--text) !important;
+  --menu-disabled-color: var(--overlay0) !important;
+  --menu-icon-opacity: 1 !important;
+  --menuitem-disabled-hover-background-color: transparent !important;
+  --menuitem-hover-background-color: var(--surface1) !important;
+  --panel-disabled-color: var(--overlay0) !important;
+  --panel-separator-color: var(--surface0) !important;
+
+  /* in-content ui (cards & boxes) */
+  --card-outline-color: var(--surface1) !important;
+  --card-shadow-focus: 0 0 0 2px var(--accent) !important;
+  --card-shadow-hover: 0 4px 8px
+    color-mix(in srgb, var(--crust), transparent 80%) !important;
+  --card-shadow: 0 1px 4px color-mix(in srgb, var(--crust), transparent 90%) !important;
+  --in-content-box-background-active: var(--surface1) !important;
+  --in-content-box-background-hover: var(--surface1) !important;
+  --in-content-box-background-odd: var(--mantle) !important;
+  --in-content-box-background: var(--surface0) !important;
+  --in-content-box-border-color: var(--surface1) !important;
+  --in-content-box-info-background: var(--surface0) !important;
+
+  /* in-content ui (colors & text) */
+  --in-content-deemphasized-text: var(--subtext0) !important;
+  --in-content-link-color-active: var(--sky) !important;
+  --in-content-link-color-hover: var(--sapphire) !important;
+  --in-content-link-color-visited: var(--lavender) !important;
+  --in-content-link-color: var(--blue) !important;
+  --in-content-page-background: var(--base) !important;
+  --in-content-page-color: var(--text) !important;
+  --in-content-selected-text: var(--surface2) !important;
+  --in-content-text-color: var(--text) !important;
+
+  /* in-content ui (forms & buttons) */
+  --in-content-border-active-shadow: 0 0 0 2px var(--accent) !important;
+  --in-content-border-active: var(--accent) !important;
+  --in-content-border-color: var(--surface1) !important;
+  --in-content-border-focus: var(--accent) !important;
+  --in-content-border-highlight: var(--blue) !important;
+  --in-content-border-hover: var(--surface2) !important;
+  --in-content-border-invalid-shadow: 0 0 0 2px var(--red) !important;
+  --in-content-border-invalid: var(--red) !important;
+  --in-content-button-background-active: var(--surface1) !important;
+  --in-content-button-background-hover: var(--surface2) !important;
+  --in-content-button-background: var(--surface0) !important;
+  --in-content-category-background-active: var(--surface1) !important;
+  --in-content-category-background-hover: var(--surface0) !important;
+  --in-content-category-background-selected-active: var(--surface2) !important;
+  --in-content-category-background-selected-hover: var(--surface1) !important;
+  --in-content-category-outline-focus: var(--accent) !important;
+  --in-content-category-text-selected-active: var(--accent) !important;
+  --in-content-category-text-selected: var(--accent) !important;
+  --in-content-item-hover: var(--surface0) !important;
+  --in-content-item-selected: var(--surface1) !important;
+  --in-content-primary-button-background-active: var(--maroon) !important;
+  --in-content-primary-button-background-hover: var(--peach) !important;
+  --in-content-primary-button-background: var(--accent) !important;
+
+  /* in-content ui (misc) */
+  --chrome-content-separator-color: var(--surface0) !important;
+  --in-content-dialog-header-background: var(--mantle) !important;
+  --in-content-tab-color: var(--subtext0) !important;
+  --in-content-table-background: var(--mantle) !important;
+  --in-content-table-border-dark-color: var(--surface1) !important;
+  --in-content-table-header-background: var(--surface0) !important;
+  --in-content-warning-container: var(--red) !important;
+  --shadow-10: 0 1px 2px color-mix(in srgb, var(--crust), transparent 90%) !important;
+  --shadow-30: 0 4px 8px color-mix(in srgb, var(--crust), transparent 80%) !important;
+
+  /* lightweight theme (lwt) */
+  --lwt-accent-color: var(--accent) !important;
+  --lwt-sidebar-background-color: var(--mantle) !important;
+  --lwt-sidebar-text-color: var(--text) !important;
+  --lwt-text-color: var(--text) !important;
+  --lwt-toolbar-field-background-color: var(--crust) !important;
+  --lwt-toolbar-field-border-color: var(--surface0) !important;
+  --lwt-toolbar-field-color: var(--text) !important;
+  --lwt-toolbar-field-focus-color: var(--text) !important;
+  --lwt-toolbar-field-focus: var(--accent) !important;
+  --lwt-toolbarbutton-icon-fill: var(--text) !important;
+
+  /* navigator tabs */
+  --tab-line-color: var(--accent) !important;
+  --tab-loading-fill: var(--accent) !important;
+  --tabs-border-color: var(--surface0) !important;
+
+  /* new tab page */
+  --newtab-background-color: var(--base) !important;
+  --newtab-border-primary-color: var(--surface1) !important;
+  --newtab-border-secondary-color: var(--surface0) !important;
+  --newtab-button-primary-color: var(--accent) !important;
+  --newtab-button-secondary-color: var(--surface0) !important;
+  --newtab-card-active-outline-color: var(--accent) !important;
+  --newtab-card-background-color: var(--surface0) !important;
+  --newtab-card-hairline-color: var(--surface1) !important;
+  --newtab-card-placeholder-color: var(--surface1) !important;
+  --newtab-card-shadow: 0 1px 4px
+    color-mix(in srgb, var(--crust), transparent 80%) !important;
+  --newtab-contextmenu-background-color: var(--surface0) !important;
+  --newtab-contextmenu-button-color: var(--text) !important;
+  --newtab-element-active-color: var(--surface1) !important;
+  --newtab-element-hover-color: var(--surface0) !important;
+  --newtab-feed-button-background-faded: var(--surface1) !important;
+  --newtab-feed-button-background: var(--surface0) !important;
+  --newtab-feed-button-spinner: var(--text) !important;
+  --newtab-feed-button-text-faded: var(--subtext0) !important;
+  --newtab-feed-button-text: var(--text) !important;
+  --newtab-icon-primary-color: var(--text) !important;
+  --newtab-icon-secondary-color: var(--subtext0) !important;
+  --newtab-icon-tertiary-color: var(--overlay0) !important;
+  --newtab-inner-box-shadow-color: color-mix(
+    in srgb,
+    var(--crust),
+    transparent 80%
+  ) !important;
+  --newtab-link-primary-color: var(--blue) !important;
+  --newtab-link-secondary-color: var(--sapphire) !important;
+  --newtab-modal-color: var(--base) !important;
+  --newtab-overlay-color: color-mix(
+    in srgb,
+    var(--crust),
+    transparent 40%
+  ) !important;
+  --newtab-search-border-color: var(--surface0) !important;
+  --newtab-search-dropdown-color: var(--mantle) !important;
+  --newtab-search-dropdown-header-color: var(--subtext1) !important;
+  --newtab-search-header-background-color: var(--base) !important;
+  --newtab-search-icon-color: var(--text) !important;
+  --newtab-search-icon: var(--text) !important;
+  --newtab-search-wordmark-color: var(--text) !important;
+  --newtab-section-active-contextmenu-color: var(--text) !important;
+  --newtab-section-header-text-color: var(--text) !important;
+  --newtab-section-navigation-text-color: var(--subtext0) !important;
+  --newtab-snippets-background-color: var(--surface0) !important;
+  --newtab-snippets-hairline-color: var(--surface1) !important;
+  --newtab-text-conditional-color: var(--red) !important;
+  --newtab-text-primary-color: var(--text) !important;
+  --newtab-text-secondary-color: var(--subtext0) !important;
+  --newtab-textbox-background-color: var(--crust) !important;
+  --newtab-textbox-border: var(--surface0) !important;
+  --newtab-textbox-focus-boxshadow: 0 0 0 2px var(--accent) !important;
+  --newtab-textbox-focus-color: var(--accent) !important;
+  --newtab-topsites-background-color: var(--base) !important;
+  --newtab-topsites-icon-shadow: none !important;
+  --newtab-topsites-label-color: var(--text) !important;
+  --trailhead-card-button-background-active-color: var(--accent) !important;
+  --trailhead-card-button-background-color: var(--surface1) !important;
+  --trailhead-card-button-background-hover-color: var(--surface2) !important;
+  --trailhead-cards-background-color: var(--surface0) !important;
+  --trailhead-header-text-color: var(--text) !important;
+
+  /* notifications */
+  --short-notification-background: var(--surface0) !important;
+  --short-notification-gradient: linear-gradient(
+    var(--surface0),
+    var(--surface0)
+  ) !important;
+
+  /* sidebar */
+  --sidebar-background-color: var(--mantle) !important;
+  --sidebar-border-color: var(--surface0) !important;
+  --sidebar-text-color: var(--text) !important;
+
+  /* toolbar & urlbar */
+  --toolbar-bgcolor: var(--mantle) !important;
+  --toolbar-color: var(--text) !important;
+  --toolbar-field-focus-border-color: var(--accent) !important;
+  --toolbar-non-lwt-bgcolor: var(--mantle) !important;
+  --toolbar-non-lwt-textcolor: var(--text) !important;
+  --toolbarbutton-active-background: var(--surface1) !important;
+  --toolbarbutton-focus-outline: var(--accent) !important;
+  --toolbarbutton-hover-background: var(--surface0) !important;
+  --toolbarbutton-icon-fill-attention: var(--blue) !important;
+}
+
+/* ========================================================================
+   global component styles
+   ======================================================================== */
+
+#sidebar-main > *[expanded] {
+  background-color: var(--mantle) !important;
+}
+
+*,
+:root {
+  accent-color: var(--accent) !important;
+}
+
+#TabsToolbar {
+  background-color: var(--mantle) !important;
+}
+
+#sidebar-launcher-splitter:hover {
+  background-color: var(--accent) !important;
+}
+
+[_moz-menuactive="true"] {
+  background-color: var(--accent) !important;
+  color: var(--mantle) !important;
+}
+
+menupopup {
+  --panel-background: var(--base) !important;
+  --panel-border-color: var(--surface1) !important;
+  --panel-text: var(--text) !important;
+}
+
+menuseparator {
+  border-color: var(--surface1) !important;
+}
+
+/* ========================================================================
+   overrides & media queries
+   ======================================================================== */
+@media {
+  #PersonalToolbar,
+  #nav-bar {
+    background-color: var(--mantle) !important;
+  }
+
+  :root {
+    /* browser tabs */
+    .tab-background[multiselected] {
+      --focus-outline-color: var(--surface0);
+    }
+
+    .tab-background[selected]:not([multiselected]) {
+      outline: 1px solid var(--surface0);
+      outline-offset: -1px;
+    }
+
+    .tabbrowser-tab[selected="true"] .tab-background {
+      border: 1px solid var(--surface0) !important;
+    }
+
+    #tabbrowser-tabs {
+      --tab-loading-fill: var(--text) !important;
+    }
+
+    /* general variable overrides */
+    --arrowpanel-background: var(--surface0) !important;
+    --arrowpanel-border-color: var(--surface0) !important;
+    --arrowpanel-color: var(--text) !important;
+    --chrome-content-separator-color: var(--surface0) !important;
+    --input-bgcolor: var(--crust) !important;
+    --input-border-color: var(--mantle) !important;
+    --input-color: var(--text) !important;
+    --tab-selected-bgcolor: var(--base) !important;
+    --tab-selected-textcolor: var(--text) !important;
+    --toolbar-bgcolor: var(--mantle) !important;
+    --toolbar-field-background-color: var(--input-bgcolor) !important;
+    --toolbar-field-border-color: var(--input-border-color) !important;
+    --toolbar-field-color: var(--input-color) !important;
+    --toolbar-field-focus-background-color: var(--base) !important;
+    --toolbar-field-focus-border-color: var(--surface0) !important;
+    --toolbarseparator-color: var(--text) !important;
+    --toolbox-non-lwt-bgcolor: var(--crust) !important;
+    --toolbox-non-lwt-textcolor: var(--text) !important;
+
+    /* inputs & selection */
+    #urlbar-input:focus::selection,
+    .searchbar-textbox:focus::selection {
+      background-color: var(--text);
+      color: var(--surface0);
+    }
+
+    /* toolbar buttons */
+    --toolbarbutton-active-background: var(--overlay0) !important;
+    --toolbarbutton-icon-fill: var(--text) !important;
+    --toolbarbutton-icon-fill-attention: var(--text) !important;
+
+    /* urlbar */
+    --urlbarView-highlight-background: var(--overlay0) !important;
+    --urlbarView-highlight-color: var(--text) !important;
+
+    &:where([tabsintitlebar]) {
+      --toolbox-non-lwt-bgcolor-inactive: var(--crust) !important;
+    }
+  }
+}

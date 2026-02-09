@@ -143,7 +143,7 @@
         {
           matches = [
             {
-              app-id = "librewolf$";
+              app-id = "firefox$";
               title = "^Picture-in-Picture$";
             }
           ];

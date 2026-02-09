@@ -208,6 +208,7 @@
               };
             }
             ./system
+            ./system/searxng
             ./system/widevine
             ./system/shell/fish.nix
             ./system/tailscale
