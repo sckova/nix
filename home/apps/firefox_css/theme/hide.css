@@ -14,7 +14,7 @@
   visibility: hidden !important;
 }
 
-.browserSidebarContainer {
+/*.browserSidebarContainer {
   border: 0px solid var(--surface0) !important;
   border-radius: 4px !important;
   background-color: var(--mantle) !important;
@@ -34,4 +34,4 @@
 .browserStack {
   border-radius: 2px !important;
   background-color: var(--base) !important;
-}
+}*/
