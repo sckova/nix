@@ -11,15 +11,14 @@
     accent = "base0D";
   };
 
-  home.packages = [
-    # steam gtk theming
-    pkgs.adwsteamgtk
-
+  home.packages = with pkgs; [
     pkgs-unstable.ckan
-    pkgs.daggerfall-unity
 
-    pkgs.vintagestory
-    pkgs.gamemode
+    # steam gtk theming
+    adwsteamgtk
+    daggerfall-unity
+    vintagestory
+    gamemode
   ];
 
   programs.noctalia-shell.settings.brightness.enableDdcSupport = true;
