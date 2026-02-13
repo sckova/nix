@@ -296,6 +296,10 @@
                     name = "Home Manager Appendix A";
                     url = "https://nix-community.github.io/home-manager/options.xhtml";
                   }
+                  {
+                    name = "NixOS config";
+                    url = "https://ovips.us.to/git/sckova/nix";
+                  }
                 ];
               }
             ];
