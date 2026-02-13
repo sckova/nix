@@ -4,6 +4,10 @@
    global variables
    ======================================================================== */
 :root {
+  --border-color-card: 1px solid var(--surface0) !important;
+  --urlbar-container-border-width: 1px !important;
+  --urlbar-container-border-color: var(--surface0) !important;
+
   /* arrow panels */
   --arrowpanel-background: var(--surface0) !important;
   --arrowpanel-border-color: var(--surface1) !important;
