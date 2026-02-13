@@ -14,24 +14,12 @@
   visibility: hidden !important;
 }
 
-/*.browserSidebarContainer {
-  border: 0px solid var(--surface0) !important;
-  border-radius: 4px !important;
-  background-color: var(--mantle) !important;
-  overflow: hidden !important;
-}
-
 .browserContainer {
-  border: 0px !important;
-  margin-top: 8px !important;
-  margin-left: 8px !important;
-  margin-right: 8px !important;
-  margin-bottom: 8px !important;
-  background-color: var(--mantle) !important;
-  border-radius: 2px !important;
+  border-radius: 8px !important;
+  margin: 6px !important;
+  background-color: transparent !important;
 }
 
-.browserStack {
-  border-radius: 2px !important;
-  background-color: var(--base) !important;
-}*/
+browser {
+  border-radius: 8px !important;
+}
