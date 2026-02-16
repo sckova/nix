@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # edit this to switch between stable and unstable
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.follows = "apple-silicon/nixpkgs";
 
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel";
@@ -73,7 +73,7 @@
 
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     openmw = {
