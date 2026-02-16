@@ -206,7 +206,7 @@
               deviceNativePath = "__default__";
               displayMode = "icon-hover";
               hideIfIdle = false;
-              hideIfNotDetected = true;
+              hideIfNotDetected = false;
               id = "Battery";
               showNoctaliaPerformance = false;
               showPowerProfiles = true;
