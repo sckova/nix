@@ -21,19 +21,19 @@ final: prev: {
 
   riff = final.callPackage ./riff { };
 
-  linuxPackages_asahi = prev.linuxPackages_asahi.override {
-    _kernelPatches = [
-      {
-        name = "Mailbox and RTKIT support";
-        patch = null;
-        structuredExtraConfig = with prev.lib.kernel; {
-          APPLE_MAILBOX = yes;
-          APPLE_RTKIT = yes;
-          APPLE_RTKIT_HELPER = yes;
-          RUST_APPLE_RTKIT = yes;
-          RUST_FW_LOADER_ABSTRACTIONS = yes;
-        };
-      }
-    ];
-  };
+  # linuxPackages_asahi = prev.linuxPackages_asahi.override {
+  #   _kernelPatches = [
+  #     {
+  #       name = "Mailbox and RTKIT support";
+  #       patch = null;
+  #       structuredExtraConfig = with prev.lib.kernel; {
+  #         APPLE_MAILBOX = yes;
+  #         APPLE_RTKIT = yes;
+  #         APPLE_RTKIT_HELPER = yes;
+  #         RUST_APPLE_RTKIT = yes;
+  #         RUST_FW_LOADER_ABSTRACTIONS = yes;
+  #       };
+  #     }
+  #   ];
+  # };
 }
