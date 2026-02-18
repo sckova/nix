@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -22,21 +23,19 @@
     };
   };
 
-  programs.plasma = {
+  aerothemeplasma = {
     enable = true;
-    overrideConfig = true;
+    plasma.enable = true;
+    fonts.enable = true;
+  };
 
+  programs.plasma = lib.mkDefault {
+    enable = true;
     session = {
       sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
     };
 
     workspace = {
-      iconTheme = config.gtk.iconTheme.name;
-      windowDecorations = {
-        library = "org.kde.breeze";
-        theme = "Breeze";
-      };
-      cursor.size = 24;
       wallpaperPictureOfTheDay.provider = "bing";
       wallpaperFillMode = "preserveAspectCrop";
     };
@@ -164,19 +163,6 @@
     ];
 
     kwin = {
-      titlebarButtons = {
-        left = [
-          "on-all-desktops"
-          "keep-below-windows"
-          "keep-above-windows"
-        ];
-        right = [
-          "minimize"
-          "maximize"
-          "close"
-        ];
-      };
-
       nightLight = {
         enable = true;
         mode = "location";
@@ -197,25 +183,16 @@
         rows = 1;
       };
       effects = {
-        desktopSwitching = {
-          animation = "slide";
-          navigationWrapping = true;
-        };
-        dimAdminMode.enable = true;
-        # dimInactive.enable = true;
+        # desktopSwitching = {
+        #   animation = "slide";
+        #   navigationWrapping = true;
+        # };
         minimization = {
           animation = "magiclamp";
           duration = 500;
         };
         shakeCursor.enable = true;
         snapHelper.enable = true;
-        # translucency.enable = true;
-        # windowOpenClose.animation = "fade";
-        blur = {
-          enable = true;
-          noiseStrength = 8;
-          strength = 5;
-        };
       };
     };
 
@@ -250,38 +227,5 @@
       kwinrc.Effect-blurplus.RefractionStrength = 10;
       ksplashrc.KSplash.Engine = "KSplashQML";
     };
-
-    panels = [
-      # Small dock at the bottom right
-      {
-        location = "bottom";
-        height = 40;
-        hiding = "dodgewindows";
-        lengthMode = "fit";
-        floating = true;
-        alignment = "left";
-        widgets = [
-          {
-            kickoff = {
-              sortAlphabetically = true;
-              # icon = "nix-snowflake-white";
-            };
-          }
-          {
-            iconTasks = {
-              launchers = [
-                "applications:firefox.desktop"
-                "applications:org.kde.dolphin.desktop"
-                "applications:vesktop.desktop"
-                "applications:kitty.desktop"
-                "applications:org.strawberrymusicplayer.strawberry.desktop"
-                "applications:writer.desktop"
-              ];
-            };
-          }
-          "org.kde.plasma.pager"
-        ];
-      }
-    ];
   };
 }
