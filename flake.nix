@@ -38,6 +38,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    aerothemeplasma-nix = {
+      url = "github:nyakase/aerothemeplasma-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -97,6 +102,7 @@
       base16-discord,
       home-manager,
       plasma-manager,
+      aerothemeplasma-nix,
       niri,
       noctalia,
       spicetify-nix,
@@ -214,6 +220,7 @@
             ./system/tailscale
             ./system/hosts/${hostname}
             ./hardware/${hostname}
+            aerothemeplasma-nix.nixosModules.aerothemeplasma-nix
             niri.nixosModules.niri
             home-manager.nixosModules.home-manager
             noctalia.nixosModules.default
@@ -242,6 +249,7 @@
                       scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
                     }
                   )
+                  aerothemeplasma-nix.homeModules.aerothemeplasma-nix
                   plasma-manager.homeModules.plasma-manager
                   noctalia.homeModules.default
                   spicetify-nix.homeManagerModules.default

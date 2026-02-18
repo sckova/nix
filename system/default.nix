@@ -118,10 +118,23 @@
     ];
   };
 
+  aerothemeplasma = {
+    enable = true;
+    plasma.enable = true;
+    fonts.enable = false;
+    plymouth.enable = false;
+    sddm.enable = true;
+  };
+
   services = {
+    # displayManager = {
+    #   gdm.enable = true;
+    #   defaultSession = "niri";
+    # };
+    desktopManager.plasma6.enable = true;
     displayManager = {
-      gdm.enable = true;
-      defaultSession = "niri";
+      sddm.enable = true;
+      defaultSession = "aerothemeplasma";
     };
 
     libinput.enable = true;
