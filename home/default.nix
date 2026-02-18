@@ -89,21 +89,6 @@
       };
     };
 
-    # programs.plasma = {
-    #   workspace = {
-    #     colorScheme = "Catppuccin${config.catppuccinUpper.flavor}${config.catppuccinUpper.accent}";
-    #     cursor.theme = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-cursors";
-    #     splashScreen.theme = "Catpppuccin-${config.catppuccinUpper.flavor}-${config.catppuccinUpper.accent}";
-    #   };
-
-    #   configFile = {
-    #     kdeglobals.KDE = {
-    #       DefaultDarkLookAndFeel = "Catpppuccin-${config.catppuccinUpper.flavor}-${config.catppuccinUpper.accent}";
-    #       DefaultLightLookAndFeel = "Catpppuccin-Latte-${config.catppuccinUpper.accent}";
-    #     };
-    #   };
-    # };
-
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new Home Manager release introduces backwards
