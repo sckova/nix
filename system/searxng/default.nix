@@ -58,6 +58,9 @@
         "duckduckgo".disabled = true;
         "brave".disabled = true;
         "bing".disabled = false;
+        "bing".weight = 0.4;
+        "startpage".disabled = false;
+        "startpage".weight = 1.4;
         "google".disabled = false;
         "mojeek".disabled = true;
         "mwmbl".disabled = false;
