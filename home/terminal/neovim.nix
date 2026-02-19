@@ -45,27 +45,29 @@
           state = "base16_custom";
         };
 
+        # this is helpful for figuring out what color is what:
+        # https://github.com/tinted-theming/schemes/blob/spec-0.11/base24/catppuccin-frappe.yaml
         custom_palettes = with config.scheme.withHashtag; {
           main.base16_custom = {
             color0 = base00; # background
             color1 = base01; # lighter background
             color2 = base02; # selection background
-            color3 = base03; # comments
+            color3 = base03; # color inside ${}
             color4 = base04; # dark foreground
-            color5 = base05; # default foreground
-            color6 = base06; # light foreground
+            color5 = config.scheme.withHashtag.${config.colors.accent}; # default foreground, left side of assignments
+            color6 = base03; # comments
             color7 = base07; # lightest foreground
             color8 = base05; # variables/tags
           };
 
           accent.base16_custom = {
-            accent0 = config.scheme.withHashtag.${config.colors.accent}; # integers/constants
-            accent1 = base0A; # classes/search
-            accent2 = base0B; # strings/inherited
-            accent3 = base0C; # support/regex
-            accent4 = base0D; # functions/headings
-            accent5 = base0E; # keywords/bold
-            accent6 = base0F; # deprecated/embedded
+            accent0 = base08; # red, integers/constants
+            accent1 = base0A; # orange, classes/search
+            accent2 = base0A; # yellow, strings/inherited
+            accent3 = base0B; # green, support/regex
+            accent4 = base0D; # blue, functions/headings
+            accent5 = base0E; # purple, keywords/bold
+            accent6 = base07; # lavender, deprecated/embedded
           };
 
           state.base16_custom = {
