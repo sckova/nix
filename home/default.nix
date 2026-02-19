@@ -59,7 +59,7 @@
       musescore
       gimp
       calibre
-      riff
+      # riff
       dissent
       loupe
       spotify-player
