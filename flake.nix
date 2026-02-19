@@ -18,7 +18,7 @@
     };
 
     tt-schemes = {
-      url = "github:tinted-theming/schemes";
+      url = "github:tinted-theming/schemes/b9f335ad6a0b7d85b9c2eb932c3215f7429f7d11";
       flake = false;
     };
 
