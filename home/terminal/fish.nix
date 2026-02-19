@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   home.packages = with pkgs; [
     kdePackages.qttools
@@ -14,6 +19,7 @@
       gzip = "pigz";
       ls = "eza";
       gl = "git log";
+      gd = "git diff";
       ga = "git add -v .";
       gac = "git add -v . && git commit";
       gaca = "git add -v . && git commit --amend --no-edit";
@@ -39,5 +45,18 @@
       };
     };
   };
+
+  home.file.".config/fish/colors.fish" = {
+    text = lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (name: value: "set -g color_${name} ${value}") (
+        lib.filterAttrs (
+          n: v: builtins.isString v && builtins.match "^base[0-9A-Fa-f]{2}$" n != null
+        ) config.scheme
+      )
+      ++ [ "set -g color_accent ${config.scheme.${config.colors.accent}}" ]
+    );
+    force = true;
+  };
+
   programs.man.generateCaches = false;
 }
