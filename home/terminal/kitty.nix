@@ -27,13 +27,13 @@ let
     url_color               ${base06}
 
     # Kitty window border colors
-    active_border_color     ${base09}
-    inactive_border_color   ${base03}
-    bell_border_color       ${base0A}
+    active_border_color     ${config.scheme.withHashtag.${config.colors.accent}}
+    inactive_border_color   ${base01}
+    bell_border_color       ${base12}
 
     # Tab bar colors
     active_tab_foreground   ${base11}
-    active_tab_background   ${base09}
+    active_tab_background   ${config.scheme.withHashtag.${config.colors.accent}}
     inactive_tab_foreground ${base05}
     inactive_tab_background ${base10}
     tab_bar_background      ${base11}
