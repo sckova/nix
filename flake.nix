@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # edit this to switch between stable and unstable
-    nixpkgs.follows = "apple-silicon/nixpkgs";
+    nixpkgs.follows = "nixpkgs-unstable";
 
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
