@@ -207,7 +207,7 @@
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
             "browser.newtabpage.activity-stream.showWeather" = false;
             "browser.download.autoHideButton" = false;
-            "browser.startup.homepage" = "http://localhost:8080/";
+            "browser.startup.homepage" = "http://localhost:5364/";
 
             # Disable Firefox's machine learning (AI) features
             "browser.ml.enable" = false;
@@ -369,7 +369,7 @@
 
                 searxng = {
                   name = "SearXNG";
-                  urls = [ { template = "http://localhost:8080/search?q={searchTerms}"; } ];
+                  urls = [ { template = "http://localhost:5364/search?q={searchTerms}"; } ];
                   icon = searchIcon;
                   definedAliases = [ "@go" ];
                 };
