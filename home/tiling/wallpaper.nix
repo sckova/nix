@@ -13,8 +13,8 @@
     Service = {
       ExecStart = ''
         ${pkgs.mpvpaper}/bin/mpvpaper '*' \
-        '/home/sckova/.local/share/wallpaper/daily.jpg' \
-        -o '--keep-open=always --save-position-on-quit' \
+        '/home/sckova/.local/share/wallpaper/daily.jpg' -o \
+        '--keep-open=always --save-position-on-quit --panscan=1.0' \
       '';
     };
     Install = {
