@@ -138,7 +138,7 @@
             bottom-right = 8.0;
           };
           clip-to-geometry = true;
-          opacity = 1.0;
+          opacity = 0.975;
         }
         {
           matches = [
@@ -159,8 +159,19 @@
             {
               app-id = "vesktop$";
             }
+            {
+              app-id = "org.gnome.Nautilus$";
+            }
           ];
           block-out-from = "screen-capture";
+        }
+        {
+          matches = [
+            {
+              is-active = false;
+            }
+          ];
+          opacity = 0.95;
         }
         {
           matches = [
@@ -182,6 +193,9 @@
           matches = [
             {
               namespace = "^wpaperd.*";
+            }
+            {
+              namespace = "^mpvpaper";
             }
           ];
           place-within-backdrop = true;
