@@ -16,7 +16,7 @@
             pkgs.runCommand "gen-key" { buildInputs = [ pkgs.openssl ]; } "openssl rand -hex 32 > $out"
           )
         );
-        port = 8080;
+        port = 5364;
         bind_address = "127.0.0.1";
       };
 
