@@ -1,24 +1,9 @@
 {
   pkgs,
-  config,
   ...
 }:
 {
-  home.packages = with pkgs; [
-    wpaperd
-  ];
-
-  home.file.".config/wpaperd/config.toml" = {
-    text = ''
-      [default]
-      mode = "center"
-      [any]
-      path = "/home/${config.userOptions.username}/.local/share/wallpaper/daily.jpg"
-    '';
-    force = true;
-  };
-
-  systemd.user.services.wpaperd = {
+  systemd.user.services.mpvpaper = {
     Unit = {
       Description = "Modern wallpaper daemon for Wayland";
       PartOf = [ "niri.service" ];
@@ -26,7 +11,11 @@
       After = [ "niri.service" ];
     };
     Service = {
-      ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
+      ExecStart = ''
+        ${pkgs.mpvpaper}/bin/mpvpaper '*' \
+        '/home/sckova/.local/share/wallpaper/daily.jpg' \
+        -o '--keep-open=always --save-position-on-quit' \
+      '';
     };
     Install = {
       WantedBy = [ "niri.service" ];
@@ -59,7 +48,7 @@
           -i preferences-desktop-wallpaper \
           "$TITLE"
       '';
-      ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wpaperd.service";
+      ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart mpvpaper.service";
     };
     Install = {
       WantedBy = [ "niri.service" ];
