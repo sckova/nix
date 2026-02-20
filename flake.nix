@@ -215,6 +215,7 @@
             }
             ./system
             ./system/searxng
+            ./system/torrenting
             ./system/widevine
             ./system/shell/fish.nix
             ./system/tailscale
