@@ -6,8 +6,6 @@
   systemd.user.services.awww-daemon = {
     Unit.Description = "Wallpaper service using awww (daemon)";
     Service.ExecStart = "${pkgs.awww}/bin/awww-daemon";
-    Unit.After = [ "graphical-session.target" ];
-    Unit.PartOf = [ "graphical-session.target" ];
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
@@ -26,10 +24,10 @@
 
   systemd.user.services.bing-wallpaper = {
     Unit.Description = "Download and set Bing wallpaper of the day";
-    Unit.StartLimitBurst = 5;
+    Unit.StartLimitBurst = 6;
     Unit.StartLimitIntervalSec = "10m";
     Service.Restart = "on-failure";
-    Service.RestartSec = "1m";
+    Service.RestartSec = "10s";
     Service.Type = "oneshot";
     Service.ExecStart = pkgs.lib.getExe (
       pkgs.writeShellApplication {
@@ -68,6 +66,7 @@
       }
     );
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart awww-setter.service";
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.timers.bing-wallpaper = {
