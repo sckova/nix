@@ -28,16 +28,14 @@
       Description = "Mount Synology NAS with Rclone and Home Manager.";
       After = [ "tailscaled.service" ];
       Wants = [ "tailscaled.service" ];
+      StartLimitBurst = 5;
+      StartLimitIntervalSec = "1m";
     };
 
     Service = {
       Type = "simple";
-      # ExecStartPre = "${pkgs.writeShellScript "synology-prep" ''
-      #   if mountpoint -q %h/Synology; then
-      #     /run/wrappers/bin/fusermount -uz %h/Synology
-      #   fi
-      #   ${pkgs.coreutils}/bin/mkdir -p %h/Synology
-      # ''}";
+      Restart = "on-failure";
+      RestartSec = "1m";
       ExecStart = "${pkgs.writeShellScript "synology-mount" ''
         #!/usr/bin/env bash
         set -euo pipefail
@@ -65,49 +63,4 @@
       WantedBy = [ "default.target" ];
     };
   };
-
-  # systemd.user.services.synology-prefill = {
-  #   Unit = {
-  #     Description = "Prefill Synology NAS rclone cache";
-  #     After = [ "synology-mount.service" ];
-  #     Wants = [ "synology-mount.service" ];
-  #   };
-
-  #   Service = {
-  #     Type = "simple";
-  #     ExecStart = "${pkgs.writeShellScript "synology-prefill" ''
-  #       #!/usr/bin/env bash
-  #       set -euo pipefail
-  #       ${pkgs.rclone}/bin/rclone rc vfs/refresh -v --fast-list recursive=true >/dev/null
-  #     ''}";
-  #     StandardOutput = "journal";
-  #     StandardError = "journal";
-  #     Restart = "on-failure";
-  #   };
-
-  #   Install = {
-  #     WantedBy = [ "default.target" ];
-  #   };
-  # };
-
-  # systemd.user.services.input-leap = {
-  #   Unit = {
-  #     Description = "Autostart Input Leap";
-  #     After = [ "graphical-session.target" ];
-  #   };
-
-  #   Service = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = true;
-  #     PassEnvironment = "DISPLAY";
-  #     ExecStart = "${pkgs.writeShellScript "input-leap-start" ''
-  #       sleep 5
-  #       ${pkgs.input-leap}/bin/input-leap
-  #     ''}";
-  #   };
-
-  #   Install = {
-  #     WantedBy = [ "graphical-session.target" ];
-  #   };
-  # };
 }
