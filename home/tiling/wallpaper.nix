@@ -3,68 +3,77 @@
   ...
 }:
 {
-  systemd.user.services.mpvpaper = {
-    Unit = {
-      Description = "Modern wallpaper daemon for Wayland";
-      PartOf = [ "niri.service" ];
-      Requires = [ "niri.service" ];
-      After = [ "niri.service" ];
-    };
-    Service = {
-      ExecStart = ''
-        ${pkgs.mpvpaper}/bin/mpvpaper '*' \
-        '/home/sckova/.local/share/wallpaper/daily.jpg' -o \
-        '--keep-open=always --save-position-on-quit --panscan=1.0' \
-      '';
-    };
-    Install = {
-      WantedBy = [ "niri.service" ];
-    };
+  systemd.user.services.awww-daemon = {
+    Unit.Description = "Wallpaper service using awww (daemon)";
+    Service.ExecStart = "${pkgs.awww}/bin/awww-daemon";
+    Unit.After = [ "graphical-session.target" ];
+    Unit.PartOf = [ "graphical-session.target" ];
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
+  systemd.user.services.awww-setter = {
+    Unit.Description = "Wallpaper service using awww (setter)";
+    Unit.Requires = [ "awww-daemon.service" ];
+    Unit.After = [ "awww-daemon.service" ];
+    Service.Type = "oneshot";
+    Service.ExecStart = ''
+      ${pkgs.awww}/bin/awww img \
+      %h/.local/share/wallpaper/daily.jpg \
+      --transition-step 2 \
+      --transition-fps 60
+    '';
   };
 
   systemd.user.services.bing-wallpaper = {
-    Unit = {
-      Description = "Download and set Bing wallpaper of the day";
-      After = [ "network-online.target" ];
-      Wants = [ "network-online.target" ];
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = pkgs.writeShellScript "bing-wallpaper" ''
-        OUT="''${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper/daily.jpg"
+    Unit.Description = "Download and set Bing wallpaper of the day";
+    Unit.StartLimitBurst = 5;
+    Unit.StartLimitIntervalSec = "10m";
+    Service.Restart = "on-failure";
+    Service.RestartSec = "1m";
+    Service.Type = "oneshot";
+    Service.ExecStart = pkgs.lib.getExe (
+      pkgs.writeShellApplication {
+        name = "bing-wallpaper";
+        runtimeInputs = with pkgs; [
+          wget
+          jq
+          coreutils
+          libnotify
+        ];
+        text = ''
+          set -euo pipefail
 
-        API_RESP=$(${pkgs.wget}/bin/wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1") || exit 1
+          OUT_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper"
+          OUT_FILE="$OUT_DIR/daily.jpg"
 
-        URL_BASE=$(echo "$API_RESP" | ${pkgs.gnugrep}/bin/grep -oP 'urlbase":"[^"]*' | cut -d '"' -f 3)
-        TITLE=$(echo "$API_RESP" | ${pkgs.gnugrep}/bin/grep -oP 'title":"[^"]*' | cut -d '"' -f 3)
+          API_URL="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1"
+          API_RESP=$(wget -qO- "$API_URL")
 
-        ${pkgs.coreutils}/bin/mkdir -p "$(dirname "$OUT")"
-        ${pkgs.wget}/bin/wget -qO "$OUT" "https://www.bing.com$URL_BASE\_UHD.jpg" || \
-          ${pkgs.wget}/bin/wget -qO "$OUT" "https://www.bing.com$(echo "$API_RESP" | ${pkgs.gnugrep}/bin/grep -oP 'url":"[^"]*' | cut -d '"' -f 3)"
+          URL_BASE=$(echo "$API_RESP" | jq -r '.images[0].urlbase')
+          URL_FALLBACK=$(echo "$API_RESP" | jq -r '.images[0].url')
+          TITLE=$(echo "$API_RESP" | jq -r '.images[0].title')
 
-        ${pkgs.libnotify}/bin/notify-send \
-          -a "Bing Wallpaper Service" \
-          -u low \
-          -i preferences-desktop-wallpaper \
-          "$TITLE"
-      '';
-      ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart mpvpaper.service";
-    };
-    Install = {
-      WantedBy = [ "niri.service" ];
-    };
+          mkdir -p "$OUT_DIR"
+
+          if ! wget -qO "$OUT_FILE" "https://www.bing.com''${URL_BASE}_UHD.jpg"; then
+            wget -qO "$OUT_FILE" "https://www.bing.com$URL_FALLBACK"
+          fi
+
+          notify-send \
+            -a "wallpaper of the day" \
+            -u low \
+            -i preferences-desktop-wallpaper \
+            "$TITLE"
+        '';
+      }
+    );
+    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart awww-setter.service";
   };
 
   systemd.user.timers.bing-wallpaper = {
-    Unit = {
-      Description = "Run bing wallpaper retrieval daily";
-    };
-    Timer = {
-      OnCalendar = "*-*-* 10:00:00 GMT";
-      Persistent = true;
-    };
-    Install = {
-      WantedBy = [ "timers.target" ];
-    };
+    Unit.Description = "Run bing wallpaper retrieval daily";
+    Timer.OnCalendar = "*-*-* 10:00:00 GMT";
+    Timer.Persistent = true;
+    Install.WantedBy = [ "timers.target" ];
   };
 }

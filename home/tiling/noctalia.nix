@@ -63,7 +63,7 @@
       bar = {
         autoHideDelay = 500;
         autoShowDelay = 150;
-        backgroundOpacity = 1;
+        backgroundOpacity = 0.975;
         monitors = [ ];
         showCapsule = true;
         barType = "simple";
@@ -79,7 +79,7 @@
         outerCorners = false;
         screenOverrides = [ ];
         showOutline = false;
-        useSeparateOpacity = false;
+        useSeparateOpacity = true;
         widgets = {
           center = [ ];
           left = [
@@ -206,7 +206,7 @@
               deviceNativePath = "__default__";
               displayMode = "icon-hover";
               hideIfIdle = false;
-              hideIfNotDetected = false;
+              hideIfNotDetected = true;
               id = "Battery";
               showNoctaliaPerformance = false;
               showPowerProfiles = true;
