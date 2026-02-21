@@ -6,7 +6,7 @@
 }:
 {
   colors = {
-    scheme = "catppuccin-latte";
+    scheme = "catppuccin-mocha";
     accent = "base09";
   };
 
