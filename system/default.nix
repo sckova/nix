@@ -2,28 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  config,
   pkgs,
   ...
 }:
 {
-  environment.sessionVariables = {
-    # this makes electron apps work per the wiki
-    NIXOS_OZONE_WL = "1";
-  };
-
   boot = {
-    plymouth = {
-      enable = true;
-      logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
-    };
-
+    plymouth.enable = true;
+    plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
     loader = {
       timeout = 3;
-      # systemd-boot = {
-      #   enable = true;
-      #   consoleMode = lib.mkForce "auto";
-      #   configurationLimit = 10;
-      # };
       limine = {
         enable = true;
         maxGenerations = 10;
@@ -40,7 +28,6 @@
           };
         };
       };
-      # efi.canTouchEfiVariables = true;
     };
     kernelParams = [
       "quiet"
@@ -55,9 +42,93 @@
     initrd.verbose = false;
   };
 
-  networking.networkmanager.enable = true;
-  hardware.bluetooth.enable = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
+    niri.enable = true;
+    niri.package = pkgs.niri-unstable;
+    dconf.enable = true;
+    dconf.profiles.user = {
+      databases = [
+        {
+          # breaks user-level indirect config of dconf
+          # lockAll = true;
+          settings = {
+            "org/gnome/desktop/interface" = {
+              color-scheme = "prefer-dark";
+              clock-format = "12h";
+              clock-show-weekday = true;
+            };
+            "org/gnome/desktop/wm/preferences" = {
+              button-layout = ":";
+              action-double-click-titlebar = "'none'";
+            };
+            "org/gnome/desktop/media-handling" = {
+              automount = false;
+              automount-open = false;
+              autorun-never = true;
+            };
+            "org/gnome/settings-daemon/plugins/power" = {
+              sleep-inactive-ac-type = "nothing";
+            };
+            "org/gnome/mutter" = {
+              edge-tiling = true;
+              dynamic-workspaces = true;
+              experimental-features = [ "variable-refresh-rate" ];
+            };
+          };
+        }
+      ];
+    };
 
+  };
+
+  # aerothemeplasma = {
+  #   enable = true;
+  #   plasma.enable = true;
+  #   fonts.enable = false;
+  #   plymouth.enable = false;
+  #   sddm.enable = true;
+  # };
+
+  services = {
+    desktopManager.plasma6.enable = true;
+    displayManager = {
+      sddm.enable = true;
+      sddm.wayland.enable = true;
+      defaultSession = "niri";
+    };
+    gnome.gnome-keyring.enable = true;
+    libinput.enable = true;
+    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    udisks2.enable = true;
+    gvfs.enable = true;
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+    openssh.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    git
+    firefoxpwa
+  ];
+
+  security.pam.services.niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+  networking.firewall.enable = false;
+  networking.networkmanager.enable = true;
+  documentation.man.enable = true;
+  documentation.man.generateCaches = false;
+  hardware.graphics.enable = true;
+  hardware.bluetooth.enable = true;
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -71,108 +142,6 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-  };
-
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-  };
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.niri.enableGnomeKeyring = true;
-  programs.dconf.enable = true;
-
-  programs.dconf.profiles.user = {
-    databases = [
-      {
-        # breaks user-level indirect config of dconf
-        # lockAll = true;
-        settings = {
-          "org/gnome/desktop/interface" = {
-            color-scheme = "prefer-dark";
-            clock-format = "12h";
-            clock-show-weekday = true;
-          };
-          "org/gnome/desktop/wm/preferences" = {
-            button-layout = ":";
-            action-double-click-titlebar = "'none'";
-          };
-          "org/gnome/desktop/media-handling" = {
-            automount = false;
-            automount-open = false;
-            autorun-never = true;
-          };
-          "org/gnome/settings-daemon/plugins/power" = {
-            sleep-inactive-ac-type = "nothing";
-          };
-          "org/gnome/mutter" = {
-            edge-tiling = true;
-            dynamic-workspaces = true;
-            experimental-features = [ "variable-refresh-rate" ];
-          };
-        };
-      }
-    ];
-  };
-
-  aerothemeplasma = {
-    enable = true;
-    plasma.enable = true;
-    fonts.enable = false;
-    plymouth.enable = false;
-    sddm.enable = true;
-  };
-
-  services = {
-    # displayManager = {
-    #   gdm.enable = true;
-    #   defaultSession = "niri";
-    # };
-    desktopManager.plasma6.enable = true;
-    displayManager = {
-      sddm.enable = true;
-      defaultSession = "aerothemeplasma";
-    };
-
-    libinput.enable = true;
-    printing.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    udisks2.enable = true;
-    gvfs.enable = true;
-
-    upower.enable = true;
-    power-profiles-daemon.enable = true;
-  };
-
-  environment = {
-    systemPackages = with pkgs; [
-      git
-      firefoxpwa
-      distrobox
-    ];
-  };
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
-  };
-  networking.firewall.enable = false;
-
-  documentation.man = {
-    enable = true;
-    generateCaches = false;
-  };
-
-  services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
