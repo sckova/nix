@@ -83,13 +83,11 @@
       };
       cursor = {
         hide-when-typing = false;
-        # hide-after-inactive-ms = 10000;
         size = config.userOptions.cursor.size;
         theme = config.userOptions.cursor.name;
       };
       layout = {
         gaps = 4;
-        # background-color = base10;
         background-color = "transparent";
         default-column-width = {
           proportion = 0.5;
@@ -121,12 +119,6 @@
           softness = 30;
           color = base11 + "BF";
         };
-        # blur = {
-        #   enable = true;
-        #   passes = 4;
-        #   radius = 4;
-        #   noise = 0.1;
-        # };
       };
       window-rules = [
         {
@@ -137,7 +129,13 @@
             bottom-right = 8.0;
           };
           clip-to-geometry = true;
-          opacity = 0.975;
+          opacity = 0.95;
+          background-effect = {
+            xray = false;
+            blur = true;
+            noise = 0.05;
+            saturation = 1;
+          };
         }
         {
           matches = [
@@ -170,7 +168,7 @@
               is-active = false;
             }
           ];
-          opacity = 0.95;
+          opacity = 0.925;
         }
         {
           matches = [
@@ -191,11 +189,47 @@
             {
               app-id = "mpv";
             }
+            {
+              app-id = "firefox";
+              title = "Picture-in-Picture";
+            }
           ];
           opacity = 1.0;
         }
+        {
+          # Kitty Fastfetch window
+          matches = [
+            {
+              app-id = "kitty";
+              title = "^fastfetch$";
+            }
+          ];
+          open-floating = true;
+          baba-is-float = true;
+          min-width = 960;
+          min-height = 480;
+          max-width = 960;
+          max-height = 480;
+        }
       ];
       layer-rules = [
+        {
+          matches = [ { namespace = "noctalia-bar-content-.*"; } ];
+          background-effect = {
+            xray = false;
+            blur = true;
+            noise = 0.05;
+            saturation = 1;
+          };
+        }
+        {
+          matches = [ { namespace = "noctalia-bar-exclusion-top-.*"; } ];
+          place-within-backdrop = true;
+        }
+        {
+          matches = [ { namespace = "^launcher$"; } ];
+          opacity = 0.925;
+        }
         {
           matches = [
             {
@@ -214,6 +248,10 @@
         "Mod+T" = {
           action.spawn = [ "kitty" ];
           hotkey-overlay.title = "Open a Terminal: kitty";
+        };
+        "Mod+Shift+T" = {
+          action.spawn-sh = [ "kitty --title fastfetch sh -c 'fastfetch; sleep 10'" ];
+          hotkey-overlay.title = "Open a Terminal with Fastfetch";
         };
         "Mod+Space" = {
           action.spawn = [ "fuzzel" ];

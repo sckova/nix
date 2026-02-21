@@ -307,8 +307,12 @@
     },
     "niri": {
       "inputs": {
-        "niri-stable": "niri-stable",
-        "niri-unstable": "niri-unstable",
+        "niri-stable": [
+          "niri-blur"
+        ],
+        "niri-unstable": [
+          "niri-blur"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -319,48 +323,33 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1771514840,
-        "narHash": "sha256-t3WbZvwoDj/75YDX/nwkZuxanZLZaWr9meSfKswaN6g=",
-        "owner": "sodiboo",
+        "lastModified": 1771682768,
+        "narHash": "sha256-RJ9RVJSAktCgWiqLDCjYmx9KgMuLaszUrI28k92Pa2I=",
+        "owner": "sckova",
         "repo": "niri-flake",
-        "rev": "4f69ab280e9bb34e2c0b67fdfa6f0978a170ef56",
+        "rev": "383bd9d32706b163807b05983418069b2e692310",
         "type": "github"
       },
       "original": {
-        "owner": "sodiboo",
+        "owner": "sckova",
+        "ref": "feat/blur",
         "repo": "niri-flake",
         "type": "github"
       }
     },
-    "niri-stable": {
+    "niri-blur": {
       "flake": false,
       "locked": {
-        "lastModified": 1756556321,
-        "narHash": "sha256-RLD89dfjN0RVO86C/Mot0T7aduCygPGaYbog566F0Qo=",
-        "owner": "YaLTeR",
+        "lastModified": 1771672342,
+        "narHash": "sha256-52CxMRH2kVGpsPBiZM+996b6i/3XkmOrySm5zqwWc+o=",
+        "owner": "niri-wm",
         "repo": "niri",
-        "rev": "01be0e65f4eb91a9cd624ac0b76aaeab765c7294",
+        "rev": "86f42d1ed9ab787c52ace073e0b3218e26530d25",
         "type": "github"
       },
       "original": {
-        "owner": "YaLTeR",
-        "ref": "v25.08",
-        "repo": "niri",
-        "type": "github"
-      }
-    },
-    "niri-unstable": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1771305475,
-        "narHash": "sha256-lqweVTwHhYc+9T33cysp38gVwxaibGJHriOPZXWyhCY=",
-        "owner": "YaLTeR",
-        "repo": "niri",
-        "rev": "a2a52911757cb3b497db9407592f9b4c439571ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "YaLTeR",
+        "owner": "niri-wm",
+        "ref": "wip/branch",
         "repo": "niri",
         "type": "github"
       }
@@ -594,6 +583,7 @@
         "catppuccin-discord": "catppuccin-discord",
         "home-manager": "home-manager",
         "niri": "niri",
+        "niri-blur": "niri-blur",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": [
           "nixpkgs-unstable"
