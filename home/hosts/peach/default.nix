@@ -19,11 +19,6 @@
     moonlight-qt
   ];
 
-  # https://github.com/YaLTeR/niri/issues/2330#issuecomment-3256864777
-  programs.niri.settings.debug = {
-    render-drm-device = "/dev/dri/card2";
-  };
-
   programs.noctalia-shell.settings.bar = {
     position = "top";
     density = "spacious";
