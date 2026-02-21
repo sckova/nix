@@ -29,7 +29,6 @@
       input = {
         focus-follows-mouse.enable = true;
         focus-follows-mouse.max-scroll-amount = "0%";
-        warp-mouse-to-focus.enable = true;
         mod-key = "Super";
         keyboard = {
           numlock = false;
@@ -187,6 +186,14 @@
           open-maximized = true;
           open-focused = true;
         }
+        {
+          matches = [
+            {
+              app-id = "mpv";
+            }
+          ];
+          opacity = 1.0;
+        }
       ];
       layer-rules = [
         {
@@ -195,7 +202,7 @@
               namespace = "^wpaperd.*";
             }
             {
-              namespace = "^mpvpaper";
+              namespace = "^awww-daemon";
             }
           ];
           place-within-backdrop = true;
