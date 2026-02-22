@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }:
 {
@@ -181,7 +180,7 @@
               title = "Minecraft";
             }
           ];
-          open-maximized = true;
+          open-maximized-to-edges = true;
           open-focused = true;
         }
         {
@@ -214,7 +213,7 @@
       ];
       layer-rules = [
         {
-          matches = [ { namespace = "noctalia-bar-content-.*"; } ];
+          matches = [ { namespace = "noctalia-bar-content-.*$"; } ];
           background-effect = {
             xray = false;
             blur = true;
@@ -223,21 +222,23 @@
           };
         }
         {
-          matches = [ { namespace = "noctalia-bar-exclusion-top-.*"; } ];
+          matches = [ { namespace = "noctalia-bar-exclusion-top-.*$"; } ];
           place-within-backdrop = true;
         }
         {
           matches = [ { namespace = "^launcher$"; } ];
           opacity = 0.925;
+          background-effect = {
+            xray = false;
+            blur = true;
+            noise = 0.05;
+            saturation = 1;
+          };
         }
         {
           matches = [
-            {
-              namespace = "^wpaperd.*";
-            }
-            {
-              namespace = "^awww-daemon";
-            }
+            { namespace = "^wpaperd.*"; }
+            { namespace = "^awww-daemon"; }
           ];
           place-within-backdrop = true;
         }
@@ -401,29 +402,13 @@
           allow-when-locked = true;
         };
 
-        "XF86Sleep" = {
-          action.power-off-monitors = { };
-        };
+        "XF86Sleep".action.power-off-monitors = { };
 
-        "XF86Search" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "launcher"
-            "toggle"
-          ];
-          allow-when-locked = true;
-        };
+        "XF86Search".action.spawn = [ "fuzzel" ];
 
         "XF86LaunchA" = {
-          action.spawn = [
-            "niri"
-            "msg"
-            "action"
-            "toggle-overview"
-          ];
-          allow-when-locked = true;
+          action.toggle-overview = { };
+          repeat = false;
         };
 
         "Mod+O" = {
@@ -551,18 +536,14 @@
         "Mod+Ctrl+Shift+F".action.fullscreen-window = { };
 
         "Mod+C".action.center-column = { };
-
         "Mod+Ctrl+C".action.center-visible-columns = { };
 
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
-
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
-
         "Mod+Ctrl+Minus".action.set-column-width = "-0.25%";
         "Mod+Ctrl+Equal".action.set-column-width = "+0.25%";
-
         "Mod+Ctrl+Shift+Minus".action.set-window-height = "-0.25%";
         "Mod+Ctrl+Shift+Equal".action.set-window-height = "+0.25%";
 
@@ -571,18 +552,10 @@
 
         "Mod+W".action.toggle-column-tabbed-display = { };
 
-        "Print".action.screenshot = {
-          show-pointer = false;
-        };
-        "Mod+Shift+S".action.screenshot = {
-          show-pointer = false;
-        };
-        "Ctrl+Print".action.screenshot-screen = {
-          show-pointer = false;
-        };
-        "Alt+Print".action.screenshot-window = {
-          show-pointer = false;
-        };
+        "Print".action.screenshot.show-pointer = false;
+        "Mod+Shift+S".action.screenshot.show-pointer = false;
+        "Ctrl+Print".action.screenshot-screen.show-pointer = false;
+        "Alt+Print".action.screenshot-window.show-pointer = false;
 
         "Mod+Escape" = {
           action.toggle-keyboard-shortcuts-inhibit = { };
