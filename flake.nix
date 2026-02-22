@@ -312,23 +312,23 @@
             { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
           ];
         };
-
-        alien =
-          mkNixosSystem {
-            hostname = "alien";
-            system = "x86_64-linux";
-            extraModules = [
-              { nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ]; }
-            ];
-          }
-          // nixpkgs.lib.genAttrs supportedSystems (
-            system:
-            mkNixosSystem {
-              hostname = "vm-generic";
-              inherit system;
+        alien = mkNixosSystem {
+          hostname = "alien";
+          system = "x86_64-linux";
+          extraModules = [
+            {
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
             }
-          );
-      };
+          ];
+        };
+      }
+      // nixpkgs.lib.genAttrs supportedSystems (
+        system:
+        mkNixosSystem {
+          hostname = "vm-generic";
+          inherit system;
+        }
+      );
 
       homeConfigurations = {
         peach = mkHomeConfig {
