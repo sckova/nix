@@ -31,6 +31,8 @@
 
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "qt6ct";
+    # this makes electron apps work per the wiki
+    NIXOS_OZONE_WL = "1";
   };
 
   gtk = {
