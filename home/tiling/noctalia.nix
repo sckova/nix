@@ -613,8 +613,6 @@
       ];
     };
 
-    Install = {
-      WantedBy = [ "niri.service" ];
-    };
+    Install.WantedBy = [ "niri.service" ];
   };
 }
