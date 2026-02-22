@@ -236,10 +236,7 @@
           };
         }
         {
-          matches = [
-            { namespace = "^wpaperd.*"; }
-            { namespace = "^awww-daemon"; }
-          ];
+          matches = [ { namespace = "^wallpaper$"; } ];
           place-within-backdrop = true;
         }
       ];
