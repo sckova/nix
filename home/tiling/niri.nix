@@ -99,16 +99,16 @@
         border = {
           enable = true;
           width = 2;
-          active.color = config.scheme.withHashtag.${config.colors.accent};
-          inactive.color = base01;
-          urgent.color = base12;
+          active.color = config.scheme.withHashtag.${config.colors.accent} + "E6";
+          inactive.color = base01 + "E6";
+          urgent.color = base12 + "E6";
         };
         focus-ring = {
           enable = false;
           width = 2;
-          active.color = config.scheme.withHashtag.${config.colors.accent};
-          inactive.color = base01;
-          urgent.color = base12;
+          active.color = config.scheme.withHashtag.${config.colors.accent} + "E6";
+          inactive.color = base01 + "E6";
+          urgent.color = base12 + "E6";
         };
         shadow = {
           enable = true;
@@ -128,7 +128,7 @@
             bottom-right = 8.0;
           };
           clip-to-geometry = true;
-          opacity = 0.95;
+          opacity = 0.90;
           background-effect = {
             xray = false;
             blur = true;
@@ -167,7 +167,7 @@
               is-active = false;
             }
           ];
-          opacity = 0.925;
+          opacity = 0.875;
         }
         {
           matches = [

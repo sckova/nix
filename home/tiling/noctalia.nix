@@ -63,7 +63,7 @@
       bar = {
         autoHideDelay = 500;
         autoShowDelay = 150;
-        backgroundOpacity = 0.975;
+        backgroundOpacity = 0.90;
         monitors = [ ];
         showCapsule = true;
         barType = "simple";
