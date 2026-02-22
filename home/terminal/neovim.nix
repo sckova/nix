@@ -1,12 +1,11 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables.EDITOR = lib.mkForce "kitty nvim";
 
   home.packages = with pkgs; [
     kdePackages.qtdeclarative
