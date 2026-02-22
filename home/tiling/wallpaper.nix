@@ -6,7 +6,7 @@
   systemd.user.services.awww-daemon = {
     Unit.Description = "Wallpaper service using awww (daemon)";
     Service.ExecStart = "${pkgs.awww}/bin/awww-daemon";
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "niri.service" ];
   };
 
   systemd.user.services.awww-setter = {
@@ -39,26 +39,16 @@
           libnotify
         ];
         text = ''
-          set -euo pipefail
+          OUT="$HOME/.local/share/wallpaper/daily.jpg"
+          API=$(wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1")
+          BASE=$(echo "$API" | jq -r '.images[0].urlbase')
+          TITLE=$(echo "$API" | jq -r '.images[0].title')
 
-          OUT_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper"
-          OUT_FILE="$OUT_DIR/daily.jpg"
-
-          API_URL="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1"
-          API_RESP=$(wget -qO- "$API_URL")
-
-          URL_BASE=$(echo "$API_RESP" | jq -r '.images[0].urlbase')
-          URL_FALLBACK=$(echo "$API_RESP" | jq -r '.images[0].url')
-          TITLE=$(echo "$API_RESP" | jq -r '.images[0].title')
-
-          mkdir -p "$OUT_DIR"
-
-          if ! wget -qO "$OUT_FILE" "https://www.bing.com''${URL_BASE}_UHD.jpg"; then
-            wget -qO "$OUT_FILE" "https://www.bing.com$URL_FALLBACK"
-          fi
+          mkdir -p "$HOME/.local/share/wallpaper"
+          wget -qO "$OUT" "https://www.bing.com''${BASE}_UHD.jpg"
 
           notify-send \
-            -a "wallpaper of the day" \
+            -a "Wallpaper of the day" \
             -u low \
             -i preferences-desktop-wallpaper \
             "$TITLE"
@@ -66,7 +56,7 @@
       }
     );
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart awww-setter.service";
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "niri.service" ];
   };
 
   systemd.user.timers.bing-wallpaper = {
