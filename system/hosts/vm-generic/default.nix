@@ -1,7 +1,7 @@
-{ catppuccin, ... }:
+{ ... }:
 {
   home-manager.users.sckova = {
-    imports = [ catppuccin.homeModules.catppuccin ];
+    imports = [ ];
   };
 
   services.spice-vdagentd.enable = true;
