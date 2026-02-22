@@ -3,23 +3,13 @@
   ...
 }:
 {
-  systemd.user.services.awww-daemon = {
-    Unit.Description = "Wallpaper service using awww (daemon)";
-    Service.ExecStart = "${pkgs.awww}/bin/awww-daemon";
-    Install.WantedBy = [ "niri.service" ];
-  };
-
-  systemd.user.services.awww-setter = {
-    Unit.Description = "Wallpaper service using awww (setter)";
-    Unit.Requires = [ "awww-daemon.service" ];
-    Unit.After = [ "awww-daemon.service" ];
-    Service.Type = "oneshot";
+  systemd.user.services.wbg-daemon = {
+    Unit.Description = "Wallpaper service using wbg (daemon)";
     Service.ExecStart = ''
-      ${pkgs.awww}/bin/awww img \
-      %h/.local/share/wallpaper/daily.jpg \
-      --transition-step 2 \
-      --transition-fps 60
+      ${pkgs.wbg}/bin/wbg -s \
+      %h/.local/share/wallpaper/daily.jpg
     '';
+    Install.WantedBy = [ "niri.service" ];
   };
 
   systemd.user.services.bing-wallpaper = {
@@ -55,7 +45,7 @@
         '';
       }
     );
-    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart awww-setter.service";
+    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
     Install.WantedBy = [ "niri.service" ];
   };
 

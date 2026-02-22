@@ -86,11 +86,6 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    awww = {
-      url = "git+https://codeberg.org/LGFae/awww.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     openmw = {
       url = "gitlab:OpenMW/openmw";
       flake = false;
@@ -119,7 +114,6 @@
       nur,
       nixvim,
       apple-silicon,
-      awww,
       openmw,
       catppuccin-discord,
       ...
@@ -163,7 +157,6 @@
                   niri.overlays.niri
                   noctalia.overlays.default
                   nur.overlays.default
-                  awww.overlays.default
                   (final: prev: {
                     openmw-git = openmw;
                     catppuccin-discord-git = catppuccin-discord;
