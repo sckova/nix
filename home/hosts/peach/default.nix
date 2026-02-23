@@ -1,12 +1,11 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }:
 {
   colors = {
-    scheme = "catppuccin-mocha";
+    scheme = "hopscotch";
     accent = "base09";
   };
 
