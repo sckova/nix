@@ -14,7 +14,7 @@
   visibility: hidden !important;
 }
 
-.browserContainer {
+/*.browserContainer {
   border-radius: 8px !important;
   margin: 6px !important;
   background-color: transparent !important;
@@ -22,4 +22,4 @@
 
 browser {
   border-radius: 8px !important;
-}
+}*/
