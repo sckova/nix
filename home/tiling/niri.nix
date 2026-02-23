@@ -16,7 +16,7 @@
         XCURSOR_THEME = config.userOptions.cursor.name;
         XCURSOR_SIZE = toString config.userOptions.cursor.size;
       };
-      screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+      screenshot-path = "~/Pictures/Screenshots/%a %b %e %Y @%l:%M %p.png";
       hotkey-overlay.skip-at-startup = true;
       prefer-no-csd = true;
       gestures.hot-corners.enable = false;
@@ -88,9 +88,7 @@
       layout = {
         gaps = 4;
         background-color = "transparent";
-        default-column-width = {
-          proportion = 0.5;
-        };
+        default-column-width.proportion = 0.5;
         preset-column-widths = [
           { proportion = 4.0 / 12.0; }
           { proportion = 6.0 / 12.0; }
@@ -167,7 +165,7 @@
               is-active = false;
             }
           ];
-          opacity = 0.875;
+          opacity = 0.90;
         }
         {
           matches = [
@@ -182,6 +180,7 @@
           ];
           open-maximized-to-edges = true;
           open-focused = true;
+          opacity = 1.00;
         }
         {
           matches = [
@@ -227,7 +226,7 @@
         }
         {
           matches = [ { namespace = "^launcher$"; } ];
-          opacity = 0.925;
+          opacity = 0.90;
           background-effect = {
             xray = false;
             blur = true;
@@ -539,6 +538,7 @@
         "Mod+Equal".action.set-column-width = "+10%";
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
+
         "Mod+Ctrl+Minus".action.set-column-width = "-0.25%";
         "Mod+Ctrl+Equal".action.set-column-width = "+0.25%";
         "Mod+Ctrl+Shift+Minus".action.set-window-height = "-0.25%";
@@ -549,10 +549,9 @@
 
         "Mod+W".action.toggle-column-tabbed-display = { };
 
-        "Print".action.screenshot.show-pointer = false;
         "Mod+Shift+S".action.screenshot.show-pointer = false;
-        "Ctrl+Print".action.screenshot-screen.show-pointer = false;
-        "Alt+Print".action.screenshot-window.show-pointer = false;
+        "Ctrl+Shift+S".action.screenshot-screen.show-pointer = false;
+        "Alt+Shift+S".action.screenshot-window.show-pointer = false;
 
         "Mod+Escape" = {
           action.toggle-keyboard-shortcuts-inhibit = { };
