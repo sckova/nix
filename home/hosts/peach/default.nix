@@ -5,7 +5,7 @@
 }:
 {
   colors = {
-    scheme = "hopscotch";
+    scheme = "pnevma";
     accent = "base09";
   };
 
@@ -18,28 +18,43 @@
     moonlight-qt
   ];
 
-  programs.noctalia-shell.settings.bar = {
-    position = "top";
-    density = "spacious";
-  };
+  programs = {
+    noctalia-shell.settings.bar = {
+      position = "top";
+      density = "spacious";
+    };
 
-  programs.plasma = lib.mkDefault {
-    input.touchpads = [
-      {
-        name = "Apple MTP multi-touch";
-        vendorId = "05ac";
-        productId = "0352";
-        disableWhileTyping = false;
-        enable = true;
-        tapToClick = false;
-        naturalScroll = true;
-        accelerationProfile = "default";
-      }
-    ];
+    niri.settings.outputs."eDP-1" = {
+      scale = 1.5;
+      mode = {
+        width = 3024;
+        height = 1964;
+        refresh = 60.000;
+      };
+      position = {
+        x = 272;
+        y = 1440;
+      };
+    };
 
-    shortcuts = {
-      # this is really annoying on apple laptops
-      org_kde_powerdevil.Sleep = [ ];
+    plasma = lib.mkDefault {
+      input.touchpads = [
+        {
+          name = "Apple MTP multi-touch";
+          vendorId = "05ac";
+          productId = "0352";
+          disableWhileTyping = false;
+          enable = true;
+          tapToClick = false;
+          naturalScroll = true;
+          accelerationProfile = "default";
+        }
+      ];
+
+      shortcuts = {
+        # this is really annoying on apple laptops
+        org_kde_powerdevil.Sleep = [ ];
+      };
     };
   };
 }
