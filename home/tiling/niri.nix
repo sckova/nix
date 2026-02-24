@@ -48,13 +48,6 @@
         };
       };
       outputs = {
-        "eDP-1" = {
-          scale = 1.5;
-          position = {
-            x = 272;
-            y = 1440;
-          };
-        };
         "HDMI-A-1" = {
           mode = {
             width = 3840;
@@ -133,6 +126,7 @@
             noise = 0.05;
             saturation = 1;
           };
+          draw-border-with-background = false;
         }
         {
           matches = [
