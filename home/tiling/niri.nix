@@ -131,20 +131,6 @@
         {
           matches = [
             {
-              app-id = "firefox$";
-              title = "^Picture-in-Picture$";
-            }
-          ];
-          open-floating = true;
-          default-floating-position = {
-            x = 16;
-            y = 16;
-            relative-to = "bottom-left";
-          };
-        }
-        {
-          matches = [
-            {
               app-id = "vesktop$";
             }
             {
