@@ -236,8 +236,11 @@
           repeat = false;
         };
         "Mod+M" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume muteInput"
+          action.spawn = [
+            "wpctl"
+            "set-mute"
+            "@DEFAULT_AUDIO_SOURCE@"
+            "toggle"
           ];
           hotkey-overlay.title = "Toggle Microphone Mute";
           repeat = false;
@@ -253,18 +256,24 @@
         };
         "Mod+Space" = {
           action.spawn = [ "fuzzel" ];
-          hotkey-overlay.title = "Run an Application: Noctalia app launcher";
+          hotkey-overlay.title = "Run an Application: Fuzzel";
         };
 
         "XF86AudioRaiseVolume" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume increase"
+          action.spawn = [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.05+"
           ];
           allow-when-locked = true;
         };
         "XF86AudioLowerVolume" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume decrease"
+          action.spawn = [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.05-"
           ];
           allow-when-locked = true;
         };
@@ -289,14 +298,20 @@
         };
 
         "MouseForward" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume increase"
+          action.spawn = [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.05+"
           ];
           allow-when-locked = true;
         };
         "MouseBack" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume decrease"
+          action.spawn = [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.05-"
           ];
           allow-when-locked = true;
         };
@@ -321,14 +336,20 @@
         };
 
         "XF86AudioMute" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume muteOutput"
+          action.spawn = [
+            "wpctl"
+            "set-mute"
+            "@DEFAULT_AUDIO_SINK@"
+            "toggle"
           ];
           allow-when-locked = true;
         };
         "XF86AudioMicMute" = {
-          action.spawn-sh = [
-            "noctalia-shell ipc call volume muteInput"
+          action.spawn = [
+            "wpctl"
+            "set-mute"
+            "@DEFAULT_AUDIO_SOURCE@"
+            "toggle"
           ];
           allow-when-locked = true;
         };
