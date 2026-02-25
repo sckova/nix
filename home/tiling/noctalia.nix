@@ -595,24 +595,22 @@
 
   systemd.user.services.noctalia-shell = {
     Unit = {
-      After = [ "niri.service" ];
-      PartOf = [ "niri.service" ];
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
       Description = "Noctalia Shell - Wayland desktop shell";
-      Documentation = "https://docs.noctalia.dev/docs";
+      Documentation = "https://docs.noctalia.dev";
+      X-Restart-Triggers = [
+        "${config.xdg.configFile."noctalia/settings.json".source}"
+        "${config.xdg.configFile."noctalia/colors.json".source}"
+      ];
     };
 
     Service = {
       ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
       Restart = "on-failure";
-      Environment = [
-        "LOCALE_ARCHIVE=${pkgs.glibcLocales}/lib/locale"
-        "TZDIR=${pkgs.tzdata}/share/zoneinfo"
-        "NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json"
-        "QT_QPA_PLATFORM=wayland"
-        "QT_QPA_PLATFORMTHEME=qt6ct"
-      ];
+      Environment = [ "QT_QPA_PLATFORMTHEME=qt6ct" ];
     };
 
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }
