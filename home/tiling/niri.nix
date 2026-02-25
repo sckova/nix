@@ -215,10 +215,6 @@
           };
         }
         {
-          matches = [ { namespace = "noctalia-bar-exclusion-top-.*$"; } ];
-          place-within-backdrop = true;
-        }
-        {
           matches = [ { namespace = "^launcher$"; } ];
           opacity = 0.90;
           background-effect = {
@@ -235,6 +231,17 @@
       ];
       binds = {
         "Mod+Shift+Slash".action.show-hotkey-overlay = { };
+        "Mod+D" = {
+          action.toggle-window-rule-opacity = { };
+          repeat = false;
+        };
+        "Mod+M" = {
+          action.spawn-sh = [
+            "noctalia-shell ipc call volume muteInput"
+          ];
+          hotkey-overlay.title = "Toggle Microphone Mute";
+          repeat = false;
+        };
 
         "Mod+T" = {
           action.spawn = [ "kitty" ];
