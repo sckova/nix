@@ -40,6 +40,12 @@
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
   };
 
   programs = {
@@ -83,7 +89,6 @@
         }
       ];
     };
-
   };
 
   # aerothemeplasma = {
@@ -120,9 +125,17 @@
   environment.systemPackages = with pkgs; [
     git
     firefoxpwa
+    (wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    })
   ];
 
   security.pam.services.niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+  security.polkit.enable = true;
   networking.firewall.enable = false;
   networking.networkmanager.enable = true;
   documentation.man.enable = true;
