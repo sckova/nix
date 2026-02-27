@@ -38,11 +38,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    aerothemeplasma-nix = {
-      url = "github:nyakase/aerothemeplasma-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     niri = {
       url = "github:sckova/niri-flake/feat/blur";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,11 +50,6 @@
       url = "github:niri-wm/niri/wip/branch";
       flake = false;
     };
-
-    # niri-blur = {
-    #   url = "github:visualglitch91/niri/feat/blur";
-    #   flake = false;
-    # };
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
@@ -107,7 +97,6 @@
       base16-discord,
       home-manager,
       plasma-manager,
-      aerothemeplasma-nix,
       niri,
       noctalia,
       spicetify-nix,
@@ -226,7 +215,6 @@
             ./system/tailscale
             ./system/hosts/${hostname}
             ./hardware/${hostname}
-            aerothemeplasma-nix.nixosModules.aerothemeplasma-nix
             niri.nixosModules.niri
             home-manager.nixosModules.home-manager
             noctalia.nixosModules.default
@@ -255,7 +243,6 @@
                       scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
                     }
                   )
-                  aerothemeplasma-nix.homeModules.aerothemeplasma-nix
                   plasma-manager.homeModules.plasma-manager
                   noctalia.homeModules.default
                   spicetify-nix.homeManagerModules.default

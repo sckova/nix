@@ -23,12 +23,6 @@
     };
   };
 
-  aerothemeplasma = {
-    enable = true;
-    plasma.enable = true;
-    fonts.enable = true;
-  };
-
   programs.plasma = lib.mkDefault {
     enable = true;
     session = {
