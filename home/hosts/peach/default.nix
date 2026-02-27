@@ -5,7 +5,7 @@
 }:
 {
   colors = {
-    scheme = "pnevma";
+    scheme = "banana-blueberry";
     accent = "base09";
   };
 

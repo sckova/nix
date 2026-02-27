@@ -50,11 +50,6 @@ in
 
   home.file.".config/vesktop/settings/quickCss.css" = with config.scheme.withHashtag; {
     text = ''
-      * {
-        font-family: "${config.userOptions.fontSans.name}" !important;
-        font-size: ${toString config.userOptions.fontSans.size}px;
-      }
-
       :root {
         --base00: ${base00};
         --base01: ${base01};
