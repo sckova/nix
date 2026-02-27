@@ -302,11 +302,11 @@
     "niri-blur": {
       "flake": false,
       "locked": {
-        "lastModified": 1771672342,
-        "narHash": "sha256-52CxMRH2kVGpsPBiZM+996b6i/3XkmOrySm5zqwWc+o=",
+        "lastModified": 1771749270,
+        "narHash": "sha256-ZJCM1XOHIdud6Jfpl4jYQOzbOJId9wmXT+hNJ1IPBIY=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "86f42d1ed9ab787c52ace073e0b3218e26530d25",
+        "rev": "734d86ec061d15d1980c5b940b2f4dc9aee80cf5",
         "type": "github"
       },
       "original": {
