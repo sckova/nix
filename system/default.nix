@@ -91,14 +91,6 @@
     };
   };
 
-  # aerothemeplasma = {
-  #   enable = true;
-  #   plasma.enable = true;
-  #   fonts.enable = false;
-  #   plymouth.enable = false;
-  #   sddm.enable = true;
-  # };
-
   services = {
     desktopManager.plasma6.enable = true;
     displayManager = {
