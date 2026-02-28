@@ -3,7 +3,7 @@
   ...
 }:
 {
-  home.packages = with pkgs; [ openmw ];
+  home.packages = with pkgs; [ openmw-unstable ];
   home.sessionVariables.SDL_VIDEO_DRIVER = "wayland";
 
   programs.firefox.profiles.default.search.engines.uesp = {

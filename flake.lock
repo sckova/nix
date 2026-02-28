@@ -85,22 +85,6 @@
         "type": "github"
       }
     },
-    "catppuccin-discord": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1769446491,
-        "narHash": "sha256-7v1Hu6QofOyFOGnHeqHFK0JsxUxdJ9uTjI7nM7mdTsg=",
-        "owner": "catppuccin",
-        "repo": "discord",
-        "rev": "f235754322320211a8646d963466fac402e5c297",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "discord",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1761640442,
@@ -230,14 +214,12 @@
     },
     "niri": {
       "inputs": {
-        "niri-stable": [
-          "niri-blur"
-        ],
+        "niri-stable": "niri-stable",
         "niri-unstable": [
           "niri-blur"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ],
         "nixpkgs-stable": [
           "nixpkgs-stable"
@@ -273,6 +255,23 @@
       "original": {
         "owner": "niri-wm",
         "ref": "wip/branch",
+        "repo": "niri",
+        "type": "github"
+      }
+    },
+    "niri-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756556321,
+        "narHash": "sha256-RLD89dfjN0RVO86C/Mot0T7aduCygPGaYbog566F0Qo=",
+        "owner": "YaLTeR",
+        "repo": "niri",
+        "rev": "01be0e65f4eb91a9cd624ac0b76aaeab765c7294",
+        "type": "github"
+      },
+      "original": {
+        "owner": "YaLTeR",
+        "ref": "v25.08",
         "repo": "niri",
         "type": "github"
       }
@@ -486,7 +485,6 @@
         "apple-silicon": "apple-silicon",
         "base16": "base16",
         "base16-discord": "base16-discord",
-        "catppuccin-discord": "catppuccin-discord",
         "home-manager": "home-manager",
         "niri": "niri",
         "niri-blur": "niri-blur",
