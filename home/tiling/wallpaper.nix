@@ -10,7 +10,7 @@
       ${pkgs.wbg}/bin/wbg -s \
       %h/.local/share/wallpaper/daily-colored.jpg
     '';
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.services.bing-wallpaper = {
@@ -47,7 +47,7 @@
       }
     );
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user start gowall-convert.service";
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.timers.bing-wallpaper = {
