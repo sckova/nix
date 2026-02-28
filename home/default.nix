@@ -57,7 +57,7 @@
       strawberry
       musescore
       gimp
-      calibre
+      # calibre
       # riff
       dissent
       loupe
