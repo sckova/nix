@@ -8,14 +8,9 @@
     # edit this to switch between stable and unstable
     nixpkgs.follows = "nixpkgs-unstable";
 
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    base16 = {
-      url = "github:SenchoPens/base16.nix";
-    };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
+    base16.url = "github:SenchoPens/base16.nix";
 
     tt-schemes = {
       url = "github:tinted-theming/schemes/b9f335ad6a0b7d85b9c2eb932c3215f7429f7d11";
@@ -40,9 +35,8 @@
 
     niri = {
       url = "github:sckova/niri-flake/feat/blur";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-      inputs.niri-stable.follows = "niri-blur";
       inputs.niri-unstable.follows = "niri-blur";
     };
 
@@ -71,18 +65,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     openmw = {
       url = "gitlab:OpenMW/openmw";
-      flake = false;
-    };
-
-    catppuccin-discord = {
-      url = "github:catppuccin/discord";
       flake = false;
     };
   };
@@ -92,6 +76,7 @@
       nixpkgs,
       nixpkgs-unstable,
       nix-cachyos-kernel,
+      apple-silicon,
       base16,
       tt-schemes,
       base16-discord,
@@ -102,9 +87,7 @@
       spicetify-nix,
       nur,
       nixvim,
-      apple-silicon,
       openmw,
-      catppuccin-discord,
       ...
     }:
     let
@@ -148,7 +131,6 @@
                   nur.overlays.default
                   (final: prev: {
                     openmw-git = openmw;
-                    catppuccin-discord-git = catppuccin-discord;
                     base16-discord-git = base16-discord;
                   })
                   (import ./packages/overlay.nix)

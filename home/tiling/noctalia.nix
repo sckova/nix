@@ -68,7 +68,7 @@
         showCapsule = true;
         barType = "simple";
         capsuleColorKey = "none";
-        capsuleOpacity = 1;
+        capsuleOpacity = 0.90;
         displayMode = "always_visible";
         floating = false;
         marginHorizontal = 5;
