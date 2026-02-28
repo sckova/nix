@@ -45,6 +45,11 @@
       flake = false;
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +88,7 @@
       home-manager,
       plasma-manager,
       niri,
+      hyprland,
       noctalia,
       spicetify-nix,
       nur,
@@ -127,6 +133,7 @@
                 config = pkgConfig;
                 overlays = [
                   niri.overlays.niri
+                  hyprland.overlays.default
                   noctalia.overlays.default
                   nur.overlays.default
                   (final: prev: {
