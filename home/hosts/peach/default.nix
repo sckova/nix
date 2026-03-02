@@ -5,7 +5,7 @@
 }:
 {
   colors = {
-    scheme = "banana-blueberry";
+    scheme = "kanagawa-dragon";
     accent = "base09";
   };
 
@@ -29,7 +29,7 @@
       mode = {
         width = 3024;
         height = 1964;
-        refresh = 60.000;
+        refresh = 120.000;
       };
       position = {
         x = 272;

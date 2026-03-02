@@ -89,12 +89,12 @@
         }
       ];
     };
-    hyprland = {
-      enable = true;
-      package = pkgs.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      withUWSM = true;
-    };
+    # hyprland = {
+    #   enable = true;
+    #   package = pkgs.hyprland;
+    #   portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    #   withUWSM = true;
+    # };
   };
 
   services = {
