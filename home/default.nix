@@ -42,6 +42,8 @@
       kde-rounded-corners
       kdePackages.partitionmanager
       pkgs.catppuccin-cursors.mochaPeach
+      adwaita-icon-theme
+      morewaita-icon-theme
 
       # gui applications
       input-leap
