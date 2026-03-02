@@ -1,6 +1,6 @@
 {
   imports = [
-    ./discord.nix
+    # ./discord.nix
     ./firefox.nix
     ./mpv.nix
     # ./vscode.nix
