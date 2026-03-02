@@ -76,7 +76,7 @@
           url = "https://web.whatsapp.com/";
           manifestUrl = "https://web.whatsapp.com/data/manifest.json";
           desktopEntry = {
-            icon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/whatsapp.svg";
+            icon = "${pkgs.morewaita-icon-theme}/share/icons/MoreWaita/scalable/apps/whatsapp.svg";
             categories = [
               "Network"
               "Chat"
@@ -306,8 +306,8 @@
           };
           search =
             let
-              nixIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid/apps/scalable/nix-snowflake.svg";
-              searchIcon = "${pkgs.colloid-icon-theme}/share/icons/Colloid-Dark/places/symbolic/folder-saved-search-symbolic.svg";
+              nixIcon = "/run/current-system/sw/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              searchIcon = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/scalable/places/folder-saved-search-symbolic.svg";
             in
             {
               force = true;
