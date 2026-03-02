@@ -595,8 +595,8 @@
 
   systemd.user.services.noctalia-shell = {
     Unit = {
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = [ "niri.service" ];
+      PartOf = [ "niri.service" ];
       Description = "Noctalia Shell - Wayland desktop shell";
       Documentation = "https://docs.noctalia.dev";
       X-Restart-Triggers = [
@@ -611,6 +611,6 @@
       Environment = [ "QT_QPA_PLATFORMTHEME=qt6ct" ];
     };
 
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "niri.service" ];
   };
 }
