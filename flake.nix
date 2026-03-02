@@ -55,11 +55,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,7 +66,7 @@
     };
 
     openmw = {
-      url = "gitlab:OpenMW/openmw";
+      url = "gitlab:OpenMW/openmw/01bcd6";
       flake = false;
     };
   };
@@ -90,7 +85,6 @@
       niri,
       hyprland,
       noctalia,
-      spicetify-nix,
       nur,
       nixvim,
       openmw,
@@ -234,11 +228,9 @@
                   )
                   plasma-manager.homeModules.plasma-manager
                   noctalia.homeModules.default
-                  spicetify-nix.homeManagerModules.default
                   nixvim.homeModules.nixvim
                 ];
                 extraSpecialArgs = {
-                  inherit spicetify-nix;
                   pkgs-unstable = import nixpkgs-unstable {
                     inherit system;
                     config = pkgConfig;
