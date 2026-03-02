@@ -26,7 +26,7 @@
         layer = "overlay";
         font = with config.userOptions.fontMono; name + ":size=" + toString (size + 2);
         launch-prefix = "${pkgs.niri}/bin/niri msg action spawn --";
-        icon-theme = "Colloid-Dark";
+        icon-theme = config.gtk.iconTheme.name;
       };
       border = {
         width = 2;

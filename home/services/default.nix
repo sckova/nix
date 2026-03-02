@@ -22,6 +22,31 @@
     };
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      clock-format = "12h";
+      clock-show-weekday = true;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":";
+      action-double-click-titlebar = "'none'";
+    };
+    "org/gnome/desktop/media-handling" = {
+      automount = false;
+      automount-open = false;
+      autorun-never = true;
+    };
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+    };
+    "org/gnome/mutter" = {
+      edge-tiling = true;
+      dynamic-workspaces = true;
+      experimental-features = [ "variable-refresh-rate" ];
+    };
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     name = config.userOptions.cursor.name;
@@ -48,15 +73,10 @@
     #     else "Breeze";
     # };
 
-    # iconTheme = {
-    #   name = if config.userOptions.isDark then "Colloid-Dark" else "Colloid-Light";
-    #   package = pkgs.colloid-icon-theme;
-    # };
-
     colorScheme = "dark";
     iconTheme = {
-      name = "Colloid-Dark";
-      package = pkgs.colloid-icon-theme;
+      name = "MoreWaita";
+      package = pkgs.morewaita-icon-theme;
     };
 
     cursorTheme = {
