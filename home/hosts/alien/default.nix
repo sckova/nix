@@ -3,7 +3,6 @@
   pkgs,
   lib,
   pkgs-unstable,
-  spicetify-nix,
   ...
 }:
 {
@@ -15,7 +14,7 @@
   home.packages = with pkgs; [
     pkgs-unstable.ckan
 
-    # steam gtk theming
+    spotify
     adwsteamgtk
     daggerfall-unity
     vintagestory
@@ -27,29 +26,4 @@
     position = "top";
     density = "default";
   };
-
-  programs.spicetify =
-    let
-      spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-    in
-    {
-      enable = true;
-
-      enabledExtensions = with spicePkgs.extensions; [
-        adblock
-        hidePodcasts
-        shuffle # shuffle+ (special characters are sanitized out of extension names)
-      ];
-      enabledCustomApps = with spicePkgs.apps; [
-        newReleases
-        ncsVisualizer
-      ];
-      enabledSnippets = with spicePkgs.snippets; [
-        rotatingCoverart
-        pointer
-      ];
-
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
-    };
 }
