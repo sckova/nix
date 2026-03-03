@@ -49,6 +49,10 @@
   };
 
   programs = {
+    gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
