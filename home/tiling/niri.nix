@@ -409,6 +409,7 @@
         "XF86Sleep".action.power-off-monitors = { };
 
         "XF86Search".action.spawn = [ "fuzzel" ];
+        "Mod+Shift+L".action.spawn = [ "swaylock" ];
 
         "XF86LaunchA" = {
           action.toggle-overview = { };
@@ -429,10 +430,6 @@
         "Mod+Down".action.focus-window-down = { };
         "Mod+Up".action.focus-window-up = { };
         "Mod+Right".action.focus-column-right = { };
-        "Mod+H".action.focus-column-left = { };
-        "Mod+J".action.focus-window-down = { };
-        "Mod+K".action.focus-window-up = { };
-        "Mod+L".action.focus-column-right = { };
 
         "Mod+Ctrl+Left".action.move-column-left = { };
         "Mod+Ctrl+Down".action.move-window-down = { };
@@ -452,10 +449,6 @@
         "Mod+Shift+Down".action.focus-monitor-down = { };
         "Mod+Shift+Up".action.focus-monitor-up = { };
         "Mod+Shift+Right".action.focus-monitor-right = { };
-        "Mod+Shift+H".action.focus-monitor-left = { };
-        "Mod+Shift+J".action.focus-monitor-down = { };
-        "Mod+Shift+K".action.focus-monitor-up = { };
-        "Mod+Shift+L".action.focus-monitor-right = { };
 
         "Mod+Shift+Ctrl+Left".action.move-column-to-monitor-left = { };
         "Mod+Shift+Ctrl+Down".action.move-column-to-monitor-down = { };
