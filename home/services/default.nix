@@ -63,16 +63,6 @@
   gtk = {
     enable = true;
 
-    # colorScheme = if config.userOptions.isDark then "dark" else "light";
-
-    # theme = {
-    #   package = pkgs.kdePackages.breeze-gtk;
-    #   name =
-    #     if config.userOptions.isDark
-    #     then "Breeze-Dark"
-    #     else "Breeze";
-    # };
-
     colorScheme = "dark";
     iconTheme = {
       name = "MoreWaita";
@@ -93,6 +83,76 @@
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
       gtk-decoration-layout = ":";
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+      "x-scheme-handler/spotify" = [ "riff.desktop" ];
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "image/png" = [ "loupe.desktop" ];
+      "image/jpeg" = [ "loupe.desktop" ];
+    };
+    defaultApplications = {
+      # Web
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+
+      # Communication & Social
+      "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+      "x-scheme-handler/spotify" = [ "riff.desktop" ];
+
+      # File Management
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+
+      # Torrents
+      "application/x-bittorrent" = [ "org.qbittorrent.qBittorrent.desktop" ];
+      "x-scheme-handler/magnet" = [ "org.qbittorrent.qBittorrent.desktop" ];
+
+      # Documents
+      "application/pdf" = [ "firefox.desktop" ]; # Or libreoffice-draw.desktop
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [
+        "libreoffice-writer.desktop"
+      ]; # docx
+      "application/msword" = [ "libreoffice-writer.desktop" ]; # doc
+      "application/vnd.oasis.opendocument.text" = [ "libreoffice-writer.desktop" ]; # odt
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [
+        "libreoffice-calc.desktop"
+      ]; # xlsx
+      "application/vnd.ms-excel" = [ "libreoffice-calc.desktop" ]; # xls
+      "application/vnd.oasis.opendocument.spreadsheet" = [ "libreoffice-calc.desktop" ]; # ods
+
+      # Text & Code
+      "text/plain" = [ "nvim.desktop" ];
+      "text/markdown" = [ "nvim.desktop" ];
+      "application/x-shellscript" = [ "nvim.desktop" ];
+      "application/json" = [ "nvim.desktop" ];
+      "text/x-c" = [ "nvim.desktop" ];
+      "text/x-c++" = [ "nvim.desktop" ];
+      "text/x-python" = [ "nvim.desktop" ];
+      "text/x-makefile" = [ "nvim.desktop" ];
+
+      # Terminal
+      "x-scheme-handler/terminal" = [ "kitty.desktop" ];
+
+      # Media
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/mkv" = [ "mpv.desktop" ];
+      "video/webm" = [ "mpv.desktop" ];
+      "audio/mpeg" = [ "mpv.desktop" ];
+      "audio/flac" = [ "mpv.desktop" ];
+      "audio/wav" = [ "mpv.desktop" ];
+
+      # Images
+      "image/png" = [ "loupe.desktop" ];
+      "image/jpeg" = [ "loupe.desktop" ];
+      "image/webp" = [ "loupe.desktop" ];
+      "image/gif" = [ "loupe.desktop" ];
     };
   };
 }
