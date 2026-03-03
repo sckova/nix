@@ -26,6 +26,12 @@ in
     }
   ];
 
+  services.logind.settings.Login = {
+    HandleSuspendKey = "ignore";
+    HandlePowerKey = "lock";
+    HandleLidSwitch = "lock";
+  };
+
   virtualisation.docker = {
     enable = true;
     # Use the rootless mode - run Docker daemon as non-root user
