@@ -203,7 +203,7 @@
               unreadBadgeColor = "primary";
             }
             {
-              deviceNativePath = "__default__";
+              deviceNativePath = "";
               displayMode = "icon-hover";
               hideIfIdle = false;
               hideIfNotDetected = true;
