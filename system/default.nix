@@ -102,11 +102,12 @@
   };
 
   services = {
-    desktopManager.plasma6.enable = true;
     displayManager = {
+      autoLogin.enable = true;
+      autoLogin.user = "sckova";
+      defaultSession = "niri";
       sddm.enable = true;
       sddm.wayland.enable = true;
-      defaultSession = "niri";
     };
     gnome.gnome-keyring.enable = true;
     libinput.enable = true;
@@ -137,6 +138,12 @@
   ];
 
   security.pam.services.niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+  security.pam.services.swaylock = {
+    name = "swaylock";
+    enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+    gnupg.enable = true;
+    gnupg.noAutostart = true;
+  };
   security.polkit.enable = true;
   networking.firewall.enable = false;
   networking.networkmanager.enable = true;
