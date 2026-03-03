@@ -8,7 +8,7 @@
   users.users.sckova.extraGroups = [ "qbittorrent" ];
   services = {
     qbittorrent = {
-      enable = true;
+      enable = false;
       serverConfig = {
         Preferences = {
           Advanced.useSystemIconTheme = true;
