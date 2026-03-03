@@ -212,7 +212,7 @@
                     ./home/apps
                     ./home/games
                     ./home/hosts/${hostname}
-                    ./home/kde
+                    # ./home/kde
                     ./home/services
                     ./home/terminal
                     ./home/tiling
