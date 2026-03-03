@@ -61,33 +61,11 @@
     "nvidia"
   ];
 
-  services.displayManager = {
-    autoLogin = {
-      enable = false;
-      user = "sckova";
-    };
-  };
-
-  environment = {
-    loginShellInit = ''
-      [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
-    '';
-  };
-
-  security.sudo.wheelNeedsPassword = false;
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
     nvidiaSettings = false;
     open = false;
-  };
-
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
   };
 
   # virtualization settings

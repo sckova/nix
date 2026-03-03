@@ -137,14 +137,19 @@
     })
   ];
 
-  security.pam.services.niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
-  security.pam.services.swaylock = {
-    name = "swaylock";
-    enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
-    gnupg.enable = true;
-    gnupg.noAutostart = true;
+  security = {
+    pam.services = {
+      niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+      swaylock = {
+        name = "swaylock";
+        enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+        gnupg.enable = true;
+        gnupg.noAutostart = true;
+      };
+    };
+    sudo.wheelNeedsPassword = false;
+    polkit.enable = true;
   };
-  security.polkit.enable = true;
   networking.firewall.enable = false;
   networking.networkmanager.enable = true;
   documentation.man.enable = true;
