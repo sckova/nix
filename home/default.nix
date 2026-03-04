@@ -41,7 +41,6 @@
       # kde and kde theming
       kde-rounded-corners
       kdePackages.partitionmanager
-      pkgs.catppuccin-cursors.mochaPeach
       adwaita-icon-theme
       morewaita-icon-theme
 
