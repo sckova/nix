@@ -5,7 +5,7 @@
 }:
 {
   colors = {
-    scheme = "kanagawa-dragon";
+    scheme = "material-dark";
     accent = "base09";
   };
 
