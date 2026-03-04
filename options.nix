@@ -16,22 +16,6 @@
         default = "base09";
       };
     };
-    # catppuccinUpper = {
-    #   accent = lib.mkOption {
-    #     type = lib.types.str;
-    #     readOnly = true;
-    #     default =
-    #       builtins.substring 0 1 (lib.toUpper config.catppuccin.accent)
-    #       + builtins.substring 1 (-1) config.catppuccin.accent;
-    #   };
-    #   flavor = lib.mkOption {
-    #     type = lib.types.str;
-    #     readOnly = true;
-    #     default =
-    #       builtins.substring 0 1 (lib.toUpper config.catppuccin.flavor)
-    #       + builtins.substring 1 (-1) config.catppuccin.flavor;
-    #   };
-    # };
     userOptions = {
       name = lib.mkOption {
         type = lib.types.str;
@@ -116,32 +100,36 @@
           default = pkgs.noto-fonts-color-emoji;
         };
       };
-      cursor =
-        let
-          attrName = "mocha" + "Peach";
-        in
-        {
-          name = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-            default = "catppuccin-mocha-peach-cursors";
-          };
-          package = lib.mkOption {
-            type = lib.types.package;
-            readOnly = true;
-            default = pkgs.catppuccin-cursors.${attrName};
-          };
-          size = lib.mkOption {
-            type = lib.types.int;
-            readOnly = true;
-            default = 24;
-          };
-          path = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-            default = "${pkgs.catppuccin-cursors.${attrName}}/share/icons";
-          };
+      cursor = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = config.colors.scheme;
         };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = true;
+          default =
+            with config.scheme;
+            (pkgs.bibata-cursor.override {
+              themeName = config.colors.scheme;
+              baseColor = withHashtag.${config.colors.accent};
+              outlineColor = withHashtag.base00;
+              watchBackgroundColor = withHashtag.base11;
+              cursorSizes = "16 20 22 24 28 32 40 48 56 64 72 80 88 96";
+            });
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = true;
+          default = 24;
+        };
+        path = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = "${config.userOptions.cursor.package}/share/icons/${config.colors.scheme}";
+        };
+      };
       # isDark = lib.mkOption {
       #   type = lib.types.bool;
       #   readOnly = true;
