@@ -51,7 +51,7 @@
   programs = {
     gamescope = {
       enable = true;
-      capSysNice = false;
+      capSysNice = true;
     };
     gnupg.agent = {
       enable = true;
@@ -123,6 +123,17 @@
     upower.enable = true;
     power-profiles-daemon.enable = true;
     openssh.enable = true;
+    ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-cpp;
+      extraRules = [
+        {
+          "name" = "gamescope";
+          "nice" = -20;
+        }
+      ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
