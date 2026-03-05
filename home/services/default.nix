@@ -10,6 +10,13 @@
     ./systemd.nix
   ];
 
+  home.packages = with pkgs; [
+    # kde and kde theming
+    adwaita-icon-theme
+    morewaita-icon-theme
+    # kde-rounded-corners
+  ];
+
   home.file = {
     ".icons/default/index.theme" = {
       text = ''
@@ -19,6 +26,24 @@
         Inherits=${config.userOptions.cursor.name}
       '';
       force = true;
+    };
+  };
+
+  services = {
+    spotifyd = {
+      enable = true;
+      settings = {
+        global = {
+          device_type = "computer";
+          dbus_type = "session";
+          disable_discovery = true;
+          use_mpris = true;
+          bitrate = 320;
+          initial_volume = 100;
+          volume_normalisation = true;
+          normalisation_pregain = 0;
+        };
+      };
     };
   };
 

@@ -32,6 +32,11 @@
         readOnly = true;
         default = config.system.name;
       };
+      email = lib.mkOption {
+        type = lib.types.str;
+        readOnly = true;
+        default = "kovacsmillio@gmail.com";
+      };
       fontSans = {
         name = lib.mkOption {
           type = lib.types.str;
