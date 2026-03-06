@@ -128,14 +128,5 @@ in
         macos_titlebar_color = "system";
       };
     };
-    bat = {
-      enable = true;
-      # config.theme = "Catppuccin ${config.catppuccinUpper.flavor}";
-    };
-    lazygit = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    lazysql.enable = true;
   };
 }

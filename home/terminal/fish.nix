@@ -1,16 +1,9 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }:
 {
-  home.packages = with pkgs; [
-    kdePackages.qttools
-    eza
-    pigz
-  ];
-
   programs.fish = {
     enable = true;
     shellAliases = {

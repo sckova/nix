@@ -7,16 +7,6 @@
 {
   home.sessionVariables.EDITOR = lib.mkForce "kitty nvim";
 
-  home.packages = with pkgs; [
-    kdePackages.qtdeclarative
-    prettier
-    prettierd
-    nixfmt
-    stylua
-    black
-    clang-tools
-  ];
-
   programs.nixvim = {
     enable = true;
     enablePrintInit = true;
