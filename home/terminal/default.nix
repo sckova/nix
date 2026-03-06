@@ -28,6 +28,9 @@
     browsh
     mosh
     gh
+    kdePackages.qttools
+    eza
+    pigz
 
     # development & tooling
     jdk21_headless
@@ -42,17 +45,37 @@
     flaresolverr
     nerd-fonts.fira-mono
     ffmpeg-full
+
+    # formatters
+    kdePackages.qtdeclarative
+    prettier
+    prettierd
+    nixfmt
+    stylua
+    black
+    clang-tools
   ];
 
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = config.userOptions.name;
-        email = config.userOptions.email;
+  programs = {
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          name = config.userOptions.name;
+          email = config.userOptions.email;
+        };
+        core.pager = "${pkgs.bat}/bin/bat";
+        commit.gpgsign = true;
       };
-      core.pager = "${pkgs.bat}/bin/bat";
-      commit.gpgsign = true;
     };
+    bat = {
+      enable = true;
+      config.style = "numbers,changes";
+    };
+    lazygit = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    lazysql.enable = true;
   };
 }
