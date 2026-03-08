@@ -81,4 +81,12 @@
     "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
     "d /mnt/storage 0775 sckova users - -"
   ];
+
+  services.factorio = {
+    enable = true;
+    openFirewall = true;
+    requireUserVerification = false;
+    port = 25565;
+    game-password = "ThisIsASuperSecurePasswordThatNobodyWillGuess";
+  };
 }
