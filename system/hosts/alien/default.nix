@@ -86,7 +86,11 @@
     enable = true;
     openFirewall = true;
     requireUserVerification = false;
+    lan = true;
     port = 25565;
+    # bind = "[::]"; # support IPv6
+    game-name = "kova's minecraft";
     game-password = "ThisIsASuperSecurePasswordThatNobodyWillGuess";
+    admins = [ "sckova" ];
   };
 }
