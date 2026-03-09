@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }:
@@ -25,6 +24,13 @@ in
         "${asahi-artwork}/logos/svg/AsahiLinux_logo_horizontal_darkbg.svg";
     }
   ];
+
+  # environment.systemPackages = with pkgs; [
+  #   # note for wine support (should be done by 26.05 release):
+  #   # https://github.com/NixOS/nixpkgs/issues/412458
+  #   muvm
+  #   fex
+  # ];
 
   services.logind.settings.Login = {
     HandleSuspendKey = "ignore";

@@ -12,7 +12,6 @@
     input-leap
     libreoffice-qt-fresh
     # nur.repos.forkprince.helium-nightly
-    chromium
     nautilus
     fractal
     tuba
@@ -29,8 +28,8 @@
     spotify-player
 
     # overrides
-    # (chromium.override {
-    #   enableWideVine = true;
-    # })
+    (chromium.override {
+      enableWideVine = true;
+    })
   ];
 }
