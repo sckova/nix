@@ -70,22 +70,6 @@
         "type": "github"
       }
     },
-    "base16-discord": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768273180,
-        "narHash": "sha256-uw7lz53YHxvPEyXZiS+NJFhKMb6AMUvVpCLH81NjM7U=",
-        "owner": "imbypass",
-        "repo": "base16-discord",
-        "rev": "d4df17db31276d94cc1a8988f34e813aae1f3fb4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "imbypass",
-        "repo": "base16-discord",
-        "type": "github"
-      }
-    },
     "cachyos-kernel": {
       "flake": false,
       "locked": {
@@ -900,7 +884,6 @@
       "inputs": {
         "apple-silicon": "apple-silicon",
         "base16": "base16",
-        "base16-discord": "base16-discord",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "niri": "niri",

@@ -4,9 +4,8 @@
   ...
 }:
 let
-  mergedThemes = pkgs.runCommand "mergedConfig" { } ''
+  mergedThemes = pkgs.runCommand "discordThemeDir" { } ''
     mkdir -p $out
-    cp -rvf ${pkgs.base16-discord-git}/base16.css $out/base16.css
   '';
 
   vesktopSettings = {

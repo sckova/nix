@@ -17,11 +17,6 @@
       flake = false;
     };
 
-    base16-discord = {
-      url = "github:imbypass/base16-discord";
-      flake = false;
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,7 +74,6 @@
       apple-silicon,
       base16,
       tt-schemes,
-      base16-discord,
       home-manager,
       plasma-manager,
       niri,
@@ -132,7 +126,6 @@
                   nur.overlays.default
                   (final: prev: {
                     openmw-git = openmw;
-                    base16-discord-git = base16-discord;
                   })
                   (import ./packages/overlay.nix)
                 ];
