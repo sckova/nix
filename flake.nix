@@ -183,6 +183,7 @@
                   "wheel"
                   "networkmanager"
                   "podman"
+                  "pipewire"
                 ];
                 hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
                 openssh.authorizedKeys.keys = [
