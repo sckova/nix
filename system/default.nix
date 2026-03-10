@@ -166,7 +166,6 @@
   networking.firewall.enable = false;
   networking.networkmanager.enable = true;
   documentation.man.enable = true;
-  documentation.man.generateCaches = false;
   hardware.graphics.enable = true;
   hardware.bluetooth.enable = true;
   time.timeZone = "America/New_York";
