@@ -80,7 +80,7 @@ pkgs.stdenv.mkDerivation {
     echo "Rendering complete. Building XCursor theme..."
 
     echo "4. Build the final cursors"
-    ctgen configs/right/x.build.toml -s ${cursorSizes} -p x11 -d "bitmaps/${themeName}" -n "${themeName}" -c "${themeName} cursors"
+    ctgen configs/normal/x.build.toml -s ${cursorSizes} -p x11 -d "bitmaps/${themeName}" -n "${themeName}" -c "${themeName} cursors"
 
     runHook postBuild
   '';
@@ -88,7 +88,7 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/icons
+    install -dm 0755 $out/share/icons
     cp -r themes/${themeName} $out/share/icons/
 
     runHook postInstall
