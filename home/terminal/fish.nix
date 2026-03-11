@@ -32,10 +32,6 @@
         description = "Wrapper for nix-shell that runs fish by default";
         body = builtins.readFile ./fish_functions/nix-shell.fish;
       };
-      logout = {
-        description = "Log out of KDE Plasma";
-        body = builtins.readFile ./fish_functions/logout.fish;
-      };
     };
   };
 
