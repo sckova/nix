@@ -354,6 +354,7 @@
         clockStyle = "custom";
         compactLockScreen = false;
         dimmerOpacity = 0.5;
+        enableBlurBehind = true;
         enableLockScreenCountdown = true;
         enableShadows = false;
         forceBlackScreenCorners = false;
@@ -423,7 +424,7 @@
       };
 
       notifications = {
-        backgroundOpacity = 1;
+        backgroundOpacity = 0.90;
         criticalUrgencyDuration = 15;
         enableBatteryToast = true;
         enableKeyboardLayoutToast = true;
@@ -549,7 +550,7 @@
         fontFixed = "FiraMono Nerd Font Mono";
         fontFixedScale = 1;
         networkPanelView = "wifi";
-        panelBackgroundOpacity = 1;
+        panelBackgroundOpacity = 0.90;
         panelsAttachedToBar = true;
         settingsPanelMode = "attached";
         tooltipsEnabled = true;
