@@ -34,11 +34,6 @@
       flake = false;
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,7 +65,6 @@
       tt-schemes,
       home-manager,
       niri,
-      hyprland,
       noctalia,
       nur,
       nixvim,
@@ -114,7 +108,6 @@
                 config = pkgConfig;
                 overlays = [
                   niri.overlays.niri
-                  hyprland.overlays.default
                   noctalia.overlays.default
                   nur.overlays.default
                   (final: prev: {
