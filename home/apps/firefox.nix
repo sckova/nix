@@ -104,7 +104,6 @@
           "uBlock0@raymondhill.net".installation_mode = "allowed";
           "gdpr@cavi.au.dk".installation_mode = "allowed";
           "{5cce4ab5-3d47-41b9-af5e-8203eea05245}".installation_mode = "allowed";
-          "plasma-browser-integration@kde.org".installation_mode = "allowed";
           "jid1-MnnxcxisBPnSXQ@jetpack".installation_mode = "allowed";
           "firefoxpwa@filips.si".installation_mode = "allowed";
           "sponsorBlocker@ajay.app".installation_mode = "allowed";
@@ -142,7 +141,6 @@
             force = true;
             packages = with pkgs.nur.repos.rycee.firefox-addons; [
               ublock-origin
-              plasma-integration
               stylus
               violentmonkey
               consent-o-matic
@@ -228,7 +226,6 @@
                   "jid1-mnnxcxisbpnsxq_jetpack-browser-action"
                   "gdpr_cavi_au_dk-browser-action"
                   "firefoxpwa_filips_si-browser-action"
-                  "plasma-browser-integration_kde_org-browser-action"
                   "canvasblocker_kkapsner_de-browser-action"
                   "_5cce4ab5-3d47-41b9-af5e-8203eea05245_-browser-action"
                   "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
@@ -252,7 +249,6 @@
               seen = [
                 "gdpr_cavi_au_dk-browser-action"
                 "firefoxpwa_filips_si-browser-action"
-                "plasma-browser-integration_kde_org-browser-action"
                 "jid1-mnnxcxisbpnsxq_jetpack-browser-action"
                 "canvasblocker_kkapsner_de-browser-action"
                 "_5cce4ab5-3d47-41b9-af5e-8203eea05245_-browser-action"
