@@ -121,7 +121,7 @@
           clip-to-geometry = true;
           opacity = 0.90;
           background-effect = {
-            xray = true;
+            xray = false;
             blur = true;
             noise = 0.05;
             saturation = 1;
@@ -202,9 +202,8 @@
         }
         {
           matches = [ { namespace = "^launcher$"; } ];
-          opacity = 0.90;
           background-effect = {
-            xray = true;
+            xray = false;
             blur = true;
             noise = 0.05;
             saturation = 1;
