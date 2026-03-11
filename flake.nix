@@ -22,12 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     niri = {
       url = "github:sckova/niri-flake/feat/blur";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -75,7 +69,6 @@
       base16,
       tt-schemes,
       home-manager,
-      plasma-manager,
       niri,
       hyprland,
       noctalia,
@@ -206,7 +199,6 @@
                     ./home/apps
                     ./home/games
                     ./home/hosts/${hostname}
-                    # ./home/kde
                     ./home/services
                     ./home/terminal
                     ./home/tiling
@@ -220,7 +212,6 @@
                       scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
                     }
                   )
-                  plasma-manager.homeModules.plasma-manager
                   noctalia.homeModules.default
                   nixvim.homeModules.nixvim
                 ];
@@ -257,7 +248,6 @@
             ./home
             ./home/hosts/${hostname}.nix
             home-manager.homeModules.home-manager
-            plasma-manager.homeModules.plasma-manager
             niri.homeModules.default
             noctalia.homeModules.noctalia
             nixvim.homeModules.nixvim

@@ -11,10 +11,8 @@
   ];
 
   home.packages = with pkgs; [
-    # kde and kde theming
     adwaita-icon-theme
     morewaita-icon-theme
-    # kde-rounded-corners
   ];
 
   home.file = {
