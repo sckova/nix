@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 {
   imports = [
-    # ./hyprland.nix
     ./niri.nix
     ./noctalia.nix
     ./wallpaper.nix
