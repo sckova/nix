@@ -192,15 +192,6 @@
       ];
       layer-rules = [
         {
-          matches = [ { namespace = "noctalia-bar-content-.*$"; } ];
-          background-effect = {
-            xray = false;
-            blur = true;
-            noise = 0.05;
-            saturation = 1;
-          };
-        }
-        {
           matches = [ { namespace = "^launcher$"; } ];
           background-effect = {
             xray = false;
