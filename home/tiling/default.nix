@@ -32,16 +32,16 @@
         radius = 8;
       };
       colors = with config.scheme; {
-        background = base00 + "ff";
-        text = base05 + "ff";
-        prompt = base04 + "ff";
-        placeholder = base04 + "ff";
-        input = base05 + "ff";
-        match = config.scheme.withHashtag.${config.colors.accent} + "ff";
-        selection = base04 + "ff";
-        selection-text = base00 + "ff";
-        counter = base04 + "ff";
-        border = config.scheme.withHashtag.${config.colors.accent} + "ff";
+        background = base00 + "E6";
+        text = base05 + "E6";
+        prompt = base04 + "E6";
+        placeholder = base04 + "E6";
+        input = base05 + "E6";
+        match = config.scheme.withHashtag.${config.colors.accent} + "FF";
+        selection = base04 + "E6";
+        selection-text = base00 + "E6";
+        counter = base04 + "E6";
+        border = config.scheme.withHashtag.${config.colors.accent} + "FF";
       };
     };
   };
