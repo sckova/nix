@@ -1,7 +1,6 @@
 final: prev: {
   spotify-webapp = final.callPackage ./spotify-webapp { };
   bibata-cursor = final.callPackage ./bibata-cursor { };
-  gamescope-unstable = final.callPackage ./gamescope { };
 
   openmw-unstable = prev.openmw.overrideAttrs (oldAttrs: {
     pname = "openmw";

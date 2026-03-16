@@ -51,7 +51,6 @@
   programs = {
     gamescope = {
       enable = true;
-      package = pkgs.gamescope-unstable;
       capSysNice = false;
       args = [
         "--output-width 3840"
