@@ -8,7 +8,6 @@
   environment.systemPackages = with pkgs; [
     ddcutil
     mangohud
-    (bottles.override { removeWarningPopup = true; })
     openrgb
   ];
 
@@ -70,11 +69,6 @@
   # enable hyper-v for guests
   virtualisation.hypervGuest.enable = true;
   boot.blacklistedKernelModules = [ "hyperv_fb" ];
-
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "riscv64-linux"
-  ];
 
   # i don't even remember what this does or why i added it
   systemd.tmpfiles.rules = [
