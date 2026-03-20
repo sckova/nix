@@ -30,7 +30,7 @@
     };
 
     niri-blur = {
-      url = "github:niri-wm/niri/c837d944f0cc08580ee86574dd0c3a68ca9379a4";
+      url = "github:niri-wm/niri/wip/branch";
       flake = false;
     };
 
