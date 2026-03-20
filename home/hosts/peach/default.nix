@@ -5,7 +5,7 @@
 }:
 {
   colors = {
-    scheme = "material-dark";
+    scheme = "catppuccin-frappe";
     accent = "base09";
   };
 
