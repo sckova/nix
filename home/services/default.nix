@@ -149,6 +149,8 @@
     QT_QPA_PLATFORMTHEME = "qt6ct";
     # this makes electron apps work per the wiki
     NIXOS_OZONE_WL = "1";
+    # allow non-free packages in shells
+    NIXPKGS_ALLOW_UNFREE = 1;
   };
 
   gtk = {
