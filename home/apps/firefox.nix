@@ -112,6 +112,7 @@
           "{446900e4-71c2-419f-a6a7-df9c091e268b}".installation_mode = "allowed";
           "CanvasBlocker@kkapsner.de".installation_mode = "allowed";
           "shinigamieyes@shinigamieyes".installation_mode = "allowed";
+          "deArrow@ajay.app".installation_mode = "allowed";
         };
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
@@ -151,6 +152,7 @@
               bitwarden
               canvasblocker
               shinigami-eyes
+              dearrow
             ];
             settings = {
               "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".settings = {
@@ -231,6 +233,7 @@
                   "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
                   "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
                   "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"
+                  "dearrow_ajay_app-browser-action"
                 ];
                 nav-bar = [
                   # "sidebar-button"
@@ -257,6 +260,7 @@
                 "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
                 "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"
                 "sponsorblocker_ajay_app-browser-action"
+                "dearrow_ajay_app-browser-action"
                 "developer-button"
               ];
               dirtyAreaCache = [
