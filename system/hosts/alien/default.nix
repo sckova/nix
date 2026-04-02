@@ -9,6 +9,11 @@
     ddcutil
     mangohud
     openrgb
+    p7zip
+    protontricks
+    zenity
+    wineWow64Packages.stable
+    wineWow64Packages.waylandFull
   ];
 
   # enable ddcutil
