@@ -348,7 +348,7 @@
         animationDisabled = false;
         animationSpeed = 1;
         autoStartAuth = false;
-        avatarImage = "/home/sckova/.face";
+        avatarImage = "/home/${config.userOptions.username}/.face";
         boxRadiusRatio = 1;
         clockFormat = "hh\\nmm";
         clockStyle = "custom";
@@ -559,7 +559,7 @@
 
       wallpaper = {
         automationEnabled = false;
-        directory = "/home/sckova/.local/share/wallpaper";
+        directory = "/home/${config.userOptions.username}/.local/share/wallpaper";
         enableMultiMonitorDirectories = false;
         enabled = false;
         fillColor = "#1e1e2e";

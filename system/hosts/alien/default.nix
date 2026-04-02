@@ -17,7 +17,7 @@
   ];
 
   # enable ddcutil
-  users.users.sckova.extraGroups = [ "i2c" ];
+  users.users.${config.userOptions.username}.extraGroups = [ "i2c" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   boot.kernelModules = [
     "i2c-dev"
@@ -78,7 +78,7 @@
   # i don't even remember what this does or why i added it
   systemd.tmpfiles.rules = [
     "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
-    "d /mnt/storage 0775 sckova users - -"
+    "d /mnt/storage 0775 ${config.userOptions.username} users - -"
   ];
 
   services.factorio = {
@@ -90,6 +90,6 @@
     # bind = "[::]"; # support IPv6
     game-name = "kova's minecraft";
     game-password = "ThisIsASuperSecurePasswordThatNobodyWillGuess";
-    admins = [ "sckova" ];
+    admins = [ config.userOptions.username ];
   };
 }
