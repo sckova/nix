@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -46,7 +47,7 @@ in
       setSocketVariable = true;
     };
   };
-  users.users.sckova.extraGroups = [ "docker" ];
+  users.users.${config.userOptions.username}.extraGroups = [ "docker" ];
 
   hardware.asahi = {
     enable = true;

@@ -7,6 +7,13 @@
   ...
 }:
 {
+  # the user to activate
+  userOptions = {
+    name = "Sean Kovacs";
+    username = "sckova";
+    email = "kovacsmillio@gmail.com";
+  };
+
   boot = {
     plymouth.enable = true;
     plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
@@ -49,19 +56,6 @@
   };
 
   programs = {
-    gamescope = {
-      enable = true;
-      capSysNice = false;
-      args = [
-        "--output-width 3840"
-        "--nested-width 3840"
-        "--output-height 2160"
-        "--nested-height 2160"
-        "--expose-wayland"
-        "--fullscreen"
-      ];
-    };
-    gamemode.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -107,7 +101,7 @@
   services = {
     displayManager = {
       autoLogin.enable = true;
-      autoLogin.user = "sckova";
+      autoLogin.user = config.userOptions.username;
       defaultSession = "niri";
       sddm.enable = true;
       sddm.wayland.enable = true;
@@ -128,17 +122,6 @@
     upower.enable = true;
     power-profiles-daemon.enable = true;
     openssh.enable = true;
-    ananicy = {
-      enable = true;
-      package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-cpp;
-      extraRules = [
-        {
-          "name" = "gamescope";
-          "nice" = -20;
-        }
-      ];
-    };
   };
 
   environment.systemPackages = with pkgs; [

@@ -19,23 +19,23 @@
     userOptions = {
       name = lib.mkOption {
         type = lib.types.str;
-        readOnly = true;
+        readOnly = false;
         default = "Sean Kovacs";
       };
       username = lib.mkOption {
         type = lib.types.str;
-        readOnly = true;
+        readOnly = false;
         default = "sckova";
+      };
+      email = lib.mkOption {
+        type = lib.types.str;
+        readOnly = false;
+        default = "kovacsmillio@gmail.com";
       };
       hostname = lib.mkOption {
         type = lib.types.str;
         readOnly = true;
         default = config.system.name;
-      };
-      email = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = "kovacsmillio@gmail.com";
       };
       fontSans = {
         name = lib.mkOption {

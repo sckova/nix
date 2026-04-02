@@ -72,14 +72,6 @@
       ...
     }:
     let
-      # All systems we want to support for the generic VM
-      # to run the vm:
-      # nixos-rebuild build-vm --flake ~/nix#$(nix eval --raw --impure --expr 'builtins.currentSystem')
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-
       # Shared config for all package sets
       pkgConfig = {
         allowUnfree = true;
@@ -139,11 +131,6 @@
                     "root"
                     "sckova"
                   ];
-
-                  # Increase file descriptor limit for builds
-                  # sandbox = "relaxed";
-                  # extra-sandbox-paths = [ ];
-                  # build-users-group = "nixbld";
                 };
 
                 gc = {
@@ -170,9 +157,10 @@
                 ];
               };
             }
+            ./options.nix
             ./system
             ./system/searxng
-            ./system/torrenting
+            ./system/games
             ./system/widevine
             ./system/shell/fish.nix
             ./system/tailscale
@@ -189,12 +177,13 @@
                   imports = [
                     ./home
                     ./options.nix
-                    ./home/apps
-                    ./home/games
-                    ./home/hosts/${hostname}
-                    ./home/services
-                    ./home/terminal
-                    ./home/tiling
+                    ./home/sckova
+                    ./home/sckova/apps
+                    ./home/sckova/games
+                    ./home/sckova/hosts/${hostname}
+                    ./home/sckova/services
+                    ./home/sckova/terminal
+                    ./home/sckova/tiling
                   ];
                 };
                 sharedModules = [
@@ -238,8 +227,8 @@
           home.username = user;
           home.homeDirectory = "/home/${user}";
           modules = [
-            ./home
-            ./home/hosts/${hostname}.nix
+            ./home/${user}
+            ./home/${user}/hosts/${hostname}.nix
             home-manager.homeModules.home-manager
             niri.homeModules.default
             noctalia.homeModules.noctalia
@@ -266,14 +255,7 @@
             }
           ];
         };
-      }
-      // nixpkgs.lib.genAttrs supportedSystems (
-        system:
-        mkNixosSystem {
-          hostname = "vm-generic";
-          inherit system;
-        }
-      );
+      };
 
       homeConfigurations = {
         peach = mkHomeConfig {
@@ -286,14 +268,6 @@
           hostname = "alien";
           system = "x86_64-linux";
         };
-      }
-      // nixpkgs.lib.genAttrs supportedSystems (
-        system:
-        mkHomeConfig {
-          user = "sckova";
-          hostname = "vm-generic";
-          inherit system;
-        }
-      );
+      };
     };
 }
