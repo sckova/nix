@@ -5,7 +5,7 @@
   ...
 }:
 {
-  home.sessionVariables.EDITOR = lib.mkForce "kitty nvim";
+  home.sessionVariables.EDITOR = lib.mkForce "nvim";
 
   programs.nixvim = {
     enable = true;

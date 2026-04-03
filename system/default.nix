@@ -14,6 +14,9 @@
     email = "kovacsmillio@gmail.com";
   };
 
+  sops.secrets.sckova_password.neededForUsers = true;
+  users.users.sckova.hashedPasswordFile = config.sops.secrets.sckova_password.path;
+
   boot = {
     plymouth.enable = true;
     plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
