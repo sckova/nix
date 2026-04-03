@@ -6,6 +6,7 @@ keys:
   - &admin_sckova 7622FD7E6AB9F1E9D2CEFE2700F325187C68651A
   - &user_sckova age1k9zp37p9sejvpvwu688t7jkl8utkugrsch7a9ahufpq7uhj609gqsd3wka
   - &host_peach age1dx9rwrkhqj8sfr8vdfsgrqjwqefzmgtugsp6ykklpudfw4hcnuyqx9x20e
+  - &host_alien age1ygykyl3xyfhkt0x46frqnef4f39w0cnu6d98nf0efl43f706uqtsnsx5nd
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
@@ -15,3 +16,4 @@ creation_rules:
       age:
       - *user_sckova
       - *host_peach
+      - *host_alien
