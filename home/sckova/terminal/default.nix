@@ -66,6 +66,7 @@
         };
         core.pager = "${pkgs.bat}/bin/bat";
         commit.gpgsign = true;
+        init.defaultBranch = "main";
       };
     };
     bat = {

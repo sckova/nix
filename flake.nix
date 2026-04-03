@@ -17,6 +17,11 @@
       flake = false;
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +68,7 @@
       apple-silicon,
       base16,
       tt-schemes,
+      sops-nix,
       home-manager,
       niri,
       noctalia,
@@ -151,13 +157,13 @@
                   "podman"
                   "pipewire"
                 ];
-                hashedPassword = "$6$bvwRUFaJNMpH8rm3$FGDWFN6tBScJ/2DynAjnlZE8JRfyADN78d6c4GawxpAjyNLNE/AjQzMA09tLRqpKX7WnN5PIUZLAm2bT9/RbG0";
                 openssh.authorizedKeys.keys = [
                   "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCn/eXMq04vcXNqGVzlZOw2C2dQYBqzWsoigdFW09XqC2WPaGljbAIayzaD7Q1tIlPGGy10+nipAXAk1CHAnrQ2KSg4v/SwFphF48V3joeQmideC4vo0EIQEQibbMtj3oFezqRcRZINl/1hr4t0myZ3zkoTjh3HCkqJEMGUdArDMEVPA5mwcKSLsyshW9LMG/3C9YKKPU1/lVsoeDkj8AVZA0srhkApuRKF0IVu8KoPd6ldvSWgpQ1iuQ+MEMSeOUJytieBkzeY9zEVePaQ86oIMDUzqq8OTN37RyShiJKPskKyj12rJI2eFtI/viGaj8P6/yvKqMp3F4kAsPAuvMLLAIYCNa+139rDpkkIKB6lVtgq0jnJGRywaYXGIRyExNcVAr8I9wrNnNN2M4whVeYBxfLMzKZ+VvfK39AaGvnzPuFDLqUC87sN4c/1KZQo+TCtlaxcYvqowWylw5JHUt8uwFcO/dUebQxxAv8EdyPZGJ/54y19PsTbu9KyxSc2gIU= sckova"
                 ];
               };
             }
             ./options.nix
+            ./sops.nix
             ./system
             ./system/searxng
             ./system/games
@@ -167,8 +173,8 @@
             ./system/hosts/${hostname}
             ./hardware/${hostname}
             niri.nixosModules.niri
+            sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            noctalia.nixosModules.default
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -177,6 +183,7 @@
                   imports = [
                     ./home
                     ./options.nix
+                    ./sops.nix
                     ./home/sckova
                     ./home/sckova/apps
                     ./home/sckova/games
@@ -187,6 +194,7 @@
                   ];
                 };
                 sharedModules = [
+                  sops-nix.homeManagerModules.sops
                   base16.nixosModule
                   (
                     { config, ... }:
@@ -205,6 +213,7 @@
                 };
               };
             }
+            noctalia.nixosModules.default
           ]
           ++ extraModules;
         };

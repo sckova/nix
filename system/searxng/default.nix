@@ -1,21 +1,19 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
 {
+  sops.templates."searxng.env".content = ''
+    SEARXNG_SECRET=${config.sops.placeholder.searxng_secret}
+  '';
 
   services.searx = {
     enable = true;
     redisCreateLocally = true;
+    environmentFile = config.sops.templates."searxng.env".path;
     settings = {
       server = {
-        secret_key = lib.removeSuffix "\n" (
-          builtins.readFile (
-            pkgs.runCommand "gen-key" { buildInputs = [ pkgs.openssl ]; } "openssl rand -hex 32 > $out"
-          )
-        );
         port = 5364;
         bind_address = "127.0.0.1";
       };

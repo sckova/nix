@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -11,16 +10,11 @@
     XCURSOR_PATH = config.userOptions.cursor.path;
   };
 
-  xdg.configFile."rclone/synology.conf".text = ''
+  sops.templates."synology.conf".content = ''
     [synology]
-    type = sftp
-    user = sckova
+    type = smb
     host = nas.taila30609.ts.net
-    key_file = ~/.ssh/key
-    shell_type = unix
-    root = home
-    md5sum_command = "${pkgs.coreutils}/bin/md5sum";
-    sha1sum_command = "${pkgs.coreutils}/bin/sha1sum";
+    pass = ${config.sops.placeholder.rclone_synology}
   '';
 
   systemd.user.services.synology-mount = {
@@ -48,11 +42,11 @@
 
         # Mount rclone in foreground
         ${pkgs.rclone}/bin/rclone \
-          --config=$HOME/.config/rclone/synology.conf \
+          --config=${config.sops.templates."synology.conf".path} \
           --ignore-checksum \
           --log-level INFO \
           --rc --rc-serve \
-          mount "synology:" "$HOME/Synology"
+          mount "synology:home" "$HOME/Synology"
       ''}";
       ExecStop = "/run/wrappers/bin/fusermount -uz %h/Synology/%i";
       StandardOutput = "journal";
