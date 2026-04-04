@@ -10,6 +10,7 @@
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
+    seamless-asahi-plymouth.url = "github:luca-schlecker/seamless-asahi-plymouth";
     base16.url = "github:SenchoPens/base16.nix";
 
     tt-schemes = {
@@ -66,6 +67,7 @@
       nixpkgs-unstable,
       nix-cachyos-kernel,
       apple-silicon,
+      seamless-asahi-plymouth,
       base16,
       tt-schemes,
       sops-nix,
@@ -250,6 +252,7 @@
         peach = mkNixosSystem {
           hostname = "peach";
           system = "aarch64-linux";
+          extraSpecialArgs = { inherit seamless-asahi-plymouth; };
           extraModules = [
             apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
