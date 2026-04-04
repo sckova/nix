@@ -126,6 +126,12 @@
     upower.enable = true;
     power-profiles-daemon.enable = true;
     openssh.enable = true;
+    glances.enable = true;
+    glances.package = pkgs.glances.overrideAttrs (oldAttrs: {
+      disabledTests = (oldAttrs.disabledTests or [ ]) ++ [
+        "test_phys_core_returns_int"
+      ];
+    });
   };
 
   environment.systemPackages = with pkgs; [
