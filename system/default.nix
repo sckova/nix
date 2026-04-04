@@ -22,22 +22,23 @@
     plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
     loader = {
       timeout = 3;
-      limine = {
-        enable = true;
-        maxGenerations = 10;
-        extraConfig = ''
-          timeout: 3
-        '';
-        style = {
-          wallpapers = [ ];
-          wallpaperStyle = "stretched";
-          backdrop = "#1e1e2e";
-          interface = {
-            branding = "kova's nixos!";
-            brandingColor = 5;
-          };
-        };
-      };
+      systemd-boot.enable = true;
+      # limine = {
+      #   enable = true;
+      #   maxGenerations = 10;
+      #   extraConfig = ''
+      #     timeout: 3
+      #   '';
+      #   style = {
+      #     wallpapers = [ ];
+      #     wallpaperStyle = "stretched";
+      #     backdrop = "#1e1e2e";
+      #     interface = {
+      #       branding = "kova's nixos!";
+      #       brandingColor = 5;
+      #     };
+      #   };
+      # };
     };
     kernelParams = [
       "quiet"
