@@ -21,6 +21,7 @@ in
         postConfigure = (old.postConfigure or "") + ''
           cat >> .config <<'EOF'
           # CONFIG_VIDEO_LOGO is not set
+          CONFIG_DISPLAY_BOARDINFO_LATE=n
           CONFIG_BOOTDELAY=0
           CONFIG_SILENT_CONSOLE=y
           CONFIG_PREBOOT="setenv silent 1"
@@ -34,16 +35,17 @@ in
   ];
 
   boot = {
+    loader.timeout = lib.mkForce 0;
     kernelParams = [ "appledrm.show_notch=1" ];
     # thank you to u/douv:
     # https://www.reddit.com/r/AsahiLinux/comments/1sb8cby/retro_boot_logo/
-    m1n1CustomLogo = "${asahi-artwork}/logos/png_256/AsahiLinux_logomark.png";
+    m1n1CustomLogo = ./apple-rainbow.png;
     plymouth = {
       enable = true;
       theme = "seamless-asahi";
       themePackages = [
         (seamless-asahi-plymouth.packages.${pkgs.system}.default.override {
-          logo = "${asahi-artwork}/logos/png_64/AsahiLinux_logomark.png";
+          logo = ./apple-rainbow.png;
         })
       ];
       extraConfig = ''

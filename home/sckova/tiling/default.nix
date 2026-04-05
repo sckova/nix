@@ -48,13 +48,13 @@
 
   programs.swaylock = with config.scheme; {
     enable = true;
-    package = pkgs.swaylock-effects;
+    # package = pkgs.swaylock-effects;
     settings = {
       # this would sometimes load the previous day's wallpaper
       # when it is run before the bing retrieval script finishes
-      image = "~/.local/share/wallpaper/daily-colored.jpg";
-      effect-blur = "7x5";
-      # color = "000000"; # black
+      # image = "~/.local/share/wallpaper/daily-colored.jpg";
+      # effect-blur = "7x5";
+      color = "000000"; # black
       font-size = 24;
       indicator-idle-visible = true;
       indicator-radius = 100;
