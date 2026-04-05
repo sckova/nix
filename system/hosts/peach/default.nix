@@ -35,7 +35,6 @@ in
   ];
 
   boot = {
-    loader.timeout = lib.mkForce 0;
     kernelParams = [ "appledrm.show_notch=1" ];
     # thank you to u/douv:
     # https://www.reddit.com/r/AsahiLinux/comments/1sb8cby/retro_boot_logo/
