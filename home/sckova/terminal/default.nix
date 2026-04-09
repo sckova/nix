@@ -9,6 +9,7 @@
     ./fish.nix
     ./kitty.nix
     ./neovim.nix
+    ./ytfp.nix
   ];
 
   home.packages = with pkgs; [
