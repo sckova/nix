@@ -207,10 +207,20 @@
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
             "browser.newtabpage.activity-stream.showWeather" = false;
             "browser.download.autoHideButton" = false;
-            "browser.startup.homepage" = "http://localhost:5364/";
+            # "browser.startup.homepage" = "http://localhost:5364/";
+            "browser.tabs.splitview.hasUsed" = true;
 
             # Disable Firefox's machine learning (AI) features
             "browser.ml.enable" = false;
+            "browser.ml.chat.enabled" = false;
+            "browser.ml.chat.page" = false;
+            "browser.ai.control.default" = "blocked";
+            "browser.ai.control.linkPreviewKeyPoints" = "blocked";
+            "browser.ai.control.pdfjsAltText" = "blocked";
+            "browser.ai.control.sidebarChatbot" = "blocked";
+            "browser.ai.control.smartTabGroups" = "blocked";
+            "browser.ai.control.translations" = "blocked";
+            "sidebar.notification.badge.aichat" = false;
 
             # For browser toolbox/live editing user CSS
             "devtools.chrome.enabled" = true;
