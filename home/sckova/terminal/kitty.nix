@@ -3,92 +3,87 @@
   pkgs,
   ...
 }:
-let
-  # Map Catppuccin colors to Kitty theme structure
-  kitty-colors = with config.scheme.withHashtag; ''
-    # vim:ft=kitty
-    ## name:     Kova's Nixified Kitty
-    ## author:   Catppuccin Org & sckova
-    ## license:  MIT
-    ## upstream: https://github.com/catppuccin/kitty
-    ## blurb:    The theme generated from the NixOS configuration!
-
-    # The basic colors
-    foreground              ${base05}
-    background              ${base00}
-    selection_foreground    ${base00}
-    selection_background    ${base06}
-
-    # Cursor colors
-    cursor                  ${base06}
-    cursor_text_color       ${base00}
-
-    # URL underline color when hovering with mouse
-    url_color               ${base06}
-
-    # Kitty window border colors
-    active_border_color     ${config.scheme.withHashtag.${config.colors.accent}}
-    inactive_border_color   ${base01}
-    bell_border_color       ${base12}
-
-    # Tab bar colors
-    active_tab_foreground   ${base11}
-    active_tab_background   ${config.scheme.withHashtag.${config.colors.accent}}
-    inactive_tab_foreground ${base05}
-    inactive_tab_background ${base10}
-    tab_bar_background      ${base11}
-
-    # Colors for marks (marked text in the terminal)
-    mark1_foreground ${base00}
-    mark1_background ${base09}
-    mark2_foreground ${base00}
-    mark2_background ${base0D}
-    mark3_foreground ${base00}
-    mark3_background ${base15}
-
-    # The 16 terminal colors
-    # black
-    color0 ${base02}
-    color8 ${base02}
-
-    # red
-    color1 ${base08}
-    color9 ${base08}
-
-    # green
-    color2  ${base0B}
-    color10 ${base0B}
-
-    # yellow
-    color3  ${base0A}
-    color11 ${base0A}
-
-    # blue
-    color4  ${base0D}
-    color12 ${base0D}
-
-    # magenta
-    color5  ${base17}
-    color13 ${base17}
-
-    # cyan
-    color6  ${base0C}
-    color14 ${base0C}
-
-    # white
-    color7  ${base04}
-    color15 ${base04}
-  '';
-
-  kitty-colors-file = pkgs.writeTextFile {
-    name = "kitty-colors";
-    text = kitty-colors;
-    destination = "/kitty-colors.conf";
-  };
-in
 {
   home.file.".config/kitty/themes" = {
-    source = kitty-colors-file;
+    source = pkgs.writeTextFile {
+      name = "kitty-colors";
+      text = with config.scheme.withHashtag; ''
+        # vim:ft=kitty
+        ## name:     NixOS Kitty Theme
+        ## author:   Catppuccin Org & sckova
+        ## license:  MIT
+        ## upstream: https://github.com/catppuccin/kitty
+        ## blurb:    The theme generated from the NixOS configuration!
+
+        # The basic colors
+        foreground              ${base05}
+        background              ${base00}
+        selection_foreground    ${base00}
+        selection_background    ${base05}
+
+        # Cursor colors
+        cursor                  ${base05}
+        cursor_text_color       ${base00}
+
+        # URL underline color when hovering with mouse
+        url_color               ${base05}
+
+        # Kitty window border colors
+        active_border_color     ${config.scheme.withHashtag.${config.colors.accent}}
+        inactive_border_color   ${base01}
+        bell_border_color       ${base12}
+
+        # Tab bar colors
+        active_tab_foreground   ${base11}
+        active_tab_background   ${config.scheme.withHashtag.${config.colors.accent}}
+        inactive_tab_foreground ${base05}
+        inactive_tab_background ${base10}
+        tab_bar_background      ${base11}
+
+        # Colors for marks (marked text in the terminal)
+        mark1_foreground ${base00}
+        mark1_background ${base09}
+        mark2_foreground ${base00}
+        mark2_background ${base0D}
+        mark3_foreground ${base00}
+        mark3_background ${base15}
+
+        # The 16 terminal colors
+        # black
+        color0 ${base02}
+        color8 ${base02}
+
+        # red
+        color1 ${base08}
+        color9 ${base08}
+
+        # green
+        color2  ${base0B}
+        color10 ${base0B}
+
+        # yellow
+        color3  ${base0A}
+        color11 ${base0A}
+
+        # blue
+        color4  ${base0D}
+        color12 ${base0D}
+
+        # magenta
+        color5  ${base17}
+        color13 ${base17}
+
+        # cyan
+        color6  ${base0C}
+        color14 ${base0C}
+
+        # white
+        color7  ${base04}
+        color15 ${base04}
+      '';
+      destination = "/kitty-colors.conf";
+    };
+
     recursive = true;
   };
 
