@@ -70,7 +70,10 @@
     };
     bat = {
       enable = true;
-      config.style = "numbers,changes";
+      config = {
+        style = "numbers,changes";
+        theme = "base16";
+      };
     };
     lazygit = {
       enable = true;
