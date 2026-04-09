@@ -103,67 +103,79 @@
           }
           // extraSpecialArgs;
           modules = [
-            {
-              nixpkgs = {
-                config = pkgConfig;
-                overlays = [
-                  niri.overlays.niri
-                  noctalia.overlays.default
-                  nur.overlays.default
-                  (final: prev: {
-                    openmw-git = openmw;
-                  })
-                  (import ./packages/overlay.nix)
-                ];
-              };
-              nix = {
-                settings = {
-                  experimental-features = [
-                    "nix-command"
-                    "flakes"
-                  ];
-
-                  substituters = [
-                    "https://attic.xuyh0120.win/lantian"
-                    "https://cache.garnix.io"
-                    "https://nixos-apple-silicon.cachix.org"
-                  ];
-
-                  trusted-public-keys = [
-                    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-                    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-                    "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
-                  ];
-
-                  trusted-users = [
-                    "root"
-                    "sckova"
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs = {
+                  config = pkgConfig;
+                  overlays = [
+                    niri.overlays.niri
+                    noctalia.overlays.default
+                    nur.overlays.default
+                    (final: prev: {
+                      openmw-git = openmw;
+                    })
+                    (final: prev: {
+                      inherit (prev.lixPackageSets.stable)
+                        nixpkgs-review
+                        nix-eval-jobs
+                        nix-fast-build
+                        colmena
+                        ;
+                    })
+                    (import ./packages/overlay.nix)
                   ];
                 };
+                nix = {
+                  package = pkgs.lixPackageSets.stable.lix;
+                  settings = {
+                    experimental-features = [
+                      "nix-command"
+                      "flakes"
+                    ];
 
-                gc = {
-                  automatic = true;
-                  dates = "weekly";
-                  options = "--delete-older-than 30d";
+                    substituters = [
+                      "https://attic.xuyh0120.win/lantian"
+                      "https://cache.garnix.io"
+                      "https://nixos-apple-silicon.cachix.org"
+                    ];
+
+                    trusted-public-keys = [
+                      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+                      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+                      "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
+                    ];
+
+                    trusted-users = [
+                      "root"
+                      "sckova"
+                    ];
+                  };
+
+                  gc = {
+                    automatic = true;
+                    dates = "weekly";
+                    options = "--delete-older-than 30d";
+                  };
                 };
-              };
 
-              networking.hostName = hostname;
+                networking.hostName = hostname;
 
-              users.users.sckova = {
-                isNormalUser = true;
-                description = "Sean Kovacs";
-                extraGroups = [
-                  "wheel"
-                  "networkmanager"
-                  "podman"
-                  "pipewire"
-                ];
-                openssh.authorizedKeys.keys = [
-                  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCn/eXMq04vcXNqGVzlZOw2C2dQYBqzWsoigdFW09XqC2WPaGljbAIayzaD7Q1tIlPGGy10+nipAXAk1CHAnrQ2KSg4v/SwFphF48V3joeQmideC4vo0EIQEQibbMtj3oFezqRcRZINl/1hr4t0myZ3zkoTjh3HCkqJEMGUdArDMEVPA5mwcKSLsyshW9LMG/3C9YKKPU1/lVsoeDkj8AVZA0srhkApuRKF0IVu8KoPd6ldvSWgpQ1iuQ+MEMSeOUJytieBkzeY9zEVePaQ86oIMDUzqq8OTN37RyShiJKPskKyj12rJI2eFtI/viGaj8P6/yvKqMp3F4kAsPAuvMLLAIYCNa+139rDpkkIKB6lVtgq0jnJGRywaYXGIRyExNcVAr8I9wrNnNN2M4whVeYBxfLMzKZ+VvfK39AaGvnzPuFDLqUC87sN4c/1KZQo+TCtlaxcYvqowWylw5JHUt8uwFcO/dUebQxxAv8EdyPZGJ/54y19PsTbu9KyxSc2gIU= sckova"
-                ];
-              };
-            }
+                users.users.sckova = {
+                  isNormalUser = true;
+                  description = "Sean Kovacs";
+                  extraGroups = [
+                    "wheel"
+                    "networkmanager"
+                    "podman"
+                    "pipewire"
+                  ];
+                  openssh.authorizedKeys.keys = [
+                    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCn/eXMq04vcXNqGVzlZOw2C2dQYBqzWsoigdFW09XqC2WPaGljbAIayzaD7Q1tIlPGGy10+nipAXAk1CHAnrQ2KSg4v/SwFphF48V3joeQmideC4vo0EIQEQibbMtj3oFezqRcRZINl/1hr4t0myZ3zkoTjh3HCkqJEMGUdArDMEVPA5mwcKSLsyshW9LMG/3C9YKKPU1/lVsoeDkj8AVZA0srhkApuRKF0IVu8KoPd6ldvSWgpQ1iuQ+MEMSeOUJytieBkzeY9zEVePaQ86oIMDUzqq8OTN37RyShiJKPskKyj12rJI2eFtI/viGaj8P6/yvKqMp3F4kAsPAuvMLLAIYCNa+139rDpkkIKB6lVtgq0jnJGRywaYXGIRyExNcVAr8I9wrNnNN2M4whVeYBxfLMzKZ+VvfK39AaGvnzPuFDLqUC87sN4c/1KZQo+TCtlaxcYvqowWylw5JHUt8uwFcO/dUebQxxAv8EdyPZGJ/54y19PsTbu9KyxSc2gIU= sckova"
+                  ];
+                };
+              }
+            )
             ./options.nix
             ./sops.nix
             ./system
