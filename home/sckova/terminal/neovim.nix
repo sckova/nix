@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -25,48 +24,27 @@
       expandtab = true;
       number = true;
     };
-    colorschemes.palette = {
+
+    colorschemes.base16 = {
       enable = true;
-      settings = {
-        palettes = {
-          main = "base16_custom";
-          accent = "base16_custom";
-          state = "base16_custom";
-        };
-
-        # this is helpful for figuring out what color is what:
-        # https://github.com/tinted-theming/schemes/blob/spec-0.11/base24/catppuccin-frappe.yaml
-        custom_palettes = with config.scheme.withHashtag; {
-          main.base16_custom = {
-            color0 = base00; # background
-            color1 = base01; # lighter background
-            color2 = base02; # selection background
-            color3 = base03; # color inside ${}
-            color4 = base04; # dark foreground
-            color5 = config.scheme.withHashtag.${config.colors.accent}; # default foreground, left side of assignments
-            color6 = base03; # comments
-            color7 = base07; # lightest foreground
-            color8 = base05; # variables/tags
-          };
-
-          accent.base16_custom = {
-            accent0 = base08; # red, integers/constants
-            accent1 = base0A; # orange, classes/search
-            accent2 = base0A; # yellow, strings/inherited
-            accent3 = base0B; # green, support/regex
-            accent4 = base0D; # blue, functions/headings
-            accent5 = base0E; # purple, keywords/bold
-            accent6 = base07; # lavender, deprecated/embedded
-          };
-
-          state.base16_custom = {
-            error = base08; # red
-            warning = base0A; # yellow
-            hint = base0C; # cyan
-            ok = base0B; # green
-            info = base0D; # blue
-          };
-        };
+      setUpBar = false;
+      colorscheme = with config.scheme.withHashtag; {
+        base00 = base00;
+        base01 = base01;
+        base02 = base02;
+        base03 = base03;
+        base04 = base04;
+        base05 = base05;
+        base06 = base06;
+        base07 = base07;
+        base08 = config.scheme.withHashtag.${config.colors.accent};
+        base09 = base09;
+        base0A = base0A;
+        base0B = base0B;
+        base0C = base0C;
+        base0D = base0D;
+        base0E = base0E;
+        base0F = base0F;
       };
     };
 
