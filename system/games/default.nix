@@ -8,7 +8,7 @@
   programs = {
     gamescope = {
       enable = true;
-      capSysNice = false;
+      capSysNice = true;
       args = [
         "--output-width 3840"
         "--nested-width 3840"
