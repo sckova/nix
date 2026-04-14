@@ -171,6 +171,11 @@
               app-id = "firefox";
               title = "Picture-in-Picture";
             }
+            {
+              # helium browser
+              app-id = "";
+              title = "Picture in picture";
+            }
           ];
           opacity = 1.0;
         }
