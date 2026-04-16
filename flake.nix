@@ -29,15 +29,15 @@
     };
 
     niri = {
+      url = "github:niri-wm/niri";
+      flake = false;
+    };
+
+    niri-flake = {
       url = "github:sckova/niri-flake/feat/blur";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-      inputs.niri-unstable.follows = "niri-blur";
-    };
-
-    niri-blur = {
-      url = "github:niri-wm/niri/wip/branch";
-      flake = false;
+      inputs.niri-unstable.follows = "niri";
     };
 
     noctalia = {
@@ -72,7 +72,7 @@
       tt-schemes,
       sops-nix,
       home-manager,
-      niri,
+      niri-flake,
       noctalia,
       nur,
       nixvim,
@@ -109,7 +109,7 @@
                 nixpkgs = {
                   config = pkgConfig;
                   overlays = [
-                    niri.overlays.niri
+                    niri-flake.overlays.niri
                     noctalia.overlays.default
                     nur.overlays.default
                     (final: prev: {
@@ -186,7 +186,7 @@
             ./system/tailscale
             ./system/hosts/${hostname}
             ./hardware/${hostname}
-            niri.nixosModules.niri
+            niri-flake.nixosModules.niri
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
@@ -253,7 +253,7 @@
             ./home/${user}
             ./home/${user}/hosts/${hostname}.nix
             home-manager.homeModules.home-manager
-            niri.homeModules.default
+            niri-flake.homeModules.default
             noctalia.homeModules.noctalia
             nixvim.homeModules.nixvim
           ];
