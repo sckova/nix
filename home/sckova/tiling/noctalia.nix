@@ -208,7 +208,7 @@
               hideIfIdle = false;
               hideIfNotDetected = true;
               id = "Battery";
-              showNoctaliaPerformance = false;
+              showNoctaliaPerformance = true;
               showPowerProfiles = true;
             }
             {
