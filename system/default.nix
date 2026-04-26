@@ -159,7 +159,10 @@
 
   networking = {
     firewall.enable = false;
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
     hosts = {
       "192.168.1.64" = [
         "kube1"
