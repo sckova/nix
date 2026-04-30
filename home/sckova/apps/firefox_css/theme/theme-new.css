@@ -21,6 +21,8 @@
     --promo-background-color: var(--background-color-information) !important;
     --table-row-background-color: var(--mantle) !important;
 
+    --tabpanel-background-color: var(--base) !important;
+
     /** Border **/
     --border-color-card: color-mix(
       in srgb,

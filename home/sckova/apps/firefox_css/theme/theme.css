@@ -38,79 +38,91 @@
   --cfr-button-features-icon: var(--text) !important;
 
   /* color palette (blue) */
-  --blue-40-a10: color-mix(in srgb, var(--blue), transparent 90%) !important;
-  --blue-40: var(--blue) !important;
-  --blue-50-a30: color-mix(in srgb, var(--blue), transparent 70%) !important;
-  --blue-50: var(--blue) !important;
-  --blue-60: var(--sapphire) !important;
-  --blue-70: var(--sky) !important;
-  --blue-80: var(--teal) !important;
-
-  /* color palette (green) */
-  --green-50: var(--green) !important;
-  --green-60: var(--green) !important;
-  --green-70: var(--teal) !important;
-  --green-80: var(--teal) !important;
-  --green-90: var(--teal) !important;
-
-  /* color palette (grey/overlay) */
-  --grey-20: var(--subtext1) !important;
-  --grey-30: var(--subtext0) !important;
-  --grey-40: var(--overlay2) !important;
-  --grey-60: var(--overlay0) !important;
-  --grey-70: var(--overlay2) !important;
-  --grey-80: var(--overlay2) !important;
-  --grey-90-a10: color-mix(
+  --color-blue-40-a10: color-mix(
     in srgb,
-    var(--surface1),
+    var(--blue),
     transparent 90%
   ) !important;
-  --grey-90-a20: color-mix(
+  --color-blue-40: var(--blue) !important;
+  --color-blue-50-a30: color-mix(
     in srgb,
-    var(--surface1),
+    var(--blue),
+    transparent 70%
+  ) !important;
+  --color-blue-50: var(--blue) !important;
+  --color-blue-60: var(--sapphire) !important;
+  --color-blue-70: var(--sky) !important;
+  --color-blue-80: var(--teal) !important;
+
+  /* color palette (green) */
+  --color-green-50: var(--green) !important;
+  --color-green-60: var(--green) !important;
+  --color-green-70: var(--teal) !important;
+  --color-green-80: var(--teal) !important;
+  --color-green-90: var(--teal) !important;
+
+  /* color palette (grey/overlay) */
+  --color-grey-20: var(--subtext1) !important;
+  --color-grey-30: var(--subtext0) !important;
+  --color-grey-40: var(--overlay2) !important;
+  --color-grey-60: var(--overlay0) !important;
+  --color-grey-70: var(--overlay2) !important;
+  --color-grey-80: var(--overlay2) !important;
+  --color-grey-90-a10: color-mix(
+    in srgb,
+    var(--color-surface1),
+    transparent 90%
+  ) !important;
+  --color-grey-90-a20: color-mix(
+    in srgb,
+    var(--color-surface1),
     transparent 80%
   ) !important;
-  --grey-90-a30: color-mix(
+  --color-grey-90-a30: color-mix(
     in srgb,
-    var(--surface1),
+    var(--color-surface1),
     transparent 70%
   ) !important;
-  --grey-90-a50: color-mix(
+  --color-grey-90-a50: color-mix(
     in srgb,
-    var(--surface1),
+    var(--color-surface1),
     transparent 50%
   ) !important;
-  --grey-90-a60: color-mix(
+  --color-grey-90-a60: color-mix(
     in srgb,
-    var(--surface1),
+    var(--color-surface1),
     transparent 40%
   ) !important;
-  --grey-90: var(--surface1) !important;
+  --color-grey-90: var(--surface1) !important;
 
   /* color palette (misc) */
-  --orange-50: var(--peach) !important;
-  --purple-70: var(--mauve) !important;
+  --color-orange-50: var(--peach) !important;
+  --color-purple-70: var(--mauve) !important;
 
   /* color palette (red) */
-  --red-50-a30: color-mix(in srgb, var(--red), transparent 70%) !important;
-  --red-50: var(--red) !important;
-  --red-60: var(--maroon) !important;
-  --red-70: var(--maroon) !important;
-  --red-80: var(--maroon) !important;
-  --red-90: var(--maroon) !important;
-
-  /* color palette (yellow) */
-  --yellow-10: var(--yellow) !important;
-  --yellow-50: var(--yellow) !important;
-  --yellow-60-a30: color-mix(
+  --color-red-50-a30: color-mix(
     in srgb,
-    var(--yellow),
+    var(--red),
     transparent 70%
   ) !important;
-  --yellow-60: var(--yellow) !important;
-  --yellow-70: var(--peach) !important;
-  --yellow-80: var(--peach) !important;
-  --yellow-90: var(--peach) !important;
+  --color-red-50: var(--red) !important;
+  --color-red-60: var(--maroon) !important;
+  --color-red-70: var(--maroon) !important;
+  --color-red-80: var(--maroon) !important;
+  --color-red-90: var(--maroon) !important;
+
+  /* color palette (yellow) */
+  --color-yellow-10: var(--yellow) !important;
+  --color-yellow-50: var(--yellow) !important;
+  --color-yellow-60-a30: color-mix(
+    in srgb,
+    var(--color-yellow),
+    transparent 70%
+  ) !important;
+  --color-yellow-60: var(--yellow) !important;
+  --color-yellow-70: var(--peach) !important;
+  --color-yellow-80: var(--peach) !important;
+  --color-yellow-90: var(--peach) !important;
 
   /* context menus */
   --menu-background-color: var(--base) !important;
