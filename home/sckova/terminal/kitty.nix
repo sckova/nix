@@ -121,6 +121,7 @@
         mouse_hide_wait = "-1.0";
         wayland_titlebar_color = "system";
         macos_titlebar_color = "system";
+        background_blur = 1;
       };
     };
   };
