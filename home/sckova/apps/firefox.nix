@@ -103,7 +103,7 @@
       # To migrate to the XDG path, move `~/.mozilla/firefox` to
       # `$XDG_CONFIG_HOME/mozilla/firefox` and remove the old directory.
       # Native messaging hosts are not moved by this option change.
-      configPath = "${config.xdg.configHome}/mozilla/firefox";
+      configPath = ".mozilla/firefox";
       package = pkgs.firefox.override {
         nativeMessagingHosts = with pkgs; [
           firefoxpwa
