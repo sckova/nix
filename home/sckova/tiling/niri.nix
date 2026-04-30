@@ -3,8 +3,26 @@
   ...
 }:
 {
+
+  # edit settings here to change duplicated options across this config
+  options.niriSettings = {
+    defaultBlur = {
+      xray = false;
+      blur = true;
+      noise = 0.03;
+      saturation = 1;
+    };
+    opacity = 0.90;
+    ringColors = with config.scheme.withHashtag; {
+      active = config.scheme.withHashtag.${config.colors.accent} + "E6";
+      inactive = base01 + "E6";
+      urgent = base12 + "E6";
+    };
+    overviewPlusShadowColor = config.scheme.wihtHashtag.base11;
+  };
+
   # https://github.com/sodiboo/niri-flake/blob/main/docs.md
-  programs.niri = with config.scheme.withHashtag; {
+  programs.niri = {
     # handle package systemwide
     package = null;
 
@@ -20,9 +38,9 @@
       hotkey-overlay.skip-at-startup = true;
       prefer-no-csd = true;
       gestures.hot-corners.enable = false;
-      spawn-at-startup = [ ]; # systemd is based sorry
+      spawn-at-startup = [ ]; # this config uses systemd user services
       overview = {
-        backdrop-color = base11;
+        backdrop-color = config.options.niriSettings.overviewPlusShadowColor;
         workspace-shadow.enable = false;
       };
       input = {
@@ -47,32 +65,6 @@
           drag = false;
         };
       };
-      outputs = {
-        "HDMI-A-1" = {
-          mode = {
-            width = 3840;
-            height = 2160;
-            refresh = 144.000;
-          };
-          scale = 1.5;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-        "DP-1" = {
-          mode = {
-            width = 3840;
-            height = 2160;
-            refresh = 143.999;
-          };
-          scale = 1.5;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-      };
       cursor = {
         hide-when-typing = false;
         size = config.userOptions.cursor.size;
@@ -87,19 +79,19 @@
           { proportion = 6.0 / 12.0; }
           { proportion = 8.0 / 12.0; }
         ];
-        border = {
+        border = with config.niriSettings; {
           enable = true;
           width = 2;
-          active.color = config.scheme.withHashtag.${config.colors.accent} + "E6";
-          inactive.color = base01 + "E6";
-          urgent.color = base12 + "E6";
+          active.color = ringColors.active;
+          inactive.color = ringColors.inactive;
+          urgent.color = ringColors.urgent;
         };
-        focus-ring = {
+        focus-ring = with config.niriSettings; {
           enable = false;
           width = 2;
-          active.color = config.scheme.withHashtag.${config.colors.accent} + "E6";
-          inactive.color = base01 + "E6";
-          urgent.color = base12 + "E6";
+          active.color = ringColors.active;
+          inactive.color = ringColors.inactive;
+          urgent.color = ringColors.urgent;
         };
         shadow = {
           enable = true;
@@ -107,7 +99,7 @@
           offset.x = 0;
           offset.y = 0;
           softness = 30;
-          color = base11 + "BF";
+          color = config.options.niriSettings.overviewPlusShadowColor + "BF";
         };
       };
       window-rules = [
@@ -119,13 +111,8 @@
             bottom-right = 8.0;
           };
           clip-to-geometry = true;
-          opacity = 0.90;
-          background-effect = {
-            xray = false;
-            blur = true;
-            noise = 0.05;
-            saturation = 1;
-          };
+          opacity = config.opacity;
+          background-effect = config.options.niriSettings.defaultBlur;
           draw-border-with-background = false;
         }
         {
@@ -198,16 +185,16 @@
       layer-rules = [
         {
           matches = [ { namespace = "^launcher$"; } ];
-          background-effect = {
-            xray = false;
-            blur = true;
-            noise = 0.05;
-            saturation = 1;
-          };
+          background-effect = config.options.niriSettings.defaultBlur;
         }
         {
           matches = [ { namespace = "^wallpaper$"; } ];
           place-within-backdrop = true;
+        }
+        {
+          # https://docs.noctalia.dev/v4/getting-started/compositor-settings/niri/#blur
+          matches = [ { namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; } ];
+          background-effect = config.options.niriSettings.defaultBlur;
         }
       ];
       binds = {
