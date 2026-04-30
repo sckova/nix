@@ -2,9 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -66,7 +64,11 @@
 
   swapDevices = [
     {
-      label = "swap";
+      label = "swap"; # 8GB
+    }
+    {
+      device = "/swapfile";
+      size = 24 * 1024; # 24GB
     }
   ];
 
