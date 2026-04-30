@@ -29,7 +29,7 @@
     };
 
     niri = {
-      url = "github:niri-wm/niri";
+      url = "github:niri-wm/niri/v26.04";
       flake = false;
     };
 
