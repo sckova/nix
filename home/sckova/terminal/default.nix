@@ -7,6 +7,7 @@
   imports = [
     ./btop.nix
     ./fish.nix
+    ./ghostty.nix
     ./kitty.nix
     ./neovim.nix
     ./ytfp.nix
