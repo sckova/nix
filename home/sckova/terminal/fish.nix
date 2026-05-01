@@ -7,7 +7,6 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ssh = "kitty-ssh";
       cat = "bat";
       gzip = "pigz";
       ls = "eza";
@@ -23,10 +22,6 @@
       fish_prompt = {
         description = "Write out the prompt";
         body = builtins.readFile ./fish_functions/fish-prompt.fish;
-      };
-      kitty-ssh = {
-        description = "Integrate Kitten SSH with Fish";
-        body = builtins.readFile ./fish_functions/kitty-ssh.fish;
       };
       nix-shell = {
         description = "Wrapper for nix-shell that runs fish by default";

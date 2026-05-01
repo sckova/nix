@@ -232,7 +232,7 @@
       "text/x-makefile" = [ "nvim.desktop" ];
 
       # Terminal
-      "x-scheme-handler/terminal" = [ "kitty.desktop" ];
+      "x-scheme-handler/terminal" = [ "ghostty.desktop" ];
 
       # Media
       "video/mp4" = [ "mpv.desktop" ];

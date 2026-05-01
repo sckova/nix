@@ -167,10 +167,10 @@
             opacity = 1.0;
           }
           {
-            # Kitty Fastfetch window
+            # Ghostty Fastfetch window
             matches = [
               {
-                app-id = "kitty";
+                app-id = "ghostty";
                 title = "^fastfetch$";
               }
             ];
@@ -214,11 +214,11 @@
           };
 
           "Mod+T" = {
-            action.spawn = [ "kitty" ];
-            hotkey-overlay.title = "Open a Terminal: kitty";
+            action.spawn = [ "ghostty" ];
+            hotkey-overlay.title = "Open a Terminal: ghostty";
           };
           "Mod+Shift+T" = {
-            action.spawn-sh = [ "kitty --title fastfetch sh -c 'fastfetch; sleep 10'" ];
+            action.spawn-sh = [ "ghostty --title='fastfetch' -e sh -c 'fastfetch; sleep 10'" ];
             hotkey-overlay.title = "Open a Terminal with Fastfetch";
           };
           "Mod+Space" = {

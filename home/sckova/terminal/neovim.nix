@@ -196,9 +196,6 @@
       fzf-lua = {
         enable = true;
       };
-      kitty-scrollback = {
-        enable = true;
-      };
       lsp = {
         enable = true;
         servers = {

@@ -3,19 +3,21 @@
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    systemd.enable = true;
+    systemd.enable = false;
     settings = {
       # https://ghostty.org/docs/linux/systemd
       quit-after-last-window-closed = false;
 
-      font-family = "FiraMono Nerd Font Mono";
-      font-size = 10;
+      # https://github.com/ghostty-org/ghostty/discussions/5948
+      font-family = "NotoSansM NFM Med";
+      font-size = config.userOptions.fontMono.size;
       window-padding-x = 4;
       window-padding-y = 4;
       confirm-close-surface = false;
       mouse-hide-while-typing = false;
       mouse-scroll-multiplier = "precision:0.25,discrete:2";
       keybind = "ctrl+k=clear_screen";
+      theme = "nixos";
     };
     themes.nixos = with config.scheme.withHashtag; {
       background = base00;
