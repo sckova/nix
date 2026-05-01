@@ -12,6 +12,7 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
     seamless-asahi-plymouth.url = "github:luca-schlecker/seamless-asahi-plymouth";
+    steam-asahi.url = "github:sm-idk/steam-asahi";
     base16.url = "github:SenchoPens/base16.nix";
 
     tt-schemes = {
@@ -69,6 +70,7 @@
       nix-cachyos-kernel,
       apple-silicon,
       seamless-asahi-plymouth,
+      steam-asahi,
       base16,
       tt-schemes,
       sops-nix,
@@ -269,6 +271,10 @@
           extraModules = [
             apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
+            steam-asahi.nixosModules.default
+            {
+              programs.steam-asahi.enable = true;
+            }
           ];
         };
         alien = mkNixosSystem {

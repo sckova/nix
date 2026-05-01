@@ -411,6 +411,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1777425547,
+        "narHash": "sha256-d57AbflkNfZNoFaZDzssEq1RfPoM9dLtOGI2O+N/68Q=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ebc08544afa77957cc348ba72dc490ec73b87f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -534,6 +550,7 @@
         "openmw": "openmw",
         "seamless-asahi-plymouth": "seamless-asahi-plymouth",
         "sops-nix": "sops-nix",
+        "steam-asahi": "steam-asahi",
         "tt-schemes": "tt-schemes"
       }
     },
@@ -573,6 +590,24 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "steam-asahi": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1777205949,
+        "narHash": "sha256-/9TUBeRJdoCb8z1JO3RnwB8EUofnnDzmy/rvMWUteJk=",
+        "owner": "sm-idk",
+        "repo": "steam-asahi",
+        "rev": "f5db4ad37909ea9460e7f82d1bf76faa90e20c4a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sm-idk",
+        "repo": "steam-asahi",
         "type": "github"
       }
     },
