@@ -53,9 +53,14 @@
         in
         cleanScheme
         // {
-          base08 = cleanScheme.${config.colors.accent};
-          ${config.colors.accent} = cleanScheme.base08;
-        };
+          base08 = config.scheme.withHashtag.${config.colors.accent};
+        }
+        // (
+          if (builtins.elem config.colors.accent (builtins.attrNames cleanScheme)) then
+            { ${config.colors.accent} = cleanScheme.base08; }
+          else
+            { }
+        );
     };
 
     keymaps = [
