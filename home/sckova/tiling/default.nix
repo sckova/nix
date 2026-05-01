@@ -38,6 +38,11 @@
       keybinds = {
         open-settings = "ctrl+super+S";
       };
+      favorites = [
+        "applications:firefox"
+        "@Ninetonine/searxng:search-with-searxng"
+        "clipboard:history"
+      ];
       theme.dark = {
         name = "nixos";
         icon_theme = config.gtk.iconTheme.name;
