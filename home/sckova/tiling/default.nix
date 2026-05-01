@@ -16,32 +16,124 @@
     playerctl
   ];
 
-  programs.fuzzel = {
+  programs.vicinae = {
     enable = true;
-    package = pkgs.fuzzel;
+    systemd.enable = true;
     settings = {
-      main = {
-        terminal = "${pkgs.kitty}/bin/kitty";
-        layer = "overlay";
-        font = with config.userOptions.fontMono; name + ":size=" + toString (size + 2);
-        launch-prefix = "${pkgs.niri}/bin/niri msg action spawn --";
-        icon-theme = config.gtk.iconTheme.name;
+      pop_to_root_on_close = true;
+      font.normal = {
+        family = config.userOptions.fontSans.name;
+        size = 11;
       };
-      border = {
-        width = 2;
-        radius = 8;
+      launcher_window = {
+        opacity = 0.9;
+        client_side_decorations.enabled = true;
       };
-      colors = with config.scheme; {
-        background = base00 + "E6";
-        text = base05 + "E6";
-        prompt = base04 + "E6";
-        placeholder = base04 + "E6";
-        input = base05 + "E6";
-        match = config.scheme.withHashtag.${config.colors.accent} + "FF";
-        selection = base04 + "E6";
-        selection-text = base00 + "E6";
-        counter = base04 + "E6";
-        border = config.scheme.withHashtag.${config.colors.accent} + "FF";
+      clipboard.preferences = {
+        encryption = true;
+        eraseOnStartup = true;
+        ignorePasswords = true;
+        monitoring = true;
+      };
+      keybinds = {
+        open-settings = "ctrl+super+S";
+      };
+      theme.dark = {
+        name = "nixos";
+        icon_theme = config.gtk.iconTheme.name;
+      };
+      providers = {
+        "@mattisssa/spotify-player" = {
+          entrypoints = {
+            addPlayingSongToPlaylist.enabled = true;
+            copyArtistAndTitle.enabled = true;
+            toggleShuffle.enabled = true;
+            queue.enabled = true;
+          };
+        };
+        "@Ninetonine/searxng" = {
+          preferences = {
+            instance_domain = "http://localhost:5364";
+            default_category = "general";
+            engines = "";
+            keep_previous_search = false;
+            languages = "";
+          };
+          entrypoints.search-with-searxng.alias = "@s";
+        };
+      };
+    };
+    extensions =
+      let
+        raycast.rev = "4237b41dfaf3903de0f18b1d7fefb26290d92829";
+        vicinae =
+          pkgs.fetchFromGitHub {
+            owner = "vicinaehq";
+            repo = "extensions";
+            rev = "89cc49471c3e7119bfd36d68998cefe534bddab8";
+            sha256 = "sha256-LfqeVlMwclHJKsJu5jJoztjlaCeIasQsiv3P9+eKDNw=";
+          }
+          + "/extensions/";
+      in
+      [
+        (config.lib.vicinae.mkRayCastExtension {
+          name = "spotify-player";
+          sha256 = "sha256-332DOAKVOnXkL/tLpQXlSPYl2fveAX46e9vfC7RoyVA=";
+          rev = raycast.rev;
+        })
+        (config.lib.vicinae.mkRayCastExtension {
+          name = "tailscale";
+          sha256 = "sha256-fPRHDTazFfUDvsbvbl0JyZkKSA1i/rIhMWVG+9CAfpY=";
+          rev = raycast.rev;
+        })
+        (config.lib.vicinae.mkExtension {
+          name = "github";
+          src = vicinae + "github";
+        })
+        (config.lib.vicinae.mkExtension {
+          name = "nix";
+          src = vicinae + "nix";
+        })
+        (config.lib.vicinae.mkExtension {
+          name = "niri";
+          src = vicinae + "niri";
+        })
+        (config.lib.vicinae.mkExtension {
+          name = "searxng";
+          src = vicinae + "searxng";
+        })
+        (config.lib.vicinae.mkExtension {
+          name = "wikipedia";
+          src = vicinae + "wikipedia";
+        })
+      ];
+    themes.nixos = {
+      meta = {
+        version = 1;
+        name = "NixOS";
+        description = "Generated based on your color scheme";
+        variant = "dark";
+        icon = "icons/catppuccin-mocha.png";
+        inherits = "vicinae-dark";
+      };
+      colors = with config.scheme.withHashtag; {
+        core = {
+          background = base00;
+          foreground = base05;
+          secondary_background = base01;
+          border = config.scheme.withHashtag.${config.colors.accent};
+          accent = config.scheme.withHashtag.${config.colors.accent};
+        };
+        accents = {
+          blue = base0D;
+          green = base0B;
+          magenta = base17;
+          orange = base09;
+          purple = base0E;
+          red = base08;
+          yellow = base0A;
+          cyan = base0C;
+        };
       };
     };
   };

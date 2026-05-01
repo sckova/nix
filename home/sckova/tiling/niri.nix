@@ -184,16 +184,15 @@
         ];
         layer-rules = [
           {
-            matches = [ { namespace = "^launcher$"; } ];
-            background-effect = defaultBlur;
-          }
-          {
             matches = [ { namespace = "^wallpaper$"; } ];
             place-within-backdrop = true;
           }
           {
             # https://docs.noctalia.dev/v4/getting-started/compositor-settings/niri/#blur
-            matches = [ { namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; } ];
+            matches = [
+              { namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; }
+              { namespace = "vicinae"; }
+            ];
             background-effect = defaultBlur;
           }
         ];
@@ -223,8 +222,11 @@
             hotkey-overlay.title = "Open a Terminal with Fastfetch";
           };
           "Mod+Space" = {
-            action.spawn = [ "fuzzel" ];
-            hotkey-overlay.title = "Run an Application: Fuzzel";
+            action.spawn = [
+              "vicinae"
+              "open"
+            ];
+            hotkey-overlay.title = "Run an Application: Vicinae";
           };
 
           "XF86AudioRaiseVolume" = {
