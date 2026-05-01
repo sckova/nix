@@ -296,7 +296,7 @@
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
             "browser.newtabpage.activity-stream.showWeather" = false;
             "browser.download.autoHideButton" = false;
-            # "browser.startup.homepage" = "http://localhost:5364/";
+            "browser.startup.homepage" = "about:newtab";
             "browser.tabs.splitview.hasUsed" = true;
 
             # Disable Firefox's machine learning (AI) features
