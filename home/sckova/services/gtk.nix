@@ -110,13 +110,32 @@ let
       background-color: rgba(0, 0, 0, 0);
     }
 
-    .nautilus-window .sidebar {
-      background: alpha(@window_bg_color, 0.9);
-    }
-
     /* Accent */
     ${mkColorSection "accent_bg_color" config.scheme.withHashtag.${config.colors.accent}}
     @define-color accent_fg_color @window_bg_color;
+
+    /* thank you to taiwbi on github:
+     * https://github.com/taiwbi/hypaurora/blob/main/gtk-4.0/tweaks/sidebar.css
+     * https://github.com/taiwbi/hypaurora/blob/main/gtk-4.0/themes/glass.css
+    */
+
+    .content-pane {
+      background: alpha(@view_bg_color, 0.9);
+    }
+
+    window, .background, #NautilusFileChooser.background {
+      background-color: transparent;
+    }
+
+    #NautilusFileChooser overlay-split-view.view {
+      background: transparent;
+    }
+
+    .sidebar-pane,
+    .sidebar,
+    navigation-sidebar {
+      background: alpha(@sidebar_bg_color, 0.95);
+    }
   '';
 in
 {
