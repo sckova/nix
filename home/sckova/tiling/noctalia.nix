@@ -609,7 +609,7 @@
     Service = {
       ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
       Restart = "on-failure";
-      Environment = [ "QT_QPA_PLATFORMTHEME=qt6ct" ];
+      Environment = [ "" ];
     };
 
     Install.WantedBy = [ "niri.service" ];

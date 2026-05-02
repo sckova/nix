@@ -9,9 +9,6 @@
   home.packages = with pkgs; [
     xdg-desktop-portal
     brightnessctl
-    qt6Packages.qt6ct
-    libsForQt5.qt5ct
-    catppuccin-qt5ct
     xwayland-satellite
     playerctl
   ];

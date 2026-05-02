@@ -3,7 +3,7 @@
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    systemd.enable = false;
+    systemd.enable = true;
     settings = {
       # https://ghostty.org/docs/linux/systemd
       quit-after-last-window-closed = false;
@@ -15,8 +15,9 @@
       window-padding-y = 4;
       confirm-close-surface = false;
       mouse-hide-while-typing = false;
-      mouse-scroll-multiplier = "precision:0.25,discrete:2";
+      mouse-scroll-multiplier = "precision:0.25,discrete:0.5";
       keybind = "ctrl+k=clear_screen";
+      background-opacity = 0.9;
       theme = "nixos";
     };
     themes.nixos = with config.scheme.withHashtag; {

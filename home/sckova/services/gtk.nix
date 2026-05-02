@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   ...
 }:
 let
@@ -109,6 +110,10 @@ let
       background-color: rgba(0, 0, 0, 0);
     }
 
+    .nautilus-window .sidebar {
+      background: alpha(@window_bg_color, 0.9);
+    }
+
     /* Accent */
     ${mkColorSection "accent_bg_color" config.scheme.withHashtag.${config.colors.accent}}
     @define-color accent_fg_color @window_bg_color;
@@ -123,6 +128,58 @@ in
     ".config/gtk-3.0/gtk.css" = {
       text = generateCSS;
       force = true;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    gtk4.theme = null;
+
+    colorScheme = "dark";
+    iconTheme = {
+      name = "MoreWaita";
+      package = pkgs.morewaita-icon-theme;
+    };
+
+    cursorTheme = {
+      name = config.home.pointerCursor.name;
+      package = config.home.pointerCursor.package;
+      size = config.home.pointerCursor.size;
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+      gtk-decoration-layout = ":";
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+      gtk-decoration-layout = ":";
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      clock-format = "12h";
+      clock-show-weekday = true;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":";
+      action-double-click-titlebar = "'none'";
+    };
+    "org/gnome/desktop/media-handling" = {
+      automount = false;
+      automount-open = false;
+      autorun-never = true;
+    };
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+    };
+    "org/gnome/mutter" = {
+      edge-tiling = true;
+      dynamic-workspaces = true;
+      experimental-features = [ "variable-refresh-rate" ];
     };
   };
 }

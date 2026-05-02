@@ -28,8 +28,6 @@
 
       settings = {
         environment = {
-          QT_QPA_PLATFORM = "wayland";
-          QT_QPA_PLATFORMTHEME = "qt6ct";
           DISPLAY = ":0";
           XCURSOR_THEME = config.userOptions.cursor.name;
           XCURSOR_SIZE = toString config.userOptions.cursor.size;
@@ -170,7 +168,7 @@
             # Ghostty Fastfetch window
             matches = [
               {
-                app-id = "ghostty";
+                app-id = "^com.mitchellh.ghostty$";
                 title = "^fastfetch$";
               }
             ];
@@ -180,6 +178,14 @@
             min-height = 480;
             max-width = 960;
             max-height = 480;
+          }
+          {
+            # for apps that can handle their own background opacity
+            matches = [
+              { app-id = "^com.mitchellh.ghostty$"; }
+              { app-id = "^org.gnome.Nautilus$"; }
+            ];
+            opacity = 1.0;
           }
         ];
         layer-rules = [
