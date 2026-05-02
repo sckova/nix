@@ -66,6 +66,9 @@
           };
           entrypoints.search-with-searxng.alias = "@s";
         };
+        "@samlinville/tailscale".preferences = {
+          tailscalePath = "/run/current-system/sw/bin/tailscale";
+        };
       };
     };
     extensions =
