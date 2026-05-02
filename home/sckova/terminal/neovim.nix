@@ -8,6 +8,7 @@
 
   programs.nixvim = {
     enable = true;
+    nixpkgs.useGlobalPackages = true;
     enablePrintInit = true;
     defaultEditor = true;
     waylandSupport = true;

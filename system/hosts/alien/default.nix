@@ -31,11 +31,11 @@
   # enable rgb support
   services.hardware.openrgb.enable = true;
 
-  # boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # let's use the CachyOS kernel instead!
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   boot.loader.limine.maxGenerations = lib.mkForce 100;
 
