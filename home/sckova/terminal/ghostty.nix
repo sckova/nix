@@ -20,7 +20,8 @@
         "ctrl+k=clear_screen"
         "ctrl+enter=unbind"
       ];
-      background-opacity = 0.9;
+      background-opacity = 0; # pretty sure the GTK transparency
+      # trumps this, so let's set it to 0
       theme = "nixos";
     };
     themes.nixos = with config.scheme.withHashtag; {
