@@ -9,14 +9,17 @@
       quit-after-last-window-closed = false;
 
       # https://github.com/ghostty-org/ghostty/discussions/5948
-      font-family = "NotoSansM NFM Med";
+      font-family = config.userOptions.fontMono.name;
       font-size = config.userOptions.fontMono.size;
       window-padding-x = 4;
       window-padding-y = 4;
       confirm-close-surface = false;
       mouse-hide-while-typing = false;
       mouse-scroll-multiplier = "precision:0.25,discrete:0.5";
-      keybind = "ctrl+k=clear_screen";
+      keybind = [
+        "ctrl+k=clear_screen"
+        "ctrl+enter=unbind"
+      ];
       background-opacity = 0.9;
       theme = "nixos";
     };

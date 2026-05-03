@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -14,16 +15,48 @@
     waylandSupport = true;
     viAlias = true;
     vimAlias = true;
+
     clipboard = {
       register = "unnamedplus";
       providers.wl-copy.enable = true;
     };
+
     opts = {
       tabstop = 2;
       softtabstop = 2;
       shiftwidth = 2;
       expandtab = true;
       number = true;
+      numberwidth = 4;
+      statuscolumn = "%C %s%=%l ";
+
+      # folding config
+      foldcolumn = "1";
+      fillchars = {
+        eob = " ";
+        fold = " ";
+        foldopen = "";
+        foldsep = " ";
+        foldinner = " ";
+        foldclose = "";
+      };
+      foldlevel = 99;
+      foldlevelstart = 99;
+      foldenable = true;
+    };
+
+    highlight = {
+      FoldColumn = {
+        # the color of the fold icons and backdrop
+        fg = config.scheme.withHashtag.base04;
+        bg = "NONE";
+      };
+
+      # the color of the actual folded text line
+      Folded = {
+        fg = config.scheme.withHashtag.base03;
+        bg = "NONE";
+      };
     };
 
     colorschemes.base16 = {
@@ -104,7 +137,20 @@
           silent = true;
         };
       }
+
+      # --- Folding mappings ---
+      {
+        mode = "n";
+        key = "<C-Space>";
+        action = "za";
+        options = {
+          noremap = true;
+          silent = true;
+          desc = "toggle fold under cursor";
+        };
+      }
     ];
+
     plugins = {
       # transparent background
       transparent = {
@@ -138,9 +184,13 @@
           "EndOfBuffer"
         ];
       };
-      nvim-autopairs = {
+      treesitter = {
         enable = true;
+        highlight.enable = false;
+        indent.enable = true;
+        folding.enable = true;
       };
+      nvim-autopairs.enable = true;
       cmp = {
         enable = true;
         settings = {
