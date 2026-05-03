@@ -75,7 +75,7 @@
         name = lib.mkOption {
           type = lib.types.str;
           readOnly = true;
-          default = "FiraMono Nerd Font Mono";
+          default = "JetBrainsMono NF Medium";
         };
         size = lib.mkOption {
           type = lib.types.int;
@@ -85,7 +85,7 @@
         package = lib.mkOption {
           type = lib.types.package;
           readOnly = true;
-          default = pkgs.nerd-fonts.fira-mono;
+          default = pkgs.nerd-fonts.jetbrains-mono;
         };
       };
       fontEmoji = {
