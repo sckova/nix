@@ -10,6 +10,7 @@
 
   qt = {
     enable = true;
+    style.name = "kvantum";
     platformTheme = {
       name = "qt6ct";
       package = with pkgs; [
