@@ -120,11 +120,11 @@ let
     */
 
     .content-pane {
-      background: alpha(@view_bg_color, 0.9);
+      background: transparent;
     }
 
-    window, .background, #NautilusFileChooser.background {
-      background-color: transparent;
+    window, #NautilusFileChooser.background {
+      background-color: alpha(@view_bg_color, 0.9);
     }
 
     #NautilusFileChooser overlay-split-view.view {
@@ -134,7 +134,7 @@ let
     .sidebar-pane,
     .sidebar,
     navigation-sidebar {
-      background: alpha(@sidebar_bg_color, 0.95);
+      background: alpha(@sidebar_bg_color, 0.9);
     }
   '';
 in
@@ -179,6 +179,7 @@ in
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      gtk-theme = "Adwaita-dark";
       color-scheme = "prefer-dark";
       clock-format = "12h";
       clock-show-weekday = true;
