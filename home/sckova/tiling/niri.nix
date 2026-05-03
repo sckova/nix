@@ -150,9 +150,6 @@
           {
             matches = [
               {
-                app-id = "mpv";
-              }
-              {
                 app-id = "firefox";
                 title = "Picture-in-Picture";
               }
@@ -184,6 +181,10 @@
             matches = [
               { app-id = "^com.mitchellh.ghostty$"; }
               { app-id = "^org.gnome.Nautilus$"; }
+              {
+                app-id = "^mpv$";
+                title = ".* - mpv \\(nix\\)$";
+              }
             ];
             opacity = 1.0;
           }

@@ -10,7 +10,9 @@
     package = pkgs.mpv;
     bindings = { };
     config = with config.scheme.withHashtag; {
-      background-color = "#000000";
+      gpu-context = "wayland"; # fixes issues with transparency
+      title = "\${filename} - mpv (nix)"; # allows niri to match window
+      background-color = "#e6" + config.scheme.base00;
       osd-back-color = base11;
       osd-border-color = base11;
       osd-color = base05;
