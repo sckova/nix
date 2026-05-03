@@ -22,7 +22,7 @@
 
   home.file = {
     ".icons/default/index.theme" = {
-      text = ''
+      text = /* ini */ ''
         [Icon Theme]
         Name=Default
         Comment=Default Cursor Theme

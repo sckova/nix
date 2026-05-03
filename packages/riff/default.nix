@@ -40,7 +40,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-8gJILK9A97PAb/Q1z+IvW54WuwoZZSKxlJJUt7dwQWE=";
   };
 
-  postPatch = ''
+  postPatch = /* bash */ ''
     substituteInPlace src/meson.build --replace-fail \
       "cargo_output = 'src' / rust_target / meson.project_name()" \
       "cargo_output = 'src' / '${stdenv.hostPlatform.rust.cargoShortTarget}' / rust_target / meson.project_name()"

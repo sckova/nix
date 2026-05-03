@@ -17,7 +17,7 @@
         chafa
         config.programs.mpv.finalPackage
       ];
-      text = ''
+      text = /* bash */ ''
         # `ytfp`: Search YouTube video using `fzf` and play it in `mpv`
 
         SEARCH_VID() {

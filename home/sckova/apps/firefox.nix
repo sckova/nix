@@ -21,7 +21,7 @@
             toString config.scheme."${prefix}-rgb-b"
           })";
       in
-      ''
+      /* css */ ''
         * {
           --accent: ${toRgb config.colors.accent};
           --base00: ${toRgb "base00"}; /* base */
@@ -54,7 +54,7 @@
   };
 
   home.file.".local/share/firefoxpwa/profiles/01KEYXH9TC4B54J5CTPNE75JP0/prefs.js" = {
-    text = ''
+    text = /* js */ ''
       user_pref("firefoxpwa.alwaysUseNativeWindowControls", true);
       user_pref("firefoxpwa.displayUrlBar", 1);
       user_pref("firefoxpwa.enableHidingIconBar", true);

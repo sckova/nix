@@ -6,7 +6,7 @@
 {
   systemd.user.services.wbg-daemon = {
     Unit.Description = "Wallpaper service using wbg (daemon)";
-    Service.ExecStart = ''
+    Service.ExecStart = /* bash */ ''
       ${pkgs.wbg}/bin/wbg -s \
       %h/.local/share/wallpaper/daily-colored.jpg
     '';
@@ -29,7 +29,7 @@
           coreutils
           libnotify
         ];
-        text = ''
+        text = /* bash */ ''
           OUT="$HOME/.local/share/wallpaper/daily.jpg"
           API=$(wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1")
           BASE=$(echo "$API" | jq -r '.images[0].urlbase')
@@ -64,7 +64,7 @@
     Service.Restart = "on-failure";
     Service.RestartSec = "10s";
     Service.Type = "oneshot";
-    Service.ExecStart = ''
+    Service.ExecStart = /* bash */ ''
       ${pkgs.gowall}/bin/gowall convert \
       %h/.local/share/wallpaper/daily.jpg \
       --output %h/.local/share/wallpaper/daily-colored.jpg \
@@ -73,7 +73,7 @@
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
   };
 
-  home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; ''
+  home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
     themes:
       - name: "nix"
         colors:

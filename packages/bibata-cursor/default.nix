@@ -40,7 +40,7 @@ pkgs.stdenv.mkDerivation {
     stdenv.cc.cc.lib
   ];
 
-  configurePhase = ''
+  configurePhase = /* bash */ ''
     runHook preConfigure
 
     export HOME=$(mktemp -d)
@@ -65,7 +65,7 @@ pkgs.stdenv.mkDerivation {
     runHook postConfigure
   '';
 
-  buildPhase = ''
+  buildPhase = /* bash */ ''
     runHook preBuild
 
     echo "Splitting SVGs to render across $NIX_BUILD_CORES cores..."
@@ -85,7 +85,7 @@ pkgs.stdenv.mkDerivation {
     runHook postBuild
   '';
 
-  installPhase = ''
+  installPhase = /* bash */ ''
     runHook preInstall
 
     install -dm 0755 $out/share/icons

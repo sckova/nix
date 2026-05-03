@@ -4,7 +4,7 @@
   ...
 }:
 let
-  mergedThemes = pkgs.runCommand "discordThemeDir" { } ''
+  mergedThemes = pkgs.runCommand "discordThemeDir" { } /* bash */ ''
     mkdir -p $out
   '';
 
@@ -45,7 +45,7 @@ in
   };
 
   home.file.".config/vesktop/settings/quickCss.css" = with config.scheme.withHashtag; {
-    text = ''
+    text = /* css */ ''
       :root {
         --base00: ${base00};
         --base01: ${base01};

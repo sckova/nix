@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -149,6 +148,21 @@
           desc = "toggle fold under cursor";
         };
       }
+
+      # --- Toggle Markdown for current file ---
+      {
+        mode = [
+          "n"
+          "v"
+        ];
+        key = "<C-m>";
+        action = "<cmd>RenderMarkdown toggle<CR>";
+        options = {
+          noremap = true;
+          silent = true;
+          desc = "Toggle Markdown rendering";
+        };
+      }
     ];
 
     plugins = {
@@ -186,11 +200,20 @@
       };
       treesitter = {
         enable = true;
-        highlight.enable = false;
+        highlight.enable = true;
         indent.enable = true;
         folding.enable = true;
+        settings = {
+          ensure_installed = [
+            "nix"
+            "css"
+            "markdown"
+            "markdown_inline"
+          ];
+        };
       };
       nvim-autopairs.enable = true;
+      render-markdown.enable = true;
       cmp = {
         enable = true;
         settings = {
@@ -201,7 +224,7 @@
             maxViewEntries = 30;
           };
           mapping = {
-            __raw = ''
+            __raw = /* lua */ ''
               cmp.mapping.preset.insert({
                 ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),

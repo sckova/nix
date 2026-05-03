@@ -23,7 +23,7 @@
         wrapFirefox =
           browser: opts:
           let
-            extraPrefs = (opts.extraPrefs or "") + ''
+            extraPrefs = (opts.extraPrefs or "") + /* js */ ''
               lockPref("media.gmp-widevinecdm.version", "system-installed");
               lockPref("media.gmp-widevinecdm.visible", true);
               lockPref("media.gmp-widevinecdm.enabled", true);
@@ -35,7 +35,7 @@
             widevineOutDir = "$out/gmp-widevinecdm/system-installed";
           in
           (prev.wrapFirefox browser (opts // { inherit extraPrefs; })).overrideAttrs (previousAttrs: {
-            buildCommand = previousAttrs.buildCommand + ''
+            buildCommand = previousAttrs.buildCommand + /* bash */ ''
               mkdir -p "${widevineOutDir}"
               ln -s "${widevineCdmDir}/_platform_specific/${archDir}/libwidevinecdm.so" "${widevineOutDir}/libwidevinecdm.so"
               ln -s "${widevineCdmDir}/manifest.json" "${widevineOutDir}/manifest.json"

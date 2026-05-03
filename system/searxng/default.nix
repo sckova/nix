@@ -4,7 +4,7 @@
   ...
 }:
 {
-  sops.templates."searxng.env".content = ''
+  sops.templates."searxng.env".content = /* bash */ ''
     SEARXNG_SECRET=${config.sops.placeholder.searxng_secret}
   '';
 

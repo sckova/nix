@@ -30,7 +30,7 @@
       Type = "simple";
       Restart = "on-failure";
       RestartSec = "1m";
-      ExecStart = "${pkgs.writeShellScript "synology-mount" ''
+      ExecStart = "${pkgs.writeShellScript "synology-mount" /* bash */ ''
         #!/usr/bin/env bash
         set -euo pipefail
 

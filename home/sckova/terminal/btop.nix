@@ -6,7 +6,7 @@
 let
   btop-colors-file = pkgs.writeTextFile {
     name = "btop-colors";
-    text = with config.scheme.withHashtag; ''
+    text = with config.scheme.withHashtag; /* ini */ ''
       # Credit to https://github.com/catppuccin/btop
       # Main background, empty for terminal default, need to be empty if you want transparent background
       theme[main_bg]=""
@@ -94,15 +94,13 @@ let
     '';
     destination = "/nixos.theme";
   };
-
-  batConfigDir = pkgs.runCommand "mergedConfig" { } ''
-    mkdir -p $out/themes
-    cp -r ${btop-colors-file}/nixos.theme $out/themes/nixos.theme
-  '';
 in
 {
   home.file.".config/btop" = {
-    source = batConfigDir;
+    source = pkgs.runCommand "mergedConfig" { } /* bash */ ''
+      mkdir -p $out/themes
+      cp -r ${btop-colors-file}/nixos.theme $out/themes/nixos.theme
+    '';
     recursive = true;
   };
 }
