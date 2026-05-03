@@ -12,12 +12,9 @@
     ckan
     spotify
     adwsteamgtk
-    daggerfall-unity
-    vintagestory
     gamemode
   ];
 
-  # PROTON_ENABLE_NVAPI=1 PROTON_DLSS_UPGRADE=1 PROTON_ENABLE_NGX_UPDATER=1  DXVK_NVAPI_DRS_SETTINGS=NGX_DLSS_SR_MODE=balanced MANGOHUD_CONFIG="fps_limit=144,gamemode,ram,vram" mangohud gamemoderun %command%
   xdg.desktopEntries.steam-big-picture = {
     name = "Steam (Big Picture)";
     icon = "steam";

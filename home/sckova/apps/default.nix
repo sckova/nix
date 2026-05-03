@@ -1,15 +1,12 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./discord.nix
     ./firefox.nix
     ./mpv.nix
-    # ./vscode.nix
   ];
 
   home.packages = with pkgs; [
     # gui applications
-    input-leap
     libreoffice-qt-fresh
     nur.repos.forkprince.helium-nightly
     nautilus
@@ -21,15 +18,7 @@
     strawberry
     musescore
     gimp
-    # calibre
-    # riff
-    dissent
+    calibre
     loupe
-    spotify-player
-
-    # overrides
-    (chromium.override {
-      enableWideVine = true;
-    })
   ];
 }

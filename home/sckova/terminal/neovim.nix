@@ -86,14 +86,9 @@
         in
         cleanScheme
         // {
-          base08 = config.scheme.withHashtag.${config.colors.accent};
+          base00 = config.scheme.withHashtag.base00;
         }
-        // (
-          if (builtins.elem config.colors.accent (builtins.attrNames cleanScheme)) then
-            { ${config.colors.accent} = cleanScheme.base08; }
-          else
-            { }
-        );
+        // (if (builtins.elem config.colors.accent (builtins.attrNames cleanScheme)) then { } else { });
     };
 
     keymaps = [

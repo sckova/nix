@@ -12,8 +12,8 @@
     ./ytfp.nix
   ];
 
+  # cli utilities
   home.packages = with pkgs; [
-    # cli utilities
     tmux
     fastfetch
     btop
@@ -22,37 +22,9 @@
     ncdu
     wl-clipboard
     rclone
-    waypipe
-    spotdl
-    browsh
-    mosh
     gh
-    kdePackages.qttools
     eza
     pigz
-
-    # development & tooling
-    jdk21_headless
-    quickemu
-    nerd-fonts.noto
-    noto-fonts
-    noto-fonts-color-emoji
-    nix-prefetch
-    prowlarr
-    radarr
-    sonarr
-    flaresolverr
-    nerd-fonts.fira-mono
-    ffmpeg-full
-
-    # formatters
-    kdePackages.qtdeclarative
-    prettier
-    prettierd
-    nixfmt
-    stylua
-    black
-    clang-tools
   ];
 
   programs = {
