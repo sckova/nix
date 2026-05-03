@@ -9,7 +9,7 @@ let
     text = with config.scheme.withHashtag; ''
       # Credit to https://github.com/catppuccin/btop
       # Main background, empty for terminal default, need to be empty if you want transparent background
-      theme[main_bg]="${base00}"
+      theme[main_bg]=""
 
       # Main text color
       theme[main_fg]="${base05}"
