@@ -12,38 +12,44 @@
     recursive = true;
   };
 
-  home.file.".mozilla/firefox/default/chrome/colors.css" = with config.scheme.withHashtag; {
-    text = ''
-      * {
-        --accent: ${config.scheme.withHashtag.${config.colors.accent}};
-        --rosewater: ${base06};
-        --flamingo: ${base0F};
-        --pink: ${base17};
-        --mauve: ${base0E};
-        --red: ${base08};
-        --maroon: ${base12};
-        --peach: ${base09};
-        --yellow: ${base0A};
-        --green: ${base0B};
-        --teal: ${base0C};
-        --sky: ${base15};
-        --sapphire: ${base16};
-        --blue: ${base0D};
-        --lavender: ${base07};
-        --text: ${base05};
-        --subtext1: ${base04};
-        --subtext0: ${base04};
-        --overlay2: ${base03};
-        --overlay1: ${base03};
-        --overlay0: ${base03};
-        --surface2: ${base02};
-        --surface1: ${base01};
-        --surface0: ${base01};
-        --base: ${base00};
-        --mantle: ${base10};
-        --crust: ${base11};
-      }
-    '';
+  home.file.".mozilla/firefox/default/chrome/colors.css" = {
+    text =
+      let
+        toRgb =
+          prefix:
+          "rgb(${toString config.scheme."${prefix}-rgb-r"},${toString config.scheme."${prefix}-rgb-g"},${
+            toString config.scheme."${prefix}-rgb-b"
+          })";
+      in
+      ''
+        * {
+          --accent: ${toRgb config.colors.accent};
+          --base00: ${toRgb "base00"}; /* base */
+          --base01: ${toRgb "base01"}; /* surface0 */
+          --base02: ${toRgb "base02"}; /* surface1 */
+          --base03: ${toRgb "base03"}; /* overlay0 */
+          --base04: ${toRgb "base04"}; /* subtext0 */
+          --base05: ${toRgb "base05"}; /* text */
+          --base06: ${toRgb "base06"}; /* rosewater */
+          --base07: ${toRgb "base07"}; /* lavender */
+          --base08: ${toRgb "base08"}; /* red */
+          --base09: ${toRgb "base09"}; /* peach */
+          --base0A: ${toRgb "base0A"}; /* yellow */
+          --base0B: ${toRgb "base0B"}; /* green */
+          --base0C: ${toRgb "base0C"}; /* teal */
+          --base0D: ${toRgb "base0D"}; /* blue */
+          --base0E: ${toRgb "base0E"}; /* mauve */
+          --base0F: ${toRgb "base0F"}; /* flamingo */
+          --base10: ${toRgb "base10"}; /* mantle - darker background */
+          --base11: ${toRgb "base11"}; /* crust - darkest background */
+          --base12: ${toRgb "base12"}; /* maroon - bright red */
+          --base13: ${toRgb "base13"}; /* rosewater - bright yellow */
+          --base14: ${toRgb "base14"}; /* green - bright green */
+          --base15: ${toRgb "base15"}; /* sky - bright cyan */
+          --base16: ${toRgb "base16"}; /* sapphire - bright blue */
+          --base17: ${toRgb "base17"}; /* pink - bright purple */
+        }
+      '';
     force = true;
   };
 
