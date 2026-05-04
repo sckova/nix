@@ -305,6 +305,16 @@
             "browser.startup.homepage" = "about:newtab";
             "browser.tabs.splitview.hasUsed" = true;
 
+            # Configure fonts
+            "browser.display.use_document_fonts" = 0;
+            "font.default.x-western" = "sans-serif";
+            "font.name.monospace.x-western" = config.userOptions.fontMono.name;
+            "font.size.monospace.x-western" = config.userOptions.fontMono.size;
+            "font.name.sans-serif.x-western" = config.userOptions.fontSans.name;
+            "font.size.sans-serif.x-western" = config.userOptions.fontSans.size;
+            "font.name.serif.x-western" = config.userOptions.fontSerif.name;
+            "font.size.variable.x-western" = 16; # kinda only looks good at this size
+
             # Disable Firefox's machine learning (AI) features
             "browser.ml.enable" = false;
             "browser.ml.chat.enabled" = false;
