@@ -1,10 +1,20 @@
 {
+  pkgs,
   config,
   lib,
   ...
 }:
 {
   home.sessionVariables.EDITOR = lib.mkForce "nvim";
+
+  home.packages = with pkgs; [
+    nixfmt
+    prettier
+    prettierd
+    stylua
+    black
+    clang-tools
+  ];
 
   programs.nixvim = {
     enable = true;
