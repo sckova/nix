@@ -125,9 +125,9 @@
         core = {
           background = base00;
           foreground = base05;
-          secondary_background = base01;
-          border = config.scheme.withHashtag.${config.colors.accent};
-          accent = config.scheme.withHashtag.${config.colors.accent};
+          secondary_background = base10;
+          border = base02;
+          accent = config.colors.accent;
         };
         accents = {
           blue = base0D;
