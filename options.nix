@@ -75,7 +75,7 @@
         name = lib.mkOption {
           type = lib.types.str;
           readOnly = true;
-          default = "JetBrainsMono NF Medium";
+          default = "Miracode";
         };
         size = lib.mkOption {
           type = lib.types.int;
