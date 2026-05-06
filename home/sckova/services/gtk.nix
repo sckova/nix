@@ -151,8 +151,8 @@ in
   gtk = {
     enable = true;
     gtk4.theme = null;
-
     colorScheme = "dark";
+
     iconTheme = {
       name = "MoreWaita";
       package = pkgs.morewaita-icon-theme;
@@ -162,6 +162,17 @@ in
       name = config.home.pointerCursor.name;
       package = config.home.pointerCursor.package;
       size = config.home.pointerCursor.size;
+    };
+
+    font = {
+      name = config.userOptions.fontSans.name;
+      package = config.userOptions.fontSans.package;
+      size = config.userOptions.fontSans.size - 1;
+    };
+
+    gtk3.theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
     };
 
     gtk3.extraConfig = {
@@ -177,7 +188,6 @@ in
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Adwaita-dark";
       color-scheme = "prefer-dark";
       clock-format = "12h";
       clock-show-weekday = true;
