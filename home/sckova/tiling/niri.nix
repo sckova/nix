@@ -185,6 +185,7 @@
                 app-id = "^mpv$";
                 title = ".* - mpv \\(nix\\)$";
               }
+              { app-id = "^org.gnome.Fractal$"; }
             ];
             opacity = 1.0;
           }
