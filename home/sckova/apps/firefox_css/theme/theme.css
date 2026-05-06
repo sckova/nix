@@ -57,8 +57,34 @@
     }
 
     /* website content box */
-    #tabbrowser-tabpanels {
+    .tabbrowser-tabpanels {
       margin: 4px;
+    }
+
+    /* vertical tabs */
+    .tabbrowser-tab {
+      padding-block: 0 !important;
+    }
+    .tabbrowser-tab .tab-stack .tab-background {
+      background-color: var(--base00);
+      border: 1px solid var(--chrome-content-separator-color);
+    }
+    .tabbrowser-tab[selected] .tab-stack .tab-background {
+      border: 1px solid var(--accent);
+    }
+    .tab-background {
+      margin: 4px !important;
+      min-width: 44px !important; /* 100% - 8px */
+      height: 22px !important;
+      border-radius: 6px !important;
+    }
+    .tab-content {
+    }
+    .tab-icon-image {
+    }
+
+    /* sidebar bottom buttons */
+    #main-button {
     }
 
     --color-accent-primary: var(--accent) !important;
@@ -71,8 +97,9 @@
     .sidebar-splitter {
       height: 50%;
       top: 25%;
-      width: 4px;
+      width: 3px !important;
       border-radius: 8px;
+      margin-right: 4px !important;
     }
 
     /* The splitter is outside #sidebar-main, so it stays separate */
