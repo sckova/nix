@@ -38,7 +38,6 @@
 
     --color-accent-primary: var(--accent) !important;
     --focus-outline-color: var(--accent) !important;
-    --chrome-content-separator-color: var(--base01) !important;
 
     /* sidebar splitter */
     --sidebar-background-color: var(--accent) !important;
@@ -118,7 +117,7 @@
     --toolbar-bgcolor: var(--base01) !important;
 
     /* toolbar_bottom_separator */
-    --chrome-content-separator-color: var(--base02) !important;
+    --chrome-content-separator-color: var(--base01) !important;
 
     /* toolbar_field */
     --input-bgcolor: color-mix(
