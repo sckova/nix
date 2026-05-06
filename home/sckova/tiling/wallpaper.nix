@@ -6,11 +6,12 @@
 {
   systemd.user.services.wbg-daemon = {
     Unit.Description = "Wallpaper service using wbg (daemon)";
+    Unit.After = [ "graphical-session.target" ];
     Service.ExecStart = /* bash */ ''
       ${pkgs.wbg}/bin/wbg -s \
       %h/.local/share/wallpaper/daily-colored.jpg
     '';
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.services.bing-wallpaper = {
@@ -18,7 +19,7 @@
     Unit.StartLimitBurst = 6;
     Unit.StartLimitIntervalSec = "10m";
     Service.Restart = "on-failure";
-    Service.RestartSec = "10s";
+    Service.RestartSec = "5s";
     Service.Type = "oneshot";
     Service.ExecStart = pkgs.lib.getExe (
       pkgs.writeShellApplication {
@@ -47,7 +48,7 @@
       }
     );
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user start gowall-convert.service";
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.timers.bing-wallpaper = {

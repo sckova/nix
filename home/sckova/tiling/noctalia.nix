@@ -15,7 +15,7 @@
       mOnTertiary = base00;
       mError = base12;
       mOnError = base00;
-      mSurface = base00;
+      mSurface = base10;
       mOnSurface = base05;
       mSurfaceVariant = base01;
       mOnSurfaceVariant = base05;
@@ -90,7 +90,7 @@
               icon = "rocket";
               id = "CustomButton";
               ipcIdentifier = "";
-              leftClickExec = "niri msg action spawn -- fuzzel";
+              leftClickExec = "niri msg action spawn -- vicinae toggle";
               leftClickUpdateText = false;
               maxTextLength = {
                 horizontal = 10;
@@ -596,8 +596,7 @@
 
   systemd.user.services.noctalia-shell = {
     Unit = {
-      After = [ "niri.service" ];
-      PartOf = [ "niri.service" ];
+      After = [ "graphical-session.target" ];
       Description = "Noctalia Shell - Wayland desktop shell";
       Documentation = "https://docs.noctalia.dev";
       X-Restart-Triggers = [
@@ -609,9 +608,8 @@
     Service = {
       ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
       Restart = "on-failure";
-      Environment = [ "" ];
     };
 
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }
