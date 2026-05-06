@@ -34,7 +34,7 @@
         };
         screenshot-path = "~/Pictures/Screenshots/%a %b %e %Y @%l:%M %p.png";
         hotkey-overlay.skip-at-startup = true;
-        prefer-no-csd = true;
+        prefer-no-csd = false;
         gestures.hot-corners.enable = false;
         spawn-at-startup = [ ]; # this config uses systemd user services
         overview = {
@@ -186,6 +186,7 @@
                 title = ".* - mpv \\(nix\\)$";
               }
               { app-id = "^org.gnome.Fractal$"; }
+              { app-id = "^firefox$"; }
             ];
             opacity = 1.0;
           }

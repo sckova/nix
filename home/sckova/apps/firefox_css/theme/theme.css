@@ -8,10 +8,37 @@
   :root:not([lwtheme]) {
     /* browser frame background color */
     #nav-bar,
-    #TabsToolbar,
-    #PersonalToolbar,
+    #nav-bar:-moz-window-inactive,
+    #PersonalToolbar {
+      background-color: color-mix(
+        in srgb,
+        var(--base10) 90%,
+        transparent
+      ) !important;
+    }
+
+    #browser {
+      background-color: color-mix(
+        in srgb,
+        var(--base10) 90%,
+        transparent
+      ) !important;
+    }
+
     #sidebar-main {
-      background-color: var(--base00) !important;
+      margin: 4px;
+      border: 1px solid var(--chrome-content-separator-color);
+      border-radius: 8px;
+      background-color: var(--base10);
+    }
+
+    .titlebar-buttonbox-container {
+      z-index: 100 !important;
+      display: flex !important;
+    }
+
+    #TabsToolbar {
+      visibility: collapse !important;
     }
 
     --toolbox-bgcolor: transparent !important;
@@ -27,13 +54,11 @@
 
     /* browser container */
     .browserContainer {
-      margin: 4px;
-      border-radius: 8px;
-      border: 1px solid var(--chrome-content-separator-color);
     }
 
     /* website content box */
     #tabbrowser-tabpanels {
+      margin: 4px;
     }
 
     --color-accent-primary: var(--accent) !important;
@@ -44,11 +69,10 @@
     --sidebar-border-color: var(--accent) !important;
 
     .sidebar-splitter {
-      background-color: color-mix(
-        in srgb,
-        var(--base00) 90%,
-        transparent
-      ) !important;
+      height: 50%;
+      top: 25%;
+      width: 4px;
+      border-radius: 8px;
     }
 
     /* The splitter is outside #sidebar-main, so it stays separate */

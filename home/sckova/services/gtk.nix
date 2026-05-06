@@ -121,8 +121,18 @@ let
       background: transparent;
     }
 
+    window.csd, window.csd decoration {
+      border-radius: 8px;
+      border: none;
+      box-shadow: none;
+    }
+
     window, #NautilusFileChooser.background {
       background-color: alpha(@view_bg_color, 0.9);
+
+      /* Tab overview */
+      --overview-bg-color: alpha(@sidebar_bg_color, 0.9);
+      --overview-fg-color: @sidebar_fg_color;
     }
 
     #NautilusFileChooser overlay-split-view.view {
@@ -177,12 +187,10 @@ in
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = ":";
     };
 
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = ":";
     };
   };
 
@@ -192,14 +200,14 @@ in
       clock-format = "12h";
       clock-show-weekday = true;
     };
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = ":";
-      action-double-click-titlebar = "'none'";
-    };
     "org/gnome/desktop/media-handling" = {
       automount = false;
       automount-open = false;
       autorun-never = true;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "menu:maximize,close";
+      action-double-click-titlebar = "\'none\'";
     };
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";

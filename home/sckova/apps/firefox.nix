@@ -280,7 +280,7 @@
             };
             "widget.gtk.global-menu.enabled" = true;
             "widget.gtk.global-menu.wayland.enabled" = true;
-            "browser.tabs.inTitlebar" = 0;
+            "browser.tabs.inTitlebar" = 2;
             "extensions.pocket.enabled" = false;
             "extensions.screenshots.disabled" = true;
             "browser.topsites.contile.enabled" = false;
