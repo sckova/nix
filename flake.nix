@@ -57,7 +57,7 @@
     };
 
     openmw = {
-      url = "gitlab:OpenMW/openmw/01bcd6";
+      url = "gitlab:OpenMW/openmw/openmw-51-rc2";
       flake = false;
     };
   };
