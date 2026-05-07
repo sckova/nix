@@ -6,19 +6,17 @@
   ];
 
   home.packages = with pkgs; [
-    # gui applications
-    libreoffice-qt-fresh
-    nur.repos.forkprince.helium-nightly
-    nautilus
-    fractal
-    tuba
-
-    # gui applications ( multimedia )
-    audacity
-    strawberry
-    musescore
-    gimp
-    calibre
-    loupe
+    libreoffice-qt-fresh # office suite
+    nur.repos.forkprince.helium-nightly # web browser
+    nautilus # file browser
+    fractal # matrix client
+    tuba # mastodon client
+    cheese # webcam tool
+    audacity # audio tool
+    strawberry # mp3 player
+    musescore # music scoring
+    gimp # image editor
+    calibre # ebook tool
+    loupe # image viewer
   ];
 }

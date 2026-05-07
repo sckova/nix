@@ -187,6 +187,7 @@
               }
               { app-id = "^org.gnome.Fractal$"; }
               { app-id = "^firefox$"; }
+              { app-id = "^cheese$"; }
             ];
             opacity = 1.0;
           }
