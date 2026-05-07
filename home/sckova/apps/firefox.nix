@@ -355,7 +355,9 @@
                   "back-button"
                   "forward-button"
                   "stop-reload-button"
+                  "customizableui-special-spring7"
                   "urlbar-container"
+                  "customizableui-special-spring8"
                   "unified-extensions-button"
                   "downloads-button"
                 ];
