@@ -302,6 +302,7 @@
             "browser.newtabpage.activity-stream.showWeather" = false;
             "browser.download.autoHideButton" = false;
             "browser.startup.homepage" = "about:newtab";
+            "browser.tabs.splitview.enabled" = false;
             "browser.tabs.splitview.hasUsed" = true;
 
             # Configure fonts

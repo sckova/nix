@@ -2,10 +2,15 @@
  * https://searchfox.org/firefox-release/source/browser/themes/shared/browser-colors.css
  * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/system-color
  * https://www.reddit.com/r/FirefoxCSS/comments/1dqws4b/firefox_128_will_allow_the_main_browser_content/
+ * https://gist.github.com/soulhotel/23c20583751a7f457eb5b5579e828965
  * the music of stevie wonder
 */
 @media {
   :root:not([lwtheme]) {
+    html:body {
+      border-radius: 8px !important;
+    }
+
     /* browser frame background color */
     #nav-bar,
     #nav-bar:-moz-window-inactive,
@@ -15,6 +20,7 @@
         var(--base10) 90%,
         transparent
       ) !important;
+      opacity: 1 !important;
     }
 
     #browser {
@@ -41,6 +47,22 @@
       visibility: collapse !important;
     }
 
+    /* hide the spacer made by the collapsed titlebar */
+    .chromeclass-toolbar-additional titlebar-spacer,
+    #vertical-spacer {
+      visibility: collapse;
+    }
+
+    /* the menu button has some extreme right padding */
+    #PanelUI-menu-button {
+      padding-right: 2px !important;
+    }
+
+    /* prevent the urlbar from losing opacity on unfocus */
+    .urlbar {
+      opacity: 1 !important;
+    }
+
     --toolbox-bgcolor: transparent !important;
     --toolbox-bgcolor-inactive: transparent !important;
     background-color: var(--base00) !important;
@@ -54,6 +76,8 @@
 
     /* browser container */
     .browserContainer {
+      margin: 4px;
+      border-radius: 8px !important;
     }
 
     /* website content box */
@@ -99,7 +123,7 @@
       top: 25%;
       width: 3px !important;
       border-radius: 8px;
-      margin-right: 4px !important;
+      margin-right: 2px !important;
     }
 
     /* The splitter is outside #sidebar-main, so it stays separate */
@@ -217,5 +241,27 @@
 
     /* toolbar_vertical_separator */
     --toolbarseparator-color: var(--base02) !important;
+
+    /* context menu customization, ripped from soulhotel's gist (credit above) */
+    menupopup,
+    panel {
+      color-scheme: light dark;
+      --panel-background: var(--base00) !important;
+      --panel-color: var(--base05) !important;
+      --panel-border-radius: 8px !important;
+      --panel-border-color: var(--base02) !important;
+      --panel-shadow: 0 0 var(--base02) hsla(0, 0%, 0%, 0.2);
+    }
+
+    menuitem:hover {
+      background-color: var(--accent) !important;
+      color: var(--base00) !important;
+    }
+
+    menu:where([_moz-menuactive="true"]:not([disabled="true"])),
+    menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+      background-color: var(--accent) !important;
+      color: var(--base00) !important;
+    }
   }
 }

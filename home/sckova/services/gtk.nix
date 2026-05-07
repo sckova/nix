@@ -5,7 +5,14 @@
 }:
 let
   generateCSS = with config.scheme.withHashtag; /* css */ ''
-    /* Kova's Nixified GTK */
+    /* kova's GTK
+     *
+     * thanks to taiwbi on github:
+     * https://github.com/taiwbi/hypaurora/blob/main/gtk-4.0/tweaks/sidebar.css
+     * https://github.com/taiwbi/hypaurora/blob/main/gtk-4.0/themes/glass.css
+     * this was also helpful:
+     * https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.2/css-variables.html
+    */
 
     /* Base colors */
     @define-color window_bg_color ${base00};
@@ -109,13 +116,8 @@ let
     }
 
     /* Accent */
-    @define-color accent_bg_color ${config.scheme.withHashtag.${config.colors.accent}};
+    @define-color accent_bg_color ${config.colors.accent};
     @define-color accent_fg_color @window_bg_color;
-
-    /* thank you to taiwbi on github:
-     * https://github.com/taiwbi/hypaurora/blob/main/gtk-4.0/tweaks/sidebar.css
-     * https://github.com/taiwbi/hypaurora/blob/main/gtk-4.0/themes/glass.css
-    */
 
     .content-pane {
       background: transparent;
@@ -143,6 +145,19 @@ let
     .sidebar,
     navigation-sidebar {
       background: alpha(@sidebar_bg_color, 0.9);
+    }
+
+    /* Enforce header bar background colors */
+    headerbar,
+    .titlebar {
+      background-color: @headerbar_bg_color;
+      background-image: none;
+    }
+
+    headerbar:backdrop,
+    .titlebar:backdrop {
+      background-color: @headerbar_backdrop_color;
+      background-image: none;
     }
   '';
 in
