@@ -6,18 +6,18 @@
  * the music of stevie wonder
 */
 @media {
-  :root:not([lwtheme]) {
-    html:body {
-      border-radius: 8px !important;
-    }
+  *|body {
+    border-radius: 0px !important;
+  }
 
+  :root:not([lwtheme]) {
     /* browser frame background color */
     #nav-bar,
     #nav-bar:-moz-window-inactive,
     #PersonalToolbar {
       background-color: color-mix(
         in srgb,
-        var(--base10) 90%,
+        var(--base00) 90%,
         transparent
       ) !important;
       opacity: 1 !important;
@@ -26,7 +26,7 @@
     #browser {
       background-color: color-mix(
         in srgb,
-        var(--base10) 90%,
+        var(--base00) 90%,
         transparent
       ) !important;
     }
@@ -35,7 +35,11 @@
       margin: 4px;
       border: 1px solid var(--chrome-content-separator-color);
       border-radius: 8px;
-      background-color: var(--base10);
+      background-color: color-mix(
+        in srgb,
+        var(--base00) 90%,
+        transparent
+      ) !important;
     }
 
     .titlebar-buttonbox-container {
