@@ -94,22 +94,6 @@
     };
     firefox = {
       enable = true;
-      # trace: evaluation warning: sckova profile: The default value of
-      # `programs.firefox.configPath` has changed from `".mozilla/firefox"` to
-      # `"${config.xdg.configHome}/mozilla/firefox"`.
-
-      # You are currently using the legacy default (`".mozilla/firefox"`)
-      # because `home.stateVersion` is less than "26.05".
-
-      # To silence this warning and keep legacy behavior, set:
-      #   programs.firefox.configPath = ".mozilla/firefox";
-      # To adopt the new default behavior, set:
-      #   programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
-
-      # To migrate to the XDG path, move `~/.mozilla/firefox` to
-      # `$XDG_CONFIG_HOME/mozilla/firefox` and remove the old directory.
-      # Native messaging hosts are not moved by this option change.
-      configPath = ".mozilla/firefox";
       package = pkgs.firefox.override {
         nativeMessagingHosts = with pkgs; [
           firefoxpwa
