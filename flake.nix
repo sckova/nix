@@ -64,15 +64,6 @@
       apple-silicon,
       seamless-asahi-plymouth,
       steam-asahi,
-      base16,
-      tt-schemes,
-      sops-nix,
-      home-manager,
-      niri-flake,
-      noctalia,
-      nur,
-      nixvim,
-      openmw,
       ...
     }:
     let
