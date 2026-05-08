@@ -11,7 +11,7 @@
     nautilus # file browser
     fractal # matrix client
     tuba # mastodon client
-    cheese # webcam tool
+    snapshot # webcam tool
     audacity # audio tool
     strawberry # mp3 player
     musescore # music scoring
