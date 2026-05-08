@@ -20,6 +20,16 @@
         "ctrl+k=clear_screen"
         "ctrl+enter=unbind"
       ];
+      # comments taken from:
+      # https://ghostty.org/docs/config/reference#shell-integration-features
+      shell-integration-features = builtins.concatStringsSep "," [
+        "cursor" # Set the cursor to a bar at the prompt.
+        "sudo" # Set sudo wrapper to preserve terminfo.
+        "title" # Set the window title via shell integration.
+        "ssh-env" # Enable SSH environment variable compatibility.
+        "ssh-terminfo" # Enable automatic terminfo installation on remote hosts.
+        "path" # Add Ghostty's binary directory to PATH.
+      ];
       background-opacity = 0; # pretty sure the GTK transparency
       # trumps this, so let's set it to 0
       theme = "nixos";

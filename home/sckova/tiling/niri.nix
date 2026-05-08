@@ -189,6 +189,7 @@
               { app-id = "^org.gnome.Fractal$"; }
               { app-id = "^firefox$"; }
               { app-id = "^org.gnome.Snapshot$"; }
+              { app-id = "^vicinae$"; }
             ];
             opacity = 1.0;
           }
