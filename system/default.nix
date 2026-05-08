@@ -28,12 +28,7 @@
     inputs.niri-flake.overlays.niri
     inputs.noctalia.overlays.default
     inputs.nur.overlays.default
-    (final: prev: {
-      openmw-git = prev.openmw.overrideAttrs (old: {
-        src = inputs.openmw;
-      });
-    })
-    (import ../packages/overlay.nix)
+    (import ../packages/overlay.nix inputs)
   ];
 
   # This replaces the giant block that used to be in your flake
