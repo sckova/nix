@@ -45,7 +45,7 @@
       imports = [
         ../home
         ../home/${user}
-        ../home/${user}/hosts/${hostname}
+        ../home/hosts/${hostname}
       ];
     });
 
