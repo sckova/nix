@@ -1,5 +1,6 @@
 {
   imports = [
+    ../../lib/sops.nix
     ./apps
     ./games
     ./services

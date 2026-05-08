@@ -5,7 +5,6 @@
 {
   imports = [
     ../lib/options.nix
-    ../lib/sops.nix
   ];
 
   # This value determines the Home Manager release that your
