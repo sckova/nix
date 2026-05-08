@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  lib,
   hostname,
   users,
   inputs,
@@ -40,7 +41,7 @@
     # This passes hostname and inputs down to home/default.nix
     extraSpecialArgs = { inherit hostname inputs; };
 
-    users = pkgs.lib.genAttrs users (user: {
+    users = lib.genAttrs users (user: {
       imports = [
         ../home
         ../home/${user}

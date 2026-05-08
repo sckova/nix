@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, users, ... }:
 {
   nix = {
     package = pkgs.lixPackageSets.stable.lix;
@@ -20,10 +20,7 @@
         "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
       ];
 
-      trusted-users = [
-        "root"
-        "sckova"
-      ];
+      trusted-users = [ "root" ] ++ users;
     };
 
     gc = {

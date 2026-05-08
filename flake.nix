@@ -112,7 +112,10 @@
         alien = mkNixosSystem {
           hostname = "alien";
           system = "x86_64-linux";
-          users = [ "sckova" ];
+          users = [
+            "sckova"
+            "ckovacs"
+          ];
           extraModules = [
             {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
