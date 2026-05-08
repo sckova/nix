@@ -2,11 +2,7 @@
   description = "My NixOS Configuration";
 
   inputs = {
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # edit this to switch between stable and unstable
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
@@ -36,8 +32,7 @@
 
     niri-flake = {
       url = "github:sckova/niri-flake/feat/blur";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.niri-unstable.follows = "niri";
     };
 
@@ -65,7 +60,6 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-unstable,
       nix-cachyos-kernel,
       apple-silicon,
       seamless-asahi-plymouth,
@@ -98,10 +92,6 @@
           inherit system;
           specialArgs = {
             inherit system;
-            pkgs-unstable = import nixpkgs-unstable {
-              inherit system;
-              config = pkgConfig;
-            };
           }
           // extraSpecialArgs;
           modules = [
@@ -222,10 +212,6 @@
                   nixvim.homeModules.nixvim
                 ];
                 extraSpecialArgs = {
-                  pkgs-unstable = import nixpkgs-unstable {
-                    inherit system;
-                    config = pkgConfig;
-                  };
                 };
               };
             }
@@ -242,10 +228,6 @@
         }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
-            inherit system;
-            config = pkgConfig;
-          };
-          pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config = pkgConfig;
           };
