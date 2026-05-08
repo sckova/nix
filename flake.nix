@@ -58,7 +58,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       nixpkgs,
       nix-cachyos-kernel,
       apple-silicon,
@@ -76,158 +76,30 @@
       ...
     }:
     let
-      # Shared config for all package sets
-      pkgConfig = {
-        allowUnfree = true;
-      };
-
       mkNixosSystem =
         {
           hostname,
           system,
+          users ? [ ],
           extraModules ? [ ],
           extraSpecialArgs ? { },
         }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit system;
+            inherit hostname users inputs;
           }
           // extraSpecialArgs;
           modules = [
-            (
-              { pkgs, ... }:
-              {
-                nixpkgs.config = pkgConfig;
-                nixpkgs.overlays = [
-                  niri-flake.overlays.niri
-                  noctalia.overlays.default
-                  nur.overlays.default
-                  (import ./packages/overlay.nix)
-                ];
-                nix = {
-                  package = pkgs.lixPackageSets.stable.lix;
-                  settings = {
-                    experimental-features = [
-                      "nix-command"
-                      "flakes"
-                    ];
-
-                    substituters = [
-                      "https://attic.xuyh0120.win/lantian"
-                      "https://cache.garnix.io"
-                      "https://nixos-apple-silicon.cachix.org"
-                    ];
-
-                    trusted-public-keys = [
-                      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-                      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-                      "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
-                    ];
-
-                    trusted-users = [
-                      "root"
-                      "sckova"
-                    ];
-                  };
-
-                  gc = {
-                    automatic = true;
-                    dates = "weekly";
-                    options = "--delete-older-than 30d";
-                  };
-                };
-
-                networking.hostName = hostname;
-
-                users.users.sckova = {
-                  isNormalUser = true;
-                  description = "Sean Kovacs";
-                  extraGroups = [
-                    "wheel"
-                    "networkmanager"
-                    "podman"
-                    "pipewire"
-                  ];
-                  openssh.authorizedKeys.keys = [
-                    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCn/eXMq04vcXNqGVzlZOw2C2dQYBqzWsoigdFW09XqC2WPaGljbAIayzaD7Q1tIlPGGy10+nipAXAk1CHAnrQ2KSg4v/SwFphF48V3joeQmideC4vo0EIQEQibbMtj3oFezqRcRZINl/1hr4t0myZ3zkoTjh3HCkqJEMGUdArDMEVPA5mwcKSLsyshW9LMG/3C9YKKPU1/lVsoeDkj8AVZA0srhkApuRKF0IVu8KoPd6ldvSWgpQ1iuQ+MEMSeOUJytieBkzeY9zEVePaQ86oIMDUzqq8OTN37RyShiJKPskKyj12rJI2eFtI/viGaj8P6/yvKqMp3F4kAsPAuvMLLAIYCNa+139rDpkkIKB6lVtgq0jnJGRywaYXGIRyExNcVAr8I9wrNnNN2M4whVeYBxfLMzKZ+VvfK39AaGvnzPuFDLqUC87sN4c/1KZQo+TCtlaxcYvqowWylw5JHUt8uwFcO/dUebQxxAv8EdyPZGJ/54y19PsTbu9KyxSc2gIU= sckova"
-                  ];
-                };
-              }
-            )
-            ./options.nix
-            ./sops.nix
             ./system
-            ./system/searxng
-            ./system/games
-            ./system/widevine
-            ./system/shell/fish.nix
-            ./system/tailscale
             ./system/hosts/${hostname}
             ./hardware/${hostname}
-            niri-flake.nixosModules.niri
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.sckova = {
-                  imports = [
-                    ./home
-                    ./options.nix
-                    ./sops.nix
-                    ./home/sckova
-                    ./home/sckova/apps
-                    ./home/sckova/games
-                    ./home/sckova/hosts/${hostname}
-                    ./home/sckova/services
-                    ./home/sckova/terminal
-                    ./home/sckova/tiling
-                  ];
-                };
-                sharedModules = [
-                  sops-nix.homeManagerModules.sops
-                  base16.nixosModule
-                  (
-                    { config, ... }:
-                    {
-                      scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
-                    }
-                  )
-                  noctalia.homeModules.default
-                  nixvim.homeModules.nixvim
-                ];
-                extraSpecialArgs = {
-                };
-              };
-            }
-            noctalia.nixosModules.default
+            inputs.niri-flake.nixosModules.niri
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            inputs.noctalia.nixosModules.default
           ]
           ++ extraModules;
-        };
-
-      mkHomeConfig =
-        {
-          user,
-          hostname,
-          system,
-        }:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            config = pkgConfig;
-          };
-          home.username = user;
-          home.homeDirectory = "/home/${user}";
-          modules = [
-            ./home/${user}
-            ./home/${user}/hosts/${hostname}.nix
-            home-manager.homeModules.home-manager
-            niri-flake.homeModules.default
-            noctalia.homeModules.noctalia
-            nixvim.homeModules.nixvim
-          ];
         };
     in
     {
@@ -235,6 +107,7 @@
         peach = mkNixosSystem {
           hostname = "peach";
           system = "aarch64-linux";
+          users = [ "sckova" ];
           extraSpecialArgs = { inherit seamless-asahi-plymouth; };
           extraModules = [
             apple-silicon.nixosModules.default
@@ -248,24 +121,12 @@
         alien = mkNixosSystem {
           hostname = "alien";
           system = "x86_64-linux";
+          users = [ "sckova" ];
           extraModules = [
             {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
             }
           ];
-        };
-      };
-
-      homeConfigurations = {
-        peach = mkHomeConfig {
-          user = "sckova";
-          hostname = "peach";
-          system = "aarch64-linux";
-        };
-        alien = mkHomeConfig {
-          user = "sckova";
-          hostname = "alien";
-          system = "x86_64-linux";
         };
       };
     };

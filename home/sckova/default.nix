@@ -1,4 +1,12 @@
 {
+  imports = [
+    ./apps
+    ./games
+    ./services
+    ./terminal
+    ./tiling
+  ];
+
   # the user to activate
   userOptions = {
     name = "Sean Kovacs";

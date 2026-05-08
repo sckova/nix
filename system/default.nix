@@ -4,24 +4,73 @@
 {
   config,
   pkgs,
+  hostname,
+  users,
+  inputs,
   ...
 }:
 {
-  # the user to activate
-  userOptions = {
-    name = "Sean Kovacs";
-    username = "sckova";
-    email = "kovacsmillio@gmail.com";
-  };
+  imports = [
+    ../lib/users.nix
+    ../lib/options.nix
+    ../lib/sops.nix
+    ./searxng
+    ./games
+    ./widevine
+    ./shell/fish.nix
+    ./tailscale
+  ];
 
-  sops.secrets.sckova_password.neededForUsers = true;
-  users.users.sckova.hashedPasswordFile = config.sops.secrets.sckova_password.path;
+  networking.hostName = hostname;
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    inputs.niri-flake.overlays.niri
+    inputs.noctalia.overlays.default
+    inputs.nur.overlays.default
+    (final: prev: {
+      openmw-git = prev.openmw.overrideAttrs (old: {
+        src = inputs.openmw;
+      });
+    })
+    (import ../packages/overlay.nix)
+  ];
+
+  # This replaces the giant block that used to be in your flake
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
+    # This passes hostname and inputs down to home/default.nix
+    extraSpecialArgs = { inherit hostname inputs; };
+
+    users = pkgs.lib.genAttrs users (user: {
+      imports = [
+        ../home
+        ../home/${user}
+        ../home/${user}/hosts/${hostname}
+      ];
+    });
+
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+      inputs.base16.nixosModule
+      (
+        { config, ... }:
+        {
+          scheme = "${inputs.tt-schemes}/base24/${config.colors.scheme}.yaml";
+        }
+      )
+      inputs.noctalia.homeModules.default
+      inputs.nixvim.homeModules.nixvim
+    ];
+  };
 
   boot = {
     plymouth.enable = true;
     plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
     loader = {
-      timeout = 0;
+      timeout = 5;
       systemd-boot.enable = true;
       # limine = {
       #   enable = true;
@@ -102,7 +151,7 @@
   services = {
     displayManager = {
       autoLogin.enable = true;
-      autoLogin.user = config.userOptions.username;
+      autoLogin.user = "sckova";
       defaultSession = "niri";
       sddm.enable = true;
       sddm.wayland.enable = true;
