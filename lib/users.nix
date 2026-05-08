@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   users,
@@ -8,6 +9,7 @@
   users.users.sckova = lib.mkIf (builtins.elem "sckova" users) {
     isNormalUser = true;
     description = "Sean Kovacs";
+    shell = pkgs.fish;
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -25,6 +27,7 @@
   users.users.ckovacs = lib.mkIf (builtins.elem "ckovacs" users) {
     isNormalUser = true;
     description = "Christopher Kovacs";
+    shell = pkgs.zsh;
     extraGroups = [
       "wheel"
       "networkmanager"

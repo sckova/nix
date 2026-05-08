@@ -1,10 +1,11 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
     systemd.enable = true;
     settings = {
+      command = "${pkgs.fish}/bin/fish";
       # https://ghostty.org/docs/linux/systemd
       quit-after-last-window-closed = false;
 
