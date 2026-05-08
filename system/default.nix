@@ -11,6 +11,7 @@
 }:
 {
   imports = [
+    ../lib/nix-settings.nix
     ../lib/users.nix
     ../lib/options.nix
     ../lib/sops.nix
