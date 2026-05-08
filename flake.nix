@@ -98,26 +98,13 @@
             (
               { pkgs, ... }:
               {
-                nixpkgs = {
-                  config = pkgConfig;
-                  overlays = [
-                    niri-flake.overlays.niri
-                    noctalia.overlays.default
-                    nur.overlays.default
-                    (final: prev: {
-                      openmw-git = openmw;
-                    })
-                    (final: prev: {
-                      inherit (prev.lixPackageSets.stable)
-                        nixpkgs-review
-                        nix-eval-jobs
-                        nix-fast-build
-                        colmena
-                        ;
-                    })
-                    (import ./packages/overlay.nix)
-                  ];
-                };
+                nixpkgs.config = pkgConfig;
+                nixpkgs.overlays = [
+                  niri-flake.overlays.niri
+                  noctalia.overlays.default
+                  nur.overlays.default
+                  (import ./packages/overlay.nix)
+                ];
                 nix = {
                   package = pkgs.lixPackageSets.stable.lix;
                   settings = {
