@@ -93,10 +93,10 @@
           };
           shadow = {
             enable = true;
-            spread = 10;
+            spread = 5;
             offset.x = 0;
             offset.y = 0;
-            softness = 30;
+            softness = 10;
             color = overviewPlusShadowColor + "BF";
           };
         };
@@ -234,7 +234,7 @@
           "Mod+Space" = {
             action.spawn = [
               "vicinae"
-              "open"
+              "toggle"
             ];
             hotkey-overlay.title = "Run an Application: Vicinae";
           };
