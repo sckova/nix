@@ -66,7 +66,7 @@
         backgroundOpacity = 0.90;
         monitors = [ ];
         showCapsule = true;
-        barType = "simple";
+        barType = "framed";
         capsuleColorKey = "none";
         capsuleOpacity = 0.90;
         displayMode = "always_visible";
