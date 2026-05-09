@@ -38,6 +38,7 @@
         core.pager = "${pkgs.bat}/bin/bat";
         commit.gpgsign = true;
         init.defaultBranch = "main";
+        safe.directory = "/home/nix";
       };
     };
     bat = {

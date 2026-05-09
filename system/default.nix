@@ -85,6 +85,13 @@
     '';
   };
 
+  users.groups.shared = { };
+  users.users.shared = {
+    isSystemUser = true;
+    description = "Shared account for common files";
+    group = "users";
+  };
+
   programs = {
     gnupg.agent = {
       enable = true;
