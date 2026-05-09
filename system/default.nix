@@ -32,12 +32,9 @@
     (import ../packages/overlay.nix inputs)
   ];
 
-  # This replaces the giant block that used to be in your flake
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-
-    # This passes hostname and inputs down to home/default.nix
     extraSpecialArgs = { inherit hostname inputs; };
 
     users = lib.genAttrs users (user: {
