@@ -62,7 +62,6 @@
       nixpkgs,
       nix-cachyos-kernel,
       apple-silicon,
-      seamless-asahi-plymouth,
       steam-asahi,
       ...
     }:
@@ -99,7 +98,6 @@
           hostname = "peach";
           system = "aarch64-linux";
           users = [ "sckova" ];
-          extraSpecialArgs = { inherit seamless-asahi-plymouth; };
           extraModules = [
             apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ apple-silicon.overlays.apple-silicon-overlay ]; }
