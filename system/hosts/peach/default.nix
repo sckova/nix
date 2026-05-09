@@ -13,8 +13,13 @@ let
   };
 in
 {
+  imports = [
+    inputs.apple-silicon.nixosModules.default
+    inputs.steam-asahi.nixosModules.default
+  ];
 
   nixpkgs.overlays = [
+    inputs.apple-silicon.overlays.apple-silicon-overlay
     (final: prev: {
       uboot-asahi = prev.uboot-asahi.overrideAttrs (old: {
         postConfigure = (old.postConfigure or "") + ''
@@ -58,6 +63,8 @@ in
         "${asahi-artwork}/logos/svg/AsahiLinux_logo_horizontal_darkbg.svg";
     }
   ];
+
+  programs.steam-asahi.enable = true;
 
   # environment.systemPackages = with pkgs; [
   #   # note for wine support (should be done by 26.05 release):

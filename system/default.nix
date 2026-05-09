@@ -12,6 +12,10 @@
 }:
 {
   imports = [
+    inputs.niri-flake.nixosModules.niri
+    inputs.sops-nix.nixosModules.sops
+    inputs.home-manager.nixosModules.home-manager
+    inputs.noctalia.nixosModules.default
     ../lib/nix-settings.nix
     ../lib/users.nix
     ../lib/options.nix
@@ -20,6 +24,8 @@
     ./games
     ./widevine
     ./tailscale
+    ./hosts/${hostname}
+    ../hardware/${hostname}
   ];
 
   networking.hostName = hostname;

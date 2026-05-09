@@ -2,9 +2,12 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
+  nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+
   environment.systemPackages = with pkgs; [
     ddcutil
     mangohud
