@@ -50,7 +50,7 @@
       extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
 
-    gamescope.args = config.programs.gamescope.args ++ [
+    gamescope.args = [
       "--output-width 3840"
       "--nested-width 3840"
       "--output-height 2160"
