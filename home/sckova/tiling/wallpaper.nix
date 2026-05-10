@@ -5,13 +5,20 @@
 }:
 {
   systemd.user.services.wbg-daemon = {
-    Unit.Description = "Wallpaper service using wbg (daemon)";
-    Unit.After = [ "niri.service" ];
+    Unit = {
+      Description = "Wallpaper service using wbg (daemon)";
+      After = [ "graphical-session.target" ];
+      X-Restart-Triggers = [
+        "/home/${config.home.username}/.local/share/wallpaper/daily-colored.png"
+      ];
+      X-RestartIfChanged = false;
+      X-SwitchMethod = "keep-old";
+    };
     Service.ExecStart = /* bash */ ''
       ${pkgs.wbg}/bin/wbg -s \
       %h/.local/share/wallpaper/daily-colored.jpg
     '';
-    Install.WantedBy = [ "niri.service" ];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.services.bing-wallpaper = {
@@ -31,6 +38,10 @@
           libnotify
         ];
         text = /* bash */ ''
+          while ! wget -q --spider https://www.bing.com; do
+            sleep 1
+          done
+
           OUT="$HOME/.local/share/wallpaper/daily.jpg"
           API=$(wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1")
           BASE=$(echo "$API" | jq -r '.images[0].urlbase')
@@ -48,7 +59,6 @@
       }
     );
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user start gowall-convert.service";
-    Install.WantedBy = [ "niri.service" ];
   };
 
   systemd.user.timers.bing-wallpaper = {
@@ -71,7 +81,6 @@
       --output %h/.local/share/wallpaper/daily-colored.jpg \
       -t nix
     '';
-    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
   };
 
   home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
