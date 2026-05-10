@@ -44,11 +44,13 @@
 
           OUT="$HOME/.local/share/wallpaper/daily.jpg"
           API=$(wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1")
+          API_JQ=$(echo "$API" | jq)
           BASE=$(echo "$API" | jq -r '.images[0].urlbase')
           TITLE=$(echo "$API" | jq -r '.images[0].title')
 
           mkdir -p "$HOME/.local/share/wallpaper"
           wget -qO "$OUT" "https://www.bing.com''${BASE}_UHD.jpg"
+          printf "%s" "$API_JQ" > "$HOME/.local/share/wallpaper/meta.json"
 
           notify-send \
             -a "Wallpaper of the day" \
