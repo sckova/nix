@@ -30,14 +30,14 @@
     openmw.flake = false;
   };
   outputs =
-    { ... }@inputs:
+    { nixpkgs, ... }@inputs:
     {
       nixosConfigurations =
         builtins.mapAttrs
           (
             hostname:
             { system, users }:
-            inputs.nixpkgs.lib.nixosSystem {
+            nixpkgs.lib.nixosSystem {
               inherit system;
               specialArgs = { inherit hostname users inputs; };
               modules = [ ./system ];

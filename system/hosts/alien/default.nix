@@ -49,6 +49,13 @@
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
+
+    gamescope.args = config.programs.gamescope.args ++ [
+      "--output-width 3840"
+      "--nested-width 3840"
+      "--output-height 2160"
+      "--nested-height 2160"
+    ];
   };
 
   services.xserver.videoDrivers = [

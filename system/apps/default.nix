@@ -1,19 +1,30 @@
 {
-  config,
   pkgs,
   lib,
+  users,
   ...
 }:
 {
+  imports = [
+    ./obs.nix
+  ];
+
   programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
+    niri.enable = true;
+    niri.package = pkgs.niri-unstable;
+
+    fish.enable = lib.mkIf (builtins.elem "sckova" users) true;
+    zsh.enable = lib.mkIf (builtins.elem "ckovacs" users) true;
+
     gamescope = {
       enable = true;
       capSysNice = true;
       args = [
-        "--output-width 3840"
-        "--nested-width 3840"
-        "--output-height 2160"
-        "--nested-height 2160"
         "--expose-wayland"
         "--fullscreen"
       ];
@@ -34,4 +45,9 @@
       ];
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    git
+    firefoxpwa
+  ];
 }

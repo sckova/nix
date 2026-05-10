@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  hostname,
   ...
 }:
 {
@@ -20,7 +21,7 @@
 
       general = {
         debug = false;
-        instance_name = "searxng: ${config.system.name}";
+        instance_name = "searxng: ${hostname}";
         donation_url = false;
         contact_url = false;
         privacypolicy_url = false;

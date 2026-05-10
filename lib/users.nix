@@ -6,6 +6,13 @@
   ...
 }:
 {
+  users.groups.shared = { };
+  users.users.shared = {
+    isSystemUser = true;
+    description = "Shared account for common files";
+    group = "users";
+  };
+
   users.users.sckova = lib.mkIf (builtins.elem "sckova" users) {
     isNormalUser = true;
     description = "Sean Kovacs";
