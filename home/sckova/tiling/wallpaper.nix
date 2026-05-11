@@ -8,9 +8,6 @@
     Unit = {
       Description = "Wallpaper service using wbg (daemon)";
       After = [ "graphical-session.target" ];
-      X-Restart-Triggers = [
-        "/home/${config.home.username}/.local/share/wallpaper/daily-colored.png"
-      ];
       X-RestartIfChanged = false;
       X-SwitchMethod = "keep-old";
     };
@@ -83,6 +80,7 @@
       --output %h/.local/share/wallpaper/daily-colored.jpg \
       -t nix
     '';
+    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
   };
 
   home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
