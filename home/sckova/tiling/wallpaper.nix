@@ -15,7 +15,6 @@
       ${pkgs.wbg}/bin/wbg -s \
       %h/.local/share/wallpaper/daily-colored.jpg
     '';
-    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   systemd.user.services.bing-wallpaper = {
@@ -81,6 +80,7 @@
       -t nix
     '';
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
