@@ -11,11 +11,10 @@
 
   services = {
     displayManager = {
-      autoLogin.enable = true;
+      autoLogin.enable = false;
       autoLogin.user = "sckova";
       defaultSession = "niri";
-      sddm.enable = true;
-      sddm.wayland.enable = true;
+      gdm.enable = true;
     };
     gnome.gnome-keyring.enable = true;
     libinput.enable = true;
@@ -43,6 +42,7 @@
 
   security = {
     pam.services = {
+      gdm.enableGnomeKeyring = true;
       niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
       swaylock = {
         name = "swaylock";
