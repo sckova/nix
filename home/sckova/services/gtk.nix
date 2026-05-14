@@ -22,7 +22,6 @@ let
     @define-color base0E ${base0E};
     @define-color base0F ${base0F};
     @define-color accent ${config.scheme.withHashtag.${config.colors.accent}};
-    };
   '';
 
   css = /* css */ ''
@@ -138,7 +137,7 @@ let
     }
 
     /* Accent */
-    @define-color accent_bg_color var(--accent);
+    @define-color accent_bg_color @accent;
     @define-color accent_fg_color @window_bg_color;
 
     .content-pane {
