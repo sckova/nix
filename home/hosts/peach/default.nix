@@ -19,10 +19,6 @@
   ];
 
   programs = {
-    noctalia-shell.settings.bar = {
-      position = "top";
-      density = "spacious";
-    };
 
     niri.settings = {
       debug.render-drm-device = "/dev/dri/renderD128";

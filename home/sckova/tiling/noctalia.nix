@@ -73,7 +73,9 @@
         barType = "framed";
         capsuleColorKey = "none";
         capsuleOpacity = 0.90;
-        displayMode = "always_visible";
+        displayMode = "non_exclusive";
+        position = "top";
+        density = "spacious";
         floating = false;
         marginHorizontal = 5;
         marginVertical = 5;

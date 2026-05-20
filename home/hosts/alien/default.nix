@@ -49,8 +49,4 @@
   };
 
   programs.noctalia-shell.settings.brightness.enableDdcSupport = true;
-  programs.noctalia-shell.settings.bar = {
-    position = "top";
-    density = "default";
-  };
 }
