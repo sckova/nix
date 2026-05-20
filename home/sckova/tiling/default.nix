@@ -204,6 +204,23 @@
     Install.WantedBy = [ "niri.service" ];
   };
 
+  systemd.user.services.vicinae = {
+    Install.WantedBy = [ "niri.service" ];
+    Service = {
+      ExecStart = "${pkgs.vicinae}/bin/vicinae server";
+      KillMode = "process";
+      Restart = "always";
+      RestartSec = 5;
+      Type = "simple";
+    };
+
+    Unit = {
+      After = [ "niri.service" ];
+      Description = "Vicinae server daemon";
+      Documentation = "https://docs.vicinae.com";
+    };
+  };
+
   xsession = {
     enable = true;
     windowManager.command = "niri";

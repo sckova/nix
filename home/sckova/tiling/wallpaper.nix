@@ -7,7 +7,7 @@
   systemd.user.services.wbg-daemon = {
     Unit = {
       Description = "Wallpaper service using wbg (daemon)";
-      After = [ "graphical-session.target" ];
+      After = [ "niri.service" ];
       X-RestartIfChanged = false;
       X-SwitchMethod = "keep-old";
     };
@@ -80,7 +80,7 @@
       -t nix
     '';
     Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "niri.service" ];
   };
 
   home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
