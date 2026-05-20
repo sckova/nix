@@ -57,6 +57,36 @@
     };
 
     highlight = {
+      # enable transparency
+      Normal = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+      NormalNC = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+      NormalFloat = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+      EndOfBuffer = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+      SignColumn = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+      LineNr = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+      CursorLineNr = {
+        bg = "NONE";
+        ctermbg = "NONE";
+      };
+
       FoldColumn = {
         # the color of the fold icons and backdrop
         fg = config.scheme.withHashtag.base04;
@@ -178,39 +208,6 @@
     ];
 
     plugins = {
-      # transparent background
-      transparent = {
-        enable = true;
-        lazyLoad.enable = false;
-        settings.groups = [
-          "Normal"
-          "NormalNC"
-          "Comment"
-          "Constant"
-          "Special"
-          "Identifier"
-          "Statement"
-          "PreProc"
-          "Type"
-          "Underlined"
-          "Todo"
-          "String"
-          "Function"
-          "Conditional"
-          "Repeat"
-          "Operator"
-          "Structure"
-          "LineNr"
-          "NonText"
-          "SignColumn"
-          "CursorLine"
-          "CursorLineNr"
-          "StatusLine"
-          "StatusLineNC"
-          "EndOfBuffer"
-        ];
-      };
-
       treesitter = {
         enable = true;
         highlight.enable = true;
