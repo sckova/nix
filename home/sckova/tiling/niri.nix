@@ -36,7 +36,8 @@
         hotkey-overlay.skip-at-startup = true;
         prefer-no-csd = false;
         gestures.hot-corners.enable = false;
-        spawn-at-startup = [ ]; # this config uses systemd user services
+        spawn-at-startup = [ ]; # this config uses systemd user services,
+        # or it delegates this to the services' respective config file
         overview = {
           backdrop-color = overviewPlusShadowColor;
           workspace-shadow.enable = false;

@@ -4,6 +4,10 @@
   ...
 }:
 {
+  programs.niri.settings.spawn-at-startup = [
+    { command = [ "${pkgs.noctalia-shell}/bin/noctalia-shell" ]; }
+  ];
+
   programs.noctalia-shell = {
     enable = true;
     colors = with config.scheme.withHashtag; {
@@ -592,24 +596,5 @@
         wallpaperChangeMode = "random";
       };
     };
-  };
-
-  systemd.user.services.noctalia-shell = {
-    Unit = {
-      After = [ "niri.service" ];
-      Description = "Noctalia Shell - Wayland desktop shell";
-      Documentation = "https://docs.noctalia.dev";
-      X-Restart-Triggers = [
-        "${config.xdg.configFile."noctalia/settings.json".source}"
-        "${config.xdg.configFile."noctalia/colors.json".source}"
-      ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
-      Restart = "on-failure";
-    };
-
-    Install.WantedBy = [ "niri.service" ];
   };
 }
