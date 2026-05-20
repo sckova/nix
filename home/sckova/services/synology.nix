@@ -4,12 +4,6 @@
   ...
 }:
 {
-  systemd.user.sessionVariables = {
-    XCURSOR_THEME = config.userOptions.cursor.name;
-    XCURSOR_SIZE = toString config.userOptions.cursor.size;
-    XCURSOR_PATH = config.userOptions.cursor.path;
-  };
-
   sops.templates."synology.conf".content = ''
     [synology]
     type = smb
@@ -53,8 +47,6 @@
       StandardError = "journal";
     };
 
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
+    Install.WantedBy = [ "default.target" ];
   };
 }

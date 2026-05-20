@@ -8,8 +8,14 @@
   imports = [
     ./gtk.nix
     ./qt.nix
-    ./systemd.nix
+    ./synology.nix
   ];
+
+  systemd.user.sessionVariables = {
+    XCURSOR_THEME = config.userOptions.cursor.name;
+    XCURSOR_SIZE = toString config.userOptions.cursor.size;
+    XCURSOR_PATH = config.userOptions.cursor.path;
+  };
 
   home.packages = with pkgs; [
     adwaita-icon-theme
