@@ -7,6 +7,7 @@
 }:
 {
   users.groups.shared = { };
+  users.mutableUsers = false;
   users.users.shared = {
     isSystemUser = true;
     description = "Shared account for common files";
