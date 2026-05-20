@@ -6,6 +6,14 @@
   ...
 }:
 {
+  # fix xdg data path differences
+  home.file.".mozilla/firefox" = {
+    source =
+      with config.lib.file;
+      mkOutOfStoreSymlink "/home/${config.home.username}/${config.programs.firefox.configPath}";
+    force = true;
+  };
+
   home.file."${config.programs.firefox.configPath}/default/chrome/" = {
     source = ./firefox_css;
     force = true;
