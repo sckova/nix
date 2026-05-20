@@ -6,13 +6,13 @@
   ...
 }:
 {
-  home.file.".mozilla/firefox/default/chrome/" = {
+  home.file."${config.programs.firefox.configPath}/default/chrome/" = {
     source = ./firefox_css;
     force = true;
     recursive = true;
   };
 
-  home.file.".mozilla/firefox/default/chrome/colors.css" = {
+  home.file."${config.programs.firefox.configPath}/default/chrome/colors.css" = {
     text =
       let
         toRgb =
@@ -121,7 +121,7 @@
           "shinigamieyes@shinigamieyes".installation_mode = "allowed";
           "deArrow@ajay.app".installation_mode = "allowed";
 
-          # https://addons.mozilla.org/en-US/firefox/addon/youtube-tweaks/
+          # https://addons.config/mozilla.org/en-US/firefox/addon/youtube-tweaks/
           "{d867162c-4c38-4c5f-aca4-db6a6592d7da}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4778682/latest.xpi";
             installation_mode = "force_installed";
