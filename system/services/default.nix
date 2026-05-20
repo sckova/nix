@@ -11,7 +11,7 @@
 
   services = {
     displayManager = {
-      autoLogin.enable = false;
+      autoLogin.enable = true;
       autoLogin.user = "sckova";
       defaultSession = "niri";
       gdm.enable = true;
