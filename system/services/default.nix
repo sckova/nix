@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }:
 {
@@ -8,6 +7,14 @@
     ./widevine.nix
     ./searxng.nix
   ];
+
+  systemd.user.services.gnome-keyring = {
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
+      Restart = "on-abort";
+    };
+  };
 
   services = {
     displayManager = {
@@ -43,12 +50,12 @@
   security = {
     pam.services = {
       gdm.enableGnomeKeyring = true;
-      niri.enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+      niri.enableGnomeKeyring = true;
       swaylock = {
         name = "swaylock";
-        enableGnomeKeyring = config.services.gnome.gnome-keyring.enable;
+        enableGnomeKeyring = true;
         gnupg.enable = true;
-        gnupg.noAutostart = true;
+        gnupg.noAutostart = false;
       };
     };
     sudo.wheelNeedsPassword = false;
