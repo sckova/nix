@@ -16,9 +16,9 @@
       };
       defaultOpacity = 0.90;
       ringColors = with config.scheme.withHashtag; {
-        active = config.scheme.withHashtag.${config.colors.accent} + "E6";
-        inactive = base01 + "E6";
-        urgent = base12 + "E6";
+        active = config.scheme.withHashtag.${config.colors.accent};
+        inactive = base01;
+        urgent = base12;
       };
       overviewPlusShadowColor = config.scheme.withHashtag.base11;
     in
