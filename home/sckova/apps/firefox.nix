@@ -7,6 +7,14 @@
   isLinux,
   ...
 }:
+let
+  firefoxPath =
+    if isLinux then
+      "${config.xdg.configHome}/mozilla/firefox"
+    else
+      "${config.home.homeDirectory}/Library/Application Support/Firefox";
+  firefoxProfilePath = if isLinux then firefoxPath else firefoxPath + "/Profiles";
+in
 {
   # fix xdg data path differences
   home.file.".mozilla/firefox" = {
@@ -16,13 +24,13 @@
     force = true;
   };
 
-  home.file."${config.programs.firefox.configPath}/default/chrome/" = {
+  home.file."${firefoxProfilePath}/default/chrome/" = {
     source = ./firefox_css;
     force = true;
     recursive = true;
   };
 
-  home.file."${config.programs.firefox.configPath}/default/chrome/colors.css" = {
+  home.file."${firefoxProfilePath}/default/chrome/colors.css" = {
     text =
       let
         toRgb =
@@ -104,11 +112,7 @@
     };
     firefox = {
       enable = true;
-      configPath =
-        if isLinux then
-          "${config.xdg.configHome}/mozilla/firefox"
-        else
-          "${config.home.homeDirectory}/Library/Application Support/Firefox";
+      configPath = firefoxPath;
       package =
         if isLinux then
           pkgs.firefox.override {
