@@ -102,10 +102,7 @@
             color = overviewPlusShadowColor + "BF";
           };
           struts = {
-            top = 48;
-            left = 8;
-            right = 8;
-            bottom = 8;
+            top = 46;
           };
         };
         window-rules = [

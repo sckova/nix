@@ -70,7 +70,7 @@
         backgroundOpacity = 0.90;
         monitors = [ ];
         showCapsule = true;
-        barType = "framed";
+        barType = "simple";
         capsuleColorKey = "none";
         capsuleOpacity = 0.90;
         displayMode = "non_exclusive";
@@ -363,7 +363,7 @@
         enableBlurBehind = true;
         enableLockScreenCountdown = true;
         enableShadows = false;
-        forceBlackScreenCorners = false;
+        forceBlackScreenCorners = true;
         iRadiusRatio = 1;
         language = "";
         lockOnSuspend = true;
@@ -372,13 +372,13 @@
         lockScreenMonitors = [ ];
         radiusRatio = 1;
         scaleRatio = 1;
-        screenRadiusRatio = 1;
+        screenRadiusRatio = 0.5;
         shadowDirection = "bottom_right";
         shadowOffsetX = 2;
         shadowOffsetY = 3;
         showChangelogOnStartup = true;
         showHibernateOnLockScreen = false;
-        showScreenCorners = false;
+        showScreenCorners = true;
         showSessionButtonsOnLockScreen = true;
         telemetryEnabled = false;
       };
