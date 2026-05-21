@@ -62,15 +62,7 @@
     };
   };
 
-  swapDevices = [
-    {
-      label = "swap"; # 8GB
-    }
-    {
-      device = "/swapfile";
-      size = 24 * 1024; # 24GB
-    }
-  ];
+  swapDevices = [ { label = "swap"; } ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
