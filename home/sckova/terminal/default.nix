@@ -17,7 +17,6 @@
   home.packages = with pkgs; [
     tmux
     fastfetch
-    btop
     wget
     ripgrep
     ncdu
