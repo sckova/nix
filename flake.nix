@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
     seamless-asahi-plymouth.url = "github:luca-schlecker/seamless-asahi-plymouth";
     steam-asahi.url = "github:sm-idk/steam-asahi";
@@ -15,7 +14,7 @@
     niri-flake.url = "github:sckova/niri-flake/feat/blur";
     niri-flake.inputs.nixpkgs.follows = "nixpkgs";
     niri-flake.inputs.niri-unstable.follows = "niri";
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +40,10 @@
             { system, users }:
             nixpkgs.lib.nixosSystem {
               inherit system;
-              specialArgs = { inherit hostname users inputs; isLinux = true; };
+              specialArgs = {
+                inherit hostname users inputs;
+                isLinux = true;
+              };
               modules = [ ./system ];
             }
           )
@@ -65,7 +67,10 @@
             { system, users }:
             nix-darwin.lib.darwinSystem {
               inherit system;
-              specialArgs = { inherit hostname users inputs; isLinux = false; };
+              specialArgs = {
+                inherit hostname users inputs;
+                isLinux = false;
+              };
               modules = [ ./system/darwin.nix ];
             }
           )
