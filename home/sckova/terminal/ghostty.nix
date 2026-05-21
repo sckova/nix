@@ -18,7 +18,7 @@
 
       # https://github.com/ghostty-org/ghostty/discussions/5948
       font-family = config.userOptions.fontMono.name;
-      font-size = config.userOptions.fontMono.size;
+      font-size = with config.userOptions.fontMono; if isLinux then size else size + 1;
       window-padding-x = 4;
       window-padding-y = 4;
       confirm-close-surface = false;
