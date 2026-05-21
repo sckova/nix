@@ -11,7 +11,7 @@
     ./games
     ./terminal
   ]
-  ++ lib.optional isLinux [
+  ++ lib.optionals isLinux [
     ./tiling
     ./services
   ];

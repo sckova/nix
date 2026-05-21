@@ -8,7 +8,7 @@
   imports = [
     ./minecraft.nix
   ]
-  ++ lib.optional isLinux [
+  ++ lib.optionals isLinux [
     ./morrowind.nix
   ];
 
