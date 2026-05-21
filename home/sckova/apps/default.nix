@@ -12,7 +12,6 @@
       audacity # audio tool
       musescore # music scoring
       (if stdenv.isLinux then gimp else gimp2) # image editor
-
     ]
     ++ lib.optionals stdenv.isLinux [
       calibre # ebook tool
@@ -22,5 +21,8 @@
       tuba # mastodon client
       snapshot # webcam tool
       loupe # image viewer
+    ]
+    ++ lib.optionals stdenv.isDarwin [
+      iina # media player
     ];
 }
