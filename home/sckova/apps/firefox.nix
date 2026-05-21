@@ -3,6 +3,8 @@
 {
   pkgs,
   config,
+  lib,
+  isLinux,
   ...
 }:
 {
@@ -10,7 +12,7 @@
   home.file.".mozilla/firefox" = {
     source =
       with config.lib.file;
-      mkOutOfStoreSymlink "/home/${config.home.username}/${config.programs.firefox.configPath}";
+      mkOutOfStoreSymlink "${config.home.homeDirectory}/${config.programs.firefox.configPath}";
     force = true;
   };
 
@@ -75,7 +77,7 @@
   };
 
   programs = {
-    firefoxpwa = {
+    firefoxpwa = lib.mkIf isLinux {
       enable = true;
       settings.config = {
         always_patch = false;
@@ -102,12 +104,20 @@
     };
     firefox = {
       enable = true;
-      configPath = "${config.xdg.configHome}/mozilla/firefox";
-      package = pkgs.firefox.override {
-        nativeMessagingHosts = with pkgs; [
-          firefoxpwa
-        ];
-      };
+      configPath =
+        if isLinux then
+          "${config.xdg.configHome}/mozilla/firefox"
+        else
+          "${config.home.homeDirectory}/Library/Application Support/Firefox";
+      package =
+        if isLinux then
+          pkgs.firefox.override {
+            nativeMessagingHosts = with pkgs; [
+              firefoxpwa
+            ];
+          }
+        else
+          pkgs.firefox;
       policies = {
         BlockAboutConfig = false;
         DefaultDownloadDirectory = "\${home}/Downloads";

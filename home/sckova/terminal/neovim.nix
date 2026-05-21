@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  isLinux,
   hostname,
   ...
 }:
@@ -22,13 +23,14 @@
     nixpkgs.useGlobalPackages = true;
     enablePrintInit = true;
     defaultEditor = true;
-    waylandSupport = true;
+    waylandSupport = isLinux;
     viAlias = true;
     vimAlias = true;
 
     clipboard = {
       register = "unnamedplus";
-      providers.wl-copy.enable = true;
+      providers.wl-copy.enable = isLinux;
+      providers.pbcopy.enable = pkgs.stdenv.isDarwin;
     };
 
     opts = {

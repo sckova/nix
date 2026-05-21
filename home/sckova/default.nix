@@ -1,11 +1,19 @@
 {
+  lib,
+  pkgs,
+  isLinux,
+  ...
+}:
+{
   imports = [
     ../../lib/sops.nix
     ./apps
     ./games
-    ./services
     ./terminal
+  ]
+  ++ lib.optional isLinux [
     ./tiling
+    ./services
   ];
 
   # the user to activate

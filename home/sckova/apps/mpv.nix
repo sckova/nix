@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  isLinux,
   ...
 }:
 {
@@ -20,15 +21,19 @@
       sub-font = config.userOptions.fontSans.name;
       osd-font = config.userOptions.fontSans.name;
     };
-    scripts = with pkgs.mpvScripts; [
-      uosc
-      mpv-subtitle-lines # requires uosc
-      mpris
-      autosub
-      youtube-upnext
-      youtube-chat
-      mpv-notify-send
-    ];
+    scripts =
+      with pkgs.mpvScripts;
+      [
+        uosc
+        mpv-subtitle-lines # requires uosc
+        autosub
+        youtube-upnext
+        youtube-chat
+      ]
+      ++ lib.optionals isLinux [
+        mpris
+        mpv-notify-send
+      ];
     scriptOpts = {
       uosc = {
         color =

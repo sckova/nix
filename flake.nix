@@ -21,6 +21,8 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     tt-schemes.url = "github:tinted-theming/schemes/b9f335ad6a0b7d85b9c2eb932c3215f7429f7d11";
     tt-schemes.flake = false;
@@ -30,7 +32,7 @@
     openmw.flake = false;
   };
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, nix-darwin, ... }@inputs:
     {
       nixosConfigurations =
         builtins.mapAttrs
@@ -39,7 +41,7 @@
             { system, users }:
             nixpkgs.lib.nixosSystem {
               inherit system;
-              specialArgs = { inherit hostname users inputs; };
+              specialArgs = { inherit hostname users inputs; isLinux = true; };
               modules = [ ./system ];
             }
           )
@@ -54,6 +56,23 @@
                 "sckova"
                 "ckovacs"
               ];
+            };
+          };
+      darwinConfigurations =
+        builtins.mapAttrs
+          (
+            hostname:
+            { system, users }:
+            nix-darwin.lib.darwinSystem {
+              inherit system;
+              specialArgs = { inherit hostname users inputs; isLinux = false; };
+              modules = [ ./system/darwin.nix ];
+            }
+          )
+          {
+            skmbp = {
+              system = "aarch64-darwin";
+              users = [ "sckova" ];
             };
           };
     };

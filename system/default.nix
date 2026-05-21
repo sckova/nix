@@ -36,7 +36,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit hostname inputs; };
+    extraSpecialArgs = {
+      inherit hostname inputs;
+      isLinux = pkgs.stdenv.hostPlatform.isLinux;
+    };
 
     users = lib.genAttrs users (user: {
       imports = [
@@ -48,7 +51,7 @@
 
     sharedModules = with inputs; [
       sops-nix.homeManagerModules.sops
-      base16.nixosModule
+      base16.homeManagerModule
       (
         { config, ... }:
         {

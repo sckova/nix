@@ -299,6 +299,26 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779036909,
+        "narHash": "sha256-zXcwYQGCT6pzinK+1dBB2ekTVtfxGZAapb3Evdcu4fY=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "56c666e108467d87d13508936aade6d567f2a501",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1777578337,
@@ -537,6 +557,7 @@
         "niri": "niri",
         "niri-flake": "niri-flake",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
+        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
         "noctalia": "noctalia",

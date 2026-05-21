@@ -41,8 +41,8 @@
               set -g color_host $color_accent
           else if test (hostname) = alien
               set -g color_host $color_accent
-          else if test (uname) = Darwin
-              set -g color_host $color_base0A
+          else if test (hostname) = skmbp
+              set -g color_host $color_accent
           end
 
           set -l user_host (set_color $color_user)"$USER"(set_color normal)"@"(set_color $color_host)(prompt_hostname)(set_color normal)

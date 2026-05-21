@@ -1,5 +1,6 @@
 {
   pkgs,
+  isLinux,
   ...
 }:
 {
@@ -14,16 +15,24 @@
   ];
 
   # cli utilities
-  home.packages = with pkgs; [
-    tmux
-    fastfetch
-    wget
-    ripgrep
-    ncdu
-    wl-clipboard
-    rclone
-    gh
-    eza
-    pigz
-  ];
+  home.packages =
+    with pkgs;
+    [
+      tmux
+      fastfetch
+      wget
+      ripgrep
+      ncdu
+      rclone
+      gh
+      eza
+      pigz
+    ]
+    ++ lib.optionals isLinux [
+      wl-clipboard
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
+      gnupg
+      pinentry_mac
+    ];
 }
