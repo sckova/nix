@@ -10,10 +10,11 @@
     ./apps
     ./games
     ./terminal
+    ./tiling/aerospace.nix
   ]
   ++ lib.optionals isLinux [
-    ./tiling
     ./services
+    ./tiling
   ];
 
   # the user to activate

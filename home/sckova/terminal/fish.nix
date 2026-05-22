@@ -4,6 +4,10 @@
   ...
 }:
 {
+  home.file.".local/share/bin/.keep".text = ""; # Ensure directory exists
+  home.sessionPath = [
+    "${config.xdg.dataHome}/bin"
+  ];
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
