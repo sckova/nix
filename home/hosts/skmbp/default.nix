@@ -5,7 +5,7 @@
 }:
 {
   colors = {
-    scheme = "catppuccin-frappe";
-    accent = "base0A";
+    scheme = "catppuccin-macchiato";
+    accent = "base0E";
   };
 }
