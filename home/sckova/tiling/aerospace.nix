@@ -18,6 +18,16 @@ lib.mkIf pkgs.stdenv.isDarwin {
     ))
   ];
 
+  home.file.".local/share/bin/autoraise.sh" = {
+    executable = true;
+    text = with pkgs; /* bash */ ''
+      while true; do
+        ${tmux}/bin/tmux new-session -s autoraise '${autoraise}/bin/autoraise'
+        sleep 1
+      done
+    '';
+  };
+
   home.file.".AutoRaise".text = lib.generators.toKeyValue { } {
     pollMillis = 50;
     delay = 1;
