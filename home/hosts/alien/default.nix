@@ -18,7 +18,7 @@
   xdg.desktopEntries.steam-big-picture = {
     name = "Steam (Big Picture)";
     icon = "steam";
-    exec = "gamescope -e --force-grab-cursor -s 2 -- steam -tenfoot";
+    exec = "tmux new-session -d -s steam-big-picture -- gamescope -e --force-grab-cursor -s 2 -- steam -tenfoot";
     terminal = false;
     categories = [
       "Network"
