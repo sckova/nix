@@ -2,13 +2,12 @@
   pkgs,
   config,
   isLinux,
-  lib,
   ...
 }:
 {
   programs.ghostty = {
     enable = true;
-    package = if isLinux then pkgs.ghostty else pkgs.ghostty-bin;
+    package = with pkgs; if isLinux then ghostty else ghostty-bin;
     enableFishIntegration = true;
     systemd.enable = isLinux;
     settings = {
@@ -23,7 +22,7 @@
       window-padding-y = 4;
       confirm-close-surface = false;
       mouse-hide-while-typing = false;
-      mouse-scroll-multiplier = "precision:0.25,discrete:0.5";
+      mouse-scroll-multiplier = if isLinux then "precision:0.25,discrete:0.5" else "";
       keybind = [
         "ctrl+k=clear_screen"
         "ctrl+enter=unbind"
