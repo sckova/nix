@@ -10,7 +10,7 @@
     enable = true;
     package = if isLinux then pkgs.ghostty else pkgs.ghostty-bin;
     enableFishIntegration = true;
-    systemd.enable = lib.mkIf isLinux true;
+    systemd.enable = isLinux;
     settings = {
       command = "${pkgs.fish}/bin/fish";
       # https://ghostty.org/docs/linux/systemd
@@ -38,8 +38,8 @@
         "ssh-terminfo" # Enable automatic terminfo installation on remote hosts.
         "path" # Add Ghostty's binary directory to PATH.
       ];
-      background-opacity = if isLinux then 0 else 1;
-      background-blur = if isLinux then "" else "macos-glass-clear";
+      background-opacity = 0;
+      background-blur = if isLinux then "" else "macos-glass-regular";
       theme = "nixos";
     };
     themes.nixos = with config.scheme.withHashtag; {
