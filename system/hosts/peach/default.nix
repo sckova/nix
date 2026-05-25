@@ -15,7 +15,6 @@ in
 {
   imports = [
     inputs.apple-silicon.nixosModules.default
-    inputs.steam-asahi.nixosModules.default
   ];
 
   nixpkgs.overlays = [
@@ -63,8 +62,6 @@ in
         "${asahi-artwork}/logos/svg/AsahiLinux_logo_horizontal_darkbg.svg";
     }
   ];
-
-  programs.steam-asahi.enable = true;
 
   # environment.systemPackages = with pkgs; [
   #   # note for wine support (should be done by 26.05 release):

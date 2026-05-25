@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
     seamless-asahi-plymouth.url = "github:luca-schlecker/seamless-asahi-plymouth";
-    steam-asahi.url = "github:sm-idk/steam-asahi";
     base16.url = "github:SenchoPens/base16.nix";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
