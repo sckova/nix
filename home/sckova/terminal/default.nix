@@ -8,6 +8,7 @@
   imports = [
     ./btop.nix
     ./fish.nix
+    ./fastfetch.nix
     ./git.nix
     ./ghostty.nix
     ./neovim.nix
@@ -20,7 +21,6 @@
     with pkgs;
     [
       tmux
-      fastfetch
       wget
       ripgrep
       ncdu
