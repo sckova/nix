@@ -16,7 +16,7 @@
     settings = {
       server = {
         port = 5364;
-        bind_address = "127.0.0.1";
+        bind_address = if hostname == "alien" then "0.0.0.0" else "127.0.0.1";
       };
 
       general = {
@@ -32,7 +32,7 @@
         static_use_hash = true;
         default_locale = "en";
         query_in_title = true;
-        infinite_scroll = false;
+        infinite_scroll = true;
         center_alignment = true;
         default_theme = "simple";
         theme_args.simple_style = "auto";
@@ -59,8 +59,9 @@
         "bing".disabled = false;
         "bing".weight = 0.4;
         "startpage".disabled = false;
-        "startpage".weight = 1.4;
+        "startpage".weight = 2.0;
         "google".disabled = false;
+        "google".weight = 2.0;
         "mojeek".disabled = true;
         "mwmbl".disabled = false;
         "mwmbl".weight = 0.4;
