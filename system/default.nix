@@ -11,7 +11,6 @@
 }:
 {
   imports = with inputs; [
-    niri-flake.nixosModules.niri
     sops-nix.nixosModules.sops
     home-manager.nixosModules.home-manager
     noctalia.nixosModules.default
@@ -28,7 +27,6 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = with inputs; [
-    niri-flake.overlays.niri
     noctalia.overlays.default
     nur.overlays.default
     (import ../packages/overlay.nix inputs)

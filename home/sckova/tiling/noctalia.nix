@@ -4,10 +4,6 @@
   ...
 }:
 {
-  programs.niri.settings.spawn-at-startup = [
-    { command = [ "${pkgs.noctalia-shell}/bin/noctalia-shell" ]; }
-  ];
-
   programs.noctalia-shell = {
     enable = true;
     colors = with config.scheme.withHashtag; {

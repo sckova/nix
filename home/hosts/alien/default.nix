@@ -27,19 +27,6 @@
     ];
   };
 
-  programs.niri.settings.outputs."DP-1" = {
-    mode = {
-      width = 3840;
-      height = 2160;
-      refresh = 143.999;
-    };
-    scale = 1.5;
-    position = {
-      x = 0;
-      y = 0;
-    };
-  };
-
   home.sessionVariables = {
     PROTON_ENABLE_NVAPI = 1;
     PROTON_DLSS_UPGRADE = 1;
