@@ -227,7 +227,7 @@ in
                 videoRemTime = false;
                 alwaysShowProgBar = true;
                 keepProgBarAtBottom = false;
-                showProgBarOutsidePlayer = true;
+                showProgBarOutsidePlayer = false;
                 customProgBar = "";
                 pinVideoOnScroll = false;
                 fullscreenTheaterMode = true;
