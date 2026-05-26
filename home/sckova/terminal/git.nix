@@ -5,6 +5,31 @@
 }:
 {
   programs = {
+    gh = {
+      enable = true;
+      hosts."github.com" = {
+        git_protocol = "https";
+        users.${config.home.username} = ""; # dunno, this was how it generated
+        user = config.home.username;
+      };
+      settings = {
+        version = 1;
+        git_protocol = "https";
+        editor = "${pkgs.neovim}/bin/nvim";
+        prompt = "enabled";
+        prefer_editor_prompt = "disabled";
+        pager = "${pkgs.bat}/bin/bat";
+        aliases = {
+          co = "pr checkout";
+        };
+        browser = "${pkgs.firefox}/bin/firefox";
+        color_labels = "enabled";
+        accessible_colors = "disabled";
+        accessible_prompter = "disabled";
+        spinner = "enabled";
+      };
+    };
+
     git = {
       enable = true;
       settings = {

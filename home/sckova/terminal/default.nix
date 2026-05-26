@@ -20,13 +20,9 @@
   home.packages =
     with pkgs;
     [
-      tmux
       wget
-      ripgrep
       ncdu
       rclone
-      gh
-      eza
       pigz
     ]
     ++ lib.optionals isLinux [
@@ -36,6 +32,18 @@
       gnupg
       pinentry_mac
     ];
+
+  programs = {
+    tmux.enable = true;
+    ripgrep.enable = true;
+    eza = {
+      enable = true;
+      enableFishIntegration = true;
+      colors = "always";
+      git = true;
+      icons = "auto";
+    };
+  };
 
   home.file = lib.mkIf pkgs.stdenv.isDarwin {
     ".gnupkg/gpg-agent.conf".text = ''
