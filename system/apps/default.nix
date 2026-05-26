@@ -16,21 +16,7 @@
       pinentryPackage = pkgs.pinentry-curses;
     };
 
-    niri = {
-      enable = true;
-      package = pkgs.niri.overrideAttrs (oldAttrs: rec {
-        version = "26.04";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "YaLTeR";
-          repo = "niri";
-          tag = "v${version}";
-          hash = "sha256-ehSMsSpE+0k8r+2Vseu8kangsYxToZv3vinynsDp9zs=";
-        };
-
-        cargoHash = "sha256-gfnalA3qI3a9h3PvsxgQLCrzapfjLLkxhTMJpwRh+ro=";
-      });
-    };
+    niri.enable = true;
 
     gamescope = {
       enable = true;
