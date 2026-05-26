@@ -2,6 +2,7 @@
   pkgs,
   config,
   isLinux,
+  lib,
   ...
 }:
 {
@@ -9,20 +10,20 @@
     enable = true;
     package = with pkgs; if isLinux then ghostty else ghostty-bin;
     enableFishIntegration = true;
-    systemd.enable = isLinux;
+    systemd.enable = lib.mkIf isLinux true;
     settings = {
       command = "${pkgs.fish}/bin/fish";
       # https://ghostty.org/docs/linux/systemd
-      quit-after-last-window-closed = false;
+      quit-after-last-window-closed = lib.mkIf isLinux false;
 
       # https://github.com/ghostty-org/ghostty/discussions/5948
       font-family = config.userOptions.fontMono.name;
       font-size = with config.userOptions.fontMono; if isLinux then size else size + 1;
       window-padding-x = 4;
       window-padding-y = 4;
-      confirm-close-surface = false;
-      mouse-hide-while-typing = false;
-      mouse-scroll-multiplier = if isLinux then "precision:0.25,discrete:0.5" else "";
+      confirm-close-surface = if isLinux then false else true;
+      mouse-hide-while-typing = true;
+      mouse-scroll-multiplier = lib.mkIf isLinux "precision:0.25,discrete:0.5";
       keybind = [
         "ctrl+k=clear_screen"
         "ctrl+enter=unbind"
@@ -37,8 +38,8 @@
         "ssh-terminfo" # Enable automatic terminfo installation on remote hosts.
         "path" # Add Ghostty's binary directory to PATH.
       ];
-      background-opacity = if isLinux then 0 else 1;
-      background-blur = if isLinux then "" else "macos-glass-clear";
+      background-opacity = lib.mkIf isLinux 0;
+      background-blur = lib.mkIf pkgs.stdenv.isDarwin "macos-glass-clear";
       theme = "nixos";
     };
     themes.nixos = with config.scheme.withHashtag; {

@@ -32,9 +32,6 @@
       });
     };
 
-    fish.enable = lib.mkIf (builtins.elem "sckova" users) true;
-    zsh.enable = lib.mkIf (builtins.elem "ckovacs" users) true;
-
     gamescope = {
       enable = true;
       capSysNice = true;
