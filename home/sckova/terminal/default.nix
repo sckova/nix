@@ -45,9 +45,12 @@
     };
   };
 
-  home.file = lib.mkIf pkgs.stdenv.isDarwin {
-    ".gnupkg/gpg-agent.conf".text = ''
-      pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
-    '';
-  };
+  home.file.".gnupg/gpg-agent.conf".text = ''
+    pinentry-program ${
+      if isLinux then
+        "${pkgs.pinentry-curses}/bin/pinentry-curses"
+      else
+        "${pkgs.pinentry_mac}/bin/pinentry-mac"
+    }
+  '';
 }
