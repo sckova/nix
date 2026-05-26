@@ -75,7 +75,7 @@
         name = lib.mkOption {
           type = lib.types.str;
           readOnly = true;
-          default = "Miracode";
+          default = "JetBrainsMono Nerd Font";
         };
         size = lib.mkOption {
           type = lib.types.int;
