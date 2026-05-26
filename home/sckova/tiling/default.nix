@@ -8,9 +8,7 @@
 
   home.packages = with pkgs; [
     xdg-desktop-portal
-    brightnessctl
     xwayland-satellite
-    playerctl
   ];
 
   programs.vicinae = {

@@ -20,7 +20,7 @@
       overviewPlusShadowColor = config.scheme.withHashtag.base11;
       cornerRadius = 8.0;
     in
-    lib.hm.generators.toKDL { } ({
+    lib.hm.generators.toKDL { } {
       # --- System & Startup ---
       spawn-at-startup = {
         _args = [ "${pkgs.noctalia-shell}/bin/noctalia-shell" ];
@@ -33,8 +33,6 @@
       };
 
       screenshot-path = "~/Pictures/Screenshots/%a %b %e %Y @%l:%M %p.png";
-
-      prefer-no-csd = { };
 
       hotkey-overlay = {
         skip-at-startup = { };
@@ -133,7 +131,7 @@
               y = 0;
             };
           };
-          color = "${overviewPlusShadowColor}BF";
+          color = "${overviewPlusShadowColor}bf";
         };
 
         struts = {
@@ -153,7 +151,7 @@
         "Mod+M" = {
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-mute"
               "@DEFAULT_AUDIO_SOURCE@"
               "toggle"
@@ -192,7 +190,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.05+"
@@ -205,7 +203,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.05-"
@@ -218,7 +216,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.01+"
@@ -231,7 +229,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.01-"
@@ -245,7 +243,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.05+"
@@ -258,7 +256,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.05-"
@@ -271,7 +269,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.01+"
@@ -284,7 +282,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-volume"
               "@DEFAULT_AUDIO_SINK@"
               "0.01-"
@@ -298,7 +296,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-mute"
               "@DEFAULT_AUDIO_SINK@"
               "toggle"
@@ -311,7 +309,7 @@
           };
           spawn = {
             _args = [
-              "wpctl"
+              "${pkgs.wireplumber}/bin/wpctl"
               "set-mute"
               "@DEFAULT_AUDIO_SOURCE@"
               "toggle"
@@ -325,7 +323,7 @@
           };
           spawn = {
             _args = [
-              "noctalia-shell"
+              "${pkgs.noctalia-shell}/bin/noctalia-shell"
               "ipc"
               "call"
               "brightness"
@@ -339,7 +337,7 @@
           };
           spawn = {
             _args = [
-              "noctalia-shell"
+              "${pkgs.noctalia-shell}/bin/noctalia-shell"
               "ipc"
               "call"
               "brightness"
@@ -353,7 +351,7 @@
           };
           spawn = {
             _args = [
-              "brightnessctl"
+              "${pkgs.brightnessctl}/bin/brightnessctl"
               "--class=backlight"
               "set"
               "+1%"
@@ -366,7 +364,7 @@
           };
           spawn = {
             _args = [
-              "brightnessctl"
+              "${pkgs.brightnessctl}/bin/brightnessctl"
               "--class=backlight"
               "set"
               "1%-"
@@ -380,7 +378,7 @@
           };
           spawn = {
             _args = [
-              "playerctl"
+              "${pkgs.playerctl}/bin/playerctl"
               "previous"
             ];
           };
@@ -391,7 +389,7 @@
           };
           spawn = {
             _args = [
-              "playerctl"
+              "${pkgs.playerctl}/bin/playerctl"
               "play-pause"
             ];
           };
@@ -402,7 +400,7 @@
           };
           spawn = {
             _args = [
-              "playerctl"
+              "${pkgs.playerctl}/bin/playerctl"
               "next"
             ];
           };
@@ -1091,5 +1089,5 @@
             };
           }
         ];
-    });
+    };
 }
