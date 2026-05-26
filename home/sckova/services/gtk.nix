@@ -202,16 +202,16 @@ in
       package = pkgs.morewaita-icon-theme;
     };
 
-    cursorTheme = {
-      name = config.home.pointerCursor.name;
-      package = config.home.pointerCursor.package;
-      size = config.home.pointerCursor.size;
+    cursorTheme = with config.home.pointerCursor; {
+      name = name;
+      package = package;
+      size = size;
     };
 
-    font = {
-      name = config.fontSans.name;
-      package = config.fontSans.package;
-      size = config.fontSans.size - 1;
+    font = with config.fonts.sans; {
+      name = name;
+      package = package;
+      size = size - 1;
     };
 
     gtk3.theme = {

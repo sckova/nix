@@ -264,7 +264,7 @@ in
               };
             };
           };
-          settings = {
+          settings = with config.fonts; {
             "extensions.autoDisableScopes" = 0; # enables all extensions automatically
             "xpinstall.signatures.required" = false;
             "extensions.update.autoUpdateDefault" = false;
@@ -315,9 +315,9 @@ in
             # Configure fonts
             "browser.display.use_document_fonts" = 0;
             "font.default.x-western" = "sans-serif";
-            "font.name.monospace.x-western" = config.fontMono.name;
-            "font.name.sans-serif.x-western" = config.fontSans.name;
-            "font.name.serif.x-western" = config.fontSerif.name;
+            "font.name.monospace.x-western" = mono.name;
+            "font.name.sans-serif.x-western" = sans.name;
+            "font.name.serif.x-western" = serif.name;
             # these all seemingly only look good at this size
             "font.size.monospace.x-western" = 16;
             "font.size.sans-serif.x-western" = 16;

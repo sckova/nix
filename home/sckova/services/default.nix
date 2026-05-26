@@ -20,10 +20,10 @@
   home.packages = with pkgs; [
     adwaita-icon-theme
     morewaita-icon-theme
-    config.fontSans.package
-    config.fontSerif.package
-    config.fontMono.package
-    config.fontEmoji.package
+    config.fonts.sans.package
+    config.fonts.serif.package
+    config.fonts.mono.package
+    config.fonts.emoji.package
   ];
 
   home.file = {

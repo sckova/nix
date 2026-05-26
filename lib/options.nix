@@ -31,78 +31,85 @@
       readOnly = false;
       default = "kovacsmillio@gmail.com";
     };
+    fonts = {
+      sans = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = false;
+          default = "Noto Sans";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = false;
+          default = 11;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = false;
+          default = pkgs.noto-fonts;
+        };
+      };
+
+      serif = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = false;
+          default = "Noto Serif";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = false;
+          default = 11;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = false;
+          default = pkgs.noto-fonts;
+        };
+      };
+
+      mono = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = false;
+          default = "JetBrainsMono Nerd Font";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = false;
+          default = 10;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = false;
+          default = pkgs.nerd-fonts.jetbrains-mono;
+        };
+      };
+
+      emoji = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          readOnly = false;
+          default = "Noto Emoji";
+        };
+        size = lib.mkOption {
+          type = lib.types.int;
+          readOnly = false;
+          default = 10;
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          readOnly = false;
+          default = pkgs.noto-fonts-color-emoji;
+        };
+      };
+    };
+
+    # read only modules
     hostname = lib.mkOption {
       type = lib.types.str;
       readOnly = true;
       default = config.system.name;
-    };
-    fontSans = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = "Noto Sans";
-      };
-      size = lib.mkOption {
-        type = lib.types.int;
-        readOnly = true;
-        default = 11;
-      };
-      package = lib.mkOption {
-        type = lib.types.package;
-        readOnly = true;
-        default = pkgs.noto-fonts;
-      };
-    };
-    fontSerif = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = "Noto Serif";
-      };
-      size = lib.mkOption {
-        type = lib.types.int;
-        readOnly = true;
-        default = 11;
-      };
-      package = lib.mkOption {
-        type = lib.types.package;
-        readOnly = true;
-        default = pkgs.noto-fonts;
-      };
-    };
-    fontMono = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = "JetBrainsMono Nerd Font";
-      };
-      size = lib.mkOption {
-        type = lib.types.int;
-        readOnly = true;
-        default = 10;
-      };
-      package = lib.mkOption {
-        type = lib.types.package;
-        readOnly = true;
-        default = pkgs.nerd-fonts.jetbrains-mono;
-      };
-    };
-    fontEmoji = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = "Noto Emoji";
-      };
-      size = lib.mkOption {
-        type = lib.types.int;
-        readOnly = true;
-        default = 10;
-      };
-      package = lib.mkOption {
-        type = lib.types.package;
-        readOnly = true;
-        default = pkgs.noto-fonts-color-emoji;
-      };
     };
     cursor = {
       name = lib.mkOption {
@@ -120,7 +127,7 @@
             baseColor = withHashtag.${config.colors.accent};
             outlineColor = withHashtag.base00;
             watchBackgroundColor = withHashtag.base11;
-            cursorSizes = "16 20 22 24 28 32 40 48 56 64 72 80 88 96";
+            cursorSizes = "24";
           });
       };
       size = lib.mkOption {

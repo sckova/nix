@@ -113,9 +113,9 @@
         style = "kvantum";
       };
 
-      Fonts = {
-        fixed = "\"${config.fontMono.name},${toString config.fontMono.size}\"";
-        general = "\"${config.fontSans.name},${toString config.fontSans.size}\"";
+      Fonts = with config.fonts; {
+        fixed = "\"${mono.name},${toString mono.size}\"";
+        general = "\"${sans.name},${toString sans.size}\"";
       };
 
       Interface = {

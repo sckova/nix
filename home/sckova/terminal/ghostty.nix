@@ -17,8 +17,8 @@
       quit-after-last-window-closed = lib.mkIf isLinux false;
 
       # https://github.com/ghostty-org/ghostty/discussions/5948
-      font-family = config.fontMono.name;
-      font-size = with config.fontMono; if isLinux then size else size + 1;
+      font-family = config.fonts.mono.name;
+      font-size = with config.fonts.mono; if isLinux then size else size + 1;
       window-padding-x = 4;
       window-padding-y = 4;
       confirm-close-surface = if isLinux then false else true;
