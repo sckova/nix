@@ -350,7 +350,7 @@
         animationDisabled = false;
         animationSpeed = 1;
         autoStartAuth = false;
-        avatarImage = "/home/${config.userOptions.username}/.face";
+        avatarImage = "/home/${config.username}/.face";
         boxRadiusRatio = 1;
         clockFormat = "hh\\nmm";
         clockStyle = "custom";
@@ -561,7 +561,7 @@
 
       wallpaper = {
         automationEnabled = false;
-        directory = "/home/${config.userOptions.username}/.local/share/wallpaper";
+        directory = "/home/${config.username}/.local/share/wallpaper";
         enableMultiMonitorDirectories = false;
         enabled = false;
         fillColor = "#1e1e2e";

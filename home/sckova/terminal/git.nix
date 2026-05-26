@@ -34,8 +34,8 @@
       enable = true;
       settings = {
         user = {
-          name = config.userOptions.name;
-          email = config.userOptions.email;
+          name = config.name;
+          email = config.email;
         };
         core.pager = "${pkgs.bat}/bin/bat";
         commit.gpgsign = true;

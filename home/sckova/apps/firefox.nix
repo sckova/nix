@@ -315,9 +315,9 @@ in
             # Configure fonts
             "browser.display.use_document_fonts" = 0;
             "font.default.x-western" = "sans-serif";
-            "font.name.monospace.x-western" = config.userOptions.fontMono.name;
-            "font.name.sans-serif.x-western" = config.userOptions.fontSans.name;
-            "font.name.serif.x-western" = config.userOptions.fontSerif.name;
+            "font.name.monospace.x-western" = config.fontMono.name;
+            "font.name.sans-serif.x-western" = config.fontSans.name;
+            "font.name.serif.x-western" = config.fontSerif.name;
             # these all seemingly only look good at this size
             "font.size.monospace.x-western" = 16;
             "font.size.sans-serif.x-western" = 16;

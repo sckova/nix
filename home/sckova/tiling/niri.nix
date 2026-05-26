@@ -27,8 +27,8 @@ in
 
     environment = {
       DISPLAY = ":0";
-      XCURSOR_THEME = config.userOptions.cursor.name;
-      XCURSOR_SIZE = toString config.userOptions.cursor.size;
+      XCURSOR_THEME = config.cursor.name;
+      XCURSOR_SIZE = toString config.cursor.size;
     };
 
     screenshot-path = "~/Pictures/Screenshots/%a %b %e %Y @%l:%M %p.png";
@@ -66,8 +66,8 @@ in
     };
 
     cursor = {
-      xcursor-theme = config.userOptions.cursor.name;
-      xcursor-size = config.userOptions.cursor.size;
+      xcursor-theme = config.cursor.name;
+      xcursor-size = config.cursor.size;
     };
 
     # --- Layout ---

@@ -18,8 +18,8 @@
       osd-border-color = base11;
       osd-color = base05;
       osd-shadow-color = base00;
-      sub-font = config.userOptions.fontSans.name;
-      osd-font = config.userOptions.fontSans.name;
+      sub-font = config.fontSans.name;
+      osd-font = config.fontSans.name;
     };
     scripts =
       with pkgs.mpvScripts;

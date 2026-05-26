@@ -209,9 +209,9 @@ in
     };
 
     font = {
-      name = config.userOptions.fontSans.name;
-      package = config.userOptions.fontSans.package;
-      size = config.userOptions.fontSans.size - 1;
+      name = config.fontSans.name;
+      package = config.fontSans.package;
+      size = config.fontSans.size - 1;
     };
 
     gtk3.theme = {

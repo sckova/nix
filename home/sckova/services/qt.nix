@@ -114,8 +114,8 @@
       };
 
       Fonts = {
-        fixed = "\"${config.userOptions.fontMono.name},${toString config.userOptions.fontMono.size}\"";
-        general = "\"${config.userOptions.fontSans.name},${toString config.userOptions.fontSans.size}\"";
+        fixed = "\"${config.fontMono.name},${toString config.fontMono.size}\"";
+        general = "\"${config.fontSans.name},${toString config.fontSans.size}\"";
       };
 
       Interface = {

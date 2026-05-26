@@ -84,7 +84,7 @@ in
       setSocketVariable = true;
     };
   };
-  users.users.${config.userOptions.username}.extraGroups = [ "docker" ];
+  users.users.${config.username}.extraGroups = [ "docker" ];
 
   hardware.asahi = {
     enable = true;

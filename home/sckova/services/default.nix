@@ -12,18 +12,18 @@
   ];
 
   systemd.user.sessionVariables = {
-    XCURSOR_THEME = config.userOptions.cursor.name;
-    XCURSOR_SIZE = toString config.userOptions.cursor.size;
-    XCURSOR_PATH = config.userOptions.cursor.path;
+    XCURSOR_THEME = config.cursor.name;
+    XCURSOR_SIZE = toString config.cursor.size;
+    XCURSOR_PATH = config.cursor.path;
   };
 
   home.packages = with pkgs; [
     adwaita-icon-theme
     morewaita-icon-theme
-    config.userOptions.fontSans.package
-    config.userOptions.fontSerif.package
-    config.userOptions.fontMono.package
-    config.userOptions.fontEmoji.package
+    config.fontSans.package
+    config.fontSerif.package
+    config.fontMono.package
+    config.fontEmoji.package
   ];
 
   home.file = {
@@ -32,7 +32,7 @@
         [Icon Theme]
         Name=Default
         Comment=Default Cursor Theme
-        Inherits=${config.userOptions.cursor.name}
+        Inherits=${config.cursor.name}
       '';
       force = true;
     };
@@ -125,9 +125,9 @@
 
   home.pointerCursor = {
     gtk.enable = true;
-    name = config.userOptions.cursor.name;
-    package = config.userOptions.cursor.package;
-    size = config.userOptions.cursor.size;
+    name = config.cursor.name;
+    package = config.cursor.package;
+    size = config.cursor.size;
   };
 
   home.sessionVariables = {

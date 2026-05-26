@@ -17,7 +17,7 @@
     settings = {
       pop_to_root_on_close = true;
       font.normal = {
-        family = config.userOptions.fontSans.name;
+        family = config.fontSans.name;
         size = 11;
       };
       launcher_window = {
