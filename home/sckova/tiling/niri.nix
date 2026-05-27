@@ -47,7 +47,6 @@ in
       touchpad = {
         accel-profile = "adaptive";
         natural-scroll = { };
-        tap = { };
         dwt = { };
         drag = true;
       };
@@ -64,25 +63,25 @@ in
     overview = {
       backdrop-color = overviewPlusShadowColor;
       workspace-shadow.off = { };
+      zoom = 0.75;
     };
 
     layout = {
       background-color = "transparent";
       gaps = 4;
 
-      preset-column-widths = {
-        _children = [
-          {
-            proportion._args = [ 0.33333 ];
-          }
-          {
-            proportion._args = [ 0.50000 ];
-          }
-          {
-            proportion._args = [ 0.66667 ];
-          }
-        ];
-      };
+      preset-column-widths._children = [
+        {
+          proportion._args = [ 0.33333 ];
+        }
+        {
+          proportion._args = [ 0.50000 ];
+        }
+        {
+          proportion._args = [ 0.66667 ];
+        }
+      ];
+
       default-column-width.proportion = 0.5;
 
       border = {
@@ -104,16 +103,24 @@ in
         on = { };
         spread = 5;
         softness = 10;
-        offset = {
-          _props = {
-            x = 0;
-            y = 0;
-          };
+        offset._props = {
+          x = 0;
+          y = 0;
         };
         color = "${overviewPlusShadowColor}bf";
       };
 
       struts.top = 46;
+
+      tab-indicator = {
+        width = 6;
+        gap = 4;
+        length._props."total-proportion" = 1.0;
+        position = "top";
+        place-within-column = { };
+      };
+
+      insert-hint.color = ringColors.active + "80";
     };
 
     # --- Keybinds ---
@@ -121,225 +128,128 @@ in
       "Mod+Shift+Slash".show-hotkey-overlay = { };
       "Mod+D".toggle-window-rule-opacity = { };
 
-      "Mod+M" = {
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-mute"
-            "@DEFAULT_AUDIO_SOURCE@"
-            "toggle"
-          ];
-        };
-      };
+      "Mod+M".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-mute"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "toggle"
+      ];
       "Mod+T".spawn._args = [ "${pkgs.ghostty}/bin/ghostty" ];
-      "Mod+Space" = {
-        spawn = {
-          _args = [
-            "${pkgs.vicinae}/bin/vicinae"
-            "toggle"
-          ];
-        };
-      };
+      "Mod+Space".spawn._args = [
+        "${pkgs.vicinae}/bin/vicinae"
+        "toggle"
+      ];
 
       # Open a Terminal with Fastfetch
-      "Mod+Shift+T" = {
-        spawn = {
-          _args = [
-            "sh"
-            "-c"
-            "${pkgs.ghostty}/bin/ghostty --title='fastfetch' -e sh -c 'fastfetch; sleep 10'"
-          ];
-        };
-      };
+      "Mod+Shift+T".spawn._args = [
+        "sh"
+        "-c"
+        "${pkgs.ghostty}/bin/ghostty --title='fastfetch' -e sh -c 'fastfetch; sleep 10'"
+      ];
 
       # --- Media Controls ---
-      "XF86AudioRaiseVolume" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.05+"
-          ];
-        };
-      };
-      "XF86AudioLowerVolume" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.05-"
-          ];
-        };
-      };
-      "Shift+XF86AudioRaiseVolume" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.01+"
-          ];
-        };
-      };
-      "Shift+XF86AudioLowerVolume" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.01-"
-          ];
-        };
-      };
+      "XF86AudioRaiseVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.05+"
+      ];
+      "XF86AudioLowerVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.05-"
+      ];
+      "Shift+XF86AudioRaiseVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.01+"
+      ];
+      "Shift+XF86AudioLowerVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.01-"
+      ];
 
-      "MouseForward" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.05+"
-          ];
-        };
-      };
-      "MouseBack" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.05-"
-          ];
-        };
-      };
-      "Shift+MouseForward" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.01+"
-          ];
-        };
-      };
-      "Shift+MouseBack" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.01-"
-          ];
-        };
-      };
+      "MouseForward".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.05+"
+      ];
+      "MouseBack".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.05-"
+      ];
+      "Shift+MouseForward".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.01+"
+      ];
+      "Shift+MouseBack".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.01-"
+      ];
 
-      "XF86AudioMute" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-mute"
-            "@DEFAULT_AUDIO_SINK@"
-            "toggle"
-          ];
-        };
-      };
-      "XF86AudioMicMute" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.wireplumber}/bin/wpctl"
-            "set-mute"
-            "@DEFAULT_AUDIO_SOURCE@"
-            "toggle"
-          ];
-        };
-      };
+      "XF86AudioMute".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-mute"
+        "@DEFAULT_AUDIO_SINK@"
+        "toggle"
+      ];
+      "XF86AudioMicMute".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-mute"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "toggle"
+      ];
 
-      "XF86MonBrightnessUp" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.noctalia-shell}/bin/noctalia-shell"
-            "ipc"
-            "call"
-            "brightness"
-            "increase"
-          ];
-        };
-      };
-      "XF86MonBrightnessDown" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.noctalia-shell}/bin/noctalia-shell"
-            "ipc"
-            "call"
-            "brightness"
-            "decrease"
-          ];
-        };
-      };
-      "Shift+XF86MonBrightnessUp" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.brightnessctl}/bin/brightnessctl"
-            "--class=backlight"
-            "set"
-            "+1%"
-          ];
-        };
-      };
-      "Shift+XF86MonBrightnessDown" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.brightnessctl}/bin/brightnessctl"
-            "--class=backlight"
-            "set"
-            "1%-"
-          ];
-        };
-      };
+      "XF86MonBrightnessUp".spawn._args = [
+        "${pkgs.noctalia-shell}/bin/noctalia-shell"
+        "ipc"
+        "call"
+        "brightness"
+        "increase"
+      ];
+      "XF86MonBrightnessDown".spawn._args = [
+        "${pkgs.noctalia-shell}/bin/noctalia-shell"
+        "ipc"
+        "call"
+        "brightness"
+        "decrease"
+      ];
+      "Shift+XF86MonBrightnessUp".spawn._args = [
+        "${pkgs.brightnessctl}/bin/brightnessctl"
+        "--class=backlight"
+        "set"
+        "+1%"
+      ];
+      "Shift+XF86MonBrightnessDown".spawn._args = [
+        "${pkgs.brightnessctl}/bin/brightnessctl"
+        "--class=backlight"
+        "set"
+        "1%-"
+      ];
 
-      "XF86AudioPrev" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.playerctl}/bin/playerctl"
-            "previous"
-          ];
-        };
-      };
-      "XF86AudioPlay" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.playerctl}/bin/playerctl"
-            "play-pause"
-          ];
-        };
-      };
-      "XF86AudioNext" = {
-        _props.allow-when-locked = true;
-        spawn = {
-          _args = [
-            "${pkgs.playerctl}/bin/playerctl"
-            "next"
-          ];
-        };
-      };
+      "XF86AudioPrev".spawn._args = [
+        "${pkgs.playerctl}/bin/playerctl"
+        "previous"
+      ];
+      "XF86AudioPlay".spawn._args = [
+        "${pkgs.playerctl}/bin/playerctl"
+        "play-pause"
+      ];
+      "XF86AudioNext".spawn._args = [
+        "${pkgs.playerctl}/bin/playerctl"
+        "next"
+      ];
 
       # --- Launchers & System ---
       "XF86Search".spawn._args = [ "${pkgs.vicinae}/bin/vicinae" ];
@@ -503,11 +413,9 @@ in
             _args = [ "eDP-1" ];
             scale = 1.5;
             mode = "3024x1964@120.000";
-            position = {
-              _props = {
-                x = 272;
-                y = 1440;
-              };
+            position._props = {
+              x = 272;
+              y = 1440;
             };
           };
         }
@@ -516,11 +424,9 @@ in
             _args = [ "HDMI-A-1" ];
             scale = 1.5;
             mode = "3840x2160@144.000";
-            position = {
-              _props = {
-                x = 0;
-                y = 0;
-              };
+            position._props = {
+              x = 0;
+              y = 0;
             };
           };
         }
@@ -529,11 +435,9 @@ in
             _args = [ "DP-1" ];
             scale = 1.5;
             mode = "3840x2160@143.999";
-            position = {
-              _props = {
-                x = 0;
-                y = 0;
-              };
+            position._props = {
+              x = 0;
+              y = 0;
             };
           };
         }
@@ -557,19 +461,10 @@ in
           window-rule = {
             _children = [
               {
-                match._props.app-id = "vesktop$";
-              }
-              {
                 match._props.app-id = "org.gnome.Nautilus$";
               }
             ];
             block-out-from = "screen-capture";
-          };
-        }
-        {
-          window-rule = {
-            match._props.is-active = false;
-            opacity = 0.90;
           };
         }
         {
@@ -648,11 +543,9 @@ in
                 match._props.app-id = "^org.gnome.Nautilus$";
               }
               {
-                match = {
-                  _props = {
-                    app-id = "^mpv$";
-                    title = ".* - mpv \(nix\)$";
-                  };
+                match._props = {
+                  app-id = "^mpv$";
+                  title = ".* - mpv \(nix\)$";
                 };
               }
               {
@@ -675,24 +568,6 @@ in
           layer-rule = {
             match._props.namespace = "^wallpaper$";
             place-within-backdrop = true;
-          };
-        }
-        {
-          layer-rule = {
-            _children = [
-              {
-                match._props.namespace = "^noctalia-(background|launcher-overlay|dock)-.*$";
-              }
-              {
-                match._props.namespace = "vicinae";
-              }
-            ];
-            background-effect = {
-              xray = false;
-              blur = true;
-              noise = 0.03;
-              saturation = 1.0;
-            };
           };
         }
       ];
