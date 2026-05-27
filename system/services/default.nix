@@ -6,24 +6,11 @@
   imports = [
     ./widevine.nix
     ./searxng.nix
+    # ./kde.nix
+    ./tiling.nix
   ];
 
-  systemd.user.services.gnome-keyring = {
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
-      Restart = "on-abort";
-    };
-  };
-
   services = {
-    displayManager = {
-      autoLogin.enable = true;
-      autoLogin.user = "sckova";
-      defaultSession = "niri";
-      gdm.enable = true;
-    };
-    gnome.gnome-keyring.enable = true;
     libinput.enable = true;
     printing.enable = true;
     pipewire = {
@@ -48,16 +35,6 @@
   };
 
   security = {
-    pam.services = {
-      gdm.enableGnomeKeyring = true;
-      niri.enableGnomeKeyring = true;
-      swaylock = {
-        name = "swaylock";
-        enableGnomeKeyring = true;
-        gnupg.enable = true;
-        gnupg.noAutostart = false;
-      };
-    };
     sudo.wheelNeedsPassword = false;
     polkit.enable = true;
   };

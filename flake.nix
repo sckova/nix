@@ -18,6 +18,8 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    aerothemeplasma-nix.url = "github:nyakase/aerothemeplasma-nix";
+    aerothemeplasma-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     tt-schemes.url = "github:tinted-theming/schemes/b9f335ad6a0b7d85b9c2eb932c3215f7429f7d11";
     tt-schemes.flake = false;

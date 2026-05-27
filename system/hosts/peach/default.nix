@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -42,7 +43,7 @@ in
     # thank you to u/douv:
     # https://www.reddit.com/r/AsahiLinux/comments/1sb8cby/retro_boot_logo/
     m1n1CustomLogo = ./apple-rainbow.png;
-    plymouth = {
+    plymouth = lib.mkForce {
       enable = true;
       theme = "seamless-asahi";
       themePackages = [
@@ -75,16 +76,6 @@ in
     HandlePowerKey = "lock";
     HandleLidSwitch = "lock";
   };
-
-  virtualisation.docker = {
-    enable = true;
-    # Use the rootless mode - run Docker daemon as non-root user
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-  users.users.${config.username}.extraGroups = [ "docker" ];
 
   hardware.asahi = {
     enable = true;

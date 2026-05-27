@@ -18,22 +18,22 @@
 
   # enable ddcutil
   users.users.${config.username}.extraGroups = [ "i2c" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-  boot.kernelModules = [
-    "i2c-dev"
-    "ddcci_backlight"
-  ];
   services.udev.extraRules = ''
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';
   hardware.i2c.enable = true;
 
+  boot = {
+    extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+    kernelModules = [
+      "i2c-dev"
+      "ddcci_backlight"
+    ];
+    kernelPackages = pkgs.linuxPackages;
+  };
+
   # enable rgb support
   services.hardware.openrgb.enable = true;
-
-  boot.kernelPackages = pkgs.linuxPackages;
-
-  boot.loader.limine.maxGenerations = lib.mkForce 100;
 
   programs = {
     steam = {
