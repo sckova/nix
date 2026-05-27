@@ -4,6 +4,27 @@
   ...
 }:
 {
+  systemd.user.services.noctalia-shell = {
+    Unit = {
+      Description = "Noctalia Shell - Wayland desktop shell";
+      Documentation = "https://docs.noctalia.dev";
+      After = [ "niri.service" ];
+      X-Restart-Triggers = [
+        "${config.xdg.configFile."noctalia/settings.json".source}"
+        "${config.xdg.configFile."noctalia/colors.json".source}"
+      ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "niri.service" ];
+    };
+  };
+
   programs.noctalia-shell = {
     enable = true;
     colors = with config.scheme.withHashtag; {
@@ -45,7 +66,7 @@
         showCategories = true;
         showIconBackground = false;
         sortByMostUsed = true;
-        terminalCommand = "ghostty";
+        terminalCommand = "${pkgs.ghostty}/bin/ghostty";
         useApp2Unit = false;
         viewMode = "list";
       };

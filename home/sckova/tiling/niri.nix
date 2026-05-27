@@ -20,9 +20,6 @@ let
 in
 {
   home.file.".config/niri/config.kdl".text = lib.hm.generators.toKDL { } {
-    # --- System & Startup ---
-    spawn-at-startup._args = [ "${pkgs.noctalia-shell}/bin/noctalia-shell" ];
-
     environment = {
       DISPLAY = ":0";
       XCURSOR_THEME = config.cursor.name;
