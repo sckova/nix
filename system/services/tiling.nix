@@ -3,6 +3,14 @@
   ...
 }:
 {
+  programs = {
+    niri.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
+  };
 
   systemd.user.services.gnome-keyring = {
     wantedBy = [ "default.target" ];

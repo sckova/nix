@@ -10,14 +10,6 @@
   ];
 
   programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
-    };
-
-    niri.enable = true;
-
     gamescope = {
       enable = true;
       capSysNice = true;

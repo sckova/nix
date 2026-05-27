@@ -12,6 +12,7 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
+      export GPG_TTY=$(tty) # Fix gpg-agent service
     '';
     shellAliases = {
       cat = "bat";
