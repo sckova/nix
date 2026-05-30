@@ -4,7 +4,7 @@
 }:
 {
   imports = with inputs; [
-    aerothemeplasma-nix.nixosModules.aerothemeplasma-nix
+    aerothemeplasma.nixosModules.aerothemeplasma-nix
   ];
 
   boot.plymouth.enable = true;

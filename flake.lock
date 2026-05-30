@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "aerothemeplasma-nix": {
+    "aerothemeplasma": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": [
@@ -27,11 +27,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1779698645,
-        "narHash": "sha256-stdabStuiiwzrNMXMr8ZWZXPOlEIiss9AUEpYF2vavk=",
+        "lastModified": 1780169393,
+        "narHash": "sha256-Qrgy2wSZ+OJ/qf7CKV5wfwFrgSXqBT5MR+BFQpyxCLM=",
         "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "f96c6b94d4261526a3911f28aea7ca5033bcae0a",
+        "rev": "5723dd7b3d7132144287513a398442ae5b57397b",
         "type": "github"
       },
       "original": {
@@ -188,23 +188,6 @@
         "type": "github"
       }
     },
-    "niri": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1777115961,
-        "narHash": "sha256-ehSMsSpE+0k8r+2Vseu8kangsYxToZv3vinynsDp9zs=",
-        "owner": "niri-wm",
-        "repo": "niri",
-        "rev": "8ed0da44d974c32c6877d2f4630c314da0717ecb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "niri-wm",
-        "ref": "v26.04",
-        "repo": "niri",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -288,22 +271,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1770115704,
-        "narHash": "sha256-KHFT9UWOF2yRPlAnSXQJh6uVcgNcWlFqqiAZ7OVlHNc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e6eae2ee2110f3d31110d5c222cd395303343b08",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -313,11 +280,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1780080183,
-        "narHash": "sha256-zbYETlE9jmgdcL9YItLxjTUjs4Gj4iFBzo45OHuk9Eg=",
+        "lastModified": 1780169111,
+        "narHash": "sha256-XDlj8d20NnLcQLaG8JW7hgEQbwBVTtjh/Qs6e6IGAyU=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "d02dc1ae7902cac908fe1ab3246888118f661ddd",
+        "rev": "ac4e5d370f55e2c3e9a27eaad9d6923fdff41b53",
         "type": "github"
       },
       "original": {
@@ -380,11 +347,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780100950,
-        "narHash": "sha256-KdAEH/xZLx8XCdlRCdZSYM12q8gwPGEDTYMctuuq69E=",
+        "lastModified": 1780177099,
+        "narHash": "sha256-kPvgB+RsJDhgK3ULj7ipG/p9qUAkg66afTA7tYMXVfw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "016af25d1099bba8a5743e4d5961085dade01cc7",
+        "rev": "48dbc38972138f28e00447b01dd5ae214959c07a",
         "type": "github"
       },
       "original": {
@@ -412,11 +379,10 @@
     },
     "root": {
       "inputs": {
-        "aerothemeplasma-nix": "aerothemeplasma-nix",
+        "aerothemeplasma": "aerothemeplasma",
         "apple-silicon": "apple-silicon",
         "base16": "base16",
         "home-manager": "home-manager",
-        "niri": "niri",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
@@ -431,7 +397,9 @@
     "seamless-asahi-plymouth": {
       "inputs": {
         "flake-parts": "flake-parts_4",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1770365598,
