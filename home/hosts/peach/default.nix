@@ -1,11 +1,10 @@
 {
   pkgs,
-  lib,
   ...
 }:
 {
   colors = {
-    scheme = "catppuccin-frappe";
+    scheme = "chalk";
     accent = "base09";
   };
 
