@@ -8,16 +8,6 @@
   hostname,
   ...
 }:
-let
-  defaultOpacity = 0.90;
-  ringColors = with config.scheme.withHashtag; {
-    active = config.scheme.withHashtag.${config.colors.accent};
-    inactive = base01;
-    urgent = base12;
-  };
-  overviewPlusShadowColor = config.scheme.withHashtag.base11;
-  cornerRadius = 8.0;
-in
 {
   home.file.".config/niri/config.kdl".text = lib.hm.generators.toKDL { } {
     environment = {
@@ -25,32 +15,25 @@ in
       XCURSOR_THEME = config.cursor.name;
       XCURSOR_SIZE = toString config.cursor.size;
     };
-
     screenshot-path = "~/Pictures/Screenshots/%a %b %e %Y @%l:%M %p.png";
-
     hotkey-overlay.skip-at-startup = { };
 
     # --- Input ---
     input = {
       mod-key = "Super";
-
       keyboard = {
         repeat-delay = 600;
         repeat-rate = 25;
       };
-
       mouse.accel-profile = "adaptive";
-
       touchpad = {
         accel-profile = "adaptive";
         natural-scroll = { };
         dwt = { };
         drag = true;
       };
-
       focus-follows-mouse._props.max-scroll-amount = "5%";
     };
-
     cursor = {
       xcursor-theme = config.cursor.name;
       xcursor-size = config.cursor.size;
@@ -58,44 +41,26 @@ in
 
     # --- Layout ---
     overview = {
-      backdrop-color = overviewPlusShadowColor;
+      backdrop-color = config.scheme.withHashtag.base11;
       workspace-shadow.off = { };
       zoom = 0.75;
     };
-
     layout = {
       background-color = "transparent";
       gaps = 4;
-
       preset-column-widths._children = [
-        {
-          proportion._args = [ 0.33333 ];
-        }
-        {
-          proportion._args = [ 0.50000 ];
-        }
-        {
-          proportion._args = [ 0.66667 ];
-        }
+        { proportion._args = [ 0.33333 ]; }
+        { proportion._args = [ 0.50000 ]; }
+        { proportion._args = [ 0.66667 ]; }
       ];
-
       default-column-width.proportion = 0.5;
-
-      border = {
+      border = with config.scheme; {
         width = 2;
-        active-color = ringColors.active;
-        inactive-color = ringColors.inactive;
-        urgent-color = ringColors.urgent;
+        active-color = withHashtag.${config.colors.accent};
+        inactive-color = withHashtag.base01;
+        urgent-color = withHashtag.base12;
       };
-
-      focus-ring = {
-        off = { };
-        width = 2;
-        active-color = ringColors.active;
-        inactive-color = ringColors.inactive;
-        urgent-color = ringColors.urgent;
-      };
-
+      focus-ring.off = { };
       shadow = {
         on = { };
         spread = 5;
@@ -104,11 +69,9 @@ in
           x = 0;
           y = 0;
         };
-        color = "${overviewPlusShadowColor}bf";
+        color = config.scheme.withHashtag.base11 + "bf";
       };
-
       struts.top = 46;
-
       tab-indicator = {
         width = 6;
         gap = 4;
@@ -116,15 +79,13 @@ in
         position = "top";
         place-within-column = { };
       };
-
-      insert-hint.color = ringColors.active + "80";
+      insert-hint.color = config.scheme.withHashtag.${config.colors.accent} + "80";
     };
 
     # --- Keybinds ---
     binds = {
       "Mod+Shift+Slash".show-hotkey-overlay = { };
       "Mod+D".toggle-window-rule-opacity = { };
-
       "Mod+M".spawn._args = [
         "${pkgs.wireplumber}/bin/wpctl"
         "set-mute"
@@ -136,7 +97,6 @@ in
         "${pkgs.vicinae}/bin/vicinae"
         "toggle"
       ];
-
       # Open a Terminal with Fastfetch
       "Mod+Shift+T".spawn._args = [
         "sh"
@@ -169,7 +129,6 @@ in
         "@DEFAULT_AUDIO_SINK@"
         "0.01-"
       ];
-
       "MouseForward".spawn._args = [
         "${pkgs.wireplumber}/bin/wpctl"
         "set-volume"
@@ -194,7 +153,6 @@ in
         "@DEFAULT_AUDIO_SINK@"
         "0.01-"
       ];
-
       "XF86AudioMute".spawn._args = [
         "${pkgs.wireplumber}/bin/wpctl"
         "set-mute"
@@ -207,7 +165,6 @@ in
         "@DEFAULT_AUDIO_SOURCE@"
         "toggle"
       ];
-
       "XF86MonBrightnessUp".spawn._args = [
         "${pkgs.noctalia-shell}/bin/noctalia-shell"
         "ipc"
@@ -234,7 +191,6 @@ in
         "set"
         "1%-"
       ];
-
       "XF86AudioPrev".spawn._args = [
         "${pkgs.playerctl}/bin/playerctl"
         "previous"
@@ -268,7 +224,6 @@ in
       "Mod+Down".focus-window-down = { };
       "Mod+Up".focus-window-up = { };
       "Mod+Right".focus-column-right = { };
-
       "Mod+Ctrl+Left".move-column-left = { };
       "Mod+Ctrl+Down".move-window-down = { };
       "Mod+Ctrl+Up".move-window-up = { };
@@ -277,37 +232,30 @@ in
       "Mod+Ctrl+J".move-window-down = { };
       "Mod+Ctrl+K".move-window-up = { };
       "Mod+Ctrl+L".move-column-right = { };
-
       "Mod+Home".focus-column-first = { };
       "Mod+End".focus-column-last = { };
       "Mod+Ctrl+Home".move-column-to-first = { };
       "Mod+Ctrl+End".move-column-to-last = { };
-
       "Mod+BracketLeft".consume-or-expel-window-left = { };
       "Mod+BracketRight".consume-or-expel-window-right = { };
       "Mod+Comma".consume-window-into-column = { };
       "Mod+Period".expel-window-from-column = { };
-
       "Mod+R".switch-preset-column-width = { };
       "Mod+Shift+R".switch-preset-window-height = { };
       "Mod+Ctrl+R".reset-window-height = { };
       "Mod+F".maximize-column = { };
       "Mod+Shift+F".maximize-window-to-edges = { };
       "Mod+Ctrl+Shift+F".fullscreen-window = { };
-
       "Mod+C".center-column = { };
       "Mod+Ctrl+C".center-visible-columns = { };
-
       "Mod+Minus".set-column-width._args = [ "-10%" ];
       "Mod+Equal".set-column-width._args = [ "+10%" ];
       "Mod+Shift+Minus".set-window-height._args = [ "-10%" ];
       "Mod+Shift+Equal".set-window-height._args = [ "+10%" ];
-
       "Mod+Ctrl+Minus".set-column-width._args = [ "-0.25%" ];
       "Mod+Ctrl+Equal".set-column-width._args = [ "+0.25%" ];
       "Mod+Ctrl+Shift+Minus".set-window-height._args = [ "-0.25%" ];
       "Mod+Ctrl+Shift+Equal".set-window-height._args = [ "+0.25%" ];
-
       "Mod+V".toggle-window-floating = { };
       "Mod+Shift+V".switch-focus-between-floating-and-tiling = { };
       "Mod+W".toggle-column-tabbed-display = { };
@@ -317,7 +265,6 @@ in
       "Mod+Shift+Down".focus-monitor-down = { };
       "Mod+Shift+Up".focus-monitor-up = { };
       "Mod+Shift+Right".focus-monitor-right = { };
-
       "Mod+Shift+Ctrl+Left".move-column-to-monitor-left = { };
       "Mod+Shift+Ctrl+Down".move-column-to-monitor-down = { };
       "Mod+Shift+Ctrl+Up".move-column-to-monitor-up = { };
@@ -336,12 +283,10 @@ in
       "Mod+Ctrl+Page_Up".move-column-to-workspace-up = { };
       "Mod+Ctrl+U".move-column-to-workspace-down = { };
       "Mod+Ctrl+I".move-column-to-workspace-up = { };
-
       "Mod+Shift+Page_Down".move-workspace-down = { };
       "Mod+Shift+Page_Up".move-workspace-up = { };
       "Mod+Shift+U".move-workspace-down = { };
       "Mod+Shift+I".move-workspace-up = { };
-
       "Mod+1".focus-workspace._args = [ 1 ];
       "Mod+2".focus-workspace._args = [ 2 ];
       "Mod+3".focus-workspace._args = [ 3 ];
@@ -351,7 +296,6 @@ in
       "Mod+7".focus-workspace._args = [ 7 ];
       "Mod+8".focus-workspace._args = [ 8 ];
       "Mod+9".focus-workspace._args = [ 9 ];
-
       "Mod+Ctrl+1".move-column-to-workspace._args = [ 1 ];
       "Mod+Ctrl+2".move-column-to-workspace._args = [ 2 ];
       "Mod+Ctrl+3".move-column-to-workspace._args = [ 3 ];
@@ -379,12 +323,10 @@ in
         _props.cooldown-ms = 150;
         move-column-to-workspace-up = { };
       };
-
       "Mod+WheelScrollRight".focus-column-right = { };
       "Mod+WheelScrollLeft".focus-column-left = { };
       "Mod+Ctrl+WheelScrollRight".move-column-right = { };
       "Mod+Ctrl+WheelScrollLeft".move-column-left = { };
-
       "Mod+Shift+WheelScrollDown".focus-column-right = { };
       "Mod+Shift+WheelScrollUp".focus-column-left = { };
       "Mod+Ctrl+Shift+WheelScrollDown".move-column-right = { };
@@ -399,11 +341,10 @@ in
     # --- Top-Level Repeated Nodes (_children approach) ---
     _children =
       lib.optionals (hostname == "peach") [
-        {
-          debug.render-drm-device._args = [ "/dev/dri/renderD128" ];
-        }
+        { debug.render-drm-device._args = [ "/dev/dri/renderD128" ]; }
       ]
       ++ [
+
         # --- Outputs ---
         {
           output = {
@@ -442,9 +383,9 @@ in
         # --- Rules ---
         {
           window-rule = {
-            geometry-corner-radius = cornerRadius;
+            geometry-corner-radius = 8.0;
             clip-to-geometry = true;
-            opacity = defaultOpacity;
+            opacity = 0.90;
             draw-border-with-background = false;
             background-effect = {
               xray = false;
@@ -457,9 +398,7 @@ in
         {
           window-rule = {
             _children = [
-              {
-                match._props.app-id = "org.gnome.Nautilus$";
-              }
+              { match._props.app-id = "org.gnome.Nautilus$"; }
             ];
             block-out-from = "screen-capture";
           };
@@ -468,19 +407,15 @@ in
           window-rule = {
             _children = [
               {
-                match = {
-                  _props = {
-                    app-id = "openmw";
-                    title = "OpenMW";
-                  };
+                match._props = {
+                  app-id = "openmw";
+                  title = "OpenMW";
                 };
               }
               {
-                match = {
-                  _props = {
-                    app-id = "Minecraft";
-                    title = "Minecraft";
-                  };
+                match._props = {
+                  app-id = "Minecraft";
+                  title = "Minecraft";
                 };
               }
             ];
@@ -493,19 +428,15 @@ in
           window-rule = {
             _children = [
               {
-                match = {
-                  _props = {
-                    app-id = "firefox";
-                    title = "Picture-in-Picture";
-                  };
+                match._props = {
+                  app-id = "firefox";
+                  title = "Picture-in-Picture";
                 };
               }
               {
-                match = {
-                  _props = {
-                    app-id = "";
-                    title = "Picture in picture";
-                  };
+                match._props = {
+                  app-id = "";
+                  title = "Picture in picture";
                 };
               }
             ];
@@ -515,11 +446,9 @@ in
         # Ghostty Fastfetch window
         {
           window-rule = {
-            match = {
-              _props = {
-                app-id = "^com.mitchellh.ghostty$";
-                title = "^fastfetch$";
-              };
+            match._props = {
+              app-id = "^com.mitchellh.ghostty$";
+              title = "^fastfetch$";
             };
             open-floating = true;
             baba-is-float = true;
@@ -533,30 +462,18 @@ in
         {
           window-rule = {
             _children = [
-              {
-                match._props.app-id = "^com.mitchellh.ghostty$";
-              }
-              {
-                match._props.app-id = "^org.gnome.Nautilus$";
-              }
+              { match._props.app-id = "^com.mitchellh.ghostty$"; }
+              { match._props.app-id = "^org.gnome.Nautilus$"; }
               {
                 match._props = {
                   app-id = "^mpv$";
                   title = ".* - mpv \(nix\)$";
                 };
               }
-              {
-                match._props.app-id = "^org.gnome.Fractal$";
-              }
-              {
-                match._props.app-id = "^firefox$";
-              }
-              {
-                match._props.app-id = "^org.gnome.Snapshot$";
-              }
-              {
-                match._props.app-id = "^vicinae$";
-              }
+              { match._props.app-id = "^org.gnome.Fractal$"; }
+              { match._props.app-id = "^firefox$"; }
+              { match._props.app-id = "^org.gnome.Snapshot$"; }
+              { match._props.app-id = "^vicinae$"; }
             ];
             opacity = 1.0;
           };
