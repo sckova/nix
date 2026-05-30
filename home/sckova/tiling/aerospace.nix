@@ -6,16 +6,7 @@
 lib.mkIf pkgs.stdenv.isDarwin {
   home.packages = with pkgs; [
     autoraise
-    (aerospace.overrideAttrs (
-      finalAttrs: previousAttrs: {
-        version = "0.20.3-Beta";
-
-        src = pkgs.fetchzip {
-          url = "https://github.com/nikitabobko/AeroSpace/releases/download/v0.20.3-Beta/AeroSpace-v0.20.3-Beta.zip";
-          sha256 = "sha256-wrBcslp1W/lOmudMcW+SREL9LZY+wTwidh6Hot5ShGE=";
-        };
-      }
-    ))
+    aerospace
   ];
 
   home.file.".local/share/bin/autoraise.sh" = {
