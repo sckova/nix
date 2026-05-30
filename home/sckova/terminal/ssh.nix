@@ -29,6 +29,15 @@
         RequestTTY = "force";
         RemoteCommand = "/etc/profiles/per-user/sckova/bin/fish";
       };
+      "nas" = {
+        HostName = "nas.taila30609.ts.net";
+      };
+      "Match final host *.ts.net" = {
+        # tailscale connections are end-to-end encrypted
+        # https://www.openssh.org/pq.html
+        # https://tailscale.com/docs/concepts/tailscale-encryption
+        WarnWeakCrypto = "no";
+      };
       "*" = {
         StrictHostKeyChecking = "no";
         IdentityFile = "~/.ssh/key";
