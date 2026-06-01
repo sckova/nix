@@ -12,7 +12,6 @@
     enableFishIntegration = true;
     systemd.enable = lib.mkIf isLinux true;
     settings = {
-      command = "${pkgs.fish}/bin/fish";
       # https://ghostty.org/docs/linux/systemd
       quit-after-last-window-closed = lib.mkIf isLinux false;
 

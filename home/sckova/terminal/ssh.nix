@@ -1,7 +1,7 @@
 {
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = false; # this will be gone in the future
+    enableDefaultConfig = false;
     settings = {
       "ovips.us.to" = {
         HostName = "ovips.us.to";
@@ -11,23 +11,15 @@
       "oracle" = {
         HostName = "vips.taila30609.ts.net";
         User = "ubuntu";
-        RequestTTY = "force";
-        RemoteCommand = "/bin/fish";
       };
       "peach" = {
         HostName = "peach.taila30609.ts.net";
-        RequestTTY = "force";
-        RemoteCommand = "/etc/profiles/per-user/sckova/bin/fish";
       };
       "alien" = {
         HostName = "alien.taila30609.ts.net";
-        RequestTTY = "force";
-        RemoteCommand = "/etc/profiles/per-user/sckova/bin/fish";
       };
       "skmbp" = {
         HostName = "skmbp.taila30609.ts.net";
-        RequestTTY = "force";
-        RemoteCommand = "/etc/profiles/per-user/sckova/bin/fish";
       };
       "nas" = {
         HostName = "nas.taila30609.ts.net";

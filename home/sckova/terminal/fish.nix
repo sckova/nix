@@ -8,6 +8,17 @@
   home.sessionPath = [
     "${config.xdg.dataHome}/bin"
   ];
+
+  programs.zsh = {
+    enable = true; # If in an interactive session, run fish
+    initContent = /* zsh */ ''
+      if [[ $(ps -o command= -p "$PPID" | awk '{print $1}') != 'fish' ]]
+      then
+          exec fish -l
+      fi
+    '';
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
