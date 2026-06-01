@@ -120,6 +120,8 @@ user@host ~/nix (main)
     │   └──  tailscale.nix
     └──  services
         ├──  default.nix
+        ├──  kde.nix
         ├──  searxng.nix
+        ├──  tiling.nix
         └──  widevine.nix
 ```
