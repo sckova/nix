@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -14,6 +13,7 @@
     zenity
     wineWow64Packages.stable
     wineWow64Packages.waylandFull
+    archipelago
   ];
 
   # enable ddcutil
@@ -49,12 +49,12 @@
       "--output-height 2160"
       "--nested-height 2160"
     ];
-  };
 
-  services.xserver.videoDrivers = [
-    "modesetting"
-    "nvidia"
-  ];
+    nix-ld = {
+      enable = true;
+      libraries = [ ];
+    };
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -63,20 +63,10 @@
     open = false;
   };
 
-  # virtualization settings
-
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
-    };
-  };
-
-  # enable hyper-v for guests
-  virtualisation.hypervGuest.enable = true;
-  boot.blacklistedKernelModules = [ "hyperv_fb" ];
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
 
   # i don't even remember what this does or why i added it
   systemd.tmpfiles.rules = [
