@@ -383,7 +383,12 @@
         # --- Rules ---
         {
           window-rule = {
-            geometry-corner-radius = 8.0;
+            geometry-corner-radius._args = [
+              16.0
+              16.0
+              8.0
+              8.0
+            ];
             clip-to-geometry = true;
             opacity = 0.90;
             draw-border-with-background = false;
