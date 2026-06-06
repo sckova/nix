@@ -17,7 +17,10 @@
   ];
 
   # enable ddcutil
-  users.users.${config.username}.extraGroups = [ "i2c" ];
+  users.users.${config.username}.extraGroups = [
+    "i2c"
+    "uinput"
+  ];
   services.udev.extraRules = ''
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';
@@ -84,5 +87,12 @@
     game-name = "kova's minecraft";
     game-password = "ThisIsASuperSecurePasswordThatNobodyWillGuess";
     admins = [ config.username ];
+  };
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
   };
 }

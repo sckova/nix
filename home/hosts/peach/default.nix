@@ -13,7 +13,5 @@
     asahi-bless
     asahi-btsync
     asahi-wifisync
-
-    moonlight-qt
   ];
 }
