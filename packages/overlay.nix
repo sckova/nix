@@ -14,12 +14,4 @@ inputs: final: prev: {
     src = inputs.openmw;
     version = "${inputs.openmw.rev}";
   });
-
-  # remove when https://github.com/NixOS/nixpkgs/pull/525720 is merged
-  firefoxpwa = prev.firefoxpwa.overrideAttrs (oldAttrs: {
-    buildCommand = ''
-      mkdir -p $out/lib/firefoxpwa
-    ''
-    + (oldAttrs.buildCommand or "");
-  });
 }
