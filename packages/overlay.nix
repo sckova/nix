@@ -8,6 +8,7 @@ inputs: final: prev: {
 
   spotify-webapp = final.callPackage ./spotify-webapp { };
   bibata-cursor = final.callPackage ./bibata-cursor { };
+  mkxp-z = final.callPackage ./mkxp-z { };
   openmw-unstable = prev.openmw.overrideAttrs (oldAttrs: {
     pname = "openmw";
     src = inputs.openmw;
