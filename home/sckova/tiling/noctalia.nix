@@ -98,11 +98,11 @@
         marginVertical = 5;
         frameRadius = 12;
         frameThickness = 8;
-        hideOnOverview = false;
+        hideOnOverview = true;
         outerCorners = false;
         screenOverrides = [ ];
         showOutline = false;
-        useSeparateOpacity = true;
+        useSeparateOpacity = false; # can lead to some glitching if set to true
         widgets = {
           center = [ ];
           left = [
