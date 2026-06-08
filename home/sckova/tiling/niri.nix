@@ -408,6 +408,7 @@
             block-out-from = "screen-capture";
           };
         }
+        # for games that we want 100% opacity and windowed fullscreen for
         {
           window-rule = {
             _children = [
@@ -423,8 +424,32 @@
                   title = "Minecraft";
                 };
               }
+              {
+                match._props = {
+                  app-id = "com.moonlight_stream.Moonlight";
+                  title = "Moonlight";
+                };
+              }
+              {
+                match._props = {
+                  app-id = ".*soh.*";
+                  title = "^Ship of Harkinian.*";
+                };
+              }
+              {
+                match._props = {
+                  app-id = "^dolphin-emu$";
+                  title = "Dolphin.*";
+                };
+              }
+              {
+                match._props = {
+                  app-id = "net.kuribo64.melonDS";
+                  title = "^melonDS.*";
+                };
+              }
             ];
-            open-maximized-to-edges = true;
+            open-maximized = true;
             open-focused = true;
             opacity = 1.00;
           };
