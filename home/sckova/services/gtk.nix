@@ -33,6 +33,7 @@ let
      * this was also helpful:
      * https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.2/css-variables.html
     */
+
     @import "./colors.css";
 
     /* Base colors */
@@ -65,6 +66,10 @@ let
     @define-color secondary_sidebar_fg_color @sidebar_fg_color;
     @define-color secondary_sidebar_backdrop_color @sidebar_backdrop_color;
     @define-color secondary_sidebar_border_color @sidebar_border_color;
+
+    /* Overview */
+    @define-color overview_bg_color @sidebar_bg_color;
+    @define-color overview_fg_color @sidebar_fg_color;
 
     /* Accent colors */
     @define-color blue_1 @base0D;
@@ -154,10 +159,6 @@ let
     window,
     #NautilusFileChooser.background {
       background-color: alpha(@view_bg_color, 0.9);
-
-      /* Tab overview */
-      --overview-bg-color: alpha(@sidebar_bg_color, 0.9);
-      --overview-fg-color: @sidebar_fg_color;
     }
 
     #NautilusFileChooser overlay-split-view.view {
@@ -181,6 +182,13 @@ let
     .titlebar:backdrop {
       background-color: @headerbar_backdrop_color;
       background-image: none;
+    } /**/
+  '';
+
+  gtk4-exclusive = /* css */ ''
+    window {
+      --overview-bg-color: alpha(@sidebar_bg_color, 0.9);
+      --overview-fg-color: @sidebar_fg_color;
     }
   '';
 in
@@ -188,14 +196,13 @@ in
   home.file = {
     ".config/gtk-3.0/gtk.css".text = css;
     ".config/gtk-3.0/colors.css".text = colors;
-    ".config/gtk-4.0/gtk.css".text = css;
+    ".config/gtk-4.0/gtk.css".text = css + "\n" + gtk4-exclusive;
     ".config/gtk-4.0/colors.css".text = colors;
   };
 
   gtk = {
     enable = true;
     gtk4.theme = null;
-    colorScheme = "dark";
 
     iconTheme = {
       name = "MoreWaita";
@@ -220,10 +227,6 @@ in
     };
 
     gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-
-    gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
   };
