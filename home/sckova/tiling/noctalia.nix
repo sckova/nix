@@ -98,8 +98,8 @@
         capsuleOpacity = 0.90;
         contentPadding = 2;
         displayMode = if hostname == "peach" then "non_exclusive" else "always_visible";
-        position = "top";
-        density = if hostname == "peach" then "spacious" else "default";
+        position = if hostname == "peach" then "top" else "right";
+        density = "spacious";
         enableExclusionZoneInset = true;
         fontScale = 1;
         marginHorizontal = 5;

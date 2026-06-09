@@ -37,7 +37,7 @@
         "ssh-terminfo" # Enable automatic terminfo installation on remote hosts.
         "path" # Add Ghostty's binary directory to PATH.
       ];
-      background-opacity = lib.mkIf isLinux 0;
+      background-opacity = if isLinux then 0 else 0.9;
       background-blur = lib.mkIf pkgs.stdenv.isDarwin "macos-glass-clear";
       theme = "nixos";
     };

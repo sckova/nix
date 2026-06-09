@@ -47,7 +47,7 @@
     };
     layout = {
       background-color = "transparent";
-      gaps = 4;
+      gaps = 6;
       preset-column-widths._children = [
         { proportion._args = [ 0.33333 ]; }
         { proportion._args = [ 0.50000 ]; }
