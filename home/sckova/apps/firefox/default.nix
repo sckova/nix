@@ -25,7 +25,7 @@ in
   };
 
   home.file."${firefoxProfilePath}/default/chrome/" = {
-    source = ./firefox_css;
+    source = ./css;
     force = true;
     recursive = true;
   };
