@@ -62,9 +62,8 @@
         builtins.mapAttrs
           (
             hostname:
-            { system, users }:
+            { users }:
             nixpkgs.lib.nixosSystem {
-              inherit system;
               specialArgs = {
                 inherit hostname users inputs;
                 isLinux = true;
@@ -74,11 +73,9 @@
           )
           {
             peach = {
-              system = "aarch64-linux";
               users = [ "sckova" ];
             };
             alien = {
-              system = "x86_64-linux";
               users = [
                 "sckova"
                 "ckovacs"
@@ -89,9 +86,8 @@
         builtins.mapAttrs
           (
             hostname:
-            { system, users }:
+            { users }:
             nix-darwin.lib.darwinSystem {
-              inherit system;
               specialArgs = {
                 inherit hostname users inputs;
                 isLinux = false;
@@ -101,7 +97,6 @@
           )
           {
             skmbp = {
-              system = "aarch64-darwin";
               users = [ "sckova" ];
             };
           };

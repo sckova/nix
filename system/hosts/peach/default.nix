@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   inputs,
@@ -47,7 +46,7 @@ in
       enable = true;
       theme = "seamless-asahi";
       themePackages = [
-        (inputs.seamless-asahi-plymouth.packages.${pkgs.system}.default.override {
+        (inputs.seamless-asahi-plymouth.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
           logo = ./apple-rainbow.png;
         })
       ];
