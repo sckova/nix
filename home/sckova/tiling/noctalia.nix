@@ -130,6 +130,8 @@
         ];
       };
 
+      brightness.enable_ddcutil = if hostname == "peach" then false else true;
+
       desktop_widgets.enabled = false;
 
       lockscreen_widgets = {

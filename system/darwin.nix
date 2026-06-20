@@ -32,6 +32,8 @@
     ];
   };
 
+  nix.linux-builder.enable = true; # allow aarch64-linux builds via lightweight VM
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

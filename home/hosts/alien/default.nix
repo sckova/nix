@@ -34,6 +34,4 @@
     DXVK_NVAPI_DRS_SETTINGS = "NGX_DLSS_SR_MODE=balanced";
     MANGOHUD_CONFIG = "fps_limit=144,gamemode,ram,vram";
   };
-
-  programs.noctalia-shell.settings.brightness.enableDdcSupport = true;
 }
