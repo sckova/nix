@@ -1,12 +1,20 @@
 {
   config,
   osConfig,
+  inputs,
   pkgs,
   lib,
   ...
 }:
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+in
 {
-  home.packages = lib.mkIf pkgs.stdenv.isDarwin [ pkgs.spotifyd ]; # needed to run 'spotifyd auth'
+  home.packages =
+    with pkgs;
+    lib.mkIf pkgs.stdenv.isDarwin [
+      spotifyd # needed to run 'spotifyd auth'
+    ];
   launchd.agents = lib.mkIf pkgs.stdenv.isDarwin {
     spotifyd = {
       enable = true;
@@ -26,6 +34,32 @@
     };
   };
   services.spotifyd.enable = lib.mkIf pkgs.stdenv.isLinux true;
+
+  programs.spicetify = lib.mkIf (pkgs.stdenv.hostPlatform.system != "aarch64-linux") {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle # shuffle+ (special characters are sanitized out of extension names)
+      powerBar
+      playlistIcons
+      fullAlbumDate
+      skipStats
+      wikify
+      sidebarCustomizer
+    ];
+    theme =
+      if lib.hasPrefix "catppuccin-" config.colors.scheme then
+        spicePkgs.themes.catppuccin
+      else
+        spicePkgs.themes.text;
+    colorScheme =
+      if lib.hasPrefix "catppuccin-" config.colors.scheme then
+        lib.removePrefix "catppuccin-" config.colors.scheme
+      else
+        null;
+  };
+
   # comments taken from https://docs.spotifyd.rs/configuration/index.html
   services.spotifyd.settings.global = {
     #---------#
@@ -88,6 +122,11 @@
     # The alsa audio device to stream audio. To get a
     # list of valid devices, run `aplay -L`,
     device = lib.mkIf pkgs.stdenv.isLinux "default"; # omit for macOS
+
+    # The volume controller. Each one behaves different to
+    # volume increases. For possible values, run
+    # `spotifyd --help`.
+    volume_controller = if pkgs.stdenv.isLinux then "alsa" else "softvol"; # use softvol for macOS
 
     # If set to true, enables volume normalisation between songs.
     volume_normalisation = true;

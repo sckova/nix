@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   isLinux,
   ...
 }:
@@ -9,7 +8,7 @@
     ../../lib/sops.nix
     ./apps
     ./games
-    ./services/spotifyd.nix
+    ./services/spotify.nix
     ./terminal
     ./tiling/aerospace.nix
   ]

@@ -61,6 +61,7 @@
       )
       noctalia.homeModules.default
       nixvim.homeModules.nixvim
+      spicetify-nix.homeManagerModules.spicetify
     ];
   };
 

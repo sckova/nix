@@ -41,6 +41,9 @@
       url = "github:nyakase/aerothemeplasma-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+    };
 
     base16 = {
       url = "github:SenchoPens/base16.nix";
