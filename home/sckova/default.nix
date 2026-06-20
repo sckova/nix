@@ -9,6 +9,7 @@
     ../../lib/sops.nix
     ./apps
     ./games
+    ./services/spotifyd.nix
     ./terminal
     ./tiling/aerospace.nix
   ]
