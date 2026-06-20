@@ -24,6 +24,7 @@
       ncdu
       rclone
       pigz
+      comma
     ]
     ++ lib.optionals isLinux [
       wl-clipboard
@@ -36,6 +37,7 @@
   programs = {
     tmux.enable = true;
     ripgrep.enable = true;
+    fd.enable = true;
     eza = {
       enable = true;
       enableFishIntegration = true;
