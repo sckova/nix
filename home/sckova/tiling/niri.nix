@@ -168,30 +168,32 @@
         "toggle"
       ];
       "XF86MonBrightnessUp".spawn._args = [
-        "${pkgs.noctalia-shell}/bin/noctalia-shell"
-        "ipc"
-        "call"
-        "brightness"
-        "increase"
+        "${pkgs.noctalia}/bin/noctalia"
+        "msg"
+        "brightness-up"
+        "all"
+        "5"
       ];
       "XF86MonBrightnessDown".spawn._args = [
-        "${pkgs.noctalia-shell}/bin/noctalia-shell"
-        "ipc"
-        "call"
-        "brightness"
-        "decrease"
+        "${pkgs.noctalia}/bin/noctalia"
+        "msg"
+        "brightness-down"
+        "all"
+        "5"
       ];
       "Shift+XF86MonBrightnessUp".spawn._args = [
-        "${pkgs.brightnessctl}/bin/brightnessctl"
-        "--class=backlight"
-        "set"
-        "+1%"
+        "${pkgs.noctalia}/bin/noctalia"
+        "msg"
+        "brightness-up"
+        "all"
+        "1"
       ];
       "Shift+XF86MonBrightnessDown".spawn._args = [
-        "${pkgs.brightnessctl}/bin/brightnessctl"
-        "--class=backlight"
-        "set"
-        "1%-"
+        "${pkgs.noctalia}/bin/noctalia"
+        "msg"
+        "brightness-down"
+        "all"
+        "1"
       ];
       "XF86AudioPrev".spawn._args = [
         "${pkgs.playerctl}/bin/playerctl"
