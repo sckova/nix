@@ -10,7 +10,7 @@
     ./games
     ./services/spotify.nix
     ./terminal
-    ./tiling/aerospace.nix
+    ./tiling/paneru.nix
   ]
   ++ lib.optionals isLinux [
     ./services

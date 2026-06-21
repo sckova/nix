@@ -29,6 +29,10 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia/main";
     };
+    paneru = {
+      url = "github:karinushka/paneru";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
