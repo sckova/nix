@@ -3,7 +3,7 @@
   config,
   lib,
   users,
-  isLinux, # <-- We now pull this directly from flake.nix!
+  isLinux,
   ...
 }:
 let

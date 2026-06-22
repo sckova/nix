@@ -14,10 +14,7 @@
     sops-nix.nixosModules.sops
     home-manager.nixosModules.home-manager
     noctalia.nixosModules.default
-    ../lib/nix-settings.nix
-    ../lib/users.nix
-    ../lib/options.nix
-    ../lib/sops.nix
+    ../lib
     ./apps
     ./services
     ./networking
