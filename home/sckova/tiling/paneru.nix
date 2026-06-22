@@ -1,10 +1,8 @@
 {
   config,
-  lib,
-  pkgs,
   ...
 }:
-lib.mkIf pkgs.stdenv.isDarwin {
+{
   services.paneru = {
     enable = true;
     settings = {

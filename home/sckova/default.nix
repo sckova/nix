@@ -10,11 +10,13 @@
     ./games
     ./services/spotify.nix
     ./terminal
-    ./tiling/paneru.nix
   ]
   ++ lib.optionals isLinux [
     ./services
     ./tiling
+  ]
+  ++ lib.optionals (isLinux != true) [
+    ./tiling/paneru.nix
   ];
 
   # the user to activate
