@@ -28,6 +28,7 @@
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     paneru = {
       url = "github:karinushka/paneru";
@@ -62,7 +63,7 @@
     };
 
     openmw = {
-      url = "gitlab:OpenMW/openmw/openmw-51-rc2";
+      url = "gitlab:OpenMW/openmw/openmw-0.51.0";
       flake = false;
     };
   };
