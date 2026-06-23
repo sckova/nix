@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./firefox
@@ -6,12 +10,11 @@
   ];
   home.packages =
     with pkgs;
+    with nur.repos.forkprince;
     [
-      (if stdenv.isLinux then libreoffice-qt-fresh else libreoffice-bin)
-      nur.repos.forkprince.helium-nightly # web browser
+      helium-nightly # web browser
       audacity # audio tool
       musescore # music scoring
-      (if stdenv.isLinux then gimp else gimp2) # image editor
     ]
     ++ lib.optionals stdenv.isLinux [
       calibre # ebook tool
@@ -21,8 +24,12 @@
       tuba # mastodon client
       snapshot # webcam tool
       loupe # image viewer
+      gimp # image editor
+      libreoffice-fresh # office suite
     ]
     ++ lib.optionals stdenv.isDarwin [
       iina # media player
+      gimp2 # image editor
+      libreoffice-bin # office suite
     ];
 }
