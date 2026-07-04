@@ -52,12 +52,13 @@ in
       if lib.hasPrefix "catppuccin-" config.colors.scheme then
         spicePkgs.themes.catppuccin
       else
-        spicePkgs.themes.text;
-    colorScheme =
+        spicePkgs.themes.defaultDynamic;
+    colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
       if lib.hasPrefix "catppuccin-" config.colors.scheme then
         lib.removePrefix "catppuccin-" config.colors.scheme
       else
-        null;
+        "frappe"
+    );
   };
 
   # comments taken from https://docs.spotifyd.rs/configuration/index.html
