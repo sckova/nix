@@ -83,7 +83,7 @@ in
     peripheralFirmwareDirectory = pkgs.requireFile {
       name = "firmware";
       hashMode = "recursive";
-      hash = "sha256-F8H70AYSkUqGRHTPVbOMokzBsXdv0Lbt97BFZM1jx5c=";
+      hash = "sha256-zK0Eu+y/NVONseKOEN0VJtqXyLM7/DMJlsCpQFi8xvg=";
       message = ''
         you need to add the firmware to the store:
         mkdir system/hosts/peach/firmware
