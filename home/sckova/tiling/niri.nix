@@ -29,7 +29,6 @@
       touchpad = {
         accel-profile = "adaptive";
         natural-scroll = { };
-        dwt = { };
         drag = true;
       };
       focus-follows-mouse._props.max-scroll-amount = "5%";
@@ -70,9 +69,6 @@
           y = 0;
         };
         color = config.scheme.withHashtag.base11 + "bf";
-      };
-      struts = {
-        top = if hostname == "peach" then 46 else 0; # make sure the notch is always blocked
       };
       tab-indicator = {
         width = 6;

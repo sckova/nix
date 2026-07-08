@@ -97,11 +97,11 @@
         font_family = config.fonts.sans.name;
         background_opacity = 0.9;
         contact_shadow = true;
-        layer = if hostname == "peach" then "overlay" else "top";
+        layer = "top";
         margin_edge = if hostname == "peach" then 0 else 8;
         margin_ends = if hostname == "peach" then 0 else 180;
         position = if hostname == "peach" then "top" else "right";
-        reserve_space = if hostname == "peach" then false else true;
+        reserve_space = true;
         radius = if hostname == "peach" then 0 else 16;
         thickness = 47;
         capsule_group = [
