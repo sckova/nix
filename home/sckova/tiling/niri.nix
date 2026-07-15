@@ -163,6 +163,7 @@
         "@DEFAULT_AUDIO_SOURCE@"
         "toggle"
       ];
+
       "XF86MonBrightnessUp".spawn._args = [
         "${pkgs.noctalia}/bin/noctalia"
         "msg"
@@ -191,6 +192,44 @@
         "all"
         "1"
       ];
+
+      "Ctrl+XF86MonBrightnessUp".spawn._args = [
+        "${pkgs.brightnessctl}/bin/brightnessctl"
+        "-d"
+        "kbd_backlight"
+        "-c"
+        "leds"
+        "set"
+        "+5%"
+      ];
+      "Ctrl+XF86MonBrightnessDown".spawn._args = [
+        "${pkgs.brightnessctl}/bin/brightnessctl"
+        "-d"
+        "kbd_backlight"
+        "-c"
+        "leds"
+        "set"
+        "5%-"
+      ];
+      "Ctrl+Shift+XF86MonBrightnessUp".spawn._args = [
+        "${pkgs.brightnessctl}/bin/brightnessctl"
+        "-d"
+        "kbd_backlight"
+        "-c"
+        "leds"
+        "set"
+        "+1%"
+      ];
+      "Ctrl+Shift+XF86MonBrightnessDown".spawn._args = [
+        "${pkgs.brightnessctl}/bin/brightnessctl"
+        "-d"
+        "kbd_backlight"
+        "-c"
+        "leds"
+        "set"
+        "1%-"
+      ];
+
       "XF86AudioPrev".spawn._args = [
         "${pkgs.playerctl}/bin/playerctl"
         "previous"
