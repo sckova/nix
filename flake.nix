@@ -12,6 +12,10 @@
       url = "github:luca-schlecker/seamless-asahi-plymouth";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wluma = {
+      url = "github:max-baz/wluma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";

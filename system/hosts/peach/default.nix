@@ -83,13 +83,13 @@ in
     peripheralFirmwareDirectory = pkgs.requireFile {
       name = "firmware";
       hashMode = "recursive";
-      hash = "sha256-veVqVVdZzp7mt0hbG8Fw9tqF1jPnr9OHlnphzO9A2uw=";
-      message = ''
-        you need to add the firmware to the store:
+      hash = "sha256-7Au5t58dBIkZdPoa58Vc3LjSHljiI7L7I3YfuPCvlYI=";
+      message = /* bash */ ''
+        # you need to add the firmware to the store:
         mkdir system/hosts/peach/firmware
-        sudo cp -r /mnt/boot/asahi/{all_firmware.tar.gz,kernelcache*} system/hosts/peach/firmware
-        sudo cp -r /mnt/boot/vendorfw/firmware.cpio system/hosts/peach/firmware
+        sudo cp -v /mnt/boot/vendorfw/firmware.cpio system/hosts/peach/firmware
         nix-store --add-fixed sha256 --recursive ./system/hosts/peach/firmware
+        nix hash path system/hosts/peach/firmware
       '';
     };
   };
