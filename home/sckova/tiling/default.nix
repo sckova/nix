@@ -35,81 +35,81 @@
       };
       favorites = [
         "applications:firefox"
-        "@Ninetonine/searxng:search-with-searxng"
+        # "@Ninetonine/searxng:search-with-searxng"
         "clipboard:history"
       ];
       theme.dark = {
         name = "nixos";
         icon_theme = config.gtk.iconTheme.name;
       };
-      providers = {
-        "@mattisssa/spotify-player" = {
-          entrypoints = {
-            addPlayingSongToPlaylist.enabled = true;
-            copyArtistAndTitle.enabled = true;
-            toggleShuffle.enabled = true;
-            queue.enabled = true;
-          };
-        };
-        "@Ninetonine/searxng" = {
-          preferences = {
-            instance_domain = "http://localhost:5364";
-            default_category = "general";
-            engines = "";
-            keep_previous_search = false;
-            languages = "";
-          };
-          entrypoints.search-with-searxng.alias = "@s";
-        };
-        "@samlinville/tailscale".preferences = {
-          tailscalePath = "/run/current-system/sw/bin/tailscale";
-        };
-      };
+      # providers = {
+      #   "@mattisssa/spotify-player" = {
+      #     entrypoints = {
+      #       addPlayingSongToPlaylist.enabled = true;
+      #       copyArtistAndTitle.enabled = true;
+      #       toggleShuffle.enabled = true;
+      #       queue.enabled = true;
+      #     };
+      #   };
+      #   "@Ninetonine/searxng" = {
+      #     preferences = {
+      #       instance_domain = "http://localhost:5364";
+      #       default_category = "general";
+      #       engines = "";
+      #       keep_previous_search = false;
+      #       languages = "";
+      #     };
+      #     entrypoints.search-with-searxng.alias = "@s";
+      #   };
+      #   "@samlinville/tailscale".preferences = {
+      #     tailscalePath = "/run/current-system/sw/bin/tailscale";
+      #   };
+      # };
     };
-    extensions =
-      let
-        raycast.rev = "4237b41dfaf3903de0f18b1d7fefb26290d92829";
-        vicinae =
-          pkgs.fetchFromGitHub {
-            owner = "vicinaehq";
-            repo = "extensions";
-            rev = "89cc49471c3e7119bfd36d68998cefe534bddab8";
-            sha256 = "sha256-LfqeVlMwclHJKsJu5jJoztjlaCeIasQsiv3P9+eKDNw=";
-          }
-          + "/extensions/";
-      in
-      [
-        (config.lib.vicinae.mkRayCastExtension {
-          name = "spotify-player";
-          sha256 = "sha256-332DOAKVOnXkL/tLpQXlSPYl2fveAX46e9vfC7RoyVA=";
-          rev = raycast.rev;
-        })
-        (config.lib.vicinae.mkRayCastExtension {
-          name = "tailscale";
-          sha256 = "sha256-fPRHDTazFfUDvsbvbl0JyZkKSA1i/rIhMWVG+9CAfpY=";
-          rev = raycast.rev;
-        })
-        (config.lib.vicinae.mkExtension {
-          name = "github";
-          src = vicinae + "github";
-        })
-        (config.lib.vicinae.mkExtension {
-          name = "nix";
-          src = vicinae + "nix";
-        })
-        (config.lib.vicinae.mkExtension {
-          name = "niri";
-          src = vicinae + "niri";
-        })
-        (config.lib.vicinae.mkExtension {
-          name = "searxng";
-          src = vicinae + "searxng";
-        })
-        (config.lib.vicinae.mkExtension {
-          name = "wikipedia";
-          src = vicinae + "wikipedia";
-        })
-      ];
+    # extensions =
+    #   let
+    #     raycast.rev = "4237b41dfaf3903de0f18b1d7fefb26290d92829";
+    #     vicinae =
+    #       pkgs.fetchFromGitHub {
+    #         owner = "vicinaehq";
+    #         repo = "extensions";
+    #         rev = "89cc49471c3e7119bfd36d68998cefe534bddab8";
+    #         sha256 = "sha256-LfqeVlMwclHJKsJu5jJoztjlaCeIasQsiv3P9+eKDNw=";
+    #       }
+    #       + "/extensions/";
+    #   in
+    #   [
+    #     (config.lib.vicinae.mkRayCastExtension {
+    #       name = "spotify-player";
+    #       sha256 = "sha256-332DOAKVOnXkL/tLpQXlSPYl2fveAX46e9vfC7RoyVA=";
+    #       rev = raycast.rev;
+    #     })
+    #     (config.lib.vicinae.mkRayCastExtension {
+    #       name = "tailscale";
+    #       sha256 = "sha256-fPRHDTazFfUDvsbvbl0JyZkKSA1i/rIhMWVG+9CAfpY=";
+    #       rev = raycast.rev;
+    #     })
+    #     (config.lib.vicinae.mkExtension {
+    #       name = "github";
+    #       src = vicinae + "github";
+    #     })
+    #     (config.lib.vicinae.mkExtension {
+    #       name = "nix";
+    #       src = vicinae + "nix";
+    #     })
+    #     (config.lib.vicinae.mkExtension {
+    #       name = "niri";
+    #       src = vicinae + "niri";
+    #     })
+    #     (config.lib.vicinae.mkExtension {
+    #       name = "searxng";
+    #       src = vicinae + "searxng";
+    #     })
+    #     (config.lib.vicinae.mkExtension {
+    #       name = "wikipedia";
+    #       src = vicinae + "wikipedia";
+    #     })
+    #   ];
     themes.nixos = {
       meta = {
         version = 1;
