@@ -265,7 +265,7 @@
     "naersk": {
       "inputs": {
         "fenix": "fenix",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1780932914,
@@ -437,6 +437,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1784364478,
+        "narHash": "sha256-CdItYNdYUlm7NxqMVyQKqT2IxTwvapiPuRLWOyHTrbY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "20535e48e12c86043b577b8518234ff5dbb26957",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1752077645,
         "narHash": "sha256-HM791ZQtXV93xtCY+ZxG1REzhQenSQO020cu6rHtAPk=",
         "owner": "NixOS",
@@ -573,6 +589,7 @@
         "seamless-asahi-plymouth": "seamless-asahi-plymouth",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
+        "steam-asahi": "steam-asahi",
         "tt-schemes": "tt-schemes",
         "wluma": "wluma"
       }
@@ -652,6 +669,24 @@
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
         "type": "github"
+      }
+    },
+    "steam-asahi": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1784407478,
+        "narHash": "sha256-SzfInnnGIeWbTZcAhreK9bWr0q4U2CVF+nxFQOEd8c4=",
+        "ref": "refs/heads/main",
+        "rev": "5486aa0dc699e0180e5fdec28e8f671529f11973",
+        "revCount": 48,
+        "type": "git",
+        "url": "file:///home/sckova/Projects/steam-asahi"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/sckova/Projects/steam-asahi"
       }
     },
     "systems": {

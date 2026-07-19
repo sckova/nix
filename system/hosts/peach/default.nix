@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   inputs,
   ...
 }:
@@ -13,48 +12,11 @@ let
   };
 in
 {
-  imports = [
-    inputs.apple-silicon.nixosModules.default
+  imports = with inputs; [
+    steam-asahi.nixosModules.default
   ];
 
-  nixpkgs.overlays = [
-    inputs.apple-silicon.overlays.apple-silicon-overlay
-    (final: prev: {
-      uboot-asahi = prev.uboot-asahi.overrideAttrs (old: {
-        postConfigure = (old.postConfigure or "") + ''
-          cat >> .config <<'EOF'
-          # CONFIG_VIDEO_LOGO is not set
-          CONFIG_DISPLAY_BOARDINFO_LATE=n
-          CONFIG_BOOTDELAY=0
-          CONFIG_SILENT_CONSOLE=y
-          CONFIG_PREBOOT="setenv silent 1"
-          EOF
-
-          # Regenerate the configuration with new flags
-          make olddefconfig
-        '';
-      });
-    })
-  ];
-
-  boot = {
-    kernelParams = [ "appledrm.show_notch=1" ];
-    # thank you to u/douv:
-    # https://www.reddit.com/r/AsahiLinux/comments/1sb8cby/retro_boot_logo/
-    m1n1CustomLogo = ./apple-rainbow.png;
-    plymouth = lib.mkForce {
-      enable = true;
-      theme = "seamless-asahi";
-      themePackages = [
-        (inputs.seamless-asahi-plymouth.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-          logo = ./apple-rainbow.png;
-        })
-      ];
-      extraConfig = ''
-        DeviceScale=1
-      '';
-    };
-  };
+  programs.steam-asahi.enable = true;
 
   programs.dconf.profiles.gdm.databases = [
     {
@@ -74,23 +36,5 @@ in
     HandleSuspendKey = "ignore";
     HandlePowerKey = "lock";
     HandleLidSwitch = "lock";
-  };
-
-  hardware.asahi = {
-    enable = true;
-    setupAsahiSound = true;
-    # https://github.com/nix-community/nixos-apple-silicon/issues/299#issuecomment-2901508921
-    peripheralFirmwareDirectory = pkgs.requireFile {
-      name = "firmware";
-      hashMode = "recursive";
-      hash = "sha256-7Au5t58dBIkZdPoa58Vc3LjSHljiI7L7I3YfuPCvlYI=";
-      message = /* bash */ ''
-        # you need to add the firmware to the store:
-        mkdir system/hosts/peach/firmware
-        sudo cp -v /mnt/boot/vendorfw/firmware.cpio system/hosts/peach/firmware
-        nix-store --add-fixed sha256 --recursive ./system/hosts/peach/firmware
-        nix hash path system/hosts/peach/firmware
-      '';
-    };
   };
 }

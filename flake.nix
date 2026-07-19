@@ -16,6 +16,9 @@
       url = "github:max-baz/wluma";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    steam-asahi = {
+      url = "git+file:///home/sckova/Projects/steam-asahi";
+    };
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";
