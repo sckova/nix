@@ -6,17 +6,9 @@
   ...
 }:
 let
-  appleRainbow-png =
-    pkgs.runCommand "apple-rainbow.png"
-      {
-        nativeBuildInputs = [ pkgs.librsvg ];
-      }
-      ''
-        rsvg-convert -w 256 -h 256 ${appleRainbow-svg} -o $out
-      '';
-  appleRainbow-svg = pkgs.fetchurl {
-    sha256 = "sha256-6uXWL3oM9GvwSMLloY1P5P28xkVzIV5N6QeOd3HeDRM=";
-    url = "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Computer_Logo_rainbow.svg";
+  appleRainbow-png = pkgs.fetchurl {
+    sha256 = "sha256-ItpGJ587wO9KsR7aHaVicXg1ttLHuYGFk8cglRmJvjU=";
+    url = "https://i.ibb.co/Q7GM2P4Q/apple-rainbow.png";
   };
 in
 {
