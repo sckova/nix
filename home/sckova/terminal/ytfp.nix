@@ -1,14 +1,15 @@
 # full credit to u/SupermarketAntique32 on reddit:
 # https://www.reddit.com/r/commandline/comments/1sd26he/youtube_search_and_play_in_20_lines_of_bash/
 {
-  pkgs,
   config,
+  pkgs,
   ...
 }:
 {
   home.packages = with pkgs; [
     (writeShellApplication {
       name = "ytfp";
+
       runtimeInputs = [
         bash
         curl
@@ -17,6 +18,7 @@
         chafa
         config.programs.mpv.finalPackage
       ];
+
       text = /* bash */ ''
         # `ytfp`: Search YouTube video using `fzf` and play it in `mpv`
 

@@ -1,11 +1,11 @@
 {
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 {
   colors = {
-    scheme = "kanagawa-dragon";
     accent = "base0E";
+    scheme = "kanagawa-dragon";
   };
 }

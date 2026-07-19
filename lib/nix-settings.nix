@@ -2,6 +2,13 @@
 {
   nix = {
     package = pkgs.lixPackageSets.stable.lix;
+
+    gc = {
+      # dates = "weekly";
+      options = "--delete-older-than 30d";
+      automatic = true;
+    };
+
     settings = {
       experimental-features = [
         "nix-command"
@@ -23,12 +30,6 @@
       ];
 
       trusted-users = [ "root" ] ++ users;
-    };
-
-    gc = {
-      automatic = true;
-      # dates = "weekly";
-      options = "--delete-older-than 30d";
     };
   };
 

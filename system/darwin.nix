@@ -1,9 +1,9 @@
 {
-  pkgs,
   lib,
+  pkgs,
+  hostname,
   inputs,
   users,
-  hostname,
   ...
 }:
 {
@@ -19,37 +19,11 @@
     # ./networking (see https://github.com/nix-darwin/nix-darwin/issues/1035)
   ];
 
-  users.users = lib.genAttrs users (user: {
-    home = "/Users/${user}";
-  });
-
-  nixpkgs = {
-    hostPlatform = "aarch64-darwin";
-    config.allowUnfree = true;
-    overlays = with inputs; [
-      nur.overlays.default
-      pedantix.overlays.default
-      (import ../packages/overlay.nix inputs)
-    ];
-  };
-
-  nix.linux-builder.enable = true; # allow aarch64-linux builds via lightweight VM
-
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
     extraSpecialArgs = {
       inherit hostname inputs;
       isLinux = pkgs.stdenv.hostPlatform.isLinux;
     };
-
-    users = lib.genAttrs users (user: {
-      imports = [
-        ../home
-        ../home/${user}
-        ../home/hosts/${hostname}
-      ];
-    });
 
     sharedModules = with inputs; [
       sops-nix.homeManagerModules.sops
@@ -65,6 +39,31 @@
       nix-index-database.homeModules.default
       spicetify-nix.homeManagerModules.spicetify
     ];
+
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
+    users = lib.genAttrs users (user: {
+      imports = [
+        ../home
+        ../home/${user}
+        ../home/hosts/${hostname}
+      ];
+    });
+  };
+
+  networking.hostName = hostname;
+  nix.linux-builder.enable = true; # allow aarch64-linux builds via lightweight VM
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    hostPlatform = "aarch64-darwin";
+
+    overlays = with inputs; [
+      nur.overlays.default
+      pedantix.overlays.default
+      (import ../packages/overlay.nix inputs)
+    ];
   };
 
   security.pam.services.sudo_local = {
@@ -72,8 +71,11 @@
     reattach = true;
     touchIdAuth = true;
   };
-  networking.hostName = hostname;
 
   sops.age.keyFile = "/Users/sckova/.config/sops/age/keys.txt";
   system.stateVersion = 7;
+
+  users.users = lib.genAttrs users (user: {
+    home = "/Users/${user}";
+  });
 }

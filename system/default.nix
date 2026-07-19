@@ -5,8 +5,8 @@
   lib,
   pkgs,
   hostname,
-  users,
   inputs,
+  users,
   ...
 }:
 {
@@ -22,29 +22,11 @@
     ../hardware
   ];
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = with inputs; [
-    noctalia.overlays.default
-    nur.overlays.default
-    pedantix.overlays.default
-    (import ../packages/overlay.nix inputs)
-  ];
-
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
     extraSpecialArgs = {
       inherit hostname inputs;
       isLinux = pkgs.stdenv.hostPlatform.isLinux;
     };
-
-    users = lib.genAttrs users (user: {
-      imports = [
-        ../home
-        ../home/${user}
-        ../home/hosts/${hostname}
-      ];
-    });
 
     sharedModules = with inputs; [
       sops-nix.homeManagerModules.sops
@@ -58,6 +40,28 @@
       noctalia.homeModules.default
       nix-index-database.homeModules.default
       spicetify-nix.homeManagerModules.spicetify
+    ];
+
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
+    users = lib.genAttrs users (user: {
+      imports = [
+        ../home
+        ../home/${user}
+        ../home/hosts/${hostname}
+      ];
+    });
+  };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+
+    overlays = with inputs; [
+      noctalia.overlays.default
+      nur.overlays.default
+      pedantix.overlays.default
+      (import ../packages/overlay.nix inputs)
     ];
   };
 

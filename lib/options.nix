@@ -1,144 +1,162 @@
 {
-  lib,
   config,
+  lib,
   pkgs,
   ...
 }:
 {
   options = {
     colors = {
-      scheme = lib.mkOption {
-        type = lib.types.str;
-        default = "catppuccin-mocha";
-      };
       accent = lib.mkOption {
-        type = lib.types.str;
         default = "base09";
-      };
-    };
-    name = lib.mkOption {
-      type = lib.types.str;
-      readOnly = false;
-      default = "Sean Kovacs";
-    };
-    username = lib.mkOption {
-      type = lib.types.str;
-      readOnly = false;
-      default = "sckova";
-    };
-    email = lib.mkOption {
-      type = lib.types.str;
-      readOnly = false;
-      default = "kovacsmillio@gmail.com";
-    };
-    fonts = {
-      sans = {
-        name = lib.mkOption {
-          type = lib.types.str;
-          readOnly = false;
-          default = "Noto Sans";
-        };
-        size = lib.mkOption {
-          type = lib.types.int;
-          readOnly = false;
-          default = 11;
-        };
-        package = lib.mkOption {
-          type = lib.types.package;
-          readOnly = false;
-          default = pkgs.noto-fonts;
-        };
+        type = lib.types.str;
       };
 
-      serif = {
-        name = lib.mkOption {
-          type = lib.types.str;
-          readOnly = false;
-          default = "Noto Serif";
-        };
-        size = lib.mkOption {
-          type = lib.types.int;
-          readOnly = false;
-          default = 11;
-        };
+      scheme = lib.mkOption {
+        default = "catppuccin-mocha";
+        type = lib.types.str;
+      };
+    };
+
+    cursor = {
+      package = lib.mkOption {
+        default =
+          with config.scheme;
+          (pkgs.bibata-cursor.override {
+            baseColor = withHashtag.${config.colors.accent};
+            cursorSizes = "16 20 22 24 28 32 40 48 56 64 72 80 88 96";
+            outlineColor = withHashtag.base00;
+            themeName = config.colors.scheme;
+          });
+
+        readOnly = true;
+        type = lib.types.package;
+      };
+
+      name = lib.mkOption {
+        default = config.colors.scheme;
+        readOnly = true;
+        type = lib.types.str;
+      };
+
+      path = lib.mkOption {
+        default = "${config.cursor.package}/share/icons/${config.colors.scheme}";
+        readOnly = true;
+        type = lib.types.str;
+      };
+
+      size = lib.mkOption {
+        default = 24;
+        readOnly = true;
+        type = lib.types.int;
+      };
+    };
+
+    email = lib.mkOption {
+      default = "kovacsmillio@gmail.com";
+      readOnly = false;
+      type = lib.types.str;
+    };
+
+    fonts = {
+      emoji = {
         package = lib.mkOption {
-          type = lib.types.package;
+          default = pkgs.noto-fonts-color-emoji;
           readOnly = false;
-          default = pkgs.noto-fonts;
+          type = lib.types.package;
+        };
+
+        name = lib.mkOption {
+          default = "Noto Emoji";
+          readOnly = false;
+          type = lib.types.str;
+        };
+
+        size = lib.mkOption {
+          default = 10;
+          readOnly = false;
+          type = lib.types.int;
         };
       };
 
       mono = {
-        name = lib.mkOption {
-          type = lib.types.str;
-          readOnly = false;
-          default = "JetBrainsMono Nerd Font";
-        };
-        size = lib.mkOption {
-          type = lib.types.int;
-          readOnly = false;
-          default = 10;
-        };
         package = lib.mkOption {
-          type = lib.types.package;
-          readOnly = false;
           default = pkgs.nerd-fonts.jetbrains-mono;
+          readOnly = false;
+          type = lib.types.package;
+        };
+
+        name = lib.mkOption {
+          default = "JetBrainsMono Nerd Font";
+          readOnly = false;
+          type = lib.types.str;
+        };
+
+        size = lib.mkOption {
+          default = 10;
+          readOnly = false;
+          type = lib.types.int;
         };
       };
 
-      emoji = {
-        name = lib.mkOption {
-          type = lib.types.str;
-          readOnly = false;
-          default = "Noto Emoji";
-        };
-        size = lib.mkOption {
-          type = lib.types.int;
-          readOnly = false;
-          default = 10;
-        };
+      sans = {
         package = lib.mkOption {
-          type = lib.types.package;
+          default = pkgs.noto-fonts;
           readOnly = false;
-          default = pkgs.noto-fonts-color-emoji;
+          type = lib.types.package;
+        };
+
+        name = lib.mkOption {
+          default = "Noto Sans";
+          readOnly = false;
+          type = lib.types.str;
+        };
+
+        size = lib.mkOption {
+          default = 11;
+          readOnly = false;
+          type = lib.types.int;
+        };
+      };
+
+      serif = {
+        package = lib.mkOption {
+          default = pkgs.noto-fonts;
+          readOnly = false;
+          type = lib.types.package;
+        };
+
+        name = lib.mkOption {
+          default = "Noto Serif";
+          readOnly = false;
+          type = lib.types.str;
+        };
+
+        size = lib.mkOption {
+          default = 11;
+          readOnly = false;
+          type = lib.types.int;
         };
       };
     };
 
     # read only modules
     hostname = lib.mkOption {
-      type = lib.types.str;
-      readOnly = true;
       default = config.system.name;
+      readOnly = true;
+      type = lib.types.str;
     };
-    cursor = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = config.colors.scheme;
-      };
-      package = lib.mkOption {
-        type = lib.types.package;
-        readOnly = true;
-        default =
-          with config.scheme;
-          (pkgs.bibata-cursor.override {
-            themeName = config.colors.scheme;
-            baseColor = withHashtag.${config.colors.accent};
-            outlineColor = withHashtag.base00;
-            cursorSizes = "16 20 22 24 28 32 40 48 56 64 72 80 88 96";
-          });
-      };
-      size = lib.mkOption {
-        type = lib.types.int;
-        readOnly = true;
-        default = 24;
-      };
-      path = lib.mkOption {
-        type = lib.types.str;
-        readOnly = true;
-        default = "${config.cursor.package}/share/icons/${config.colors.scheme}";
-      };
+
+    name = lib.mkOption {
+      default = "Sean Kovacs";
+      readOnly = false;
+      type = lib.types.str;
+    };
+
+    username = lib.mkOption {
+      default = "sckova";
+      readOnly = false;
+      type = lib.types.str;
     };
   };
 }

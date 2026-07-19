@@ -1,43 +1,41 @@
 {
   pkgs ? import <nixpkgs> { },
-  themeName ? "bibata",
   baseColor ? "#000000",
-  outlineColor ? "#FFFFFF",
   cursorSizes ? "24",
+  outlineColor ? "#FFFFFF",
+  themeName ? "bibata",
 }:
 
 let
-  version = "2.0.7";
-
   src = pkgs.fetchFromGitHub {
+    hash = "sha256-kIKidw1vditpuxO1gVuZeUPdWBzkiksO/q2R/+DUdEc=";
     owner = "ful1e5";
     repo = "Bibata_Cursor";
     rev = "v${version}";
-    hash = "sha256-kIKidw1vditpuxO1gVuZeUPdWBzkiksO/q2R/+DUdEc=";
   };
-
+  version = "2.0.7";
   yarnOfflineCache = pkgs.fetchYarnDeps {
-    yarnLock = "${src}/yarn.lock";
     hash = "sha256-EpWIGoFFokmzRML2r/dCM+TImOCtii8mifLgnLKdUMY=";
+    yarnLock = "${src}/yarn.lock";
   };
 
 in
 pkgs.stdenv.mkDerivation {
-  pname = "bibata-${themeName}-cursor";
   inherit version src;
-
-  nativeBuildInputs = with pkgs; [
-    yarn
-    nodejs
-    fixup-yarn-lock
-    python3Packages.clickgen
-    autoPatchelfHook
-  ];
 
   buildInputs = with pkgs; [
     # Required to satisfy dynamic linking for prebuilt JS native modules (like resvg-js)
     stdenv.cc.cc.lib
   ];
+
+  buildPhase = /* bash */ ''
+    runHook preBuild
+
+    ./node_modules/.bin/cbmp -d "svg" -o "bitmaps/${themeName}" -bc "${baseColor}" -oc "${outlineColor}"
+    ctgen configs/normal/x.build.toml -s ${cursorSizes} -p x11 -d "bitmaps/${themeName}" -n "${themeName}" -c "${themeName} cursors"
+
+    runHook postBuild
+  '';
 
   configurePhase = /* bash */ ''
     runHook preConfigure
@@ -55,15 +53,6 @@ pkgs.stdenv.mkDerivation {
     runHook postConfigure
   '';
 
-  buildPhase = /* bash */ ''
-    runHook preBuild
-
-    ./node_modules/.bin/cbmp -d "svg" -o "bitmaps/${themeName}" -bc "${baseColor}" -oc "${outlineColor}"
-    ctgen configs/normal/x.build.toml -s ${cursorSizes} -p x11 -d "bitmaps/${themeName}" -n "${themeName}" -c "${themeName} cursors"
-
-    runHook postBuild
-  '';
-
   installPhase = /* bash */ ''
     runHook preInstall
 
@@ -72,6 +61,16 @@ pkgs.stdenv.mkDerivation {
 
     runHook postInstall
   '';
+
+  nativeBuildInputs = with pkgs; [
+    yarn
+    nodejs
+    fixup-yarn-lock
+    python3Packages.clickgen
+    autoPatchelfHook
+  ];
+
+  pname = "bibata-${themeName}-cursor";
 
   meta = with pkgs.lib; {
     description = "Custom colored Bibata Cursor theme built from source";

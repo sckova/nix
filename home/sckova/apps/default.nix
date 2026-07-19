@@ -1,6 +1,6 @@
 {
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -8,6 +8,7 @@
     ./firefox
     ./mpv.nix
   ];
+
   home.packages =
     with pkgs;
     with nur.repos.forkprince;

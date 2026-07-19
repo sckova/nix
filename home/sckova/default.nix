@@ -19,10 +19,9 @@
     ./tiling/paneru.nix
   ];
 
+  email = "kovacsmillio@gmail.com";
   # the user to activate
   name = "Sean Kovacs";
-  username = "sckova";
-  email = "kovacsmillio@gmail.com";
-
   sops.age.keyFile = "/home/sckova/.config/sops/age/keys.txt";
+  username = "sckova";
 }

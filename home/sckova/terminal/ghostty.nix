@@ -1,8 +1,8 @@
 {
-  pkgs,
   config,
-  isLinux,
   lib,
+  pkgs,
+  isLinux,
   ...
 }:
 {
@@ -10,23 +10,25 @@
     enable = true;
     package = with pkgs; if isLinux then ghostty else ghostty-bin;
     enableFishIntegration = true;
-    systemd.enable = lib.mkIf isLinux true;
-    settings = {
-      # https://ghostty.org/docs/linux/systemd
-      quit-after-last-window-closed = lib.mkIf isLinux false;
 
+    settings = {
+      background-blur = lib.mkIf pkgs.stdenv.isDarwin "macos-glass-clear";
+      background-opacity = if isLinux then 0 else 0.9;
+      confirm-close-surface = if isLinux then false else true;
       # https://github.com/ghostty-org/ghostty/discussions/5948
       font-family = config.fonts.mono.name;
       font-size = with config.fonts.mono; if isLinux then size else size + 1;
-      window-padding-x = 4;
-      window-padding-y = 4;
-      confirm-close-surface = if isLinux then false else true;
-      mouse-hide-while-typing = true;
-      mouse-scroll-multiplier = lib.mkIf isLinux "precision:0.25,discrete:0.5";
+
       keybind = [
         "ctrl+k=clear_screen"
         "ctrl+enter=unbind"
       ];
+
+      mouse-hide-while-typing = true;
+      mouse-scroll-multiplier = lib.mkIf isLinux "precision:0.25,discrete:0.5";
+      # https://ghostty.org/docs/linux/systemd
+      quit-after-last-window-closed = lib.mkIf isLinux false;
+
       # comments taken from:
       # https://ghostty.org/docs/config/reference#shell-integration-features
       shell-integration-features = builtins.concatStringsSep "," [
@@ -37,15 +39,20 @@
         "ssh-terminfo" # Enable automatic terminfo installation on remote hosts.
         "path" # Add Ghostty's binary directory to PATH.
       ];
-      background-opacity = if isLinux then 0 else 0.9;
-      background-blur = lib.mkIf pkgs.stdenv.isDarwin "macos-glass-clear";
+
       theme = "nixos";
+      window-padding-x = 4;
+      window-padding-y = 4;
     };
+
+    systemd.enable = lib.mkIf isLinux true;
+
     themes.nixos = with config.scheme.withHashtag; {
       background = base00;
-      foreground = base05;
       cursor-color = base05;
       cursor-text = base00;
+      foreground = base05;
+
       palette = [
         "0=${base02}"
         "1=${base08}"

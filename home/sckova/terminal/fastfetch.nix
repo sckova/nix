@@ -3,139 +3,143 @@
 {
   programs.fastfetch = {
     enable = true;
+
     settings = {
       logo = {
-        type = "builtin";
         height = 15;
+
         padding = {
-          top = 5;
           left = 3;
+          top = 5;
         };
+
+        type = "builtin";
       };
+
       modules = [
         "break"
         {
-          type = "custom";
           format = "{#90}┌──────────────────────Hardware──────────────────────┐";
+          type = "custom";
         }
         {
-          type = "host";
           key = "󰌢  PC";
           keyColor = "green";
+          type = "host";
         }
         {
-          type = "cpu";
           key = "│ ├󰻠 ";
           keyColor = "green";
+          type = "cpu";
         }
         {
-          type = "gpu";
           key = "│ ├󰍹 ";
           keyColor = "green";
+          type = "gpu";
         }
         {
-          type = "memory";
           key = "│ ├󰑭 ";
           keyColor = "green";
+          type = "memory";
         }
         {
-          type = "disk";
           key = "└ └󰋊 ";
           keyColor = "green";
+          type = "disk";
         }
         {
-          type = "custom";
           format = "{#90}└────────────────────────────────────────────────────┘";
+          type = "custom";
         }
         "break"
         {
-          type = "custom";
           format = "{#90}┌──────────────────────Software──────────────────────┐";
+          type = "custom";
         }
         {
-          type = "os";
           key = "  OS";
           keyColor = "yellow";
+          type = "os";
         }
         {
-          type = "kernel";
           key = "│ ├󰌽 ";
           keyColor = "yellow";
+          type = "kernel";
         }
         {
-          type = "bios";
           key = "│ ├󰖡 ";
           keyColor = "yellow";
+          type = "bios";
         }
         {
-          type = "packages";
           key = "│ ├󰏗 ";
           keyColor = "yellow";
+          type = "packages";
         }
         {
-          type = "shell";
           key = "└ └󰞷 ";
           keyColor = "yellow";
+          type = "shell";
         }
         "break"
         {
-          type = "de";
           key = "󰧨  DE";
           keyColor = "blue";
+          type = "de";
         }
         {
-          type = "lm";
           key = "│ ├󰍁 ";
           keyColor = "blue";
+          type = "lm";
         }
         {
-          type = "wm";
           key = "│ ├󱂬 ";
           keyColor = "blue";
+          type = "wm";
         }
         {
-          type = "wmtheme";
           key = "│ ├󰉦 ";
           keyColor = "blue";
+          type = "wmtheme";
         }
         {
-          type = "terminal";
           key = "└ └󰆍 ";
           keyColor = "blue";
+          type = "terminal";
         }
         {
-          type = "custom";
           format = "{#90}└────────────────────────────────────────────────────┘";
+          type = "custom";
         }
         "break"
         {
-          type = "custom";
           format = "{#90}┌────────────────────Uptime / Age / DT────────────────────┐";
+          type = "custom";
         }
         {
-          type = "command";
           key = "  ›  OS Age  ";
           keyColor = "magenta";
           text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
+          type = "command";
         }
         {
-          type = "uptime";
           key = "  ›  Uptime  ";
           keyColor = "magenta";
+          type = "uptime";
         }
         {
-          type = "datetime";
           key = "  ›  DateTime  ";
           keyColor = "magenta";
+          type = "datetime";
         }
         {
-          type = "custom";
           format = "{#90}└─────────────────────────────────────────────────────────┘";
+          type = "custom";
         }
         {
-          type = "colors";
           paddingLeft = 2;
           symbol = "circle";
+          type = "colors";
         }
       ];
     };

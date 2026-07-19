@@ -1,19 +1,15 @@
 {
   lib,
-  stdenv,
-  makeDesktopItem,
-  copyDesktopItems,
   chromium,
+  copyDesktopItems,
+  makeDesktopItem,
+  stdenv,
   writeShellScriptBin,
 }:
 let
-  pname = "spotify-webapp";
-  version = "1.0.0";
-
   chromiumWithWidevine = chromium.override {
     enableWideVine = true;
   };
-
   launchScript = writeShellScriptBin "spotify-webapp" ''
     exec ${chromiumWithWidevine}/bin/chromium \
       --app=https://open.spotify.com \
@@ -24,33 +20,34 @@ let
       --ozone-platform=wayland \
       "$@"
   '';
+  pname = "spotify-webapp";
+  version = "1.0.0";
 in
 stdenv.mkDerivation {
   inherit pname version;
 
-  dontUnpack = true;
-  dontBuild = true;
-
-  nativeBuildInputs = [ copyDesktopItems ];
-
   desktopItems = [
     (makeDesktopItem {
-      name = "spotify-webapp";
-      exec = "spotify-webapp %U";
-      icon = "spotify";
-      desktopName = "Spotify";
-      genericName = "Music Streaming";
-      comment = "Listen to music on Spotify";
       categories = [
         "Audio"
         "Music"
         "AudioVideo"
       ];
+
+      comment = "Listen to music on Spotify";
+      desktopName = "Spotify";
+      exec = "spotify-webapp %U";
+      genericName = "Music Streaming";
+      icon = "spotify";
       mimeTypes = [ "x-scheme-handler/spotify" ];
-      startupWMClass = "spotify-webapp";
+      name = "spotify-webapp";
       startupNotify = true;
+      startupWMClass = "spotify-webapp";
     })
   ];
+
+  dontBuild = true;
+  dontUnpack = true;
 
   installPhase = ''
     runHook preInstall
@@ -61,12 +58,14 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
+  nativeBuildInputs = [ copyDesktopItems ];
+
   meta = with lib; {
     description = "Spotify web app running in Chromium";
     homepage = "https://open.spotify.com";
     license = licenses.free;
+    mainProgram = "spotify-webapp";
     maintainers = [ ];
     platforms = platforms.linux;
-    mainProgram = "spotify-webapp";
   };
 }

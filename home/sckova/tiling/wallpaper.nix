@@ -1,88 +1,9 @@
 {
-  pkgs,
   config,
+  pkgs,
   ...
 }:
 {
-  systemd.user.services.wbg-daemon = {
-    Unit = {
-      Description = "Wallpaper service using wbg (daemon)";
-      After = [ "niri.service" ];
-      X-RestartIfChanged = false;
-      X-SwitchMethod = "keep-old";
-    };
-    Service.ExecStart = /* bash */ ''
-      ${pkgs.wbg}/bin/wbg -s \
-      %h/.local/share/wallpaper/daily-colored.jpg
-    '';
-  };
-
-  systemd.user.services.bing-wallpaper = {
-    Unit.Description = "Download and set Bing wallpaper of the day";
-    Unit.StartLimitBurst = 6;
-    Unit.StartLimitIntervalSec = "10m";
-    Service.Restart = "on-failure";
-    Service.RestartSec = "5s";
-    Service.Type = "oneshot";
-    Service.ExecStart = pkgs.lib.getExe (
-      pkgs.writeShellApplication {
-        name = "bing-wallpaper";
-        runtimeInputs = with pkgs; [
-          wget
-          jq
-          coreutils
-          libnotify
-        ];
-        text = /* bash */ ''
-          while ! wget -q --spider https://www.bing.com; do
-            sleep 1
-          done
-
-          OUT="$HOME/.local/share/wallpaper/daily.jpg"
-          API=$(wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1")
-          API_JQ=$(echo "$API" | jq)
-          BASE=$(echo "$API" | jq -r '.images[0].urlbase')
-          TITLE=$(echo "$API" | jq -r '.images[0].title')
-
-          mkdir -p "$HOME/.local/share/wallpaper"
-          wget -qO "$OUT" "https://www.bing.com''${BASE}_UHD.jpg"
-          printf "%s" "$API_JQ" > "$HOME/.local/share/wallpaper/meta.json"
-
-          notify-send \
-            -a "Wallpaper of the day" \
-            -u low \
-            -i preferences-desktop-wallpaper \
-            "$TITLE"
-        '';
-      }
-    );
-    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user start gowall-convert.service";
-  };
-
-  systemd.user.timers.bing-wallpaper = {
-    Unit.Description = "Run bing wallpaper retrieval daily";
-    Timer.OnCalendar = "*-*-* 10:00:00 GMT";
-    Timer.Persistent = true;
-    Install.WantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.services.gowall-convert = {
-    Unit.Description = "Convert a wallpaper to the system color scheme";
-    Unit.StartLimitBurst = 6;
-    Unit.StartLimitIntervalSec = "10m";
-    Service.Restart = "on-failure";
-    Service.RestartSec = "10s";
-    Service.Type = "oneshot";
-    Service.ExecStart = /* bash */ ''
-      ${pkgs.gowall}/bin/gowall convert \
-      %h/.local/share/wallpaper/daily.jpg \
-      --output %h/.local/share/wallpaper/daily-colored.jpg \
-      -t nix
-    '';
-    Service.ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
-    Install.WantedBy = [ "niri.service" ];
-  };
-
   home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
     themes:
       - name: "nix"
@@ -114,4 +35,109 @@
           - "${base17}"
           - "${base17}"
   '';
+
+  systemd = {
+    user = {
+      services = {
+        bing-wallpaper = {
+          Service = {
+            ExecStart = pkgs.lib.getExe (
+              pkgs.writeShellApplication {
+                name = "bing-wallpaper";
+
+                runtimeInputs = with pkgs; [
+                  wget
+                  jq
+                  coreutils
+                  libnotify
+                ];
+
+                text = /* bash */ ''
+                  while ! wget -q --spider https://www.bing.com; do
+                    sleep 1
+                  done
+
+                  OUT="$HOME/.local/share/wallpaper/daily.jpg"
+                  API=$(wget -qO- "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&mkt=en-US&n=1")
+                  API_JQ=$(echo "$API" | jq)
+                  BASE=$(echo "$API" | jq -r '.images[0].urlbase')
+                  TITLE=$(echo "$API" | jq -r '.images[0].title')
+
+                  mkdir -p "$HOME/.local/share/wallpaper"
+                  wget -qO "$OUT" "https://www.bing.com''${BASE}_UHD.jpg"
+                  printf "%s" "$API_JQ" > "$HOME/.local/share/wallpaper/meta.json"
+
+                  notify-send \
+                    -a "Wallpaper of the day" \
+                    -u low \
+                    -i preferences-desktop-wallpaper \
+                    "$TITLE"
+                '';
+              }
+            );
+
+            ExecStartPost = "${pkgs.systemd}/bin/systemctl --user start gowall-convert.service";
+            Restart = "on-failure";
+            RestartSec = "5s";
+            Type = "oneshot";
+          };
+
+          Unit = {
+            Description = "Download and set Bing wallpaper of the day";
+            StartLimitBurst = 6;
+            StartLimitIntervalSec = "10m";
+          };
+        };
+
+        gowall-convert = {
+          Install.WantedBy = [ "niri.service" ];
+
+          Service = {
+            ExecStart = /* bash */ ''
+              ${pkgs.gowall}/bin/gowall convert \
+              %h/.local/share/wallpaper/daily.jpg \
+              --output %h/.local/share/wallpaper/daily-colored.jpg \
+              -t nix
+            '';
+
+            ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
+            Restart = "on-failure";
+            RestartSec = "10s";
+            Type = "oneshot";
+          };
+
+          Unit = {
+            Description = "Convert a wallpaper to the system color scheme";
+            StartLimitBurst = 6;
+            StartLimitIntervalSec = "10m";
+          };
+        };
+
+        wbg-daemon = {
+          Service.ExecStart = /* bash */ ''
+            ${pkgs.wbg}/bin/wbg -s \
+            %h/.local/share/wallpaper/daily-colored.jpg
+          '';
+
+          Unit = {
+            After = [ "niri.service" ];
+            Description = "Wallpaper service using wbg (daemon)";
+            X-RestartIfChanged = false;
+            X-SwitchMethod = "keep-old";
+          };
+        };
+      };
+
+      timers.bing-wallpaper = {
+        Install.WantedBy = [ "timers.target" ];
+
+        Timer = {
+          OnCalendar = "*-*-* 10:00:00 GMT";
+          Persistent = true;
+        };
+
+        Unit.Description = "Run bing wallpaper retrieval daily";
+      };
+    };
+  };
 }

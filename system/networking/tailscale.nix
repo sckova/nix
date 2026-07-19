@@ -3,11 +3,16 @@
 # in their unit file.
 # https://github.com/tailscale/tailscale/issues/11504#issuecomment-2113331262
 {
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 {
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
+
   systemd.services.tailscaled = {
     serviceConfig.ExecStartPost = pkgs.writeShellScript "tailscale-wait-for-ip" /* bash */ ''
       echo "Waiting for tailscale0 to get an IP address..."
@@ -22,10 +27,5 @@
       echo "Warning: tailscale0 did not get IP address within 15 seconds"
       exit 0
     '';
-  };
-
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "client";
   };
 }

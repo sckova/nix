@@ -1,9 +1,9 @@
 {
   config,
-  osConfig,
-  inputs,
-  pkgs,
   lib,
+  pkgs,
+  inputs,
+  osConfig,
   ...
 }:
 let
@@ -15,10 +15,12 @@ in
     lib.mkIf pkgs.stdenv.isDarwin [
       spotifyd # needed to run 'spotifyd auth'
     ];
+
   launchd.agents = lib.mkIf pkgs.stdenv.isDarwin {
     spotifyd = {
-      enable = true;
       config = {
+        KeepAlive = true;
+
         ProgramArguments = [
           "${pkgs.spotifyd}/bin/spotifyd"
           "--config-path=${
@@ -26,17 +28,26 @@ in
           }"
           "--no-daemon"
         ];
-        KeepAlive = true;
+
         RunAtLoad = true;
         StandardErrorPath = "/tmp/spotifyd.err.log";
         StandardOutPath = "/tmp/spotifyd.out.log";
       };
+
+      enable = true;
     };
   };
-  services.spotifyd.enable = lib.mkIf pkgs.stdenv.isLinux true;
 
   programs.spicetify = lib.mkIf (pkgs.stdenv.hostPlatform.system != "aarch64-linux") {
     enable = true;
+
+    colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
+      if lib.hasPrefix "catppuccin-" config.colors.scheme then
+        lib.removePrefix "catppuccin-" config.colors.scheme
+      else
+        "frappe"
+    );
+
     enabledExtensions = with spicePkgs.extensions; [
       adblockify
       hidePodcasts
@@ -48,106 +59,88 @@ in
       wikify
       sidebarCustomizer
     ];
+
     theme =
       if lib.hasPrefix "catppuccin-" config.colors.scheme then
         spicePkgs.themes.catppuccin
       else
         spicePkgs.themes.defaultDynamic;
-    colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
-      if lib.hasPrefix "catppuccin-" config.colors.scheme then
-        lib.removePrefix "catppuccin-" config.colors.scheme
-      else
-        "frappe"
-    );
   };
 
-  # comments taken from https://docs.spotifyd.rs/configuration/index.html
-  services.spotifyd.settings.global = {
-    #---------#
-    # GENERAL #
-    #---------#
+  services = {
+    spotifyd = {
+      enable = lib.mkIf pkgs.stdenv.isLinux true;
 
-    # The name that gets displayed under the connect tab on
-    # official clients.
-    device_name = "daemon@${osConfig.networking.hostName}";
-
-    # The displayed device type in Spotify clients.
-    # Can be unknown, computer, tablet, smartphone, speaker, t_v,
-    # a_v_r (Audio/Video Receiver), s_t_b (Set-Top Box), and audio_dongle.
-    device_type = "computer";
-
-    # The bus to bind to with the MPRIS interface.
-    # Possible values: "session", "system"
-    # The system bus can be used if no graphical session is available
-    # (e.g. on headless systems) but you still want to be able to use MPRIS.
-    # NOTE: You might need to add appropriate policies to allow spotifyd to
-    # own the name.
-    dbus_type = "session";
-
-    # If set to true, `spotifyd` tries to bind to dbus (default is the session bus)
-    # and expose MPRIS controls. When running headless, without the session bus,
-    # you should set this to false, to avoid errors. If you still want to use MPRIS,
-    # have a look at the `dbus_type` option.
-    use_mpris = pkgs.stdenv.isLinux;
-
-    # The directory used to store credentials and audio cache.
-    # Default: infers a sensible cache directory (e.g. on Linux: $XDG_CACHE_HOME)
-    # Note: The file path does not get expanded. Environment variables and
-    # shell placeholders like $HOME or ~ don't work!
-    # cache_path = "";
-
-    # If set to true, audio data does NOT get cached.
-    # In this case, the cache is only used for credentials.
-    no_audio_cache = false;
-
-    # The maximal size of the cache directory in bytes
-    # The value below corresponds to ~ 10GB
-    max_cache_size = 10000000000;
-
-    #-----------#
-    # DISCOVERY #
-    #-----------#
-
-    # If set to true, this disables zeroconf discovery.
-    # This can be useful, if one prefers to run a single-user instance.
-    disable_discovery = true;
-
-    #-------#
-    # AUDIO #
-    #-------#
-
-    # The audio backend used to play music. To get
-    # a list of possible backends, run `spotifyd --help`.
-    backend = if pkgs.stdenv.isLinux then "alsa" else "portaudio"; # use portaudio for macOS [homebrew]
-
-    # The alsa audio device to stream audio. To get a
-    # list of valid devices, run `aplay -L`,
-    device = lib.mkIf pkgs.stdenv.isLinux "default"; # omit for macOS
-
-    # The volume controller. Each one behaves different to
-    # volume increases. For possible values, run
-    # `spotifyd --help`.
-    volume_controller = if pkgs.stdenv.isLinux then "alsa" else "softvol"; # use softvol for macOS
-
-    # If set to true, enables volume normalisation between songs.
-    volume_normalisation = true;
-
-    # The normalisation pregain that is applied for each song.
-    normalisation_pregain = 0;
-
-    # The audio bitrate. 96, 160 or 320 kbit/s
-    bitrate = 320;
-
-    # Volume on startup between 0 and 100
-    initial_volume = 100;
-
-    #-------ä
-    # OTHER #
-    #-------#
-
-    # After the music playback has ended, start playing similar songs based on the previous tracks.
-    # By default, `spotifyd` infers this setting from the user settings.
-    autoplay = false;
+      # comments taken from https://docs.spotifyd.rs/configuration/index.html
+      settings.global = {
+        #-------ä
+        # OTHER #
+        #-------#
+        # After the music playback has ended, start playing similar songs based on the previous tracks.
+        # By default, `spotifyd` infers this setting from the user settings.
+        autoplay = false;
+        #-------#
+        # AUDIO #
+        #-------#
+        # The audio backend used to play music. To get
+        # a list of possible backends, run `spotifyd --help`.
+        backend = if pkgs.stdenv.isLinux then "alsa" else "portaudio"; # use portaudio for macOS [homebrew]
+        # The audio bitrate. 96, 160 or 320 kbit/s
+        bitrate = 320;
+        # The bus to bind to with the MPRIS interface.
+        # Possible values: "session", "system"
+        # The system bus can be used if no graphical session is available
+        # (e.g. on headless systems) but you still want to be able to use MPRIS.
+        # NOTE: You might need to add appropriate policies to allow spotifyd to
+        # own the name.
+        dbus_type = "session";
+        # The alsa audio device to stream audio. To get a
+        # list of valid devices, run `aplay -L`,
+        device = lib.mkIf pkgs.stdenv.isLinux "default"; # omit for macOS
+        #---------#
+        # GENERAL #
+        #---------#
+        # The name that gets displayed under the connect tab on
+        # official clients.
+        device_name = "daemon@${osConfig.networking.hostName}";
+        # The displayed device type in Spotify clients.
+        # Can be unknown, computer, tablet, smartphone, speaker, t_v,
+        # a_v_r (Audio/Video Receiver), s_t_b (Set-Top Box), and audio_dongle.
+        device_type = "computer";
+        #-----------#
+        # DISCOVERY #
+        #-----------#
+        # If set to true, this disables zeroconf discovery.
+        # This can be useful, if one prefers to run a single-user instance.
+        disable_discovery = true;
+        # Volume on startup between 0 and 100
+        initial_volume = 100;
+        # The maximal size of the cache directory in bytes
+        # The value below corresponds to ~ 10GB
+        max_cache_size = 10000000000;
+        # The directory used to store credentials and audio cache.
+        # Default: infers a sensible cache directory (e.g. on Linux: $XDG_CACHE_HOME)
+        # Note: The file path does not get expanded. Environment variables and
+        # shell placeholders like $HOME or ~ don't work!
+        # cache_path = "";
+        # If set to true, audio data does NOT get cached.
+        # In this case, the cache is only used for credentials.
+        no_audio_cache = false;
+        # The normalisation pregain that is applied for each song.
+        normalisation_pregain = 0;
+        # If set to true, `spotifyd` tries to bind to dbus (default is the session bus)
+        # and expose MPRIS controls. When running headless, without the session bus,
+        # you should set this to false, to avoid errors. If you still want to use MPRIS,
+        # have a look at the `dbus_type` option.
+        use_mpris = pkgs.stdenv.isLinux;
+        # The volume controller. Each one behaves different to
+        # volume increases. For possible values, run
+        # `spotifyd --help`.
+        volume_controller = if pkgs.stdenv.isLinux then "alsa" else "softvol"; # use softvol for macOS
+        # If set to true, enables volume normalisation between songs.
+        volume_normalisation = true;
+      };
+    };
   };
 
 }

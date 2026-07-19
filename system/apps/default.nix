@@ -1,6 +1,6 @@
 {
-  pkgs,
   lib,
+  pkgs,
   users,
   ...
 }:
@@ -9,34 +9,39 @@
     ./obs.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    git
+    firefoxpwa
+  ];
+
   programs = {
+    gamemode.enable = true;
+
     gamescope = {
       enable = true;
-      capSysNice = false;
+
       args = [
         "--expose-wayland"
         "--fullscreen"
       ];
+
+      capSysNice = false;
     };
-    gamemode.enable = true;
   };
 
   services = {
     ananicy = {
       enable = true;
       package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-cpp;
+
       extraRules = [
         {
           "name" = "gamescope";
           "nice" = -20;
         }
       ];
+
+      rulesProvider = pkgs.ananicy-cpp;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    git
-    firefoxpwa
-  ];
 }

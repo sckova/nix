@@ -11,17 +11,11 @@
 
   qt = {
     enable = true;
-    style.name = "kvantum";
-    platformTheme = {
-      name = "qt6ct";
-      package = with pkgs; [
-        libsForQt5.qt5ct
-        qt6Packages.qt6ct
-      ];
-    };
 
     kvantum = {
       enable = true;
+      settings.General.theme = "catppuccin-frappe-blue";
+
       themes = with pkgs; [
         (
           (catppuccin-kvantum.override {
@@ -62,8 +56,8 @@
                   // (
                     if config.colors.accent != "base0D" then
                       {
-                        base0D = cleanScheme.${config.colors.accent};
                         ${config.colors.accent} = cleanScheme.base0D;
+                        base0D = cleanScheme.${config.colors.accent};
                       }
                     else
                       {
@@ -101,10 +95,19 @@
           })
         )
       ];
-      settings.General.theme = "catppuccin-frappe-blue";
+    };
+
+    platformTheme = {
+      package = with pkgs; [
+        libsForQt5.qt5ct
+        qt6Packages.qt6ct
+      ];
+
+      name = "qt6ct";
     };
 
     qt5ctSettings = config.qt.qt6ctSettings;
+
     qt6ctSettings = {
       Appearance = {
         custom_palette = false;
@@ -134,5 +137,7 @@
         wheel_scroll_lines = 3;
       };
     };
+
+    style.name = "kvantum";
   };
 }

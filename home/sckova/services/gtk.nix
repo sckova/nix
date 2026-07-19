@@ -193,66 +193,73 @@ let
   '';
 in
 {
-  home.file = {
-    ".config/gtk-3.0/gtk.css".text = css;
-    ".config/gtk-3.0/colors.css".text = colors;
-    ".config/gtk-4.0/gtk.css".text = css + "\n" + gtk4-exclusive;
-    ".config/gtk-4.0/colors.css".text = colors;
-  };
-
-  gtk = {
-    enable = true;
-    gtk4.theme = null;
-
-    iconTheme = {
-      name = "MoreWaita";
-      package = pkgs.morewaita-icon-theme;
-    };
-
-    cursorTheme = with config.home.pointerCursor; {
-      name = name;
-      package = package;
-      size = size;
-    };
-
-    font = with config.fonts.sans; {
-      name = name;
-      package = package;
-      size = size - 1;
-    };
-
-    gtk3.theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
-    };
-
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-  };
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
       clock-format = "12h";
       clock-show-weekday = true;
+      color-scheme = "prefer-dark";
     };
+
     "org/gnome/desktop/media-handling" = {
       automount = false;
       automount-open = false;
       autorun-never = true;
     };
+
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = "menu:maximize,close";
       action-double-click-titlebar = "\'none\'";
+      button-layout = "menu:maximize,close";
     };
+
+    "org/gnome/mutter" = {
+      dynamic-workspaces = true;
+      edge-tiling = true;
+      experimental-features = [ "variable-refresh-rate" ];
+    };
+
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
-    "org/gnome/mutter" = {
-      edge-tiling = true;
-      dynamic-workspaces = true;
-      experimental-features = [ "variable-refresh-rate" ];
+  };
+
+  gtk = {
+    enable = true;
+
+    cursorTheme = with config.home.pointerCursor; {
+      package = package;
+      name = name;
+      size = size;
     };
+
+    font = with config.fonts.sans; {
+      package = package;
+      name = name;
+      size = size - 1;
+    };
+
+    gtk3 = {
+      extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+
+      theme = {
+        package = pkgs.adw-gtk3;
+        name = "adw-gtk3";
+      };
+    };
+
+    gtk4.theme = null;
+
+    iconTheme = {
+      package = pkgs.morewaita-icon-theme;
+      name = "MoreWaita";
+    };
+  };
+
+  home.file = {
+    ".config/gtk-3.0/colors.css".text = colors;
+    ".config/gtk-3.0/gtk.css".text = css;
+    ".config/gtk-4.0/colors.css".text = colors;
+    ".config/gtk-4.0/gtk.css".text = css + "\n" + gtk4-exclusive;
   };
 }

@@ -1,128 +1,16 @@
 {
-  lib,
   config,
+  lib,
   hostname,
   ...
 }:
 {
-  sops.templates."searxng.env".content = /* bash */ ''
-    SEARXNG_SECRET=${config.sops.placeholder.searxng_secret}
-  '';
-
   services.searx = {
     enable = true;
-    redisCreateLocally = true;
     environmentFile = config.sops.templates."searxng.env".path;
+    redisCreateLocally = true;
+
     settings = {
-      server = {
-        port = 5364;
-        bind_address = if hostname == "alien" then "0.0.0.0" else "127.0.0.1";
-      };
-
-      general = {
-        debug = false;
-        instance_name = "searxng: ${hostname}";
-        donation_url = false;
-        contact_url = false;
-        privacypolicy_url = false;
-        enable_metrics = false;
-      };
-
-      ui = {
-        static_use_hash = true;
-        default_locale = "en";
-        query_in_title = true;
-        infinite_scroll = true;
-        center_alignment = true;
-        default_theme = "simple";
-        theme_args.simple_style = "auto";
-        search_on_category_select = false;
-        hotkeys = "vim";
-      };
-
-      search = {
-        safe_search = 2;
-        autocomplete_min = 2;
-        autocomplete = "duckduckgo";
-        ban_time_on_fail = 5;
-        max_ban_time_on_fail = 120;
-        formats = [
-          "html"
-          "json"
-          "rss"
-        ];
-      };
-
-      engines = lib.mapAttrsToList (name: value: { inherit name; } // value) {
-        "duckduckgo".disabled = true;
-        "brave".disabled = true;
-        "bing".disabled = false;
-        "bing".weight = 0.4;
-        "startpage".disabled = false;
-        "startpage".weight = 2.0;
-        "google".disabled = false;
-        "google".weight = 2.0;
-        "mojeek".disabled = true;
-        "mwmbl".disabled = false;
-        "mwmbl".weight = 0.4;
-        "qwant".disabled = true;
-        "crowdview".disabled = false;
-        "crowdview".weight = 0.5;
-        "curlie".disabled = true;
-        "ddg definitions".disabled = false;
-        "ddg definitions".weight = 2;
-        "wikibooks".disabled = false;
-        "wikidata".disabled = true;
-        "wikiquote".disabled = true;
-        "wikisource".disabled = true;
-        "wikispecies".disabled = false;
-        "wikispecies".weight = 0.5;
-        "wikiversity".disabled = false;
-        "wikiversity".weight = 0.5;
-        "wikivoyage".disabled = false;
-        "wikivoyage".weight = 0.5;
-        "currency".disabled = true;
-        "dictzone".disabled = true;
-        "lingva".disabled = true;
-        "bing images".disabled = false;
-        "brave.images".disabled = true;
-        "duckduckgo images".disabled = true;
-        "google images".disabled = false;
-        "qwant images".disabled = true;
-        "1x".disabled = true;
-        "artic".disabled = false;
-        "deviantart".disabled = false;
-        "flickr".disabled = true;
-        "imgur".disabled = false;
-        "library of congress".disabled = false;
-        "material icons".disabled = true;
-        "material icons".weight = 0.2;
-        "openverse".disabled = false;
-        "pinterest".disabled = true;
-        "svgrepo".disabled = false;
-        "unsplash".disabled = false;
-        "wallhaven".disabled = false;
-        "wikicommons.images".disabled = false;
-        "yacy images".disabled = true;
-        "bing videos".disabled = false;
-        "brave.videos".disabled = true;
-        "duckduckgo videos".disabled = true;
-        "google videos".disabled = false;
-        "qwant videos".disabled = false;
-        "dailymotion".disabled = true;
-        "google play movies".disabled = true;
-        "invidious".disabled = true;
-        "odysee".disabled = true;
-        "peertube".disabled = false;
-        "piped".disabled = true;
-        "rumble".disabled = false;
-        "sepiasearch".disabled = false;
-        "vimeo".disabled = true;
-        "youtube".disabled = false;
-        "brave.news".disabled = true;
-        "google news".disabled = true;
-      };
-
       enabled_plugins = [
         "Basic Calculator"
         "Hash plugin"
@@ -132,6 +20,159 @@
         "Unit converter plugin"
         "Tracker URL remover"
       ];
+
+      engines = lib.mapAttrsToList (name: value: { inherit name; } // value) {
+        "1x".disabled = true;
+        "artic".disabled = false;
+
+        "bing" = {
+          disabled = false;
+          weight = 0.4;
+        };
+
+        "bing images".disabled = false;
+        "bing videos".disabled = false;
+        "brave".disabled = true;
+        "brave.images".disabled = true;
+        "brave.news".disabled = true;
+        "brave.videos".disabled = true;
+
+        "crowdview" = {
+          disabled = false;
+          weight = 0.5;
+        };
+
+        "curlie".disabled = true;
+        "currency".disabled = true;
+        "dailymotion".disabled = true;
+
+        "ddg definitions" = {
+          disabled = false;
+          weight = 2;
+        };
+
+        "deviantart".disabled = false;
+        "dictzone".disabled = true;
+        "duckduckgo".disabled = true;
+        "duckduckgo images".disabled = true;
+        "duckduckgo videos".disabled = true;
+        "flickr".disabled = true;
+
+        "google" = {
+          disabled = false;
+          weight = 2.0;
+        };
+
+        "google images".disabled = false;
+        "google news".disabled = true;
+        "google play movies".disabled = true;
+        "google videos".disabled = false;
+        "imgur".disabled = false;
+        "invidious".disabled = true;
+        "library of congress".disabled = false;
+        "lingva".disabled = true;
+
+        "material icons" = {
+          disabled = true;
+          weight = 0.2;
+        };
+
+        "mojeek".disabled = true;
+
+        "mwmbl" = {
+          disabled = false;
+          weight = 0.4;
+        };
+
+        "odysee".disabled = true;
+        "openverse".disabled = false;
+        "peertube".disabled = false;
+        "pinterest".disabled = true;
+        "piped".disabled = true;
+        "qwant".disabled = true;
+        "qwant images".disabled = true;
+        "qwant videos".disabled = false;
+        "rumble".disabled = false;
+        "sepiasearch".disabled = false;
+
+        "startpage" = {
+          disabled = false;
+          weight = 2.0;
+        };
+
+        "svgrepo".disabled = false;
+        "unsplash".disabled = false;
+        "vimeo".disabled = true;
+        "wallhaven".disabled = false;
+        "wikibooks".disabled = false;
+        "wikicommons.images".disabled = false;
+        "wikidata".disabled = true;
+        "wikiquote".disabled = true;
+        "wikisource".disabled = true;
+
+        "wikispecies" = {
+          disabled = false;
+          weight = 0.5;
+        };
+
+        "wikiversity" = {
+          disabled = false;
+          weight = 0.5;
+        };
+
+        "wikivoyage" = {
+          disabled = false;
+          weight = 0.5;
+        };
+
+        "yacy images".disabled = true;
+        "youtube".disabled = false;
+      };
+
+      general = {
+        contact_url = false;
+        debug = false;
+        donation_url = false;
+        enable_metrics = false;
+        instance_name = "searxng: ${hostname}";
+        privacypolicy_url = false;
+      };
+
+      search = {
+        autocomplete = "duckduckgo";
+        autocomplete_min = 2;
+        ban_time_on_fail = 5;
+
+        formats = [
+          "html"
+          "json"
+          "rss"
+        ];
+
+        max_ban_time_on_fail = 120;
+        safe_search = 2;
+      };
+
+      server = {
+        bind_address = if hostname == "alien" then "0.0.0.0" else "127.0.0.1";
+        port = 5364;
+      };
+
+      ui = {
+        center_alignment = true;
+        default_locale = "en";
+        default_theme = "simple";
+        hotkeys = "vim";
+        infinite_scroll = true;
+        query_in_title = true;
+        search_on_category_select = false;
+        static_use_hash = true;
+        theme_args.simple_style = "auto";
+      };
     };
   };
+
+  sops.templates."searxng.env".content = /* bash */ ''
+    SEARXNG_SECRET=${config.sops.placeholder.searxng_secret}
+  '';
 }

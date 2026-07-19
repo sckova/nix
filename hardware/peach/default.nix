@@ -3,9 +3,9 @@
 # to /etc/nixos/configuration.nix instead.
 {
   lib,
+  pkgs,
   modulesPath,
   inputs,
-  pkgs,
   ...
 }:
 
@@ -16,31 +16,26 @@
   ];
 
   boot = {
+    extraModulePackages = [ ];
+
     initrd = {
       availableKernelModules = [
         "usb_storage"
         "sdhci_pci"
       ];
+
       kernelModules = [ ];
     };
-    kernelModules = [ ];
-    extraModulePackages = [ ];
 
-    # thank you to u/douv:
-    # https://www.reddit.com/r/AsahiLinux/comments/1sb8cby/retro_boot_logo/
-    m1n1CustomLogo = ./apple-rainbow.png;
-    plymouth = lib.mkForce {
-      enable = true;
-      theme = "seamless-asahi";
-      themePackages = [
-        (inputs.seamless-asahi-plymouth.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-          logo = ./apple-rainbow.png;
-        })
-      ];
-      extraConfig = ''
-        DeviceScale=1
-      '';
+    kernel.sysctl = {
+      "vm.max_map_count" = 1048576;
+      "vm.page-cluster" = 0;
+      # (cont.) enable zswap
+      "vm.swappiness" = 100;
+      "vm.watermark_scale_factor" = 125;
     };
+
+    kernelModules = [ ];
 
     kernelParams = [
       # enable zswap (mirrored from fedora asahi remix)
@@ -52,87 +47,82 @@
       # enable the notch
       "appledrm.show_notch=1"
     ];
-    kernel.sysctl = {
-      # (cont.) enable zswap
-      "vm.swappiness" = 100;
-      "vm.page-cluster" = 0;
-      "vm.watermark_scale_factor" = 125;
-      "vm.max_map_count" = 1048576;
+
+    # thank you to u/douv:
+    # https://www.reddit.com/r/AsahiLinux/comments/1sb8cby/retro_boot_logo/
+    m1n1CustomLogo = ./apple-rainbow.png;
+
+    plymouth = lib.mkForce {
+      enable = true;
+
+      extraConfig = ''
+        DeviceScale=1
+      '';
+
+      theme = "seamless-asahi";
+
+      themePackages = [
+        (inputs.seamless-asahi-plymouth.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+          logo = ./apple-rainbow.png;
+        })
+      ];
     };
   };
 
-  nixpkgs.overlays = [
-    inputs.apple-silicon.overlays.apple-silicon-overlay
-    (final: prev: {
-      uboot-asahi = prev.uboot-asahi.overrideAttrs (old: {
-        postConfigure = (old.postConfigure or "") + ''
-          cat >> .config <<'EOF'
-          # CONFIG_VIDEO_LOGO is not set
-          CONFIG_DISPLAY_BOARDINFO_LATE=n
-          CONFIG_BOOTDELAY=0
-          CONFIG_SILENT_CONSOLE=y
-          CONFIG_PREBOOT="setenv silent 1"
-          EOF
-
-          # Regenerate the configuration with new flags
-          make olddefconfig
-        '';
-      });
-    })
-  ];
-
   fileSystems = {
     "/" = {
-      label = "nixos";
-      fsType = "btrfs";
       options = [
         "subvol=root"
         "compress=zstd"
         "relatime"
       ];
-    };
 
-    "/home" = {
-      label = "nixos";
       fsType = "btrfs";
-      options = [
-        "subvol=home"
-        "compress=zstd"
-        "relatime"
-      ];
-    };
-
-    "/nix" = {
       label = "nixos";
-      fsType = "btrfs";
-      options = [
-        "subvol=nix"
-        "compress=zstd"
-        "noatime"
-      ];
     };
 
     "/boot" = {
-      label = "efi";
-      fsType = "vfat";
       options = [
         "fmask=0022"
         "dmask=0022"
         "umask=0077"
       ];
+
+      fsType = "vfat";
+      label = "efi";
+    };
+
+    "/home" = {
+      options = [
+        "subvol=home"
+        "compress=zstd"
+        "relatime"
+      ];
+
+      fsType = "btrfs";
+      label = "nixos";
+    };
+
+    "/nix" = {
+      options = [
+        "subvol=nix"
+        "compress=zstd"
+        "noatime"
+      ];
+
+      fsType = "btrfs";
+      label = "nixos";
     };
   };
 
-  swapDevices = [ { label = "swap"; } ];
-
   hardware.asahi = {
     enable = true;
-    setupAsahiSound = true;
+
     # https://github.com/nix-community/nixos-apple-silicon/issues/299#issuecomment-2901508921
     peripheralFirmwareDirectory = pkgs.requireFile {
-      name = "firmware";
-      hashMode = "recursive";
       hash = "sha256-7Au5t58dBIkZdPoa58Vc3LjSHljiI7L7I3YfuPCvlYI=";
+      hashMode = "recursive";
+
       message = /* bash */ ''
         # you need to add the firmware to the store:
         mkdir hardware/peach/firmware
@@ -140,8 +130,36 @@
         nix-store --add-fixed sha256 --recursive ./hardware/peach/firmware
         nix hash path hardware/peach/firmware
       '';
+
+      name = "firmware";
     };
+
+    setupAsahiSound = true;
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "aarch64-linux";
+
+    overlays = [
+      inputs.apple-silicon.overlays.apple-silicon-overlay
+      (final: prev: {
+        uboot-asahi = prev.uboot-asahi.overrideAttrs (old: {
+          postConfigure = (old.postConfigure or "") + ''
+            cat >> .config <<'EOF'
+            # CONFIG_VIDEO_LOGO is not set
+            CONFIG_DISPLAY_BOARDINFO_LATE=n
+            CONFIG_BOOTDELAY=0
+            CONFIG_SILENT_CONSOLE=y
+            CONFIG_PREBOOT="setenv silent 1"
+            EOF
+
+            # Regenerate the configuration with new flags
+            make olddefconfig
+          '';
+        });
+      })
+    ];
+  };
+
+  swapDevices = [ { label = "swap"; } ];
 }
