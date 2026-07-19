@@ -37,18 +37,18 @@ in
       kernelModules = [ ];
     };
 
+    # enable zswap
     kernel.sysctl = {
       "vm.max_map_count" = 1048576;
       "vm.page-cluster" = 0;
-      # (cont.) enable zswap
       "vm.swappiness" = 100;
       "vm.watermark_scale_factor" = 125;
     };
 
     kernelModules = [ ];
 
+    # enable zswap
     kernelParams = [
-      # enable zswap (mirrored from fedora asahi remix)
       "zswap.enabled=1"
       "zswap.compressor=zstd"
       "zswap.zpool=zsmalloc"
