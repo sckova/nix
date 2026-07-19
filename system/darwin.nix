@@ -7,7 +7,7 @@
 }:
 {
   imports = with inputs; [
-    sops-nix.nixosModules.sops
+    sops-nix.darwinModules.sops
     ../lib
     ../hardware
     # ./apps (has nothing relevant)
