@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   isLinux,
@@ -10,8 +9,6 @@ let
   hasCkovacs = builtins.elem "ckovacs" users;
   hasSckova = builtins.elem "sckova" users;
   linuxConfig = {
-    sops.secrets.sckova_password.neededForUsers = true;
-
     users = {
       groups.shared = { };
       mutableUsers = false;
@@ -38,7 +35,7 @@ let
             "shared"
           ];
 
-          hashedPasswordFile = config.sops.secrets.sckova_password.path;
+          hashedPassword = "$6$amkrG3OSvwlVMziQ$sPkza.Vac/cg66TRETQNmpm9IoUaJA2Zs2NfUU3kBughePWhb6IVYwBhACx.6fA40WehrwiMbCI82nOd5380M/";
           isNormalUser = true;
         };
 
