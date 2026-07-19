@@ -79,7 +79,7 @@
     };
 
     steam-asahi = {
-      url = "git+file:///home/sckova/Projects/steam-asahi";
+      url = "github:sm-idk/steam-asahi";
     };
 
     tt-schemes = {

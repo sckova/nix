@@ -1,19 +1,34 @@
-inputs: final: prev: {
-  inherit (prev.lixPackageSets.stable)
-    nixpkgs-review
-    nix-eval-jobs
-    nix-fast-build
-    colmena
-    ;
+{ inputs, isLinux }:
 
-  bibata-cursor = final.callPackage ./bibata-cursor { };
-  mkxp-z = final.callPackage ./mkxp-z { };
+with inputs;
+(
+  if isLinux then
+    [
+      noctalia.overlays.default
+    ]
+  else
+    [ ]
+)
+++ [
+  nur.overlays.default
+  pedantix.overlays.default
+  (final: prev: {
+    inherit (prev.lixPackageSets.stable)
+      nixpkgs-review
+      nix-eval-jobs
+      nix-fast-build
+      colmena
+      ;
 
-  openmw-unstable = prev.openmw.overrideAttrs (oldAttrs: {
-    pname = "openmw";
-    src = inputs.openmw;
-    version = "${inputs.openmw.rev}";
-  });
+    bibata-cursor = final.callPackage ./bibata-cursor { };
+    mkxp-z = final.callPackage ./mkxp-z { };
 
-  spotify-webapp = final.callPackage ./spotify-webapp { };
-}
+    openmw-unstable = prev.openmw.overrideAttrs (oldAttrs: {
+      pname = "openmw";
+      src = openmw;
+      version = "${openmw.rev}";
+    });
+
+    spotify-webapp = final.callPackage ./spotify-webapp { };
+  })
+]

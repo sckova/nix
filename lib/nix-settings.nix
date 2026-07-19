@@ -1,4 +1,10 @@
-{ pkgs, users, ... }:
+{
+  pkgs,
+  inputs,
+  isLinux,
+  users,
+  ...
+}:
 {
   nix = {
     package = pkgs.lixPackageSets.stable.lix;
@@ -33,4 +39,11 @@
     };
   };
 
+  nixpkgs = {
+    config.allowUnfree = true;
+
+    overlays = import ../packages/overlay.nix {
+      inherit inputs isLinux;
+    };
+  };
 }

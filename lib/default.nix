@@ -4,5 +4,6 @@
     ./options.nix
     ./sops.nix
     ./users.nix
+    ./home-manager.nix
   ];
 }

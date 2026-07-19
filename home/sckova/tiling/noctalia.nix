@@ -2,9 +2,14 @@
   config,
   pkgs,
   hostname,
+  inputs,
   ...
 }:
 {
+  imports = with inputs; [
+    noctalia.homeModules.default
+  ];
+
   programs.noctalia = {
     enable = true;
 

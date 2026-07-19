@@ -1,8 +1,13 @@
 {
   config,
+  inputs,
   ...
 }:
 {
+  imports = with inputs; [
+    paneru.homeModules.paneru
+  ];
+
   services.paneru = {
     enable = true;
 

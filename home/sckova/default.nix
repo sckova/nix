@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../../lib/sops.nix
+    # ../../lib/sops.nix
     ./apps
     ./games
     ./services/spotify.nix
@@ -22,6 +22,5 @@
   email = "kovacsmillio@gmail.com";
   # the user to activate
   name = "Sean Kovacs";
-  sops.age.keyFile = "/home/sckova/.config/sops/age/keys.txt";
   username = "sckova";
 }

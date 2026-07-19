@@ -1,7 +1,9 @@
 {
   config,
+  lib,
   pkgs,
   hostname,
+  isLinux,
   ...
 }:
 {
@@ -9,7 +11,7 @@
     ./${hostname}
   ];
 
-  boot = {
+  boot = lib.mkIf isLinux {
     consoleLogLevel = 0;
     initrd.verbose = false;
 
@@ -34,7 +36,7 @@
     };
   };
 
-  hardware = {
+  hardware = lib.mkIf isLinux {
     bluetooth.enable = true;
     graphics.enable = true;
   };

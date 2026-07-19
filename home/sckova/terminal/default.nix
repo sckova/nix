@@ -1,11 +1,13 @@
 {
   lib,
   pkgs,
+  inputs,
   isLinux,
   ...
 }:
 {
-  imports = [
+  imports = with inputs; [
+    nix-index-database.homeModules.default
     ./btop.nix
     ./fish.nix
     ./fastfetch.nix

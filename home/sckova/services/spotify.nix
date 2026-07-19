@@ -7,13 +7,23 @@
   ...
 }:
 let
+  checkSpotifyAppSupport = builtins.elem osConfig.nixpkgs.hostPlatform.system [
+    "aarch64-darwin"
+    "x86_64-darwin"
+    "x86_64-linux"
+  ];
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in
 {
+  imports = with inputs; [
+    spicetify-nix.homeManagerModules.spicetify
+  ];
+
   home.packages =
     with pkgs;
     lib.mkIf pkgs.stdenv.isDarwin [
-      spotifyd # needed to run 'spotifyd auth'
+      # needed to run 'spotifyd auth' (the home-manager module will add this to the path on linux)
+      spotifyd
     ];
 
   launchd.agents = lib.mkIf pkgs.stdenv.isDarwin {
@@ -38,7 +48,7 @@ in
     };
   };
 
-  programs.spicetify = lib.mkIf (pkgs.stdenv.hostPlatform.system != "aarch64-linux") {
+  programs.spicetify = lib.mkIf checkSpotifyAppSupport {
     enable = true;
 
     colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
