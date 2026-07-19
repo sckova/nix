@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -62,6 +63,37 @@
           '';
 
           description = "Write out the prompt";
+        };
+
+        nix-format = {
+          body = /* fish */ ''
+            set -l target $argv[1]
+            if test -z "$target"
+                set target .
+            end
+
+            set -l files
+
+            if test -d "$target"
+                set files (find "$target" -type f -name '*.nix')
+            else if test -f "$target"
+                set files "$target"
+            else
+                echo "nix-format: '$target' is not a file or directory" >&2
+                return 1
+            end
+
+            if test (count $files) -eq 0
+                echo "nix-format: no .nix files found under '$target'" >&2
+                return 0
+            end
+
+            ${lib.getExe pkgs.nixfmt} $files
+            ${lib.getExe pkgs.pedantix} --formatter off $files
+            ${lib.getExe pkgs.nixfmt} $files
+          '';
+
+          description = "Run neovim's nix formatter chain on file or directory";
         };
 
         nix-shell = {
