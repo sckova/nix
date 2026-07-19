@@ -35,14 +35,14 @@
       };
 
       "oracle" = {
-        HostName = "vips.taila30609.ts.net";
-        User = "ubuntu";
+        HostName = "vix.taila30609.ts.net";
+        Port = 2468;
       };
 
       "ovips.us.to" = {
         HostName = "ovips.us.to";
-        Port = 222;
-        User = "git";
+        Port = 2468;
+        User = "forgejo";
       };
 
       "peach" = {
