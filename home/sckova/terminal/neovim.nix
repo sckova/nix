@@ -4,9 +4,15 @@
   lib,
   isLinux,
   hostname,
+  inputs,
   ...
 }:
 {
+  imports = with inputs; [
+    nixvim.homeModules.nixvim
+    pedantix.homeModules.default
+  ];
+
   home.sessionVariables.EDITOR = lib.mkForce "nvim";
 
   home.packages = with pkgs; [
@@ -17,6 +23,23 @@
     black
     clang-tools
   ];
+
+  programs.pedantix = {
+    enable = true;
+    settings = {
+      formatter = "off"; # use nixfmt independently
+      format-after-sort = false;
+      format-before-sort = false;
+      preset = "nixos-module";
+      attrs = {
+        blank-lines = 1; # number of blank lines between bindings
+        merge = true; # merge into nested sets
+      };
+      lets = {
+        sort = true; # reorder things
+      };
+    };
+  };
 
   programs.nixvim = {
     enable = true;
@@ -235,6 +258,7 @@
             python = [ "black" ];
             nix = [
               "nixfmt"
+              "pedantix"
               "injected"
             ];
             html = [ "prettier" ];
@@ -247,11 +271,21 @@
             cpp = [ "clang-format" ];
           };
           default_format_opts.lsp_format = "fallback";
-          format_on_save.timeout_ms = 500;
-          formatters.shfmt.append_args = [
-            "-i"
-            "2"
-          ];
+          format_on_save = {
+            timeout_ms = 500;
+            run_all_formatters = true;
+          };
+          formatters = {
+            shfmt.append_args = [
+              "-i"
+              "2"
+            ];
+            pedantix = {
+              command = lib.getExe pkgs.pedantix;
+              args = [ "$FILENAME" ];
+              stdin = false;
+            };
+          };
         };
       };
 

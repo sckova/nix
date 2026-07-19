@@ -28,6 +28,7 @@
     config.allowUnfree = true;
     overlays = with inputs; [
       nur.overlays.default
+      pedantix.overlays.default
       (import ../packages/overlay.nix inputs)
     ];
   };
@@ -61,7 +62,6 @@
       )
       noctalia.homeModules.default
       paneru.homeModules.paneru
-      nixvim.homeModules.nixvim
       nix-index-database.homeModules.default
       spicetify-nix.homeManagerModules.spicetify
     ];

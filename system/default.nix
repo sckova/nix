@@ -26,6 +26,7 @@
   nixpkgs.overlays = with inputs; [
     noctalia.overlays.default
     nur.overlays.default
+    pedantix.overlays.default
     (import ../packages/overlay.nix inputs)
   ];
 
@@ -55,7 +56,6 @@
         }
       )
       noctalia.homeModules.default
-      nixvim.homeModules.nixvim
       nix-index-database.homeModules.default
       spicetify-nix.homeManagerModules.spicetify
     ];

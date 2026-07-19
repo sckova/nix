@@ -4,6 +4,10 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-26.05";
     };
+    pedantix = {
+      url = "github:swarsel/pedantix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
