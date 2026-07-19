@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    # ../../lib/sops.nix
+    ../../lib/sops.nix
     ./apps
     ./games
     ./services/spotify.nix
