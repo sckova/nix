@@ -2,7 +2,6 @@
   lib,
   pkgs,
   inputs,
-  isLinux,
   ...
 }:
 {
@@ -21,7 +20,7 @@
   home = {
     file.".gnupg/gpg-agent.conf".text = ''
       pinentry-program ${
-        if isLinux then
+        if pkgs.stdenv.isLinux then
           "${pkgs.pinentry-curses}/bin/pinentry-curses"
         else
           "${pkgs.pinentry_mac}/bin/pinentry-mac"
@@ -38,7 +37,7 @@
         pigz
         comma
       ]
-      ++ lib.optionals isLinux [
+      ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [

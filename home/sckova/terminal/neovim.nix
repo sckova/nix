@@ -4,7 +4,6 @@
   pkgs,
   hostname,
   inputs,
-  isLinux,
   ...
 }:
 {
@@ -33,7 +32,7 @@
       clipboard = {
         providers = {
           pbcopy.enable = pkgs.stdenv.isDarwin;
-          wl-copy.enable = isLinux;
+          wl-copy.enable = pkgs.stdenv.isLinux;
         };
 
         register = "unnamedplus";
@@ -457,7 +456,7 @@
 
       viAlias = true;
       vimAlias = true;
-      waylandSupport = isLinux;
+      waylandSupport = pkgs.stdenv.isLinux;
     };
 
     pedantix = {
