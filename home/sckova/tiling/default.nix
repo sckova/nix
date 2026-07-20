@@ -199,42 +199,46 @@
     };
   };
 
-  systemd = {
-    user = {
-      services = {
-        swaylock = {
-          Install.WantedBy = [ "niri.service" ];
+  services = {
+    tailscale-systray = {
+      enable = true;
+      theme = "dark:nobg";
+    };
 
-          Service = {
-            ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
-            Restart = "on-failure";
-          };
+  };
 
-          Unit = {
-            After = [ "niri.service" ];
-            Description = "Screen locker";
-            Documentation = "https://github.com/swaywm/swaylock";
-            PartOf = [ "niri.service" ];
-          };
-        };
+  systemd.user.services = {
+    swaylock = {
+      Install.WantedBy = [ "niri.service" ];
 
-        vicinae = {
-          Install.WantedBy = [ "niri.service" ];
+      Service = {
+        ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
+        Restart = "on-failure";
+      };
 
-          Service = {
-            ExecStart = "${pkgs.vicinae}/bin/vicinae server";
-            KillMode = "process";
-            Restart = "always";
-            RestartSec = 5;
-            Type = "simple";
-          };
+      Unit = {
+        After = [ "niri.service" ];
+        Description = "Screen locker";
+        Documentation = "https://github.com/swaywm/swaylock";
+        PartOf = [ "niri.service" ];
+      };
+    };
 
-          Unit = {
-            After = [ "niri.service" ];
-            Description = "Vicinae server daemon";
-            Documentation = "https://docs.vicinae.com";
-          };
-        };
+    vicinae = {
+      Install.WantedBy = [ "niri.service" ];
+
+      Service = {
+        ExecStart = "${pkgs.vicinae}/bin/vicinae server";
+        KillMode = "process";
+        Restart = "always";
+        RestartSec = 5;
+        Type = "simple";
+      };
+
+      Unit = {
+        After = [ "niri.service" ];
+        Description = "Vicinae server daemon";
+        Documentation = "https://docs.vicinae.com";
       };
     };
   };

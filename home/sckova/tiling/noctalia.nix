@@ -80,7 +80,7 @@
         capsule_group = [
           {
             fill = "surface_variant";
-            id = "g2";
+            id = "g1";
 
             members = [
               "cpu"
@@ -93,7 +93,14 @@
           }
           {
             fill = "surface_variant";
-            id = "g1";
+            id = "g2";
+            members = [ "tray" ];
+            opacity = 1.0;
+            padding = 10.0;
+          }
+          {
+            fill = "surface_variant";
+            id = "g3";
 
             members = [
               "battery"
@@ -111,7 +118,8 @@
 
         end = [
           "media"
-          "group:g1"
+          "group:g2"
+          "group:g3"
           "date"
         ];
 
@@ -126,7 +134,7 @@
         start = [
           "CustomLauncher"
           "workspaces"
-          "group:g2"
+          "group:g1"
           "active_window"
         ];
 
