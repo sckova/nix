@@ -24,7 +24,7 @@
           ${pkgs.coreutils}/bin/mkdir -p $HOME/Synology || true
 
           # Unmount stale mount if present
-          ${pkgs.utillinux}/bin/umount $HOME/Synology || true
+          ${pkgs.util-linux}/bin/umount $HOME/Synology || true
 
           # Mount rclone in foreground
           ${pkgs.rclone}/bin/rclone \
@@ -63,7 +63,7 @@
           ${pkgs.coreutils}/bin/mkdir -p $HOME/Scans || true
 
           # Unmount stale mount if present
-          ${pkgs.utillinux}/bin/umount $HOME/Scans || true
+          ${pkgs.util-linux}/bin/umount $HOME/Scans || true
 
           # Mount rclone in foreground
           ${pkgs.rclone}/bin/rclone \
