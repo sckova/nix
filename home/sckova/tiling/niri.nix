@@ -540,6 +540,7 @@
       XCURSOR_THEME = config.cursor.name;
     };
 
+    gestures.hot-corners.off = { };
     hotkey-overlay.skip-at-startup = { };
 
     # --- Input ---
