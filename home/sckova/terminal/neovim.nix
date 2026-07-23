@@ -465,6 +465,7 @@
       settings = {
         attrs = {
           blank-lines = 1; # number of blank lines between bindings
+          flatten = true; # flatten single subvalues into their parent
           merge = true; # merge into nested sets
         };
 
