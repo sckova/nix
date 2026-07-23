@@ -103,6 +103,7 @@
             id = "g3";
 
             members = [
+              "volume"
               "battery"
               "brightness"
               "control-center"
@@ -113,7 +114,7 @@
           }
         ];
 
-        center = [ ];
+        center = [ "weather" ];
         contact_shadow = true;
 
         end = [
@@ -143,6 +144,7 @@
 
       brightness.enable_ddcutil = if hostname == "peach" then false else true;
       desktop_widgets.enabled = false;
+      location.address = "Atlanta, US";
 
       lockscreen_widgets = {
         enabled = false;
@@ -206,6 +208,8 @@
         monitors."eDP-1".path = "/home/sckova/.local/share/wallpaper/daily-colored.jpg";
       };
 
+      weather.unit = "imperial";
+
       widget = {
         CustomLauncher = {
           capsule = true;
@@ -266,6 +270,13 @@
         temp = {
           capsule = true;
           show_label = false;
+        };
+
+        volume.show_label = false;
+
+        weather = {
+          capsule = true;
+          capsule_padding = 10;
         };
 
         workspaces = {
