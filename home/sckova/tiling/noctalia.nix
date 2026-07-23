@@ -85,7 +85,7 @@
             members = [
               "cpu"
               "ram"
-              "sysmon"
+              "storage"
             ];
 
             opacity = 1.0;
@@ -103,9 +103,11 @@
             id = "g3";
 
             members = [
-              "volume"
+              "microphone"
+              "speaker"
               "battery"
               "brightness"
+              "network"
               "control-center"
             ];
 
@@ -114,6 +116,7 @@
           }
         ];
 
+        capsule_thickness = 0.75;
         center = [ "weather" ];
         contact_shadow = true;
 
@@ -256,20 +259,28 @@
           capsule_padding = 10.0;
         };
 
+        microphone = {
+          device = "input";
+          show_label = false;
+          type = "volume";
+        };
+
+        network.show_label = false;
+
         ram = {
           capsule = true;
           show_label = false;
+        };
+
+        speaker = {
+          show_label = false;
+          type = "volume";
         };
 
         sysmon = {
           capsule = true;
           show_label = false;
           stat = "disk_pct";
-        };
-
-        temp = {
-          capsule = true;
-          show_label = false;
         };
 
         volume.show_label = false;
