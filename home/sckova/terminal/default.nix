@@ -36,6 +36,7 @@
         rclone
         pigz
         comma
+        difftastic
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard

@@ -74,6 +74,7 @@
       settings = {
         commit.gpgsign = true;
         core.pager = "${pkgs.bat}/bin/bat";
+        diff.external = "${pkgs.difftastic}/bin/difft";
         init.defaultBranch = "main";
         safe.directory = "/home/nix";
 
