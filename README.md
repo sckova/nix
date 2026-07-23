@@ -1,7 +1,5 @@
 # My NixOS Configuration
 
-![Screenshot of the desktop](./src/screenshot.png)
-
 <pre><code>systems = {
   # a MacBook Pro M2 running Asahi NixOS
   <a href="https://ovips.us.to/git/sckova/nix/src/branch/main/home/hosts/peach/default.nix">peach</a> = {
