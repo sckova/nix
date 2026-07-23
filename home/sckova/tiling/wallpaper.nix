@@ -4,38 +4,6 @@
   ...
 }:
 {
-  home.file.".config/gowall/config.yml".text = with config.scheme.withHashtag; /* yaml */ ''
-    themes:
-      - name: "nix"
-        colors:
-          - "${base00}"
-          - "${base01}"
-          - "${base02}"
-          - "${base03}"
-          - "${base04}"
-          - "${base05}"
-          - "${base06}"
-          - "${base07}"
-          - "${base08}"
-          - "${base09}"
-          - "${base0A}"
-          - "${base0B}"
-          - "${base0C}"
-          - "${base0D}"
-          - "${base0E}"
-          - "${base0F}"
-          - "${base10}"
-          - "${base11}"
-          - "${base12}"
-          - "${base13}"
-          - "${base14}"
-          - "${base15}"
-          - "${base16}"
-          - "${base17}"
-          - "${base17}"
-          - "${base17}"
-  '';
-
   systemd.user = {
     services = {
       bing-wallpaper = {
@@ -137,5 +105,40 @@
 
       Unit.Description = "Run bing wallpaper retrieval daily";
     };
+  };
+
+  xdg.configFile."gowall/config.yml".source = (pkgs.formats.yaml { }).generate "gowall-config" {
+    themes = [
+      {
+        colors = with config.scheme.withHashtag; [
+          base00
+          base01
+          base02
+          base03
+          base04
+          base05
+          base06
+          base07
+          base08
+          base09
+          base0A
+          base0B
+          base0C
+          base0D
+          base0E
+          base0F
+          base10
+          base11
+          base12
+          base13
+          base14
+          base15
+          base16
+          base17
+        ];
+
+        name = "nix";
+      }
+    ];
   };
 }
