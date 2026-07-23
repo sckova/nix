@@ -7,13 +7,8 @@
       url = "github:nyakase/aerothemeplasma-nix";
     };
 
-    apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
-    };
-
-    base16 = {
-      url = "github:SenchoPens/base16.nix";
-    };
+    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
+    base16.url = "github:SenchoPens/base16.nix";
 
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,9 +25,7 @@
       url = "github:nix-community/nix-index-database";
     };
 
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-26.05";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,13 +67,8 @@
       url = "github:Mic92/sops-nix";
     };
 
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-    };
-
-    steam-asahi = {
-      url = "github:sm-idk/steam-asahi";
-    };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    steam-asahi.url = "github:sm-idk/steam-asahi";
 
     tt-schemes = {
       flake = false;
@@ -111,9 +99,7 @@
             }
           )
           {
-            skmbp = {
-              users = [ "sckova" ];
-            };
+            skmbp.users = [ "sckova" ];
           };
 
       nixosConfigurations =
@@ -131,16 +117,12 @@
             }
           )
           {
-            alien = {
-              users = [
-                "sckova"
-                "ckovacs"
-              ];
-            };
+            alien.users = [
+              "sckova"
+              "ckovacs"
+            ];
 
-            peach = {
-              users = [ "sckova" ];
-            };
+            peach.users = [ "sckova" ];
           };
     };
 }

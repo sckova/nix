@@ -23,23 +23,19 @@
     package = pkgs.mpv;
     bindings = { };
 
-    scriptOpts = {
-      uosc = {
-        color =
-          with config.scheme;
-          lib.concatStringsSep "," (
-            lib.mapAttrsToList (key: value: "${key}=${value}") {
-              background = base00;
-              background_text = base05;
-              curtain = base10;
-              error = base08;
-              foreground = config.scheme.${config.colors.accent};
-              foreground_text = base01;
-              success = base0B;
-            }
-          );
-      };
-    };
+    scriptOpts.uosc.color =
+      with config.scheme;
+      lib.concatStringsSep "," (
+        lib.mapAttrsToList (key: value: "${key}=${value}") {
+          background = base00;
+          background_text = base05;
+          curtain = base10;
+          error = base08;
+          foreground = config.scheme.${config.colors.accent};
+          foreground_text = base01;
+          success = base0B;
+        }
+      );
 
     scripts =
       with pkgs.mpvScripts;

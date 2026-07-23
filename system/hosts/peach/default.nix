@@ -41,9 +41,6 @@ in
 
   # Optional: Add your user to the "docker" group to run docker without sudo
   users.users.sckova.extraGroups = [ "docker" ];
-
   # In /etc/nixos/configuration.nix
-  virtualisation.docker = {
-    enable = true;
-  };
+  virtualisation.docker.enable = true;
 }

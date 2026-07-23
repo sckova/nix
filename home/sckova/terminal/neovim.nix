@@ -283,9 +283,7 @@
           };
         };
 
-        fzf-lua = {
-          enable = true;
-        };
+        fzf-lua.enable = true;
 
         lsp = {
           enable = true;
@@ -295,10 +293,7 @@
               enable = true;
 
               settings = {
-                options = {
-                  nixos.expr = "(builtins.getFlake \"/home/sckova/nix\").nixosConfigurations.${hostname}.options";
-                };
-
+                options.nixos.expr = "(builtins.getFlake \"/home/sckova/nix\").nixosConfigurations.${hostname}.options";
                 formatting.command = [ "nixfmt" ];
                 nixpkgs.expr = "import <nixpkgs> { }";
               };
@@ -339,16 +334,12 @@
                     fg = base05;
                   };
 
-                  c = {
-                    fg = base05;
-                  };
+                  c.fg = base05;
                 };
 
-                insert = {
-                  a = {
-                    bg = base0D;
-                    fg = base00;
-                  };
+                insert.a = {
+                  bg = base0D;
+                  fg = base00;
                 };
 
                 normal = {
@@ -362,23 +353,17 @@
                     fg = base05;
                   };
 
-                  c = {
-                    fg = base05;
-                  };
+                  c.fg = base05;
                 };
 
-                replace = {
-                  a = {
-                    bg = base08;
-                    fg = base00;
-                  };
+                replace.a = {
+                  bg = base08;
+                  fg = base00;
                 };
 
-                visual = {
-                  a = {
-                    bg = base0C;
-                    fg = base00;
-                  };
+                visual.a = {
+                  bg = base0C;
+                  fg = base00;
                 };
               };
             };
@@ -399,10 +384,7 @@
                 {
                   __unkeyed-1 = "mode";
                   right_padding = 2;
-
-                  separator = {
-                    left = "  ";
-                  };
+                  separator.left = "  ";
                 }
               ];
 
@@ -423,10 +405,7 @@
                 {
                   __unkeyed-1 = "location";
                   left_padding = 2;
-
-                  separator = {
-                    right = "  ";
-                  };
+                  separator.right = "  ";
                 }
               ];
             };
@@ -443,14 +422,12 @@
           highlight.enable = true;
           indent.enable = false;
 
-          settings = {
-            ensure_installed = [
-              "nix"
-              "css"
-              "markdown"
-              "markdown_inline"
-            ];
-          };
+          settings.ensure_installed = [
+            "nix"
+            "css"
+            "markdown"
+            "markdown_inline"
+          ];
         };
       };
 

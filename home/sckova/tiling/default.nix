@@ -79,9 +79,7 @@
           size = 11;
         };
 
-        keybinds = {
-          open-settings = "ctrl+super+S";
-        };
+        keybinds.open-settings = "ctrl+super+S";
 
         launcher_window = {
           client_side_decorations.enabled = true;
@@ -199,12 +197,9 @@
     };
   };
 
-  services = {
-    tailscale-systray = {
-      enable = true;
-      theme = "dark:nobg";
-    };
-
+  services.tailscale-systray = {
+    enable = true;
+    theme = "dark:nobg";
   };
 
   systemd.user.services = {

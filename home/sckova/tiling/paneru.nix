@@ -32,13 +32,11 @@
         window_resize = "cmd - r";
       };
 
-      decorations = {
-        active.border = {
-          color = config.scheme.withHashtag.${config.colors.accent};
-          enabled = true;
-          radius = 8.0;
-          width = 2.0;
-        };
+      decorations.active.border = {
+        color = config.scheme.withHashtag.${config.colors.accent};
+        enabled = true;
+        radius = 8.0;
+        width = 2.0;
       };
 
       padding = {

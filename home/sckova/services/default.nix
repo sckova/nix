@@ -12,17 +12,15 @@
   ];
 
   home = {
-    file = {
-      ".icons/default/index.theme" = {
-        force = true;
+    file.".icons/default/index.theme" = {
+      force = true;
 
-        text = /* ini */ ''
-          [Icon Theme]
-          Name=Default
-          Comment=Default Cursor Theme
-          Inherits=${config.cursor.name}
-        '';
-      };
+      text = /* ini */ ''
+        [Icon Theme]
+        Name=Default
+        Comment=Default Cursor Theme
+        Inherits=${config.cursor.name}
+      '';
     };
 
     packages = with pkgs; [

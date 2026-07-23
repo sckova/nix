@@ -217,9 +217,7 @@ in
       experimental-features = [ "variable-refresh-rate" ];
     };
 
-    "org/gnome/settings-daemon/plugins/power" = {
-      sleep-inactive-ac-type = "nothing";
-    };
+    "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
   };
 
   gtk = {
@@ -238,9 +236,7 @@ in
     };
 
     gtk3 = {
-      extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-      };
+      extraConfig.gtk-application-prefer-dark-theme = true;
 
       theme = {
         package = pkgs.adw-gtk3;

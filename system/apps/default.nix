@@ -29,19 +29,17 @@
     };
   };
 
-  services = {
-    ananicy = {
-      enable = true;
-      package = pkgs.ananicy-cpp;
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-cpp;
 
-      extraRules = [
-        {
-          "name" = "gamescope";
-          "nice" = -20;
-        }
-      ];
+    extraRules = [
+      {
+        "name" = "gamescope";
+        "nice" = -20;
+      }
+    ];
 
-      rulesProvider = pkgs.ananicy-cpp;
-    };
+    rulesProvider = pkgs.ananicy-cpp;
   };
 }

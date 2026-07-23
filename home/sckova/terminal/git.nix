@@ -55,11 +55,7 @@
       settings = {
         accessible_colors = "disabled";
         accessible_prompter = "disabled";
-
-        aliases = {
-          co = "pr checkout";
-        };
-
+        aliases.co = "pr checkout";
         browser = "${pkgs.firefox}/bin/firefox";
         color_labels = "enabled";
         editor = "${pkgs.neovim}/bin/nvim";

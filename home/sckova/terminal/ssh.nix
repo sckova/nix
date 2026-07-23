@@ -26,13 +26,8 @@
         WarnWeakCrypto = "no";
       };
 
-      "alien" = {
-        HostName = "alien.taila30609.ts.net";
-      };
-
-      "nas" = {
-        HostName = "nas.taila30609.ts.net";
-      };
+      "alien".HostName = "alien.taila30609.ts.net";
+      "nas".HostName = "nas.taila30609.ts.net";
 
       "oracle" = {
         HostName = "vix.taila30609.ts.net";
@@ -45,13 +40,8 @@
         User = "forgejo";
       };
 
-      "peach" = {
-        HostName = "peach.taila30609.ts.net";
-      };
-
-      "skmbp" = {
-        HostName = "skmbp.taila30609.ts.net";
-      };
+      "peach".HostName = "peach.taila30609.ts.net";
+      "skmbp".HostName = "skmbp.taila30609.ts.net";
     };
   };
 }
