@@ -37,6 +37,7 @@
         pigz
         comma
         difftastic
+        waypipe
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard
