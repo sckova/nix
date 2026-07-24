@@ -39,6 +39,7 @@
         comma
         difftastic
         waypipe
+        nixd
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard

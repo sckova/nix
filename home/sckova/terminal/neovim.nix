@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  hostname,
   inputs,
   ...
 }:
@@ -28,6 +27,14 @@
   programs = {
     nixvim = {
       enable = true;
+
+      autoCmd = [
+        {
+          command = "lua require('otter').activate({'bash'}, true, true, nil)";
+          event = [ "FileType" ];
+          pattern = [ "nix" ];
+        }
+      ];
 
       clipboard = {
         providers = {
@@ -185,7 +192,7 @@
           };
 
           action = "za";
-          key = "<C-Space>";
+          key = "<leader><Space>";
           mode = "n";
         }
 
@@ -204,6 +211,18 @@
             "n"
             "v"
           ];
+        }
+        # --- Run FzfLua ---
+        {
+          options = {
+            desc = "run fzf to find files";
+            noremap = true;
+            silent = true;
+          };
+
+          action = "<cmd>FzfLua files<CR>";
+          key = "<leader>ff";
+          mode = "n";
         }
       ];
 
@@ -237,11 +256,30 @@
       };
 
       plugins = {
+        cmp = {
+          enable = true;
+
+          settings = {
+            mapping = {
+              "<C-Space>" = "cmp.mapping.complete()";
+              "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            };
+
+            sources = [
+              { name = "nvim_lsp"; }
+              { name = "buffer"; }
+              { name = "path"; }
+            ];
+          };
+        };
+
         conform-nvim = {
           enable = true;
 
           settings = {
-            default_format_opts.lsp_format = "fallback";
+            default_format_opts.lsp_format = "last";
 
             format_on_save = {
               run_all_formatters = true;
@@ -250,9 +288,8 @@
 
             formatters = {
               pedantix = {
-                args = [ "$FILENAME" ];
                 command = lib.getExe pkgs.pedantix;
-                stdin = false;
+                stdin = true;
               };
 
               shfmt.append_args = [
@@ -271,13 +308,7 @@
               json = [ "prettier" ];
               jsonc = [ "prettier" ];
               lua = [ "stylua" ];
-
-              nix = [
-                "nixfmt"
-                "pedantix"
-                "injected"
-              ];
-
+              nix = [ "injected" ];
               python = [ "black" ];
             };
           };
@@ -289,22 +320,32 @@
           enable = true;
 
           servers = {
-            nixd = {
+            bashls.enable = true;
+
+            nil_ls = {
               enable = true;
 
               settings = {
-                options =
-                  let
-                    configPath = "(builtins.getFlake \"/home/sckova/Projects/nix\").nixosConfigurations.${hostname}.options";
-                  in
-                  {
-                    home-manager.expr = configPath;
-                    nix-darwin.expr = configPath;
-                    nixos.expr = configPath;
+                formatting.command = [
+                  (pkgs.writeShellScript "nix-format-integrated" /* bash */ ''
+                    set -o pipefail
+                    ${lib.getExe pkgs.nixfmt} \
+                    | ${lib.getExe pkgs.pedantix} \
+                    | ${lib.getExe pkgs.nixfmt}
+                  '')
+                ];
+
+                nix = {
+                  binary = "/run/current-system/sw/bin/nix";
+
+                  flake = {
+                    autoArchive = true;
+                    autoEvalInputs = true;
+                    nixpkgsInputName = "nixpkgs";
                   };
 
-                formatting.command = [ "nixfmt" ];
-                nixpkgs.expr = "import <nixpkgs> { }";
+                  maxMemoryMB = 8192;
+                };
               };
             };
 
@@ -424,6 +465,7 @@
         };
 
         nvim-autopairs.enable = true;
+        otter.enable = true;
         render-markdown.enable = true;
 
         treesitter = {
@@ -436,6 +478,7 @@
             "css"
             "markdown"
             "markdown_inline"
+            "bash"
           ];
         };
       };
@@ -457,7 +500,7 @@
 
         format-after-sort = false;
         format-before-sort = false;
-        formatter = "off"; # use nixfmt independently
+        formatter = "off"; # use nixfmt via nixd
 
         lets = {
           sort = true; # reorder things
