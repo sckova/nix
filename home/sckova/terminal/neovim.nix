@@ -293,7 +293,16 @@
               enable = true;
 
               settings = {
-                options.nixos.expr = "(builtins.getFlake \"/home/sckova/nix\").nixosConfigurations.${hostname}.options";
+                options =
+                  let
+                    configPath = "(builtins.getFlake \"/home/sckova/Projects/nix\").nixosConfigurations.${hostname}.options";
+                  in
+                  {
+                    home-manager.expr = configPath;
+                    nix-darwin.expr = configPath;
+                    nixos.expr = configPath;
+                  };
+
                 formatting.command = [ "nixfmt" ];
                 nixpkgs.expr = "import <nixpkgs> { }";
               };

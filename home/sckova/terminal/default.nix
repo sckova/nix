@@ -15,6 +15,7 @@
     ./neovim.nix
     ./ssh.nix
     ./ytfp.nix
+    ./vscode.nix
   ];
 
   home = {
