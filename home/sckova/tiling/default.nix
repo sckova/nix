@@ -4,6 +4,7 @@
     ./niri.nix
     ./noctalia.nix
     ./wallpaper.nix
+    ./wluma.nix
   ];
 
   home.packages = with pkgs; [
