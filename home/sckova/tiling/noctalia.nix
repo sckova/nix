@@ -257,6 +257,8 @@
         media = {
           capsule = true;
           capsule_padding = 10.0;
+          max_length = 450;
+          title_scroll = "always";
         };
 
         microphone = {
@@ -312,8 +314,8 @@
       Documentation = "https://docs.noctalia.dev";
 
       X-Restart-Triggers = [
-        "${config.xdg.configFile."noctalia/config.toml".source}"
-        "${config.xdg.configFile."noctalia/palettes/nixos.json".source}"
+        config.xdg.configFile."noctalia/config.toml".source
+        config.xdg.configFile."noctalia/palettes/nixos.json".source
       ];
     };
   };
