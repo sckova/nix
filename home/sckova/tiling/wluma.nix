@@ -72,7 +72,7 @@
           ddcutil = [
             {
               capturer = "none";
-              name = "DP-1";
+              name = "M32UC";
             }
           ];
         };
