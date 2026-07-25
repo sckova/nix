@@ -7,6 +7,12 @@
   users,
   ...
 }:
+let
+  pkgs-unstable = import inputs.nixpkgs-unstable {
+    config.allowUnfree = true;
+    system = pkgs.stdenv.hostPlatform.system;
+  };
+in
 {
   imports =
     with inputs;
@@ -21,7 +27,7 @@
 
   home-manager = {
     extraSpecialArgs = {
-      inherit hostname inputs;
+      inherit hostname inputs pkgs-unstable;
       isLinux = pkgs.stdenv.hostPlatform.isLinux;
     };
 
