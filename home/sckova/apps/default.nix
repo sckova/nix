@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -15,7 +16,7 @@
     [
       helium-nightly # web browser
       audacity # audio tool
-      musescore # music scoring
+      pkgs-unstable.musescore # music scoring
     ]
     ++ lib.optionals stdenv.isLinux [
       calibre # ebook tool
