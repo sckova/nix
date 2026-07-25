@@ -215,9 +215,9 @@
 
       widget = {
         CustomLauncher = {
+          actions.left = "exec vicinae toggle";
           capsule = true;
           capsule_padding = 10.0;
-          command = "vicinae toggle";
           glyph = "search";
           type = "custom_button";
         };
@@ -279,10 +279,10 @@
           type = "volume";
         };
 
-        sysmon = {
-          capsule = true;
+        storage = {
           show_label = false;
-          stat = "disk_pct";
+          stat = "disk_used_pct";
+          type = "sysmon";
         };
 
         volume.show_label = false;
