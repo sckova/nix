@@ -189,6 +189,7 @@
               { match._props.app-id = "^org.gnome.Fractal$"; }
               { match._props.app-id = "^firefox$"; }
               { match._props.app-id = "^org.gnome.Snapshot$"; }
+              { match._props.app-id = "^org.gnome.Papers$"; }
               { match._props.app-id = "^vicinae$"; }
             ];
 

@@ -17,6 +17,7 @@
       helium-nightly # web browser
       audacity # audio tool
       pkgs-unstable.musescore # music scoring
+      papers # GNOME's document viewer
     ]
     ++ lib.optionals stdenv.isLinux [
       calibre # ebook tool

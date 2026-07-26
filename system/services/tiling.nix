@@ -30,6 +30,8 @@
   };
 
   services = {
+    desktopManager.gnome.enable = true;
+
     displayManager = {
       autoLogin = {
         enable = true;
@@ -40,7 +42,12 @@
       gdm.enable = true;
     };
 
-    gnome.gnome-keyring.enable = true;
+    gnome = {
+      core-apps.enable = true;
+      games.enable = true;
+      gnome-keyring.enable = true;
+      sushi.enable = true;
+    };
   };
 
   systemd.user.services.gnome-keyring = {
