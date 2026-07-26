@@ -210,6 +210,20 @@
       "Ctrl+Alt+Delete".quit = { };
       "Ctrl+Shift+S".screenshot-screen._props.show-pointer = false;
 
+      "Ctrl+Shift+XF86AudioLowerVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "0.01-"
+      ];
+
+      "Ctrl+Shift+XF86AudioRaiseVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "0.01+"
+      ];
+
       "Ctrl+Shift+XF86MonBrightnessDown".spawn._args = [
         "${pkgs.brightnessctl}/bin/brightnessctl"
         "-d"
@@ -228,6 +242,27 @@
         "leds"
         "set"
         "+1%"
+      ];
+
+      "Ctrl+XF86AudioLowerVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "0.05-"
+      ];
+
+      "Ctrl+XF86AudioMute".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-mute"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "toggle"
+      ];
+
+      "Ctrl+XF86AudioRaiseVolume".spawn._args = [
+        "${pkgs.wireplumber}/bin/wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SOURCE@"
+        "0.05+"
       ];
 
       "Ctrl+XF86MonBrightnessDown".spawn._args = [
@@ -324,14 +359,6 @@
       "Mod+I".focus-workspace-up = { };
       # --- Window & Column Management ---
       "Mod+Left".focus-column-left = { };
-
-      "Mod+M".spawn._args = [
-        "${pkgs.wireplumber}/bin/wpctl"
-        "set-mute"
-        "@DEFAULT_AUDIO_SOURCE@"
-        "toggle"
-      ];
-
       "Mod+Minus".set-column-width._args = [ "-10%" ];
       "Mod+O".toggle-overview = { };
       # --- Workspaces ---
