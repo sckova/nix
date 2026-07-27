@@ -15,6 +15,8 @@
       url = "github:nix-community/home-manager/release-26.05";
     };
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
     nix-darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";
