@@ -15,6 +15,7 @@
       url = "github:nix-community/home-manager/release-26.05";
     };
 
+    impermanence.url = "github:nix-community/impermanence";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     nix-darwin = {

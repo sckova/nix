@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   hostname,
   isLinux,
@@ -43,5 +44,8 @@
 // {
   imports = [
     ./${hostname}
+  ]
+  ++ lib.optionals isLinux [
+    ./impermanence.nix
   ];
 }

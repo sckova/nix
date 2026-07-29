@@ -12,6 +12,7 @@
 {
   imports = with inputs; [
     sops-nix.nixosModules.sops
+    impermanence.nixosModules.impermanence
     ../lib
     ./apps
     ./services
