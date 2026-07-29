@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  osConfig,
   ...
 }:
 {
@@ -57,21 +56,29 @@
     enable = true;
 
     associations.added = {
+      "application/pdf" = [ "org.gnome.Papers.desktop" ];
       "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
       "image/png" = [ "org.gnome.Loupe.desktop" ];
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "text/plain" = [ "nvim.desktop" ];
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+      "x-scheme-handler/geo" = [ "org.gnome.Maps.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "x-scheme-handler/spotify" = [ "riff.desktop" ];
     };
 
     defaultApplications = {
+      # Archives (GNOME File Roller)
+      "application/gzip" = [ "org.gnome.FileRoller.desktop" ];
       "application/json" = [ "nvim.desktop" ];
       "application/msword" = [ "libreoffice-writer.desktop" ]; # doc
-      # Documents
-      "application/pdf" = [ "firefox.desktop" ]; # Or libreoffice-draw.desktop
+      # Documents & Viewers (GNOME Papers)
+      "application/oxps" = [ "org.gnome.Papers.desktop" ];
+      "application/pdf" = [ "org.gnome.Papers.desktop" ];
+      # Spreadsheets & Office (LibreOffice)
       "application/vnd.ms-excel" = [ "libreoffice-calc.desktop" ]; # xls
+      "application/vnd.ms-xpsdocument" = [ "org.gnome.Papers.desktop" ];
       "application/vnd.oasis.opendocument.spreadsheet" = [ "libreoffice-calc.desktop" ]; # ods
       "application/vnd.oasis.opendocument.text" = [ "libreoffice-writer.desktop" ]; # odt
 
@@ -83,17 +90,33 @@
         "libreoffice-writer.desktop"
       ]; # docx
 
+      "application/x-7z-compressed" = [ "org.gnome.FileRoller.desktop" ];
       # Torrents
       "application/x-bittorrent" = [ "org.qbittorrent.qBittorrent.desktop" ];
+      "application/x-bzip2-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-cbr" = [ "org.gnome.Papers.desktop" ];
+      "application/x-cbz" = [ "org.gnome.Papers.desktop" ];
+      "application/x-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-ext-djvu" = [ "org.gnome.Papers.desktop" ];
+      "application/x-rar" = [ "org.gnome.FileRoller.desktop" ];
       "application/x-shellscript" = [ "nvim.desktop" ];
+      "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-xz-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
+      "application/zip" = [ "org.gnome.FileRoller.desktop" ];
+      # Audio
       "audio/flac" = [ "mpv.desktop" ];
       "audio/mpeg" = [ "mpv.desktop" ];
       "audio/wav" = [ "mpv.desktop" ];
+      # Fonts (GNOME Font Viewer)
+      "font/otf" = [ "org.gnome.font-viewer.desktop" ];
+      "font/ttf" = [ "org.gnome.font-viewer.desktop" ];
+      "font/woff" = [ "org.gnome.font-viewer.desktop" ];
+      "font/woff2" = [ "org.gnome.font-viewer.desktop" ];
+      # Images (GNOME Loupe)
       "image/avif" = [ "org.gnome.Loupe.desktop" ];
       "image/bmp" = [ "org.gnome.Loupe.desktop" ];
       "image/gif" = [ "org.gnome.Loupe.desktop" ];
       "image/heic" = [ "org.gnome.Loupe.desktop" ];
-      # Images
       "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
       "image/jxl" = [ "org.gnome.Loupe.desktop" ];
       "image/png" = [ "org.gnome.Loupe.desktop" ];
@@ -113,8 +136,9 @@
       "image/x-portable-pixmap" = [ "org.gnome.Loupe.desktop" ];
       "image/x-qoi" = [ "org.gnome.Loupe.desktop" ];
       "image/x-tga" = [ "org.gnome.Loupe.desktop" ];
-      # File Management
+      # File Management & System
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "text/calendar" = [ "org.gnome.Calendar.desktop" ];
       "text/html" = [ "firefox.desktop" ];
       "text/markdown" = [ "nvim.desktop" ];
       # Text & Code
@@ -123,18 +147,17 @@
       "text/x-c++" = [ "nvim.desktop" ];
       "text/x-makefile" = [ "nvim.desktop" ];
       "text/x-python" = [ "nvim.desktop" ];
+      # Video
       "video/mkv" = [ "mpv.desktop" ];
-      # Media
       "video/mp4" = [ "mpv.desktop" ];
       "video/webm" = [ "mpv.desktop" ];
-      # Communication & Social
+      # URI Handlers
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
-      # Web
+      "x-scheme-handler/geo" = [ "org.gnome.Maps.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "x-scheme-handler/magnet" = [ "org.qbittorrent.qBittorrent.desktop" ];
       "x-scheme-handler/spotify" = [ "riff.desktop" ];
-      # Terminal
       "x-scheme-handler/terminal" = [ "ghostty.desktop" ];
     };
   };

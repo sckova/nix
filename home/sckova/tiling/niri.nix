@@ -136,6 +136,18 @@
                   title = ".* - Helium$";
                 };
               }
+              {
+                match._props.app-id = "^org.gnome.FileRoller$";
+              }
+              {
+                match._props.app-id = "^org.gnome.Maps$";
+              }
+              {
+                match._props.app-id = "^org.gnome.font-viewer$";
+              }
+              {
+                match._props.app-id = "^org.gnome.Calendar$";
+              }
             ];
 
             opacity = 1.00;

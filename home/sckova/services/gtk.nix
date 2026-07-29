@@ -194,6 +194,9 @@ let
 in
 {
   dconf.settings = {
+    "org/gnome/desktop/background".picture-uri =
+      "files:///home/${config.home.homeDirectory}/.local/share/wallpaper/daily-colored.jpg";
+
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       clock-show-weekday = true;
@@ -236,6 +239,16 @@ in
     };
 
     gtk3 = {
+      bookmarks = [
+        "file://${config.home.homeDirectory}/Documents"
+        "file://${config.home.homeDirectory}/Downloads"
+        "file://${config.home.homeDirectory}/Music"
+        "file://${config.home.homeDirectory}/Pictures"
+        "file://${config.home.homeDirectory}/Projects"
+        "file://${config.home.homeDirectory}/Templates"
+        "file://${config.home.homeDirectory}/Videos"
+      ];
+
       extraConfig.gtk-application-prefer-dark-theme = true;
 
       theme = {
