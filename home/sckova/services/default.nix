@@ -63,8 +63,8 @@
       "text/plain" = [ "nvim.desktop" ];
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
       "x-scheme-handler/geo" = [ "org.gnome.Maps.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "helium.desktop" ];
+      "x-scheme-handler/https" = [ "helium.desktop" ];
       "x-scheme-handler/spotify" = [ "riff.desktop" ];
     };
 
@@ -139,7 +139,7 @@
       # File Management & System
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
       "text/calendar" = [ "org.gnome.Calendar.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
+      "text/html" = [ "helium.desktop" ];
       "text/markdown" = [ "nvim.desktop" ];
       # Text & Code
       "text/plain" = [ "nvim.desktop" ];
@@ -154,8 +154,8 @@
       # URI Handlers
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
       "x-scheme-handler/geo" = [ "org.gnome.Maps.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "helium.desktop" ];
+      "x-scheme-handler/https" = [ "helium.desktop" ];
       "x-scheme-handler/magnet" = [ "org.qbittorrent.qBittorrent.desktop" ];
       "x-scheme-handler/spotify" = [ "riff.desktop" ];
       "x-scheme-handler/terminal" = [ "ghostty.desktop" ];
