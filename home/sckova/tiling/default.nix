@@ -70,7 +70,7 @@
         };
 
         favorites = [
-          "applications:firefox"
+          "applications:helium"
           # "@Ninetonine/searxng:search-with-searxng"
           "clipboard:history"
         ];
