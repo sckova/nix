@@ -90,7 +90,7 @@
             block-out-from = "screen-capture";
           };
         }
-        # for games that we want 100% opacity and windowed fullscreen for
+        # for games and apps that we want 100% opacity and windowed fullscreen for
         {
           window-rule = {
             _children = [
@@ -128,6 +128,12 @@
                 match._props = {
                   app-id = "net.kuribo64.melonDS";
                   title = "^melonDS.*";
+                };
+              }
+              {
+                match._props = {
+                  app-id = "^helium$";
+                  title = ".* - Helium$";
                 };
               }
             ];
