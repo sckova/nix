@@ -22,6 +22,7 @@
       ".mozilla"
       ".config/mozilla"
       ".config/gh"
+      ".config/net.imput.helium"
       ".local/share/PrismLauncher"
       ".local/share/fish"
       ".local/share/wallpaper"
