@@ -40,6 +40,7 @@
         difftastic
         waypipe
         nixd
+        inputs.nox.packages.${system}.default
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard

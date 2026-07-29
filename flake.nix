@@ -41,6 +41,11 @@
       url = "github:noctalia-dev/noctalia/main";
     };
 
+    nox = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:madsbv/nix-options-search";
+    };
+
     nur = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/NUR";
