@@ -26,6 +26,7 @@
       ".local/share/PrismLauncher"
       ".local/share/fish"
       ".local/share/wallpaper"
+      ".local/share/fractal"
       ".config/age"
       ".config/openmw"
       ".local/share/openmw"
