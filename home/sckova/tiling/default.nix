@@ -89,33 +89,35 @@
 
         pop_to_root_on_close = true;
 
+        providers = {
+          files.preferences.autoIndexing = false;
+          #   "@mattisssa/spotify-player" = {
+          #     entrypoints = {
+          #       addPlayingSongToPlaylist.enabled = true;
+          #       copyArtistAndTitle.enabled = true;
+          #       toggleShuffle.enabled = true;
+          #       queue.enabled = true;
+          #     };
+          #   };
+          #   "@Ninetonine/searxng" = {
+          #     preferences = {
+          #       instance_domain = "http://localhost:5364";
+          #       default_category = "general";
+          #       engines = "";
+          #       keep_previous_search = false;
+          #       languages = "";
+          #     };
+          #     entrypoints.search-with-searxng.alias = "@s";
+          #   };
+          #   "@samlinville/tailscale".preferences = {
+          #     tailscalePath = "/run/current-system/sw/bin/tailscale";
+          #   };
+        };
+
         theme.dark = {
           icon_theme = config.gtk.iconTheme.name;
           name = "nixos";
         };
-        # providers = {
-        #   "@mattisssa/spotify-player" = {
-        #     entrypoints = {
-        #       addPlayingSongToPlaylist.enabled = true;
-        #       copyArtistAndTitle.enabled = true;
-        #       toggleShuffle.enabled = true;
-        #       queue.enabled = true;
-        #     };
-        #   };
-        #   "@Ninetonine/searxng" = {
-        #     preferences = {
-        #       instance_domain = "http://localhost:5364";
-        #       default_category = "general";
-        #       engines = "";
-        #       keep_previous_search = false;
-        #       languages = "";
-        #     };
-        #     entrypoints.search-with-searxng.alias = "@s";
-        #   };
-        #   "@samlinville/tailscale".preferences = {
-        #     tailscalePath = "/run/current-system/sw/bin/tailscale";
-        #   };
-        # };
       };
 
       systemd.enable = true;
