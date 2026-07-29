@@ -183,7 +183,7 @@
               {
                 match._props = {
                   app-id = "^mpv$";
-                  title = ".* - mpv \(nix\)$";
+                  title = ".* - mpv \\\\(nix\\\\)$";
                 };
               }
               { match._props.app-id = "^org.gnome.Fractal$"; }
