@@ -10,6 +10,16 @@
 {
   services.tailscale = {
     enable = true;
+
+    extraUpFlags = [
+      "--accept-dns"
+      "--accept-routes"
+      "--exit-node=vix"
+      "--exit-node-allow-lan-access=false"
+      "--operator=sckova"
+      "--ssh"
+    ];
+
     useRoutingFeatures = "client";
   };
 
