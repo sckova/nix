@@ -48,33 +48,60 @@ in
     };
   };
 
-  programs.spicetify = lib.mkIf checkSpotifyAppSupport {
-    enable = true;
+  programs = {
+    spicetify = lib.mkIf checkSpotifyAppSupport {
+      enable = true;
 
-    colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
-      if lib.hasPrefix "catppuccin-" config.colors.scheme then
-        lib.removePrefix "catppuccin-" config.colors.scheme
-      else
-        "frappe"
-    );
+      colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
+        if lib.hasPrefix "catppuccin-" config.colors.scheme then
+          lib.removePrefix "catppuccin-" config.colors.scheme
+        else
+          "frappe"
+      );
 
-    enabledExtensions = with spicePkgs.extensions; [
-      adblockify
-      hidePodcasts
-      shuffle # shuffle+ (special characters are sanitized out of extension names)
-      powerBar
-      playlistIcons
-      fullAlbumDate
-      skipStats
-      wikify
-      sidebarCustomizer
-    ];
+      enabledExtensions = with spicePkgs.extensions; [
+        adblockify
+        hidePodcasts
+        shuffle # shuffle+ (special characters are sanitized out of extension names)
+        powerBar
+        playlistIcons
+        fullAlbumDate
+        skipStats
+        wikify
+        sidebarCustomizer
+      ];
 
-    theme =
-      if lib.hasPrefix "catppuccin-" config.colors.scheme then
-        spicePkgs.themes.catppuccin
-      else
-        spicePkgs.themes.defaultDynamic;
+      theme =
+        if lib.hasPrefix "catppuccin-" config.colors.scheme then
+          spicePkgs.themes.catppuccin
+        else
+          spicePkgs.themes.defaultDynamic;
+    };
+
+    spotify-player = {
+      enable = true;
+
+      settings = {
+        actions = [
+          {
+            action = "ToggleLiked";
+            key_sequence = "C-l";
+          }
+        ];
+
+        copy_command.command = if pkgs.stdenv.isLinux then "wl-copy" else "pbcopy";
+
+        device = {
+          audio_cache = false;
+          autoplay = false;
+          bitrate = 320;
+          device_type = "speaker";
+          name = "player@${osConfig.networking.hostName}";
+          normalization = false;
+          volume = 100;
+        };
+      };
+    };
   };
 
   services.spotifyd = {

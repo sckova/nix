@@ -21,6 +21,7 @@
       }
       ".mozilla"
       ".cache/spotifyd" # credentials are stored here
+      ".cache/spotify-player" # ...and here
       ".config/mozilla"
       ".config/gh"
       ".config/net.imput.helium"
