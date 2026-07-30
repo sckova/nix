@@ -20,6 +20,7 @@
         mode = "0700";
       }
       ".mozilla"
+      ".cache/spotifyd" # credentials are stored here
       ".config/mozilla"
       ".config/gh"
       ".config/net.imput.helium"
