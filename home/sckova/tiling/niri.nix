@@ -90,7 +90,7 @@
             block-out-from = "screen-capture";
           };
         }
-        # for games and apps that we want 100% opacity and windowed fullscreen for
+        # for games that we want 100% opacity and windowed fullscreen for
         {
           window-rule = {
             _children = [
@@ -130,49 +130,11 @@
                   title = "^melonDS.*";
                 };
               }
-              {
-                match._props = {
-                  app-id = "^helium$";
-                  title = ".* - Helium$";
-                };
-              }
-              {
-                match._props.app-id = "^org.gnome.FileRoller$";
-              }
-              {
-                match._props.app-id = "^org.gnome.Maps$";
-              }
-              {
-                match._props.app-id = "^org.gnome.font-viewer$";
-              }
-              {
-                match._props.app-id = "^org.gnome.Calendar$";
-              }
             ];
 
             opacity = 1.00;
             open-focused = true;
             open-maximized = true;
-          };
-        }
-        {
-          window-rule = {
-            _children = [
-              {
-                match._props = {
-                  app-id = "firefox";
-                  title = "Picture-in-Picture";
-                };
-              }
-              {
-                match._props = {
-                  app-id = "";
-                  title = "Picture in picture";
-                };
-              }
-            ];
-
-            opacity = 1.0;
           };
         }
         # Ghostty Fastfetch window
@@ -196,19 +158,41 @@
         {
           window-rule = {
             _children = [
+              { match._props.app-id = "^firefox$"; }
+              { match._props.app-id = "^vicinae$"; }
               { match._props.app-id = "^com.mitchellh.ghostty$"; }
+              { match._props.app-id = "^org.gnome.Calendar$"; }
+              { match._props.app-id = "^org.gnome.FileRoller$"; }
+              { match._props.app-id = "^org.gnome.Fractal$"; }
+              { match._props.app-id = "^org.gnome.Maps$"; }
               { match._props.app-id = "^org.gnome.Nautilus$"; }
+              { match._props.app-id = "^org.gnome.font-viewer$"; }
+              { match._props.app-id = "^org.gnome.Papers$"; }
+              { match._props.app-id = "^org.gnome.Snapshot$"; }
               {
                 match._props = {
                   app-id = "^mpv$";
                   title = ".* - mpv \\\\(nix\\\\)$";
                 };
               }
-              { match._props.app-id = "^org.gnome.Fractal$"; }
-              { match._props.app-id = "^firefox$"; }
-              { match._props.app-id = "^org.gnome.Snapshot$"; }
-              { match._props.app-id = "^org.gnome.Papers$"; }
-              { match._props.app-id = "^vicinae$"; }
+              {
+                match._props = {
+                  app-id = "firefox";
+                  title = "Picture-in-Picture";
+                };
+              }
+              {
+                match._props = {
+                  app-id = "";
+                  title = "Picture in picture";
+                };
+              }
+              {
+                match._props = {
+                  app-id = "^helium$";
+                  title = ".* - Helium$";
+                };
+              }
             ];
 
             opacity = 1.0;
