@@ -53,9 +53,9 @@
 
         "deviantart".disabled = false;
         "dictzone".disabled = true;
-        "duckduckgo".disabled = true;
-        "duckduckgo images".disabled = true;
-        "duckduckgo videos".disabled = true;
+        "duckduckgo".disabled = false;
+        "duckduckgo images".disabled = false;
+        "duckduckgo videos".disabled = false;
         "flickr".disabled = true;
 
         "google" = {
