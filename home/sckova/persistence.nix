@@ -29,9 +29,16 @@
       ".local/share/fish"
       ".local/share/wallpaper"
       ".local/share/fractal"
+      ".local/share/folks"
+      ".local/share/openmw"
+      ".local/share/Steam"
+      ".local/share/Archipelago"
+      ".local/share/Celeste"
+      ".local/share/soh"
+      ".local/share/Paradox Interactive"
+      ".local/share/"
       ".config/age"
       ".config/openmw"
-      ".local/share/openmw"
     ];
 
     hideMounts = true;

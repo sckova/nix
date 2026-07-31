@@ -87,6 +87,7 @@
 
       defaultEditor = true;
       enablePrintInit = true;
+      globals.mapleader = "\\";
 
       highlight = {
         CursorLineNr = {
@@ -100,8 +101,7 @@
         };
 
         FoldColumn = {
-          bg = "NONE";
-          # the color of the fold icons and backdrop
+          bg = "NONE"; # the color of the fold icons and backdrop
           fg = config.scheme.withHashtag.base04;
         };
 
@@ -160,6 +160,17 @@
           key = "<C-p>";
           mode = "n";
         }
+        {
+          options = {
+            desc = "Format buffer";
+            noremap = true;
+            silent = true;
+          };
+
+          action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<CR>";
+          key = "<leader>fa";
+          mode = "n";
+        }
 
         # --- Visual mode mappings ---
         {
@@ -199,7 +210,7 @@
         # --- Toggle Markdown for current file ---
         {
           options = {
-            desc = "Toggle Markdown rendering";
+            desc = "toggle Markdown rendering";
             noremap = true;
             silent = true;
           };

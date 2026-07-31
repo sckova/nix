@@ -21,7 +21,6 @@
     ]
     ++ lib.optionals stdenv.isLinux [
       calibre # ebook tool
-      strawberry # mp3 player
       nautilus # file browser
       fractal # matrix client
       tuba # mastodon client
