@@ -4,6 +4,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   isLinux,
   ...
 }:
@@ -17,54 +18,6 @@ let
 in
 {
   home.file = {
-    "${firefoxProfilePath}/default/chrome/" = {
-      force = true;
-      recursive = true;
-      source = ./css;
-    };
-
-    "${firefoxProfilePath}/default/chrome/colors.css" = {
-      force = true;
-
-      text =
-        let
-          toRgb =
-            prefix:
-            "rgb(${toString config.scheme."${prefix}-rgb-r"},${toString config.scheme."${prefix}-rgb-g"},${
-              toString config.scheme."${prefix}-rgb-b"
-            })";
-        in
-        /* css */ ''
-          * {
-            --accent: ${toRgb config.colors.accent};
-            --base00: ${toRgb "base00"}; /* base */
-            --base01: ${toRgb "base01"}; /* surface0 */
-            --base02: ${toRgb "base02"}; /* surface1 */
-            --base03: ${toRgb "base03"}; /* overlay0 */
-            --base04: ${toRgb "base04"}; /* subtext0 */
-            --base05: ${toRgb "base05"}; /* text */
-            --base06: ${toRgb "base06"}; /* rosewater */
-            --base07: ${toRgb "base07"}; /* lavender */
-            --base08: ${toRgb "base08"}; /* red */
-            --base09: ${toRgb "base09"}; /* peach */
-            --base0A: ${toRgb "base0A"}; /* yellow */
-            --base0B: ${toRgb "base0B"}; /* green */
-            --base0C: ${toRgb "base0C"}; /* teal */
-            --base0D: ${toRgb "base0D"}; /* blue */
-            --base0E: ${toRgb "base0E"}; /* mauve */
-            --base0F: ${toRgb "base0F"}; /* flamingo */
-            --base10: ${toRgb "base10"}; /* mantle - darker background */
-            --base11: ${toRgb "base11"}; /* crust - darkest background */
-            --base12: ${toRgb "base12"}; /* maroon - bright red */
-            --base13: ${toRgb "base13"}; /* rosewater - bright yellow */
-            --base14: ${toRgb "base14"}; /* green - bright green */
-            --base15: ${toRgb "base15"}; /* sky - bright cyan */
-            --base16: ${toRgb "base16"}; /* sapphire - bright blue */
-            --base17: ${toRgb "base17"}; /* pink - bright purple */
-          }
-        '';
-    };
-
     ".local/share/firefoxpwa/profiles/01KEYXH9TC4B54J5CTPNE75JP0/prefs.js" = {
       force = true;
 
@@ -130,6 +83,7 @@ in
         # "force_installed" and "normal_installed".
         ExtensionSettings = {
           "*".installation_mode = "blocked"; # force declarative installation
+          "ATBC@EasonWong".installation_mode = "allowed"; # adaptive tab bar color
           "CanvasBlocker@kkapsner.de".installation_mode = "allowed"; # canvas blocker
           "deArrow@ajay.app".installation_mode = "allowed"; # dearrow
           "firefoxpwa@filips.si".installation_mode = "allowed"; # firefoxpwa
@@ -199,6 +153,7 @@ in
             canvasblocker
             shinigami-eyes
             vimium
+            adaptive-tab-bar-colour
           ];
 
           settings = {
@@ -208,12 +163,13 @@ in
             };
 
             "{d867162c-4c38-4c5f-aca4-db6a6592d7da}".settings = {
-              alwaysShowProgBar = true;
+              alwaysShowProgBar = false;
               autoExpandComments = true;
               compactButtons = true;
               compactHeaderBar = false;
               compactLeftSidebar = true;
               customProgBar = "";
+              darkThemes = "Catppuccin Mocha";
               decreaseFontSize = true;
               dimWatchVideos = "85-100%";
               dimWatchVideos2 = "85-100%";
@@ -221,13 +177,14 @@ in
               dimWatchVideos4 = "85-100%";
               dimWatchVideos5 = "85-100%";
               fixChannelLinks = true;
-              flipVideo = false;
-              fullscreenTheaterMode = true;
+              flipVideo = "";
+              fullscreenTheaterMode = false;
               gridSearchResults = true;
               hideClipButton = true;
               hideControlsOnPause = false;
               hideDownloadButton = true;
               hideEndCards = "autoHide";
+              hideExplore = true;
               hideLatestYouTubePosts = true;
               hideLiveStreams = "both";
               hideLiveStreams3 = "both";
@@ -235,17 +192,19 @@ in
               hideMixes = true;
               hideMixes2 = true;
               hideMixes3 = true;
+              hideMoreFromYt = true;
               hideProfilePictures = true;
               hideRecommendationBar = true;
               hideRightSidebar = true;
               hideSaveButton = true;
               hideSearchResults = true;
-              hideShareButton = true;
+              hideShareButton = false;
               hideShorts = true;
               hideShorts2 = true;
               hideShorts3 = true;
               hideShorts4 = true;
               hideShorts5 = true;
+              hideShortsButton = true;
               hideThanksButton = true;
               hideUpcoming = true;
               hideUpcoming2 = true;
@@ -256,13 +215,14 @@ in
               hideWatchVideos5 = "";
               keepProgBarAtBottom = false;
               maxNumOfColumns = "3";
-              perChannelVideoSpeed = false;
-              pinVideoOnScroll = false;
+              perChannelVideoSpeed = "";
+              pinVideoOnScroll = "";
+              progBarColor = "hsla(0; 100%; 50%; 1)";
               sResultsInNewTab = true;
               scrollUpButton = "";
               showFullVideoTitles = true;
-              showProgBarOutsidePlayer = false;
-              sidebarComments = false;
+              showProgBarOutsidePlayer = true;
+              sidebarComments = "";
               vfBlur = 5;
               vfOpacity = 0.5;
               videoDescription = "Expanded";
@@ -273,6 +233,7 @@ in
               videosPerRow = true;
               vqFallback = "highest";
               watchVideoOpacity = 0.3;
+              ytLogoSubsPage = false;
             };
           };
         };
@@ -407,11 +368,13 @@ in
           "browser.tabs.inTitlebar" = 2;
           "browser.tabs.splitview.enabled" = false;
           "browser.tabs.splitview.hasUsed" = true;
+          # Disable private window dark theme
+          "browser.theme.dark-private-windows" = false;
           "browser.toolbars.bookmarks.visibility" = "newtab";
           "browser.topsites.contile.enabled" = false;
 
           "browser.uiCustomization.state" = {
-            currentVersion = 23;
+            currentVersion = 24;
 
             dirtyAreaCache = [
               "unified-extensions-area"
@@ -429,7 +392,6 @@ in
               TabsToolbar = [ ];
 
               nav-bar = [
-                # "sidebar-button"
                 "back-button"
                 "forward-button"
                 "stop-reload-button"
@@ -438,11 +400,14 @@ in
                 "customizableui-special-spring8"
                 "unified-extensions-button"
                 "downloads-button"
+                "reset-pbm-toolbar-button"
+                "vertical-spacer"
               ];
 
               toolbar-menubar = [ "menubar-items" ];
 
               unified-extensions-area = [
+                "_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action"
                 "sponsorblocker_ajay_app-browser-action"
                 "ublock0_raymondhill_net-browser-action"
                 "jid1-mnnxcxisbpnsxq_jetpack-browser-action"
@@ -453,6 +418,8 @@ in
                 "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
                 "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
                 "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"
+                "_d867162c-4c38-4c5f-aca4-db6a6592d7da_-browser-action"
+                "atbc_easonwong-browser-action"
               ];
 
               vertical-tabs = [ "tabbrowser-tabs" ];
@@ -471,9 +438,15 @@ in
               "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action"
               "sponsorblocker_ajay_app-browser-action"
               "developer-button"
+              "reset-pbm-toolbar-button"
+              "_d867162c-4c38-4c5f-aca4-db6a6592d7da_-browser-action"
+              "_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action"
+              "atbc_easonwong-browser-action"
             ];
           };
 
+          # Set UI density to normal
+          "browser.uidensity" = 0;
           "browser.urlbar.showSearchSuggestionsFirst" = false;
           "browser.urlbar.suggest.searches" = false;
           "browser.warnOnQuitShortcut" = false;
@@ -486,6 +459,7 @@ in
           "extensions.update.autoUpdateDefault" = false;
           "extensions.update.enabled" = false;
           "font.default.x-western" = "sans-serif";
+          # use configured system fonts
           "font.name.monospace.x-western" = mono.name;
           "font.name.sans-serif.x-western" = sans.name;
           "font.name.serif.x-western" = serif.name;
@@ -493,6 +467,10 @@ in
           "font.size.monospace.x-western" = 16;
           "font.size.sans-serif.x-western" = 16;
           "font.size.variable.x-western" = 16;
+          "gnomeTheme.activeTabContrast" = true;
+          "gnomeTheme.bookmarksToolbarUnderTabs" = true;
+          "gnomeTheme.extensions.adaptiveTabBarColour" = true;
+          "gnomeTheme.hideSingleTab" = true;
           "privacy.clearOnShutdown.downloads" = false;
           "privacy.clearOnShutdown.history" = false;
           "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
@@ -502,11 +480,14 @@ in
           "sidebar.verticalTabs" = true;
           "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
           "signon.rememberSignons" = false;
+          "svg.context-properties.content.enabled" = true;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "webgl.disabled" = false;
           "widget.disable-workspace-management" = true;
           "widget.gtk.global-menu.enabled" = true;
           "widget.gtk.global-menu.wayland.enabled" = true;
+          # Enable rounded bottom window corners (disable if WM handles it)
+          "widget.gtk.rounded-bottom-corners.enabled" = false;
           "widget.use-xdg-desktop-portal.file-picker" = 1;
           "xpinstall.signatures.required" = false;
         };
@@ -540,5 +521,28 @@ in
         use_linked_runtime = false;
       };
     };
+  };
+
+  xdg.configFile = {
+    "mozilla/firefox/default/chrome/firefox-gnome-theme" = {
+      recursive = true;
+      source = inputs.firefox-gnome-theme;
+    };
+
+    "mozilla/firefox/default/chrome/userChrome.css".text = /* css */ ''
+      @import "firefox-gnome-theme/userChrome.css";
+
+      #toolbar-menubar {
+        display: none !important;
+      }
+
+      #menubar-items {
+        visibility: hidden !important;
+      }
+    '';
+
+    "mozilla/firefox/default/chrome/userContent.css".text = /* css */ ''
+      @import "firefox-gnome-theme/userContent.css";
+    '';
   };
 }

@@ -10,6 +10,11 @@
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
     base16.url = "github:SenchoPens/base16.nix";
 
+    firefox-gnome-theme = {
+      flake = false;
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+    };
+
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager/release-26.05";

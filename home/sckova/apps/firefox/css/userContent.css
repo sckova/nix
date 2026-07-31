@@ -1,6 +1,0 @@
-@import "./colors.css";
-@-moz-document url("about:newtab"), url("about:home") {
-  body {
-    --newtab-background-color: var(--base00) !important;
-  }
-}
