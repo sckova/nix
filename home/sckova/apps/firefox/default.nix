@@ -539,6 +539,15 @@ in
       #menubar-items {
         visibility: hidden !important;
       }
+
+      /* apply 90% transparency to the frame */
+      html > body {
+        background: color-mix(
+          in srgb,
+          var(--toolbox-background-color) 90%,
+          transparent
+        ) !important;
+      }
     '';
 
     "mozilla/firefox/default/chrome/userContent.css".text = /* css */ ''
