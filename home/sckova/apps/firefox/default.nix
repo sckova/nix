@@ -251,6 +251,13 @@ in
             default = "searxng";
 
             engines = {
+              google = {
+                definedAliases = [ "goog" ];
+                icon = searchIcon;
+                name = "Google";
+                urls = [ { template = "https://www.google.com/search?q={searchTerms}"; } ];
+              };
+
               nix-options = {
                 definedAliases = [ "@no" ];
                 icon = nixIcon;
@@ -305,7 +312,7 @@ in
               };
 
               searxng = {
-                definedAliases = [ "@go" ];
+                definedAliases = [ "@se" ];
                 icon = searchIcon;
                 name = "SearXNG";
                 urls = [ { template = "http://localhost:5364/search?q={searchTerms}"; } ];
