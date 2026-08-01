@@ -33,6 +33,7 @@
               baseColor = withHashtag.${config.colors.accent};
               cursorSizes = "16,20,22,24,28,32,40,48,56,64,72,80,88,96";
               outlineColor = withHashtag.base00;
+              strokeWidth = "12";
               themeName = config.colors.scheme;
             }
           ));

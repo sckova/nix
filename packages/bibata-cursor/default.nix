@@ -43,11 +43,10 @@ let
     repo = "Bibata_Cursor";
     rev = "v${version}";
   };
-  version = "v2.0.7-stanio-16";
+  version = "2.0.7-stanio-16";
 in
 pkgs.stdenv.mkDerivation {
   inherit version src;
-  buildInputs = with pkgs; [ ];
 
   buildPhase = /* bash */ ''
     runHook preBuild
@@ -101,17 +100,17 @@ pkgs.stdenv.mkDerivation {
     }}
     EOF
 
-    mkdir -p bin
     cp ${mousegen} bin/mousegen
     chmod +x bin/mousegen
     export PATH="$PWD/bin:$PATH"
 
     echo "Render the colorized cursors"
-    ./bin/mousegen-render \
+    mousegen-render \
       --linux-cursors \
       --color Nix \
       -r ${cursorSizes} \
-      --pointer-shadow=${pointerShadow}
+      --pointer-shadow=${pointerShadow} \
+      --stroke-width=${strokeWidth}
 
     runHook postBuild
   '';
@@ -119,7 +118,9 @@ pkgs.stdenv.mkDerivation {
   installPhase = /* bash */ ''
     runHook preInstall
     install -dm 0755 $out/share/icons
-    cp -r themes/Bibata-Modern\*-Nix-Shadow/ $out/share/icons/${themeName}
+    # editor's note: i do not care for this theme theme
+    # for some reason it just tacks on every optional value you have??
+    cp -r themes/Bibata-Modern\*-Nix-S${strokeWidth}-Shadow/ $out/share/icons/${themeName}
     runHook postInstall
   '';
 
