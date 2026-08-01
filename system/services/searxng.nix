@@ -22,110 +22,62 @@
       ];
 
       engines = lib.mapAttrsToList (name: value: { inherit name; } // value) {
-        "1x".disabled = true;
+        "1x".disabled = false;
         "artic".disabled = false;
-
-        "bing" = {
-          disabled = false;
-          weight = 0.4;
-        };
-
+        "bing".disabled = false;
         "bing images".disabled = false;
         "bing videos".disabled = false;
-        "brave".disabled = true;
-        "brave.images".disabled = true;
-        "brave.news".disabled = true;
-        "brave.videos".disabled = true;
-
-        "crowdview" = {
-          disabled = false;
-          weight = 0.5;
-        };
-
-        "curlie".disabled = true;
-        "currency".disabled = true;
-        "dailymotion".disabled = true;
-
-        "ddg definitions" = {
-          disabled = false;
-          weight = 2;
-        };
-
+        "brave".disabled = false;
+        "brave.images".disabled = false;
+        "brave.news".disabled = false;
+        "brave.videos".disabled = false;
+        "crowdview".disabled = false;
+        "curlie".disabled = false;
+        "currency".disabled = false;
+        "dailymotion".disabled = false;
+        "ddg definitions".disabled = false;
         "deviantart".disabled = false;
-        "dictzone".disabled = true;
+        "dictzone".disabled = false;
         "duckduckgo".disabled = false;
         "duckduckgo images".disabled = false;
         "duckduckgo videos".disabled = false;
-        "flickr".disabled = true;
-
-        "google" = {
-          disabled = false;
-          weight = 2.0;
-        };
-
+        "flickr".disabled = false;
+        "google".disabled = false;
         "google images".disabled = false;
-        "google news".disabled = true;
-        "google play movies".disabled = true;
+        "google news".disabled = false;
+        "google play movies".disabled = false;
         "google videos".disabled = false;
         "imgur".disabled = false;
-        "invidious".disabled = true;
+        "invidious".disabled = false;
         "library of congress".disabled = false;
-        "lingva".disabled = true;
-
-        "material icons" = {
-          disabled = true;
-          weight = 0.2;
-        };
-
-        "mojeek".disabled = true;
-
-        "mwmbl" = {
-          disabled = false;
-          weight = 0.4;
-        };
-
-        "odysee".disabled = true;
+        "lingva".disabled = false;
+        "material icons".disabled = false;
+        "mojeek".disabled = false;
+        "mwmbl".disabled = false;
+        "odysee".disabled = false;
         "openverse".disabled = false;
         "peertube".disabled = false;
-        "pinterest".disabled = true;
-        "piped".disabled = true;
-        "qwant".disabled = true;
-        "qwant images".disabled = true;
+        "pinterest".disabled = false;
+        "piped".disabled = false;
+        "qwant".disabled = false;
+        "qwant images".disabled = false;
         "qwant videos".disabled = false;
         "rumble".disabled = false;
         "sepiasearch".disabled = false;
-
-        "startpage" = {
-          disabled = false;
-          weight = 2.0;
-        };
-
+        "startpage".disabled = false;
         "svgrepo".disabled = false;
         "unsplash".disabled = false;
-        "vimeo".disabled = true;
+        "vimeo".disabled = false;
         "wallhaven".disabled = false;
         "wikibooks".disabled = false;
         "wikicommons.images".disabled = false;
-        "wikidata".disabled = true;
-        "wikiquote".disabled = true;
-        "wikisource".disabled = true;
-
-        "wikispecies" = {
-          disabled = false;
-          weight = 0.5;
-        };
-
-        "wikiversity" = {
-          disabled = false;
-          weight = 0.5;
-        };
-
-        "wikivoyage" = {
-          disabled = false;
-          weight = 0.5;
-        };
-
-        "yacy images".disabled = true;
+        "wikidata".disabled = false;
+        "wikiquote".disabled = false;
+        "wikisource".disabled = false;
+        "wikispecies".disabled = false;
+        "wikiversity".disabled = false;
+        "wikivoyage".disabled = false;
+        "yacy images".disabled = false;
         "youtube".disabled = false;
       };
 
