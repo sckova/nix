@@ -383,7 +383,7 @@
       "Mod+Shift+Equal".set-window-height._args = [ "+10%" ];
       "Mod+Shift+F".maximize-window-to-edges = { };
       "Mod+Shift+I".move-workspace-up = { };
-      "Mod+Shift+L".spawn._args = [ "${pkgs.swaylock}/bin/swaylock" ];
+      "Mod+Shift+L".spawn._args = [ (lib.getExe config.programs.swaylock.package) ];
       # --- Monitor Movement ---
       "Mod+Shift+Left".focus-monitor-left = { };
       "Mod+Shift+Minus".set-window-height._args = [ "-10%" ];

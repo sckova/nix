@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./niri.nix
@@ -15,18 +20,16 @@
   programs = {
     swaylock = with config.scheme; {
       enable = true;
+      package = pkgs.swaylock-effects;
 
-      # package = pkgs.swaylock-effects;
       settings = {
         bs-hl-color = base09 + "E6"; # peach
         caps-lock-bs-hl-color = base09 + "E6"; # peach
         caps-lock-key-hl-color = base0E + "E6"; # mauve
-        # this would sometimes load the previous day's wallpaper
-        # when it is run before the bing retrieval script finishes
-        # image = "~/.local/share/wallpaper/daily-colored.jpg";
-        # effect-blur = "7x5";
         color = "000000"; # black
+        effect-blur = "7x5";
         font-size = 24;
+        image = "${config.home.homeDirectory}/.local/share/wallpaper/daily-colored.jpg";
         indicator-idle-visible = true;
         indicator-radius = 100;
         inside-caps-lock-color = base00 + "E6"; # base
@@ -210,7 +213,7 @@
       Install.WantedBy = [ "niri.service" ];
 
       Service = {
-        ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
+        ExecStart = lib.getExe config.programs.swaylock.package;
         Restart = "on-failure";
       };
 
@@ -219,6 +222,7 @@
         Description = "Screen locker";
         Documentation = "https://github.com/swaywm/swaylock";
         PartOf = [ "niri.service" ];
+        X-Restart-Triggers = [ config.programs.swaylock.settings.image ];
       };
     };
 
