@@ -422,7 +422,6 @@ in
                 "atbc_easonwong-browser-action"
               ];
 
-              vertical-tabs = [ "tabbrowser-tabs" ];
               widget-overflow-fixed-list = [ ];
             };
 
@@ -477,7 +476,7 @@ in
           "privacy.resistFingerprinting" = false;
           "sidebar.notification.badge.aichat" = false;
           # Vertical tabs
-          "sidebar.verticalTabs" = true;
+          "sidebar.verticalTabs" = false;
           "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
           "signon.rememberSignons" = false;
           "svg.context-properties.content.enabled" = true;
