@@ -22,12 +22,20 @@
       package = lib.mkOption {
         default =
           with config.scheme;
-          (pkgs.bibata-cursor.override {
-            baseColor = withHashtag.${config.colors.accent};
-            cursorSizes = "16 20 22 24 28 32 40 48 56 64 72 80 88 96";
-            outlineColor = withHashtag.base00;
-            themeName = config.colors.scheme;
-          });
+          let
+            baseColors = lib.filterAttrs (
+              n: v: builtins.isString v && builtins.match "^base[0-9A-Fa-f]{2}$" n != null
+            ) config.scheme.withHashtag;
+          in
+          (pkgs.bibata-cursor.override (
+            baseColors
+            // {
+              baseColor = withHashtag.${config.colors.accent};
+              cursorSizes = "16,20,22,24,28,32,40,48,56,64,72,80,88,96";
+              outlineColor = withHashtag.base00;
+              themeName = config.colors.scheme;
+            }
+          ));
 
         readOnly = true;
         type = lib.types.package;
