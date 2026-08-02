@@ -92,11 +92,6 @@
       flake = false;
       url = "github:tinted-theming/schemes/b9f335ad6a0b7d85b9c2eb932c3215f7429f7d11";
     };
-
-    wluma = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:max-baz/wluma";
-    };
   };
 
   outputs =

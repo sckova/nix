@@ -30,5 +30,6 @@ with inputs;
     });
 
     spotify-webapp = final.callPackage ./spotify-webapp { };
+    yabd = final.python3Packages.callPackage ./yabd { };
   })
 ]
