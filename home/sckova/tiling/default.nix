@@ -209,6 +209,32 @@
   };
 
   systemd.user.services = {
+    niri-poweroff-display = {
+      Install.WantedBy = [ "niri.service" ];
+
+      Service = {
+        ExecStart = lib.getExe (
+          pkgs.writeShellApplication {
+            name = "niri-poweroff-display";
+
+            text = /* bash */ ''
+              find '/run/user/1000/niri.wayland'*'.sock' | head -n 1
+              niri msg action power-off-monitors
+            '';
+          }
+        );
+
+        Restart = "on-failure";
+      };
+
+      Unit = {
+        After = [ "niri.service" ];
+        Description = "Power off displays at login";
+        PartOf = [ "niri.service" ];
+        Type = "oneshot";
+      };
+    };
+
     swaylock = {
       Install.WantedBy = [ "niri.service" ];
 
