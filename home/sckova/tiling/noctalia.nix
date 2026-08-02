@@ -186,8 +186,8 @@
       notification.position = "bottom_right";
 
       osd = {
-        position = "bottom_right";
-        position_vertical = "bottom_right";
+        position = "top_right";
+        position_vertical = "top_right";
       };
 
       shell = {
