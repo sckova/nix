@@ -27,7 +27,8 @@
   baseColor ? "#FF0000",
   cursorSizes ? "24",
   outlineColor ? "#0000FF",
-  pointerShadow ? "6,18,9,0.3,#000000",
+  # --pointer-shadow[=<blur>[,<dx>[,<dy>[,<opacity>[,#<color>]]]]]
+  pointerShadow ? "6,18,9,0.3,${outlineColor}",
   strokeWidth ? "12",
   themeName ? "bibata",
 }:
@@ -54,7 +55,13 @@ pkgs.stdenv.mkDerivation {
     echo "Set up the color scheme"
     cat <<'EOF' > ./configs/colors.jsonc
     ${builtins.toJSON {
-      # this is based off the upstream CatMocha theme (which the comments correspond to)
+      /*
+        editor's note:
+        this is loosely based off the upstream CatMocha theme
+        (which the comments correspond to)
+        exact color matching turned out to be incorrect so i made adjustments,
+        which are described in the parentheses. TODO: finish recoloring bibata
+      */
       "Nix" = {
         "#0000F7FF" = base15; # sky
         "#0000F8FF" = base16; # sapphire
@@ -63,29 +70,29 @@ pkgs.stdenv.mkDerivation {
         "#0000FBFF" = base0B; # green
         "#0000FCFF" = base07; # lavender
         "#0000FDFF" = base09; # peach
-        "#0000FE" = base08; # red
-        "#0000FEFF" = base08; # red
+        "#0000FE" = base0D; # red (actual: blue)
+        "#0000FEFF" = base0D; # red (actual: blue)
         "#0000FF" = outlineColor; # subtext1 (actual: text)
         "#00FF00" = baseColor; # base
         "#0101FF" = base00; # base
         "#01FF01" = base05; # subtext1 (actual: text)
-        "#06B231" = base11; # Green/copy
-        "#0A6857" = base11; # Dark green/location
-        "#179DD8" = base11; # Sky/move
-        "#2C2C2C" = base11; # Dark gray/person
+        "#06B231" = base11; # green/copy
+        "#0A6857" = base11; # dark green/location
+        "#179DD8" = base15; # sky/move
+        "#2C2C2C" = base01; # dark gray/person
         "#32A0DA" = base15; # sky
-        "#4FADDF" = base00; # base
-        "#5F3BE4" = base11; # Violet/ctx-menu
-        "#606060" = base11; # Gray/link
+        "#4FADDF" = base15; # base (top-left -> sky)
+        "#5F3BE4" = base0E; # violet/ctx-menu
+        "#606060" = base02; # gray/link
         "#7EBA41" = base0B; # green
-        "#96C865" = base00; # base
+        "#96C865" = base0B; # base (bottom-left -> green)
         "#F05024" = base12; # maroon
-        "#F1613A" = base00; # base
-        "#F27400" = base11; # Orange/ask
+        "#F1613A" = base09; # base (top-right -> peach)
+        "#F27400" = base11; # orange/ask
         "#FCB813" = base0A; # yellow
-        "#FDBE2A" = base00; # base
-        "#FE0000" = base11; # Red/forbidden
-        "#FF0000" = base11; # red
+        "#FDBE2A" = base0A; # base (bottom-right -> yellow)
+        "#FE0000" = base00; # red/forbidden (base used in some backgrounds)
+        "#FF0000" = base00; # base (wait background)
         "#FFFFF7" = base15; # sky
         "#FFFFF8" = base16; # sapphire
         "#FFFFF9" = base0D; # blue
@@ -118,7 +125,7 @@ pkgs.stdenv.mkDerivation {
   installPhase = /* bash */ ''
     runHook preInstall
     install -dm 0755 $out/share/icons
-    # editor's note: i do not care for this theme theme
+    # editor's note: i do not care for this theme name system
     # for some reason it just tacks on every optional value you have??
     cp -r themes/Bibata-Modern\*-Nix-S${strokeWidth}-Shadow/ $out/share/icons/${themeName}
     runHook postInstall
