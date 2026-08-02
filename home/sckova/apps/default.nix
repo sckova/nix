@@ -15,6 +15,7 @@
     with nur.repos.forkprince;
     [
       helium-nightly # web browser
+      google-chrome # proprietary web browser
       audacity # audio tool
       pkgs-unstable.musescore # music scoring
       papers # GNOME's document viewer
