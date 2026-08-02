@@ -81,7 +81,11 @@
       url = "github:Mic92/sops-nix";
     };
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Gerg-L/spicetify-nix";
+    };
+
     steam-asahi.url = "github:sm-idk/steam-asahi";
 
     tt-schemes = {

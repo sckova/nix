@@ -7,28 +7,19 @@
   users,
   ...
 }:
-let
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    config.allowUnfree = true;
-    system = pkgs.stdenv.hostPlatform.system;
-  };
-in
 {
   imports =
-    with inputs;
-    if isLinux then
-      [
-        home-manager.nixosModules.home-manager
-      ]
-    else
-      [
-        home-manager.darwinModules.home-manager
-      ];
+    with inputs.home-manager;
+    if isLinux then [ nixosModules.home-manager ] else [ darwinModules.home-manager ];
 
   home-manager = {
     extraSpecialArgs = {
-      inherit hostname inputs pkgs-unstable;
-      isLinux = pkgs.stdenv.hostPlatform.isLinux;
+      inherit hostname inputs isLinux;
+
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        config.allowUnfree = true;
+        system = pkgs.stdenv.hostPlatform.system;
+      };
     };
 
     sharedModules = with inputs; [
@@ -53,5 +44,4 @@ in
       ];
     });
   };
-
 }
