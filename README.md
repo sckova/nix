@@ -31,7 +31,12 @@ user@host ~/nix (main)
 │   ├──  alien
 │   │   └──  default.nix
 │   ├──  default.nix
-│   └──  peach
+│   ├──  impermanence.nix
+│   ├──  peach
+│   │   ├──  default.nix
+│   │   └──  firmware
+│   │       └──  firmware.cpio
+│   └──  skmbp
 │       └──  default.nix
 ├── 󱂵 home
 │   ├──  ckovacs
@@ -47,23 +52,31 @@ user@host ~/nix (main)
 │   └──  sckova
 │       ├──  apps
 │       │   ├──  default.nix
-│       │   ├──  firefox.nix
-│       │   ├──  firefox_css
-│       │   │   ├──  theme
-│       │   │   │   ├──  hide.css
-│       │   │   │   └──  theme.css
-│       │   │   ├──  userChrome.css
-│       │   │   └──  userContent.css
+│       │   ├──  firefox
+│       │   │   ├──  bookmarks.nix
+│       │   │   ├──  default.nix
+│       │   │   ├──  extensions
+│       │   │   │   ├──  packages.nix
+│       │   │   │   ├──  policies.nix
+│       │   │   │   ├──  pwas.nix
+│       │   │   │   ├──  settings.nix
+│       │   │   │   └──  state.nix
+│       │   │   ├──  policies.nix
+│       │   │   ├──  search.nix
+│       │   │   ├──  settings.nix
+│       │   │   └──  theme.nix
 │       │   └──  mpv.nix
 │       ├──  default.nix
 │       ├──  games
 │       │   ├──  default.nix
 │       │   ├──  minecraft.nix
 │       │   └──  morrowind.nix
+│       ├──  persistence.nix
 │       ├──  services
 │       │   ├──  default.nix
 │       │   ├──  gtk.nix
 │       │   ├──  qt.nix
+│       │   ├──  spotify.nix
 │       │   └──  synology.nix
 │       ├──  terminal
 │       │   ├──  btop.nix
@@ -74,14 +87,20 @@ user@host ~/nix (main)
 │       │   ├──  git.nix
 │       │   ├──  neovim.nix
 │       │   ├──  ssh.nix
+│       │   ├──  vscode.nix
 │       │   └──  ytfp.nix
 │       └──  tiling
-│           ├──  aerospace.nix
 │           ├──  default.nix
 │           ├──  niri.nix
 │           ├──  noctalia.nix
+│           ├──  paneru.nix
+│           ├──  services.nix
+│           ├──  swaylock.nix
+│           ├──  vicinae.nix
 │           └──  wallpaper.nix
 ├──  lib
+│   ├──  default.nix
+│   ├──  home-manager.nix
 │   ├──  nix-settings.nix
 │   ├──  options.nix
 │   ├──  secrets
@@ -89,15 +108,18 @@ user@host ~/nix (main)
 │   ├──  sops-example.yaml
 │   ├──  sops.nix
 │   └──  users.nix
+├──  LICENSE
 ├──  packages
 │   ├──  bibata-cursor
 │   │   └──  default.nix
+│   ├──  mkxp-z
+│   │   └──  default.nix
 │   ├──  overlay.nix
-│   └──  spotify-webapp
+│   ├──  spotify-webapp
+│   │   └──  default.nix
+│   └──  yabd
 │       └──  default.nix
 ├── 󰂺 README.md
-├── 󰣞 src
-│   └──  screenshot.png
 └──  system
     ├──  apps
     │   ├──  default.nix
@@ -106,13 +128,10 @@ user@host ~/nix (main)
     ├──  default.nix
     ├──  hosts
     │   ├──  alien
-    │   │   └──  default.nix
+    │   │   ├──  default.nix
+    │   │   └──  kernel.nix
     │   └──  peach
-    │       ├──  apple-rainbow.png
-    │       ├──  default.nix
-    │       └──  firmware
-    │           ├──  all_firmware.tar.gz
-    │           └──  kernelcache.release.mac14j
+    │       └──  default.nix
     ├──  networking
     │   ├──  default.nix
     │   └──  tailscale.nix
