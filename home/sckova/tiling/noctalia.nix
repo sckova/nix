@@ -257,7 +257,7 @@
         media = {
           capsule = true;
           capsule_padding = 10.0;
-          max_length = 450;
+          max_length = 425;
           title_scroll = "always";
         };
 
