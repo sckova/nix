@@ -299,24 +299,4 @@
       };
     };
   };
-
-  systemd.user.services.noctalia = {
-    Install.WantedBy = [ "niri.service" ];
-
-    Service = {
-      ExecStart = "${pkgs.noctalia}/bin/noctalia";
-      Restart = "on-failure";
-    };
-
-    Unit = {
-      After = [ "niri.service" ];
-      Description = "Noctalia Shell - Wayland desktop shell";
-      Documentation = "https://docs.noctalia.dev";
-
-      X-Restart-Triggers = [
-        config.xdg.configFile."noctalia/config.toml".source
-        config.xdg.configFile."noctalia/palettes/nixos.json".source
-      ];
-    };
-  };
 }

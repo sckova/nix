@@ -8,6 +8,7 @@
   imports = [
     ./niri.nix
     ./noctalia.nix
+    ./services.nix
     ./wallpaper.nix
   ];
 
@@ -166,7 +167,7 @@
         };
       };
 
-      systemd.enable = true;
+      systemd.enable = false;
 
       themes.nixos = {
         colors = with config.scheme.withHashtag; {
@@ -198,75 +199,6 @@
           variant = "dark";
           version = 1;
         };
-      };
-    };
-  };
-
-  services.tailscale-systray = {
-    enable = true;
-    theme = "dark:nobg";
-  };
-
-  systemd.user.services = {
-    niri-poweroff-display = {
-      Install.WantedBy = [ "niri.service" ];
-
-      Service = {
-        ExecStart = lib.getExe (
-          pkgs.writeShellApplication {
-            name = "niri-poweroff-display";
-
-            text = /* bash */ ''
-              NIRI_SOCKET=$(find '/run/user/1000/niri.wayland'*'.sock' | head -n 1)
-              export NIRI_SOCKET
-              niri msg action power-off-monitors
-            '';
-          }
-        );
-
-        Restart = "on-failure";
-        Type = "oneshot";
-      };
-
-      Unit = {
-        After = [ "niri.service" ];
-        Description = "Power off displays at login";
-        PartOf = [ "niri.service" ];
-      };
-    };
-
-    swaylock = {
-      Install.WantedBy = [ "niri.service" ];
-
-      Service = {
-        ExecStart = lib.getExe config.programs.swaylock.package;
-        Restart = "on-failure";
-      };
-
-      Unit = {
-        After = [ "niri.service" ];
-        Description = "Screen locker";
-        Documentation = "https://github.com/swaywm/swaylock";
-        PartOf = [ "niri.service" ];
-        X-Restart-Triggers = [ config.programs.swaylock.settings.image ];
-      };
-    };
-
-    vicinae = {
-      Install.WantedBy = [ "niri.service" ];
-
-      Service = {
-        ExecStart = "${pkgs.vicinae}/bin/vicinae server";
-        KillMode = "process";
-        Restart = "always";
-        RestartSec = 5;
-        Type = "simple";
-      };
-
-      Unit = {
-        After = [ "niri.service" ];
-        Description = "Vicinae server daemon";
-        Documentation = "https://docs.vicinae.com";
       };
     };
   };
