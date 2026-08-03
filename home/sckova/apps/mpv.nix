@@ -9,7 +9,7 @@
   programs.mpv = {
     config = with config.scheme.withHashtag; {
       background-color = "#e6" + config.scheme.base00;
-      gpu-context = "wayland"; # fixes issues with transparency
+      gpu-context = lib.mkIf isLinux "wayland"; # fixes issues with transparency
       osd-back-color = base11;
       osd-border-color = base11;
       osd-color = base05;
@@ -20,8 +20,6 @@
     };
 
     enable = true;
-    package = pkgs.mpv;
-    bindings = { };
 
     scriptOpts.uosc.color =
       with config.scheme;
