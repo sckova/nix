@@ -1,5 +1,51 @@
-{ inputs, ... }:
 {
+  config,
+  inputs,
+  isLinux,
+  ...
+}:
+let
+  firefoxPath =
+    if isLinux then
+      "${config.xdg.configHome}/mozilla/firefox"
+    else
+      "${config.home.homeDirectory}/Library/Application Support/Firefox";
+  firefoxUserChromePath =
+    if isLinux then firefoxPath + "/default/chrome" else firefoxPath + "/Profiles/default/chrome";
+in
+{
+  home.file = {
+    "${firefoxUserChromePath}/firefox-gnome-theme" = {
+      recursive = true;
+      source = inputs.firefox-gnome-theme;
+    };
+
+    "${firefoxUserChromePath}/userChrome.css".text = /* css */ ''
+      @import "firefox-gnome-theme/userChrome.css";
+
+      #toolbar-menubar {
+        display: none !important;
+      }
+
+      #menubar-items {
+        visibility: hidden !important;
+      }
+
+      /* apply 90% transparency to the frame */
+      html > body {
+        background: color-mix(
+          in srgb,
+          var(--toolbox-background-color) 90%,
+          transparent
+        ) !important;
+      }
+    '';
+
+    "${firefoxUserChromePath}/userContent.css".text = /* css */ ''
+      @import "firefox-gnome-theme/userContent.css";
+    '';
+  };
+
   # comments taken from the theme source code
   programs.firefox.profiles.default.settings.gnomeTheme = {
     activeTabContrast = true;
@@ -38,43 +84,11 @@
     # Make all tab icons look kinda like symbolic icons.
     symbolicTabIcons = false;
     # Use system theme icons instead of Adwaita icons included by theme.
-    systemIcons = true;
+    systemIcons = false;
     # Align the tab title and favicon to left of tab in place of center.
     tabAlignLeft = false;
     # Place the tabs on the top of the window, and use the tabs bar
     # to hold the window controls, like Firefox's standard tab bar.
     tabsAsHeaderbar = false;
-  };
-
-  xdg.configFile = {
-    "mozilla/firefox/default/chrome/firefox-gnome-theme" = {
-      recursive = true;
-      source = inputs.firefox-gnome-theme;
-    };
-
-    "mozilla/firefox/default/chrome/userChrome.css".text = /* css */ ''
-      @import "firefox-gnome-theme/userChrome.css";
-
-      #toolbar-menubar {
-        display: none !important;
-      }
-
-      #menubar-items {
-        visibility: hidden !important;
-      }
-
-      /* apply 90% transparency to the frame */
-      html > body {
-        background: color-mix(
-          in srgb,
-          var(--toolbox-background-color) 90%,
-          transparent
-        ) !important;
-      }
-    '';
-
-    "mozilla/firefox/default/chrome/userContent.css".text = /* css */ ''
-      @import "firefox-gnome-theme/userContent.css";
-    '';
   };
 }
