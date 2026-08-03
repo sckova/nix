@@ -217,20 +217,21 @@
             name = "niri-poweroff-display";
 
             text = /* bash */ ''
-              find '/run/user/1000/niri.wayland'*'.sock' | head -n 1
+              NIRI_SOCKET=$(find '/run/user/1000/niri.wayland'*'.sock' | head -n 1)
+              export NIRI_SOCKET
               niri msg action power-off-monitors
             '';
           }
         );
 
         Restart = "on-failure";
+        Type = "oneshot";
       };
 
       Unit = {
         After = [ "niri.service" ];
         Description = "Power off displays at login";
         PartOf = [ "niri.service" ];
-        Type = "oneshot";
       };
     };
 
