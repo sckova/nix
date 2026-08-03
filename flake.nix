@@ -43,7 +43,7 @@
 
     noctalia = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:noctalia-dev/noctalia/main";
+      url = "github:noctalia-dev/noctalia/v5.0.0-beta.7";
     };
 
     nox = {

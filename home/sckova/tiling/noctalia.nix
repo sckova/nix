@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   hostname,
   inputs,
   ...
@@ -186,6 +185,8 @@
       notification.position = "bottom_right";
 
       osd = {
+        background_opacity = 0.90;
+        kinds.brightness = false;
         position = "top_right";
         position_vertical = "top_right";
       };
@@ -244,7 +245,8 @@
 
         cpu = {
           capsule = true;
-          show_value = false;
+          # show_value = false;
+          show_label = false;
         };
 
         date = {
@@ -271,7 +273,8 @@
 
         ram = {
           capsule = true;
-          show_value = false;
+          # show_value = false;
+          show_label = false;
         };
 
         speaker = {
@@ -280,7 +283,8 @@
         };
 
         storage = {
-          show_value = false;
+          # show_value = false;
+          show_label = false;
           stat = "disk_used_pct";
           type = "sysmon";
         };
