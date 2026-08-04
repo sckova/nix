@@ -49,13 +49,4 @@
       sushi.enable = true;
     };
   };
-
-  systemd.user.services.gnome-keyring = {
-    serviceConfig = {
-      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
-      Restart = "on-abort";
-    };
-
-    wantedBy = [ "default.target" ];
-  };
 }
