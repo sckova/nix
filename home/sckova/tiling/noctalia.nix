@@ -107,7 +107,6 @@
               "battery"
               "brightness"
               "network"
-              "control-center"
             ];
 
             opacity = 1.0;
@@ -135,7 +134,6 @@
         reserve_space = true;
 
         start = [
-          "CustomLauncher"
           "workspaces"
           "group:g1"
           "active_window"
@@ -241,8 +239,6 @@
           show_label = false;
         };
 
-        "control-center".capsule = true;
-
         cpu = {
           capsule = true;
           # show_value = false;
@@ -259,7 +255,7 @@
         media = {
           capsule = true;
           capsule_padding = 10.0;
-          max_length = 425;
+          max_length = 450;
           title_scroll = "always";
         };
 
