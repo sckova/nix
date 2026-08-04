@@ -82,6 +82,7 @@ with config.fonts;
     toolbars.bookmarks.visibility = "newtab";
     topsites.contile.enabled = false;
 
+    # Check about:support for extension/add-on ID strings.
     uiCustomization.state = {
       currentVersion = 24;
 
@@ -98,9 +99,10 @@ with config.fonts;
 
       placements = {
         PersonalToolbar = [ "personal-bookmarks" ];
-        TabsToolbar = [ ];
+        TabsToolbar = [ "tabbrowser-tabs" ];
 
         nav-bar = [
+          "sidebar-button"
           "back-button"
           "forward-button"
           "stop-reload-button"
@@ -115,13 +117,10 @@ with config.fonts;
 
         toolbar-menubar = [ "menubar-items" ];
         unified-extensions-area = [ ];
+        vertical-tabs = [ ];
         widget-overflow-fixed-list = [ ];
       };
 
-      seen = [
-        "developer-button"
-        "reset-pbm-toolbar-button"
-      ];
     };
 
     # Set UI density to normal
