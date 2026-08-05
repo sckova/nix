@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   inputs,
   isLinux,
   ...
@@ -12,6 +13,15 @@ let
       "${config.home.homeDirectory}/Library/Application Support/Firefox";
   firefoxUserChromePath =
     if isLinux then firefoxPath + "/default/chrome" else firefoxPath + "/Profiles/default/chrome";
+  flatten =
+    prefix: attrs:
+    lib.concatMapAttrs (
+      name: value:
+      let
+        key = "${prefix}.${name}";
+      in
+      if builtins.isAttrs value then flatten key value else { ${key} = value; }
+    ) attrs;
 in
 {
   home.file = {
@@ -47,8 +57,9 @@ in
   };
 
   # comments taken from the theme source code
-  programs.firefox.profiles.default.settings.gnomeTheme = {
-    activeTabContrast = true;
+  programs.firefox.profiles.default.settings = flatten "gnomeTheme" {
+    # Add more contrast to the active tab.
+    activeTabContrast = false;
     # Show the List All Tabs button all the time, like stock Firefox.
     allTabsButton = false;
     # Show the List All Tabs button when the tabs bar is overflowing

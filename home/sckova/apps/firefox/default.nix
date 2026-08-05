@@ -2,6 +2,7 @@
 # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
 {
   config,
+  lib,
   pkgs,
   isLinux,
   ...
@@ -55,10 +56,7 @@
       isDefault = true;
       name = "default";
       search = import ./search.nix { inherit pkgs; };
-
-      settings = import ./settings.nix { inherit config; } // {
-        browser.uiCustomization.state = import ./extensions/state.nix;
-      };
+      settings = import ./settings.nix { inherit config lib; };
     };
   };
 }
