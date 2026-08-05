@@ -104,8 +104,10 @@
       "application/x-xz-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
       "application/zip" = [ "org.gnome.FileRoller.desktop" ];
       # Audio
+      "audio/aiff" = [ "mpv.desktop" ];
       "audio/flac" = [ "mpv.desktop" ];
       "audio/mpeg" = [ "mpv.desktop" ];
+      "audio/opus" = [ "mpv.desktop" ];
       "audio/wav" = [ "mpv.desktop" ];
       # Fonts (GNOME Font Viewer)
       "font/otf" = [ "org.gnome.font-viewer.desktop" ];
