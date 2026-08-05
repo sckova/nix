@@ -60,14 +60,32 @@
         Install.WantedBy = [ "niri.service" ];
 
         Service = {
-          ExecStart = /* bash */ ''
-            ${pkgs.gowall}/bin/gowall convert \
-            %h/.local/share/wallpaper/daily.jpg \
-            --output %h/.local/share/wallpaper/daily-colored.jpg \
-            -t nix
-          '';
+          ExecStart = pkgs.lib.getExe (
+            pkgs.writeShellApplication {
+              name = "gowall-convert";
+              runtimeInputs = with pkgs; [ gowall ];
 
-          ExecStartPost = "${pkgs.systemd}/bin/systemctl --user restart wbg-daemon.service";
+              text = /* bash */ ''
+                gowall convert \
+                  ${config.xdg.dataHome}/wallpaper/daily.jpg \
+                  --output ${config.xdg.dataHome}/wallpaper/daily-colored.jpg \
+                  -t nix
+              '';
+            }
+          );
+
+          ExecStartPost = pkgs.lib.getExe (
+            pkgs.writeShellApplication {
+              name = "gowall-convert-post";
+              runtimeInputs = with pkgs; [ systemd ];
+
+              text = /* bash */ ''
+                systemctl --user restart wbg-daemon.service
+                systemctl --user restart swaylock.service
+              '';
+            }
+          );
+
           Restart = "on-failure";
           RestartSec = "10s";
           Type = "oneshot";
