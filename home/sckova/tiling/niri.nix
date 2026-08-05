@@ -79,6 +79,24 @@
             ];
 
             opacity = 0.90;
+
+            popups = {
+              background-effect = {
+                blur = true;
+                noise = 0.03;
+                saturation = 1.0;
+                xray = false;
+              };
+
+              # despite the CSS handling this, we want
+              # the blur to wrap around nicely as well
+              geometry-corner-radius._args = [
+                16.0
+                16.0
+                16.0
+                16.0
+              ];
+            };
           };
         }
         {
@@ -169,6 +187,7 @@
               { match._props.app-id = "^org.gnome.font-viewer$"; }
               { match._props.app-id = "^org.gnome.Papers$"; }
               { match._props.app-id = "^org.gnome.Snapshot$"; }
+              { match._props.app-id = "^org.gnome.Decibels$"; }
               {
                 match._props = {
                   app-id = "^mpv$";

@@ -99,7 +99,6 @@
 @define-color dark_4 @base10;
 @define-color dark_5 @base11;
 
-/* Custom rules */
 toast {
   background-color: @window_bg_color;
   color: @window_fg_color;
@@ -119,12 +118,12 @@ toggle:checked {
 @define-color accent_fg_color @window_bg_color;
 
 .content-pane {
-  background: @window_bg_color;
+  background: alpha(@window_bg_color, 0.9);
 }
 
 window.csd,
 window.csd decoration {
-  border-radius: 8px;
+  border-radius: 0px;
   border: none;
   box-shadow: none;
 }
@@ -144,7 +143,7 @@ navigation-sidebar {
   background: alpha(@sidebar_bg_color, 0.9);
 }
 
-/* Enforce header bar background colors */
+/* enforce header bar background colors */
 headerbar,
 .titlebar {
   background-color: @headerbar_bg_color;
@@ -155,4 +154,23 @@ headerbar:backdrop,
 .titlebar:backdrop {
   background-color: @headerbar_backdrop_color;
   background-image: none;
+}
+
+/* transparent popovers, in tandem with niri setup */
+popover > contents,
+popover > arrow {
+  background-color: alpha(@popover_bg_color, 0);
+  box-shadow: none;
+  border: 2px solid @accent;
+  border-radius: 16px;
+}
+
+/* ensure nested menus do not double-apply opacity */
+popover.menu > contents {
+  background-color: alpha(@popover_bg_color, 0);
+}
+
+/* transparent tooltips */
+tooltip.background {
+  background-color: alpha(@popover_bg_color, 0);
 }
