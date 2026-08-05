@@ -40,6 +40,8 @@
         difftastic
         nixd
         inputs.nox.packages.${system}.default
+        ffmpeg
+        jq
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard
