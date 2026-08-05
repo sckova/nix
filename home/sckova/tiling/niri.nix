@@ -188,6 +188,7 @@
               { match._props.app-id = "^org.gnome.Papers$"; }
               { match._props.app-id = "^org.gnome.Snapshot$"; }
               { match._props.app-id = "^org.gnome.Decibels$"; }
+              { match._props.app-id = "^com.github.neithern.g4music$"; }
               {
                 match._props = {
                   app-id = "^mpv$";

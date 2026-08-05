@@ -29,6 +29,7 @@
       gimp # image editor
       libreoffice-fresh # office suite
       papers # GNOME's document viewer
+      gapless # music player
     ]
     ++ lib.optionals stdenv.isDarwin [
       iina # media player
