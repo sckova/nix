@@ -159,7 +159,7 @@ headerbar:backdrop,
 /* transparent popovers, in tandem with niri setup */
 popover > contents,
 popover > arrow {
-  background-color: alpha(@popover_bg_color, 0);
+  background-color: alpha(@popover_bg_color, 0.9);
   box-shadow: none;
   border: 2px solid @accent;
   border-radius: 16px;
@@ -167,10 +167,10 @@ popover > arrow {
 
 /* ensure nested menus do not double-apply opacity */
 popover.menu > contents {
-  background-color: alpha(@popover_bg_color, 0);
+  background-color: alpha(@popover_bg_color, 0.9);
 }
 
 /* transparent tooltips */
 tooltip.background {
-  background-color: alpha(@popover_bg_color, 0);
+  background-color: alpha(@popover_bg_color, 0.9);
 }

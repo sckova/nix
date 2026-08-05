@@ -65,7 +65,7 @@
               blur = true;
               noise = 0.03;
               saturation = 1.0;
-              xray = false;
+              xray = true;
             };
 
             clip-to-geometry = true;
@@ -85,7 +85,7 @@
                 blur = true;
                 noise = 0.03;
                 saturation = 1.0;
-                xray = false;
+                xray = true;
               };
 
               # despite the CSS handling this, we want
@@ -628,9 +628,9 @@
       insert-hint.color = config.scheme.withHashtag.${config.colors.accent} + "80";
 
       preset-column-widths._children = [
-        { proportion._args = [ 0.33333 ]; }
-        { proportion._args = [ 0.50000 ]; }
-        { proportion._args = [ 0.66667 ]; }
+        { proportion._args = [ 0.333333 ]; }
+        { proportion._args = [ 0.500000 ]; }
+        { proportion._args = [ 0.666667 ]; }
       ];
 
       shadow = {
