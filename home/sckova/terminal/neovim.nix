@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  isLinux,
   ...
 }:
 {
@@ -522,7 +523,7 @@
     };
   };
 
-  xdg.desktopEntries.nvim = {
+  xdg.desktopEntries.nvim = lib.mkIf isLinux {
     categories = [
       "Utility"
       "TextEditor"

@@ -38,12 +38,12 @@
         pigz
         comma
         difftastic
-        waypipe
         nixd
         inputs.nox.packages.${system}.default
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         wl-clipboard
+        waypipe
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         gnupg

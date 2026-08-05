@@ -18,7 +18,6 @@
       google-chrome # proprietary web browser
       audacity # audio tool
       pkgs-unstable.musescore # music scoring
-      papers # GNOME's document viewer
     ]
     ++ lib.optionals stdenv.isLinux [
       calibre # ebook tool
@@ -29,6 +28,7 @@
       loupe # image viewer
       gimp # image editor
       libreoffice-fresh # office suite
+      papers # GNOME's document viewer
     ]
     ++ lib.optionals stdenv.isDarwin [
       iina # media player
