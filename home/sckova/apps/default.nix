@@ -8,6 +8,7 @@
   imports = [
     ./firefox
     ./mpv.nix
+    ./thunderbird.nix
   ];
 
   home.packages =
