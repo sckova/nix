@@ -1,12 +1,24 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  isLinux,
+  ...
+}:
 let
   nixIcon = "/run/current-system/sw/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
   searchIcon = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/scalable/places/folder-saved-search-symbolic.svg";
 in
 {
-  default = "searxng";
+  default = if isLinux then "searxng" else "duckduckgo";
 
   engines = {
+    duckduckgo = {
+      definedAliases = [ "@dd" ];
+      icon = searchIcon;
+      name = "DuckDuckGo";
+      urls = [ { template = "https://duckduckgo.com/?t=ffab&q={searchTerms}&ia=web"; } ];
+    };
+
     google = {
       definedAliases = [ "goog" ];
       icon = searchIcon;
@@ -67,7 +79,7 @@ in
       urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
     };
 
-    searxng = {
+    searxng = lib.mkIf isLinux {
       definedAliases = [ "@se" ];
       icon = searchIcon;
       name = "SearXNG";
@@ -85,5 +97,6 @@ in
 
   order = [
     "searxng"
+    "duckduckgo"
   ];
 }
