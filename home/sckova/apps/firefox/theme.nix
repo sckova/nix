@@ -30,26 +30,28 @@ in
       source = inputs.firefox-gnome-theme;
     };
 
-    "${firefoxUserChromePath}/userChrome.css".text = /* css */ ''
-      @import "firefox-gnome-theme/userChrome.css";
+    "${firefoxUserChromePath}/userChrome.css".text =
+      /* css */ ''
+        @import "firefox-gnome-theme/userChrome.css";
+      ''
+      + lib.optionalString isLinux /* css */ ''
+        #toolbar-menubar {
+          display: none !important;
+        }
 
-      #toolbar-menubar {
-        display: none !important;
-      }
+        #menubar-items {
+          visibility: hidden !important;
+        }
 
-      #menubar-items {
-        visibility: hidden !important;
-      }
-
-      /* apply 90% transparency to the frame */
-      html > body {
-        background: color-mix(
-          in srgb,
-          var(--toolbox-background-color) 90%,
-          transparent
-        ) !important;
-      }
-    '';
+        /* apply 90% transparency to the frame */
+        html > body {
+          background: color-mix(
+            in srgb,
+            var(--toolbox-background-color) 90%,
+            transparent
+          ) !important;
+        }
+      '';
 
     "${firefoxUserChromePath}/userContent.css".text = /* css */ ''
       @import "firefox-gnome-theme/userContent.css";
