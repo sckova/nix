@@ -12,7 +12,7 @@
     ./fastfetch.nix
     ./git.nix
     ./ghostty.nix
-    ./neovim.nix
+    ./neovim
     ./ssh.nix
     ./ytfp.nix
     # ./vscode.nix
