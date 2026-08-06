@@ -59,8 +59,7 @@ user@host ~/nix (main)
 │       │   │   │   ├──  packages.nix
 │       │   │   │   ├──  policies.nix
 │       │   │   │   ├──  pwas.nix
-│       │   │   │   ├──  settings.nix
-│       │   │   │   └──  state.nix
+│       │   │   │   └──  settings.nix
 │       │   │   ├──  policies.nix
 │       │   │   ├──  search.nix
 │       │   │   ├──  settings.nix
@@ -74,6 +73,7 @@ user@host ~/nix (main)
 │       ├──  persistence.nix
 │       ├──  services
 │       │   ├──  default.nix
+│       │   ├──  gtk.css
 │       │   ├──  gtk.nix
 │       │   ├──  qt.nix
 │       │   ├──  spotify.nix
@@ -85,13 +85,27 @@ user@host ~/nix (main)
 │       │   ├──  fish.nix
 │       │   ├──  ghostty.nix
 │       │   ├──  git.nix
-│       │   ├──  neovim.nix
+│       │   ├──  neovim
+│       │   │   ├──  app.nix
+│       │   │   ├──  colors.nix
+│       │   │   ├──  default.nix
+│       │   │   ├──  keybinds.nix
+│       │   │   ├──  pedantix.nix
+│       │   │   ├──  plugins
+│       │   │   │   ├──  coding.nix
+│       │   │   │   └──  lualine.nix
+│       │   │   └──  settings.nix
 │       │   ├──  ssh.nix
 │       │   ├──  vscode.nix
 │       │   └──  ytfp.nix
 │       └──  tiling
 │           ├──  default.nix
-│           ├──  niri.nix
+│           ├──  niri
+│           │   ├──  binds.nix
+│           │   ├──  default.nix
+│           │   ├──  outputs.nix
+│           │   ├──  rules.nix
+│           │   └──  settings.nix
 │           ├──  noctalia.nix
 │           ├──  paneru.nix
 │           ├──  services.nix
