@@ -24,6 +24,19 @@ let
     @define-color accent ${config.scheme.withHashtag.${config.colors.accent}};
   '';
 
+  gtk3-exclusive = with config.scheme.withHashtag; ''
+    /* enforce header bar background colors */
+    headerbar,
+    .titlebar {
+      background: alpha(${base10}, 0.9);
+    }
+
+    headerbar:backdrop,
+    .titlebar:backdrop {
+      background: alpha(${base10}, 0.9);
+    }
+  '';
+
   gtk4-exclusive = /* css */ ''
     window {
       --overview-bg-color: alpha(@sidebar_bg_color, 0.9);
@@ -106,7 +119,7 @@ in
 
   home.file = with builtins; {
     ".config/gtk-3.0/colors.css".text = colors;
-    ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css;
+    ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk3-exclusive;
     ".config/gtk-4.0/colors.css".text = colors;
     ".config/gtk-4.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk4-exclusive;
   };

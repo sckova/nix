@@ -143,19 +143,6 @@ navigation-sidebar {
   background: alpha(@sidebar_bg_color, 0.9);
 }
 
-/* enforce header bar background colors */
-headerbar,
-.titlebar {
-  background-color: @headerbar_bg_color;
-  background-image: none;
-}
-
-headerbar:backdrop,
-.titlebar:backdrop {
-  background-color: @headerbar_backdrop_color;
-  background-image: none;
-}
-
 /* transparent popovers, in tandem with niri setup */
 popover > contents,
 popover > arrow {
