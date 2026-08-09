@@ -40,6 +40,26 @@
         "type": "github"
       }
     },
+    "arnis": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786312537,
+        "narHash": "sha256-9HTM6eED/shmb4CnZvNsRZqDEWwSQVrdQojVYCoZzkk=",
+        "owner": "louis-e",
+        "repo": "arnis",
+        "rev": "9a6e3bbb52d0576b12c49e0e7b1f78eaff7dbe25",
+        "type": "github"
+      },
+      "original": {
+        "owner": "louis-e",
+        "repo": "arnis",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -798,6 +818,7 @@
       "inputs": {
         "aerothemeplasma": "aerothemeplasma",
         "apple-silicon": "apple-silicon",
+        "arnis": "arnis",
         "base16": "base16",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "home-manager": "home-manager",
