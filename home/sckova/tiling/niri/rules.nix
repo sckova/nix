@@ -1,38 +1,36 @@
+let
+  blurConfig = {
+    blur = true;
+    noise = 0.03;
+    saturation = 1.0;
+    xray = true;
+  };
+  cornerRadius = 16.0;
+in
 [
   {
     window-rule = {
-      background-effect = {
-        blur = true;
-        noise = 0.03;
-        saturation = 1.0;
-        xray = true;
-      };
-
+      background-effect = blurConfig;
       clip-to-geometry = true;
       draw-border-with-background = false;
 
       geometry-corner-radius._args = [
-        16.0
-        16.0
-        8.0
-        8.0
+        cornerRadius
+        cornerRadius
+        (cornerRadius / 2)
+        (cornerRadius / 2)
       ];
 
-      opacity = 0.90;
+      opacity = 1.0;
 
       popups = {
-        background-effect = {
-          blur = true;
-          noise = 0.03;
-          saturation = 1.0;
-          xray = true;
-        };
+        background-effect = blurConfig;
 
         geometry-corner-radius._args = [
-          16.0
-          16.0
-          16.0
-          16.0
+          cornerRadius
+          cornerRadius
+          cornerRadius
+          cornerRadius
         ];
       };
     };

@@ -21,20 +21,15 @@ let
     @define-color base0D ${base0D};
     @define-color base0E ${base0E};
     @define-color base0F ${base0F};
+    @define-color base10 ${base10};
+    @define-color base11 ${base11};
+    @define-color base12 ${base12};
+    @define-color base13 ${base13};
+    @define-color base14 ${base14};
+    @define-color base15 ${base15};
+    @define-color base16 ${base16};
+    @define-color base17 ${base17};
     @define-color accent ${config.scheme.withHashtag.${config.colors.accent}};
-  '';
-
-  gtk3-exclusive = with config.scheme.withHashtag; ''
-    /* enforce header bar background colors */
-    headerbar,
-    .titlebar {
-      background: alpha(${base10}, 0.9);
-    }
-
-    headerbar:backdrop,
-    .titlebar:backdrop {
-      background: alpha(${base10}, 0.9);
-    }
   '';
 
   gtk4-exclusive = /* css */ ''
@@ -119,7 +114,7 @@ in
 
   home.file = with builtins; {
     ".config/gtk-3.0/colors.css".text = colors;
-    ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk3-exclusive;
+    ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css;
     ".config/gtk-4.0/colors.css".text = colors;
     ".config/gtk-4.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk4-exclusive;
   };
