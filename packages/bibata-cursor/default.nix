@@ -1,5 +1,9 @@
 {
-  pkgs ? import <nixpkgs> { },
+  lib,
+  fetchFromGitHub,
+  fetchurl,
+  openjdk25,
+  stdenv,
   base00 ? "#1e1e2e",
   base01 ? "#313244",
   base02 ? "#45475a",
@@ -30,15 +34,15 @@
   # --pointer-shadow[=<blur>[,<dx>[,<dy>[,<opacity>[,#<color>]]]]]
   pointerShadow ? "6,18,9,0.3,${outlineColor}",
   strokeWidth ? "12",
-  themeName ? "bibata",
+  themeName ? "catppuccin-mocha",
 }:
 
 let
-  mousegen = pkgs.fetchurl {
+  mousegen = fetchurl {
     hash = "sha256-SRDSIDCwh6g3DjaFLjBEplUOrDMgACucvQltNULBlH4=";
     url = "https://github.com/stanio/stanio-misc/releases/download/mousegen-0.11.7/mousegen.sh";
   };
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     hash = "sha256-TqguzNPH2GRHHyAifIb953YrVpjZe5eEP2r/Kd1qV8s=";
     owner = "stanio";
     repo = "Bibata_Cursor";
@@ -46,7 +50,7 @@ let
   };
   version = "2.0.7-stanio-16";
 in
-pkgs.stdenv.mkDerivation {
+stdenv.mkDerivation {
   inherit version src;
 
   buildPhase = /* bash */ ''
@@ -131,13 +135,13 @@ pkgs.stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  nativeBuildInputs = with pkgs; [
+  nativeBuildInputs = [
     openjdk25
   ];
 
   pname = "bibata-${themeName}-cursor";
 
-  meta = with pkgs.lib; {
+  meta = with lib; {
     description = "Custom colored Bibata Cursor theme built from source";
     homepage = "https://github.com/ful1e5/Bibata_Cursor";
     license = licenses.gpl3;
