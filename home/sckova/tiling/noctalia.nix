@@ -241,8 +241,7 @@
 
         cpu = {
           capsule = true;
-          # show_value = false;
-          show_label = false;
+          show_value = false;
         };
 
         date = {
@@ -269,8 +268,7 @@
 
         ram = {
           capsule = true;
-          # show_value = false;
-          show_label = false;
+          show_value = false;
         };
 
         speaker = {
@@ -279,8 +277,7 @@
         };
 
         storage = {
-          # show_value = false;
-          show_label = false;
+          show_value = false;
           stat = "disk_used_pct";
           type = "sysmon";
         };
