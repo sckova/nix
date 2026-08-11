@@ -7,7 +7,10 @@
       url = "github:nyakase/aerothemeplasma-nix";
     };
 
-    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
+    apple-silicon = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixos-apple-silicon/release-2026-07-30";
+    };
 
     arnis = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +52,7 @@
 
     noctalia = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:noctalia-dev/noctalia/v5.0.0-beta.7";
+      url = "github:noctalia-dev/noctalia/v5.0.0-beta.8";
     };
 
     nox = {
@@ -64,7 +67,7 @@
 
     openmw = {
       flake = false;
-      url = "gitlab:OpenMW/openmw/openmw-0.51.0";
+      url = "gitlab:OpenMW/openmw/stable";
     };
 
     paneru = {
