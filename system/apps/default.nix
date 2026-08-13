@@ -30,6 +30,8 @@
     };
   };
 
+  programs.nh.enable = true;
+
   services.ananicy = {
     enable = true;
     package = pkgs.ananicy-cpp;
