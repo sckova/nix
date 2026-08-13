@@ -2,10 +2,10 @@
   description = "unified nixos/nix-darwin/home-manager configuration for three systems";
 
   inputs = {
-    aerothemeplasma = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nyakase/aerothemeplasma-nix";
-    };
+    # aerothemeplasma = {
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   url = "github:nyakase/aerothemeplasma-nix";
+    # };
 
     apple-silicon = {
       inputs.nixpkgs.follows = "nixpkgs";
