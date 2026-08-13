@@ -20,10 +20,10 @@ in
     };
 
     google = {
-      definedAliases = [ "goog" ];
+      definedAliases = [ "@go" ];
       icon = searchIcon;
-      name = "Google";
-      urls = [ { template = "https://www.google.com/search?q={searchTerms}"; } ];
+      name = "Google (no LLM)";
+      urls = [ { template = "https://www.google.com/search?q={searchTerms}&udm=14"; } ];
     };
 
     nix-options = {
