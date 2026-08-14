@@ -15,11 +15,20 @@ let
   settings = import ./settings.nix { inherit config lib; };
 in
 {
-  home.file.".config/niri/config.kdl".text = lib.hm.generators.toKDL { } (
-    settings
-    // {
-      inherit binds;
-      _children = outputs ++ rules;
-    }
-  );
+  home = {
+    # ensure include.kdl exists
+    activation.ensureNiriInclude = lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
+      target="${config.xdg.configHome}/niri/include.kdl"
+      run mkdir -p "$(dirname "$target")"
+      [ -e "$target" ] || run touch "$target"
+    '';
+
+    file.".config/niri/config.kdl".text = lib.hm.generators.toKDL { } (
+      settings
+      // {
+        inherit binds;
+        _children = outputs ++ rules;
+      }
+    );
+  };
 }

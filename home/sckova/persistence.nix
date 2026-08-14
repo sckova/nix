@@ -41,6 +41,10 @@
       ".config/openmw"
     ];
 
+    files = [
+      ".config/niri/include.kdl"
+    ];
+
     hideMounts = true;
   };
 }

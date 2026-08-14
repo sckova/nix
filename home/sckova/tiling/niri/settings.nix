@@ -16,6 +16,7 @@
 
   gestures.hot-corners.off = { };
   hotkey-overlay.skip-at-startup = { };
+  include = config.xdg.configHome + "/niri/include.kdl";
 
   input = {
     focus-follows-mouse._props.max-scroll-amount = "5%";
