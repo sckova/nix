@@ -3,6 +3,21 @@
   pkgs,
   ...
 }:
+let
+  kdlfmtConfig = pkgs.writeText "kdlfmt.kdl" ''
+    indent_size 2
+    use_tabs #false
+  '';
+
+  kdlfmtWrapper = pkgs.writeShellApplication {
+    name = "kdlfmt-format";
+    runtimeInputs = [ pkgs.kdlfmt ];
+
+    text = ''
+      kdlfmt format --config ${kdlfmtConfig} "$@"
+    '';
+  };
+in
 {
   home.packages = with pkgs; [
     nixfmt
@@ -11,6 +26,8 @@
     stylua
     black
     clang-tools
+    kdlfmt
+    kdlfmtWrapper
   ];
 
   programs.nixvim.plugins = {
@@ -45,6 +62,12 @@
         };
 
         formatters = {
+          kdlfmt = {
+            args = [ "$FILENAME" ];
+            command = lib.getExe kdlfmtWrapper;
+            stdin = false;
+          };
+
           pedantix = {
             command = lib.getExe pkgs.pedantix;
             stdin = true;
@@ -65,6 +88,7 @@
           javascript = [ "prettier" ];
           json = [ "prettier" ];
           jsonc = [ "prettier" ];
+          kdl = [ "kdlfmt" ];
           lua = [ "stylua" ];
           nix = [ "injected" ];
           python = [ "black" ];
