@@ -180,6 +180,12 @@
         widget_order = [ "lockscreen-login-box@eDP-1" ];
       };
 
+      nightlight = {
+        enabled = true;
+        temperature_day = 6500;
+        temperature_night = 5000;
+      };
+
       notification.position = "bottom_right";
 
       osd = {
