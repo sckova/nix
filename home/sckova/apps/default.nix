@@ -17,8 +17,8 @@
     with nur.repos.forkprince;
     [
       helium-nightly # web browser
-      google-chrome # proprietary web browser
-      audacity # audio tool
+      # google-chrome # proprietary web browser
+      # audacity # audio tool
       pkgs-unstable.musescore # music scoring
       (inputs.arnis.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
         cargoDeps = pkgs.rustPlatform.importCargoLock {
