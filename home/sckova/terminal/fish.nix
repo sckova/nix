@@ -42,9 +42,9 @@
               echo -n "<nix-shell> "
               end
             )
-            set -g color_user $color_base0C
+            set -g color_user $fish_color_param
             set -g color_host $color_accent
-            set -g color_cwd $color_base0B
+            set -g color_cwd $fish_color_end
 
             set -l user_host (set_color $color_user)"$USER"(set_color normal)"@"(set_color $color_host)(prompt_hostname)(set_color normal)
             set -l cwd (set_color $color_cwd)(prompt_pwd)(set_color normal)
