@@ -55,7 +55,16 @@
       id = 0;
       isDefault = true;
       name = "default";
-      search = import ./search.nix { inherit pkgs isLinux lib; };
+
+      search = import ./search.nix {
+        inherit
+          config
+          pkgs
+          isLinux
+          lib
+          ;
+      };
+
       settings = import ./settings.nix { inherit config lib; };
     };
   };

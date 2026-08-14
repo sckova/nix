@@ -1,12 +1,21 @@
 {
+  config,
   lib,
   pkgs,
   isLinux,
   ...
 }:
 let
-  nixIcon = "/run/current-system/sw/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-  searchIcon = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/scalable/places/folder-saved-search-symbolic.svg";
+  nixIcon = pkgs.runCommand "nix-snowflake.svg" { } ''
+    sed 's/#ffffff/${config.scheme.withHashtag.base05}/g' \
+      ${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg \
+      > $out
+  '';
+  searchIcon = pkgs.runCommand "search-symbolic.svg" { } ''
+    sed 's/#000000/${config.scheme.withHashtag.base05}/g' \
+      ${pkgs.morewaita-icon-theme}/share/icons/MoreWaita/symbolic/status/search-symbolic.svg \
+      > $out
+  '';
 in
 {
   default = if isLinux then "searxng" else "duckduckgo";
