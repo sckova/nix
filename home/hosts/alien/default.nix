@@ -5,7 +5,7 @@
 {
   colors = {
     accent = "base0D";
-    scheme = "tomorrow-night";
+    scheme = "catppuccin-mocha";
   };
 
   home = {
