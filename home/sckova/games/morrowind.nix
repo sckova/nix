@@ -1,12 +1,11 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
-{
+{ pkgs-unstable, ... }: {
   home = {
-    packages = with pkgs; [ pkgs-unstable.openmw ];
-    sessionVariables.SDL_VIDEO_DRIVER = "wayland";
+    packages = with pkgs-unstable; [ openmw ];
+
+    sessionVariables = {
+      GL_THREADED_OPTIMIZATIONS = "1"; # this improves FPS considerably on nvidia
+      SDL_VIDEO_DRIVER = "wayland";
+    };
   };
 
   programs.firefox.profiles.default.search.engines.uesp = {
