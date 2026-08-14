@@ -45,6 +45,6 @@
       ".config/niri/include.kdl"
     ];
 
-    hideMounts = true;
+    hideMounts = false;
   };
 }
