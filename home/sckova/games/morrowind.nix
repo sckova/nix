@@ -1,10 +1,11 @@
 {
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
   home = {
-    packages = with pkgs; [ openmw-unstable ];
+    packages = with pkgs; [ pkgs-unstable.openmw ];
     sessionVariables.SDL_VIDEO_DRIVER = "wayland";
   };
 

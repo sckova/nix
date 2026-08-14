@@ -747,26 +747,6 @@
         "type": "github"
       }
     },
-    "pyroclear": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786437738,
-        "narHash": "sha256-uKZbz82+BX/81v9O99HdkwWRdMxyeBEopndsoiXqmUY=",
-        "owner": "shreyanth-sureshkrishnaa",
-        "repo": "pyroclear",
-        "rev": "ce3bfc98b1afc8567901bb5fe6cc3424b5549fd6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "shreyanth-sureshkrishnaa",
-        "repo": "pyroclear",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "apple-silicon": "apple-silicon",
@@ -787,7 +767,6 @@
         "openmw": "openmw",
         "paneru": "paneru",
         "pedantix": "pedantix",
-        "pyroclear": "pyroclear",
         "seamless-asahi-plymouth": "seamless-asahi-plymouth",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
