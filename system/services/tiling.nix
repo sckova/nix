@@ -30,7 +30,7 @@
   };
 
   services = {
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = false;
 
     displayManager = {
       autoLogin = {
@@ -43,10 +43,10 @@
     };
 
     gnome = {
-      core-apps.enable = true;
-      games.enable = true;
-      gnome-keyring.enable = true;
-      sushi.enable = true;
+      core-apps.enable = false;
+      games.enable = false;
+      gnome-keyring.enable = false;
+      sushi.enable = false;
     };
   };
 }
