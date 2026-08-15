@@ -14,8 +14,8 @@
 
     clipboard = {
       providers = {
-        pbcopy.enable = pkgs.stdenv.isDarwin;
-        wl-copy.enable = pkgs.stdenv.isLinux;
+        pbcopy.enable = pkgs.stdenv.hostPlatform.isDarwin;
+        wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
       };
 
       register = "unnamedplus";
@@ -53,6 +53,6 @@
       tabstop = 2;
     };
 
-    waylandSupport = pkgs.stdenv.isLinux;
+    waylandSupport = pkgs.stdenv.hostPlatform.isLinux;
   };
 }

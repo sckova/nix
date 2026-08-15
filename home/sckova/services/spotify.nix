@@ -12,7 +12,7 @@ let
     "x86_64-darwin"
     "x86_64-linux"
   ];
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = with inputs; [
@@ -21,12 +21,12 @@ in
 
   home.packages =
     with pkgs;
-    lib.mkIf pkgs.stdenv.isDarwin [
+    lib.mkIf pkgs.stdenv.hostPlatform.isDarwin [
       # needed to run 'spotifyd auth' (the home-manager module will add this to the path on linux)
       spotifyd
     ];
 
-  launchd.agents = lib.mkIf pkgs.stdenv.isDarwin {
+  launchd.agents = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     spotifyd = {
       config = {
         KeepAlive = true;
@@ -89,7 +89,7 @@ in
           }
         ];
 
-        copy_command.command = if pkgs.stdenv.isLinux then "wl-copy" else "pbcopy";
+        copy_command.command = if pkgs.stdenv.hostPlatform.isLinux then "wl-copy" else "pbcopy";
 
         device = {
           audio_cache = false;
@@ -105,7 +105,7 @@ in
   };
 
   services.spotifyd = {
-    enable = lib.mkIf pkgs.stdenv.isLinux true;
+    enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
 
     # comments taken from https://docs.spotifyd.rs/configuration/index.html
     settings.global = {
@@ -120,7 +120,7 @@ in
       #-------#
       # The audio backend used to play music. To get
       # a list of possible backends, run `spotifyd --help`.
-      backend = if pkgs.stdenv.isLinux then "alsa" else "portaudio"; # use portaudio for macOS [homebrew]
+      backend = if pkgs.stdenv.hostPlatform.isLinux then "alsa" else "portaudio"; # use portaudio for macOS [homebrew]
       # The audio bitrate. 96, 160 or 320 kbit/s
       bitrate = 320;
       # The bus to bind to with the MPRIS interface.
@@ -132,7 +132,7 @@ in
       dbus_type = "session";
       # The alsa audio device to stream audio. To get a
       # list of valid devices, run `aplay -L`,
-      device = lib.mkIf pkgs.stdenv.isLinux "default"; # omit for macOS
+      device = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "default"; # omit for macOS
       #---------#
       # GENERAL #
       #---------#
@@ -168,11 +168,11 @@ in
       # and expose MPRIS controls. When running headless, without the session bus,
       # you should set this to false, to avoid errors. If you still want to use MPRIS,
       # have a look at the `dbus_type` option.
-      use_mpris = pkgs.stdenv.isLinux;
+      use_mpris = pkgs.stdenv.hostPlatform.isLinux;
       # The volume controller. Each one behaves different to
       # volume increases. For possible values, run
       # `spotifyd --help`.
-      volume_controller = if pkgs.stdenv.isLinux then "alsa" else "softvol"; # use softvol for macOS
+      volume_controller = if pkgs.stdenv.hostPlatform.isLinux then "alsa" else "softvol"; # use softvol for macOS
       # If set to true, enables volume normalisation between songs.
       volume_normalisation = true;
     };

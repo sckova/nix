@@ -21,7 +21,7 @@
   home = {
     file.".gnupg/gpg-agent.conf".text = ''
       pinentry-program ${
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           "${pkgs.pinentry-curses}/bin/pinentry-curses"
         else
           "${pkgs.pinentry_mac}/bin/pinentry-mac"
@@ -43,11 +43,11 @@
         ffmpeg
         jq
       ]
-      ++ lib.optionals pkgs.stdenv.isLinux [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         wl-clipboard
         waypipe
       ]
-      ++ lib.optionals pkgs.stdenv.isDarwin [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
         gnupg
         pinentry_mac
       ];

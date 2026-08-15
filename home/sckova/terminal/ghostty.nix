@@ -12,7 +12,7 @@
     enableFishIntegration = true;
 
     settings = {
-      background-blur = lib.mkIf pkgs.stdenv.isDarwin "macos-glass-clear";
+      background-blur = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "macos-glass-clear";
       background-opacity = if isLinux then 0 else 0.9;
       confirm-close-surface = if isLinux then false else true;
       # https://github.com/ghostty-org/ghostty/discussions/5948

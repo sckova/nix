@@ -32,7 +32,7 @@
         };
       }))
     ]
-    ++ lib.optionals stdenv.isLinux [
+    ++ lib.optionals stdenv.hostPlatform.isLinux [
       calibre # ebook tool
       nautilus # file browser
       fractal # matrix client
@@ -44,7 +44,7 @@
       papers # GNOME's document viewer
       gapless # music player
     ]
-    ++ lib.optionals stdenv.isDarwin [
+    ++ lib.optionals (!stdenv.hostPlatform.isLinux) [
       iina # media player
       gimp2 # image editor
       libreoffice-bin # office suite

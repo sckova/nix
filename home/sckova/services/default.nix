@@ -32,6 +32,7 @@
     ];
 
     pointerCursor = {
+      enable = true;
       package = config.cursor.package;
       gtk.enable = true;
       name = config.cursor.name;
