@@ -21,7 +21,7 @@
       }
       # yt-dlp setup
       // {
-        ytdl-format = "bestvideo[height<=?2160]+bestaudio/best";
+        ytdl-format = "bestvideo/best+bestaudio/best";
         ytdl-raw-options = "cookies-from-browser=firefox";
       }
       # cache
@@ -85,6 +85,11 @@
         uosc
         mpv-subtitle-lines # requires uosc
         autosub
+        twitch-chat
+
+        # youtube plugins
+        quality-menu
+        sponsorblock
         youtube-upnext
         youtube-chat
       ]
