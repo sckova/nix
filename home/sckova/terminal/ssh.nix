@@ -27,6 +27,7 @@
       };
 
       "alien".HostName = "alien.taila30609.ts.net";
+      "alien-lan".HostName = "192.168.99.100";
       "nas".HostName = "nas.taila30609.ts.net";
 
       "oracle" = {
@@ -41,6 +42,7 @@
       };
 
       "peach".HostName = "peach.taila30609.ts.net";
+      "peach-lan".HostName = "192.168.99.200";
       "skmbp".HostName = "skmbp.taila30609.ts.net";
     };
   };

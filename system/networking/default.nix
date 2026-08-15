@@ -1,4 +1,6 @@
 {
+  config,
+  lib,
   hostname,
   ...
 }:
@@ -54,6 +56,30 @@
 
     networkmanager = {
       enable = true;
+
+      ensureProfiles.profiles =
+        lib.mkIf (config.networking.hostName == "alien" || config.networking.hostName == "peach")
+          {
+            "switch" = {
+              connection = {
+                id = "switch";
+                type = "ethernet";
+              };
+
+              ipv4 =
+                let
+                  base = "192.168.99.";
+                  host = config.networking.hostName;
+                in
+                {
+                  addresses = if host == "alien" then base + "100/24" else base + "200/24";
+                  dns = base + "1;";
+                  gateway = base + "1";
+                  method = "manual";
+                };
+            };
+          };
+
       wifi.backend = "iwd";
     };
   };
