@@ -11,6 +11,7 @@ let
       ${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg \
       > $out
   '';
+  # TODO: morewaita doesn't work in darwin
   searchIcon = pkgs.runCommand "search-symbolic.svg" { } ''
     sed 's/#000000/${config.scheme.withHashtag.base05}/g' \
       ${pkgs.morewaita-icon-theme}/share/icons/MoreWaita/symbolic/status/search-symbolic.svg \
@@ -23,14 +24,14 @@ in
   engines = {
     duckduckgo = {
       definedAliases = [ "@dd" ];
-      icon = searchIcon;
+      icon = lib.mkIf isLinux searchIcon;
       name = "DuckDuckGo";
       urls = [ { template = "https://duckduckgo.com/?t=ffab&q={searchTerms}&ia=web"; } ];
     };
 
     google = {
       definedAliases = [ "@go" ];
-      icon = searchIcon;
+      icon = lib.mkIf isLinux searchIcon;
       name = "Google (no LLM)";
       urls = [ { template = "https://www.google.com/search?q={searchTerms}&udm=14"; } ];
     };
