@@ -2,38 +2,79 @@
   config,
   lib,
   pkgs,
+  hostname,
   isLinux,
   ...
 }:
 {
   programs.mpv = {
-    config = with config.scheme.withHashtag; {
-      background-color = "#e6" + config.scheme.base00;
-      gpu-context = lib.mkIf isLinux "wayland"; # fixes issues with transparency
-      osd-back-color = base11;
-      osd-border-color = base11;
-      osd-color = base05;
-      osd-font = config.fonts.sans.name;
-      osd-shadow-color = base00;
-      sub-font = config.fonts.sans.name;
-      title = "\${filename} - mpv (nix)"; # allows niri to match window
-    };
+    config =
+      with config.scheme.withHashtag;
+      # resume playback later
+      {
+        resume-playback = true;
+        save-position-on-quit = true;
+        watch-later-directory = "~~state/watch_later";
+      }
+      # yt-dlp setup
+      // {
+        ytdl-format = "bestvideo[height<=?2160]+bestaudio/best";
+        ytdl-raw-options = "cookies-from-browser=firefox";
+      }
+      # cache
+      // {
+        cache = true;
+        demuxer-max-back-bytes = "128MiB";
+        demuxer-max-bytes = "512MiB";
+      }
+      # linux-specific
+      // lib.optionalAttrs isLinux (
+        # hardware-accel and niri
+        {
+          gpu-context = "wayland"; # fixes issues with transparency
+          hwdec = lib.mkIf (hostname != "peach") "auto-safe"; # TODO: requires AVD on peach
+          title = "\${filename} - mpv (nix)"; # allows niri to match window
+        }
+        # gpu-next fancy bits
+        // {
+          correct-downscaling = true;
+          cscale = "ewa_lanczossharp";
+          dscale = "mitchell";
+          scale = "ewa_lanczossharp";
+          sigmoid-upscaling = true;
+          vo = "gpu-next";
+        }
+      )
+      # theme setup
+      // {
+        background-color = "#e6" + config.scheme.base00;
+        osd-back-color = base11;
+        osd-border-color = base11;
+        osd-color = base05;
+        osd-font = config.fonts.sans.name;
+        osd-shadow-color = base00;
+        sub-font = config.fonts.sans.name;
+      };
 
     enable = true;
 
-    scriptOpts.uosc.color =
-      with config.scheme;
-      lib.concatStringsSep "," (
-        lib.mapAttrsToList (key: value: "${key}=${value}") {
-          background = base00;
-          background_text = base05;
-          curtain = base10;
-          error = base08;
-          foreground = config.scheme.${config.colors.accent};
-          foreground_text = base01;
-          success = base0B;
-        }
-      );
+    scriptOpts.uosc = {
+      color =
+        with config.scheme;
+        lib.concatStringsSep "," (
+          lib.mapAttrsToList (key: value: "${key}=${value}") {
+            background = base00;
+            background_text = base05;
+            curtain = base10;
+            error = base08;
+            foreground = config.scheme.${config.colors.accent};
+            foreground_text = base01;
+            success = base0B;
+          }
+        );
+
+      window_border_size = 0;
+    };
 
     scripts =
       with pkgs.mpvScripts;
