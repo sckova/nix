@@ -12,6 +12,20 @@
     hostName = hostname;
 
     hosts = {
+      "192.168.1.244" = [
+        "alien"
+        "alien.local"
+        "alien.attlocal.net"
+        "alien.taila30609.ts.net"
+      ];
+
+      "192.168.1.250" = [
+        "peach"
+        "peach.local"
+        "peach.attlocal.net"
+        "peach.taila30609.ts.net"
+      ];
+
       "192.168.1.64" = [
         "kube1"
         "kube1.local"
