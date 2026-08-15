@@ -13,22 +13,24 @@
     # split is done for organization
     config =
       with config.scheme.withHashtag;
-      # resume playback later
-      {
-        resume-playback = true;
-        save-position-on-quit = true;
-        watch-later-directory = "~~state/watch_later";
-      }
       # yt-dlp setup
-      // {
-        ytdl-format = "bestvideo/best+bestaudio/best";
-        ytdl-raw-options = "cookies-from-browser=firefox";
+      {
+        ytdl-format = "best";
+
+        ytdl-raw-options = lib.concatStringsSep "," (
+          lib.mapAttrsToList (key: value: "${key}=${value}") {
+            concurrent-fragments = "4"; # helps with quality-menu plugin
+            cookies-from-browser = "firefox"; # youtube requires auth nowadays
+            fragment-retries = "infinite"; # helps with youtube-upnext plugin
+            retries = "infinite"; # helps with youtube-upnext plugin
+          }
+        );
       }
       # cache
       // {
-        cache = true;
-        demuxer-max-back-bytes = "128MiB";
-        demuxer-max-bytes = "512MiB";
+        cache = true; # enable cache
+        demuxer-max-back-bytes = "128MiB"; # keep this amount of past stream
+        demuxer-max-bytes = "512MiB"; # keep this amount of total stream
       }
       # gpu-next fancy bits
       // {
@@ -44,8 +46,10 @@
         # hardware-accel and niri
         {
           gpu-context = "wayland"; # fixes issues with transparency
-          hwdec = lib.mkIf (hostname != "peach") "auto-safe"; # TODO: requires AVD on peach
           title = "\${filename} - mpv (nix)"; # allows niri to match window
+        }
+        // lib.optionalAttrs (hostname != "peach") {
+          hwdec = "auto-safe"; # TODO: requires AVD on peach
         }
       )
       # theme setup
