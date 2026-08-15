@@ -7,7 +7,10 @@
   ...
 }:
 {
+  home.packages = [ config.fonts.sans.package ];
+
   programs.mpv = {
+    # split is done for organization
     config =
       with config.scheme.withHashtag;
       # resume playback later
@@ -27,6 +30,15 @@
         demuxer-max-back-bytes = "128MiB";
         demuxer-max-bytes = "512MiB";
       }
+      # gpu-next fancy bits
+      // {
+        correct-downscaling = true;
+        cscale = "ewa_lanczossharp";
+        dscale = "mitchell";
+        scale = "ewa_lanczossharp";
+        sigmoid-upscaling = true;
+        vo = "gpu-next";
+      }
       # linux-specific
       // lib.optionalAttrs isLinux (
         # hardware-accel and niri
@@ -34,15 +46,6 @@
           gpu-context = "wayland"; # fixes issues with transparency
           hwdec = lib.mkIf (hostname != "peach") "auto-safe"; # TODO: requires AVD on peach
           title = "\${filename} - mpv (nix)"; # allows niri to match window
-        }
-        # gpu-next fancy bits
-        // {
-          correct-downscaling = true;
-          cscale = "ewa_lanczossharp";
-          dscale = "mitchell";
-          scale = "ewa_lanczossharp";
-          sigmoid-upscaling = true;
-          vo = "gpu-next";
         }
       )
       # theme setup
