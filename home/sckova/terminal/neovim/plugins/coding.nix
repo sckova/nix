@@ -4,6 +4,7 @@
   ...
 }:
 let
+  # this is kdlv2, so it can't be self-formatted
   kdlfmtConfig = pkgs.writeText "kdlfmt.kdl" ''
     indent_size 2
     use_tabs #false
@@ -13,8 +14,10 @@ let
     name = "kdlfmt-format";
     runtimeInputs = [ pkgs.kdlfmt ];
 
-    text = ''
-      kdlfmt format --config ${kdlfmtConfig} "$@"
+    text = /* bash */ ''
+      kdlfmt format \
+        --config ${kdlfmtConfig} \
+        --kdl-version v1 "$@"
     '';
   };
 in
