@@ -19,5 +19,6 @@
     shinigami-eyes
     vimium
     adaptive-tab-bar-colour
+    iina-open-in-mpv
   ];
 }

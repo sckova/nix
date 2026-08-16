@@ -16,6 +16,7 @@
   "{5cce4ab5-3d47-41b9-af5e-8203eea05245}".installation_mode = "allowed"; # control panel for twitter
   "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".installation_mode = "allowed"; # stylus
   "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}".installation_mode = "allowed"; # violentmonkey
+  "{d66c8515-1e0d-408f-82ee-2682f2362726}".installation_mode = "allowed"; # iina-open-in-mpv
   "{d7742d87-e61d-4b78-b8a1-b469842139fa}".installation_mode = "allowed"; # vimium
 
   # https://addons.config/mozilla.org/en-US/firefox/addon/youtube-tweaks/

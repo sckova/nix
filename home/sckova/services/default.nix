@@ -66,6 +66,7 @@
       "x-scheme-handler/geo" = [ "org.gnome.Maps.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/mpv" = [ "open-in-mpv.desktop" ];
       "x-scheme-handler/spotify" = [ "riff.desktop" ];
     };
 

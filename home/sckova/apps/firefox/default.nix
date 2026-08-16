@@ -1,5 +1,7 @@
-# https://discourse.nixos.org/t/combining-best-of-system-firefox-and-home-manager-firefox-settings/37721
-# https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
+/*
+  https://discourse.nixos.org/t/combining-best-of-system-firefox-and-home-manager-firefox-settings/37721
+  https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
+*/
 {
   config,
   lib,
@@ -13,13 +15,17 @@
     ./theme.nix
   ];
 
-  # fix xdg data path differences
-  home.file.".mozilla/firefox" = {
-    force = true;
+  home = {
+    # fix xdg data path differences
+    file.".mozilla/firefox" = {
+      force = true;
 
-    source =
-      with config.lib.file;
-      mkOutOfStoreSymlink "${config.home.homeDirectory}/${config.programs.firefox.configPath}";
+      source =
+        with config.lib.file;
+        mkOutOfStoreSymlink "${config.home.homeDirectory}/${config.programs.firefox.configPath}";
+    };
+
+    packages = with pkgs; [ open-in-mpv ];
   };
 
   programs.firefox = {
@@ -27,11 +33,7 @@
 
     package =
       if isLinux then
-        pkgs.firefox.override {
-          nativeMessagingHosts = with pkgs; [
-            firefoxpwa
-          ];
-        }
+        pkgs.firefox.override { nativeMessagingHosts = with pkgs; [ firefoxpwa ]; }
       else
         pkgs.firefox;
 
