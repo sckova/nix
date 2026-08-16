@@ -81,7 +81,9 @@
 
               text = /* bash */ ''
                 systemctl --user restart wbg-daemon.service
-                systemctl --user restart swaylock.service
+                if systemctl --user is-active --quiet swaylock.service; then
+                  systemctl --user restart swaylock.service
+                fi
               '';
             }
           );
