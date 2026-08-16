@@ -1,12 +1,6 @@
-{
-  lib,
-  pkgs,
-  users,
-  ...
-}:
-{
+{ pkgs, ... }: {
   imports = [
-    ./obs.nix
+    # ./obs.nix
   ];
 
   environment.systemPackages = with pkgs; [
