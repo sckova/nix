@@ -5,7 +5,7 @@
 {
   imports = [
     ./niri
-    ./noctalia.nix
+    ./noctalia
     ./services.nix
     ./swaylock.nix
     ./vicinae.nix
