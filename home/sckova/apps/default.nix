@@ -29,7 +29,7 @@
       snapshot # webcam tool
       loupe # image viewer
       gimp # image editor
-      # libreoffice-fresh # office suite
+      libreoffice-fresh # office suite
       papers # GNOME's document viewer
       gapless # music player
       # (inputs.arnis.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
@@ -47,6 +47,6 @@
     ++ lib.optionals (!stdenv.hostPlatform.isLinux) [
       iina # media player
       gimp2 # image editor
-      # libreoffice-bin # office suite
+      libreoffice-bin # office suite
     ];
 }
