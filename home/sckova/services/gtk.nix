@@ -1,74 +1,74 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
-let
-  colors = with config.scheme.withHashtag; ''
-    @define-color base00 ${base00};
-    @define-color base01 ${base01};
-    @define-color base02 ${base02};
-    @define-color base03 ${base03};
-    @define-color base04 ${base04};
-    @define-color base05 ${base05};
-    @define-color base06 ${base06};
-    @define-color base07 ${base07};
-    @define-color base08 ${base08};
-    @define-color base09 ${base09};
-    @define-color base0A ${base0A};
-    @define-color base0B ${base0B};
-    @define-color base0C ${base0C};
-    @define-color base0D ${base0D};
-    @define-color base0E ${base0E};
-    @define-color base0F ${base0F};
-    @define-color base10 ${base10};
-    @define-color base11 ${base11};
-    @define-color base12 ${base12};
-    @define-color base13 ${base13};
-    @define-color base14 ${base14};
-    @define-color base15 ${base15};
-    @define-color base16 ${base16};
-    @define-color base17 ${base17};
-    @define-color accent ${config.scheme.withHashtag.${config.colors.accent}};
-  '';
-
-  gtk4-exclusive = /* css */ ''
-    window {
-      --overview-bg-color: alpha(@sidebar_bg_color, 0.9);
-      --overview-fg-color: @sidebar_fg_color;
-    }
-  '';
-in
 {
-  dconf.settings = {
-    "org/gnome/desktop/background".picture-uri =
-      "files:///home/${config.home.homeDirectory}/.local/share/wallpaper/daily-colored.jpg";
+  dconf.settings =
+    let
+      flatten =
+        stopAt: prefix: attrs:
+        lib.concatMapAttrs (
+          name: value:
+          let
+            key = if prefix == "" then name else "${prefix}.${name}";
+          in
+          if builtins.isAttrs value && !(builtins.elem key stopAt) then
+            flatten stopAt key value
+          else
+            { ${key} = value; }
+        ) attrs;
+    in
+    lib.mapAttrs'
+      (name: value: {
+        inherit value;
+        name = (builtins.replaceStrings [ "." ] [ "/" ]) name;
+      })
+      (
+        flatten
+          [
+            "org.gnome.desktop.background"
+            "org.gnome.desktop.interface"
+            "org.gnome.desktop.media-handling"
+            "org.gnome.desktop.wm.preferences"
+            "org.gnome.mutter"
+            "org.gnome.settings-daemon.plugins.power"
+          ]
+          ""
+          {
+            org.gnome = {
+              desktop = {
+                background.picture-uri = "files://${config.xdg.dataHome}/wallpaper/daily-colored.jpg";
 
-    "org/gnome/desktop/interface" = {
-      clock-format = "12h";
-      clock-show-weekday = true;
-      color-scheme = "prefer-dark";
-    };
+                interface = {
+                  clock-format = "12h";
+                  clock-show-weekday = true;
+                  color-scheme = "prefer-dark";
+                };
 
-    "org/gnome/desktop/media-handling" = {
-      automount = false;
-      automount-open = false;
-      autorun-never = true;
-    };
+                media-handling = {
+                  automount = false;
+                  automount-open = false;
+                  autorun-never = true;
+                };
 
-    "org/gnome/desktop/wm/preferences" = {
-      action-double-click-titlebar = "\'none\'";
-      button-layout = "menu:maximize,close";
-    };
+                wm.preferences = {
+                  action-double-click-titlebar = "\'none\'";
+                  button-layout = "menu:maximize,close";
+                };
+              };
 
-    "org/gnome/mutter" = {
-      dynamic-workspaces = true;
-      edge-tiling = true;
-      experimental-features = [ "variable-refresh-rate" ];
-    };
+              mutter = {
+                dynamic-workspaces = true;
+                edge-tiling = true;
+                experimental-features = [ "variable-refresh-rate" ];
+              };
 
-    "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
-  };
+              settings-daemon.plugins.power.sleep-inactive-ac-type = "nothing";
+            };
+          }
+      );
 
   gtk = {
     enable = true;
@@ -86,15 +86,19 @@ in
     };
 
     gtk3 = {
-      bookmarks = [
-        "file://${config.home.homeDirectory}/Documents"
-        "file://${config.home.homeDirectory}/Downloads"
-        "file://${config.home.homeDirectory}/Music"
-        "file://${config.home.homeDirectory}/Pictures"
-        "file://${config.home.homeDirectory}/Projects"
-        "file://${config.home.homeDirectory}/Templates"
-        "file://${config.home.homeDirectory}/Videos"
-      ];
+      bookmarks =
+        let
+          home = "file://" + config.home.homeDirectory + "/";
+        in
+        [
+          (home + "Documents")
+          (home + "Downloads")
+          (home + "Music")
+          (home + "Pictures")
+          (home + "Projects")
+          (home + "Templates")
+          (home + "Videos")
+        ];
 
       extraConfig.gtk-application-prefer-dark-theme = true;
 
@@ -112,10 +116,28 @@ in
     };
   };
 
-  home.file = with builtins; {
-    ".config/gtk-3.0/colors.css".text = colors;
-    ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css;
-    ".config/gtk-4.0/colors.css".text = colors;
-    ".config/gtk-4.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk4-exclusive;
-  };
+  home.file =
+    with builtins;
+    let
+      colors = ''
+        ${lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (name: value: "@define-color ${name} ${value};") (
+            lib.filterAttrs (_: v: builtins.isString v) config.scheme.withHashtag
+          )
+        )}
+        @define-color accent ${config.scheme.withHashtag.${config.colors.accent}};
+      '';
+      gtk4-exclusive = /* css */ ''
+        window {
+          --overview-bg-color: alpha(@sidebar_bg_color, 0.9);
+          --overview-fg-color: @sidebar_fg_color;
+        }
+      '';
+    in
+    {
+      ".config/gtk-3.0/colors.css".text = colors;
+      ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css;
+      ".config/gtk-4.0/colors.css".text = colors;
+      ".config/gtk-4.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk4-exclusive;
+    };
 }
