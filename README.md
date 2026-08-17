@@ -22,7 +22,7 @@
 }</code></pre>
 
 ```shell
-user@host ~/nix (main)
+user@host ~/Projects/nix (main)
 > ls --tree --recurse --icons --ignore-glob=".git"
  .
 ├──  flake.lock
@@ -64,7 +64,8 @@ user@host ~/nix (main)
 │       │   │   ├──  search.nix
 │       │   │   ├──  settings.nix
 │       │   │   └──  theme.nix
-│       │   └──  mpv.nix
+│       │   ├──  mpv.nix
+│       │   └──  thunderbird.nix
 │       ├──  default.nix
 │       ├──  games
 │       │   ├──  default.nix
@@ -106,7 +107,10 @@ user@host ~/nix (main)
 │           │   ├──  outputs.nix
 │           │   ├──  rules.nix
 │           │   └──  settings.nix
-│           ├──  noctalia.nix
+│           ├──  noctalia
+│           │   ├──  colors.nix
+│           │   ├──  default.nix
+│           │   └──  settings.nix
 │           ├──  paneru.nix
 │           ├──  services.nix
 │           ├──  swaylock.nix
