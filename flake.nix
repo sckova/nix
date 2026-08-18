@@ -6,7 +6,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     #   url = "github:nyakase/aerothemeplasma-nix";
     # };
-
     apple-silicon = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nixos-apple-silicon/release-2026-07-30";
@@ -30,6 +29,12 @@
     };
 
     impermanence.url = "github:nix-community/impermanence";
+
+    kernel-asahi = {
+      flake = false;
+      url = "github:AsahiLinux/linux/fairydust";
+    };
+
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     nix-darwin = {

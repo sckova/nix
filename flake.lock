@@ -388,6 +388,23 @@
         "type": "github"
       }
     },
+    "kernel-asahi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786038922,
+        "narHash": "sha256-WywkNZXonLcyO0xAMlW7/k3uE9Embz3qedwyB5VOxQs=",
+        "owner": "AsahiLinux",
+        "repo": "linux",
+        "rev": "eb8089bbc11872c50fcf5138ff069d51b4ae996f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AsahiLinux",
+        "ref": "fairydust",
+        "repo": "linux",
+        "type": "github"
+      }
+    },
     "nix-cachyos-kernel": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -755,6 +772,7 @@
         "firefox-gnome-theme": "firefox-gnome-theme",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "kernel-asahi": "kernel-asahi",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
