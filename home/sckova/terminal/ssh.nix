@@ -28,6 +28,12 @@
 
       "alien".HostName = "alien.taila30609.ts.net";
       "alien-lan".HostName = "192.168.99.100";
+
+      "github" = {
+        HostName = "github.com";
+        User = "git";
+      };
+
       "nas".HostName = "nas.taila30609.ts.net";
 
       "oracle" = {

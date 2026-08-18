@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -56,11 +57,11 @@
         accessible_colors = "disabled";
         accessible_prompter = "disabled";
         aliases.co = "pr checkout";
-        browser = "${pkgs.firefox}/bin/firefox";
+        browser = lib.getExe pkgs.firefox;
         color_labels = "enabled";
-        editor = "${pkgs.neovim}/bin/nvim";
+        editor = lib.getExe pkgs.neovim;
         git_protocol = "https";
-        pager = "${pkgs.bat}/bin/bat";
+        pager = lib.getExe pkgs.bat;
         prefer_editor_prompt = "disabled";
         prompt = "enabled";
         spinner = "enabled";
@@ -73,8 +74,8 @@
 
       settings = {
         commit.gpgsign = true;
-        core.pager = "${pkgs.bat}/bin/bat";
-        diff.external = "${pkgs.difftastic}/bin/difft";
+        core.pager = lib.getExe pkgs.bat;
+        diff.external = lib.getExe pkgs.difftastic;
         init.defaultBranch = "main";
         safe.directory = "/home/nix";
 
