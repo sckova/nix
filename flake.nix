@@ -47,8 +47,8 @@
       url = "github:nix-community/nix-index-database";
     };
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-26.05-chilled/*";
+    nixpkgs-unstable.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
 
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
