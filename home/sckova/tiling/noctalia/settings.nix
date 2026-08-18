@@ -54,10 +54,10 @@
 
       font_family = config.fonts.sans.name;
       layer = "top";
-      margin_edge = if hostname == "peach" then 0 else 8;
-      margin_ends = if hostname == "peach" then 0 else 180;
-      position = if hostname == "peach" then "top" else "right";
-      radius = if hostname == "peach" then 0 else 16;
+      margin_edge = 0;
+      margin_ends = 0;
+      position = "top";
+      radius = 0;
       reserve_space = true;
       shadow = false;
 
@@ -70,7 +70,7 @@
       thickness = 47;
     };
 
-    brightness.enable_ddcutil = if hostname == "peach" then false else true;
+    brightness.enable_ddcutil = false;
     desktop_widgets.enabled = false;
     location.address = "Atlanta, US";
 
@@ -159,7 +159,7 @@
         capsule = true;
         capsule_padding = 10.0;
         max_length = 600;
-        show_empty_label = if hostname == "peach" then true else false;
+        show_empty_label = true;
         title_scroll = "on_hover";
       };
 
