@@ -43,7 +43,7 @@
 
       capsule_thickness = 0.75;
       center = [ "weather" ];
-      contact_shadow = true;
+      contact_shadow = false;
 
       end = [
         "media"
@@ -59,6 +59,7 @@
       position = if hostname == "peach" then "top" else "right";
       radius = if hostname == "peach" then 0 else 16;
       reserve_space = true;
+      shadow = false;
 
       start = [
         "workspaces"

@@ -16,7 +16,7 @@
         mPrimary = config.scheme.withHashtag.${config.colors.accent};
         mSecondary = base13;
         mShadow = base00;
-        mSurface = base10;
+        mSurface = base00; # bar background color
         mSurfaceVariant = base01;
         mTertiary = base04;
 
