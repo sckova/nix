@@ -69,12 +69,10 @@
               ipv4 =
                 let
                   base = "192.168.99.";
-                  host = config.networking.hostName;
+                  nums = if config.networking.hostName == "alien" then "100" else "200";
                 in
                 {
-                  addresses = if host == "alien" then base + "100/24" else base + "200/24";
-                  dns = base + "1;";
-                  gateway = base + "1";
+                  address1 = base + nums + "/24";
                   method = "manual";
                 };
             };
