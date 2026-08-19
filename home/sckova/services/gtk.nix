@@ -117,14 +117,16 @@
   };
 
   home.file =
-    with builtins;
     let
+      baseColors = lib.pipe config.scheme.withHashtag [
+        (lib.filterAttrs (
+          name: value: builtins.isString value && builtins.match "base[0-9][0-9]" name != null
+        ))
+        (lib.mapAttrsToList (name: value: "@define-color ${name} ${value};"))
+        (lib.concatStringsSep "\n")
+      ];
       colors = ''
-        ${lib.concatStringsSep "\n" (
-          lib.mapAttrsToList (name: value: "@define-color ${name} ${value};") (
-            lib.filterAttrs (_: v: builtins.isString v) config.scheme.withHashtag
-          )
-        )}
+        ${baseColors}
         @define-color accent ${config.scheme.withHashtag.${config.colors.accent}};
       '';
       gtk4-exclusive = /* css */ ''
@@ -136,8 +138,8 @@
     in
     {
       ".config/gtk-3.0/colors.css".text = colors;
-      ".config/gtk-3.0/gtk.css".text = readFile ./gtk.css;
+      ".config/gtk-3.0/gtk.css".text = builtins.readFile ./gtk.css;
       ".config/gtk-4.0/colors.css".text = colors;
-      ".config/gtk-4.0/gtk.css".text = readFile ./gtk.css + "\n" + gtk4-exclusive;
+      ".config/gtk-4.0/gtk.css".text = builtins.readFile ./gtk.css + "\n" + gtk4-exclusive;
     };
 }
