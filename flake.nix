@@ -26,7 +26,7 @@
 
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
     };
 
     impermanence.url = "https://flakehub.com/f/nix-community/impermanence/*";
@@ -48,12 +48,12 @@
       url = "github:nix-community/nix-index-database";
     };
 
-    nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-26.05-chilled/*";
+    nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
     nixpkgs-unstable.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
 
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nixvim/nixos-26.05";
+      url = "github:nix-community/nixvim";
     };
 
     noctalia = {
