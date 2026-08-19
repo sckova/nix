@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   pkgs-unstable,
   ...
 }:
@@ -9,7 +8,6 @@
   imports = [
     ./firefox
     ./mpv.nix
-    ./thunderbird.nix
   ];
 
   home.packages =
