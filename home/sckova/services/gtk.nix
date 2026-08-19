@@ -54,7 +54,7 @@
                 };
 
                 wm.preferences = {
-                  action-double-click-titlebar = "\'none\'";
+                  action-double-click-titlebar = "'none'";
                   button-layout = "menu:maximize,close";
                 };
               };
