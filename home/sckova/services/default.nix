@@ -24,11 +24,11 @@
 
     packages = with pkgs; [
       adwaita-icon-theme
-      morewaita-icon-theme
+      config.fonts.emoji.package
+      config.fonts.mono.package
       config.fonts.sans.package
       config.fonts.serif.package
-      config.fonts.mono.package
-      config.fonts.emoji.package
+      morewaita-icon-theme
     ];
 
     pointerCursor = {

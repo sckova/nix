@@ -14,26 +14,26 @@
     with pkgs;
     with nur.repos.forkprince;
     [
-      # helium-nightly # web browser
-      # google-chrome # proprietary web browser
       # audacity # audio tool
+      # google-chrome # proprietary web browser
+      # helium-nightly # web browser
       pkgs-unstable.musescore # music scoring
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       calibre # ebook tool
-      nautilus # file browser
       fractal # matrix client
-      tuba # mastodon client
-      snapshot # webcam tool
-      loupe # image viewer
+      gapless # music player
       gimp # image editor
       libreoffice-fresh # office suite
+      loupe # image viewer
+      nautilus # file browser
       papers # GNOME's document viewer
-      gapless # music player
+      snapshot # webcam tool
+      tuba # mastodon client
     ]
     ++ lib.optionals (!stdenv.hostPlatform.isLinux) [
-      iina # media player
       gimp2 # image editor
+      iina # media player
       libreoffice-bin # office suite
     ];
 }

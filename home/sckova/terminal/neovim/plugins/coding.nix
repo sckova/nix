@@ -23,14 +23,14 @@ let
 in
 {
   home.packages = with pkgs; [
-    nixfmt
-    prettier
-    prettierd
-    stylua
     black
     clang-tools
     kdlfmt
     kdlfmtWrapper
+    nixfmt
+    prettier
+    prettierd
+    stylua
   ];
 
   programs.nixvim.plugins = {

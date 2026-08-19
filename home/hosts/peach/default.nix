@@ -10,9 +10,9 @@
   };
 
   home.packages = with pkgs; [
-    asahi-nvram
     asahi-bless
     asahi-btsync
+    asahi-nvram
     asahi-wifisync
   ];
 }

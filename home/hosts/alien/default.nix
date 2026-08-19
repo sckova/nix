@@ -10,8 +10,8 @@
 
   home = {
     packages = with pkgs; [
-      ckan
       adwsteamgtk
+      ckan
       gamemode
     ];
 

@@ -32,20 +32,20 @@
     packages =
       with pkgs;
       [
-        wget
-        ncdu
-        rclone
-        pigz
         comma
         difftastic
-        nixd
         ffmpeg
-        jq
         fh
+        jq
+        ncdu
+        nixd
+        pigz
+        rclone
+        wget
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-        wl-clipboard
         waypipe
+        wl-clipboard
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
         gnupg
