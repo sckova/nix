@@ -100,11 +100,6 @@
       url = "https://flakehub.com/f/Mic92/sops-nix/*";
     };
 
-    spicetify-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Gerg-L/spicetify-nix";
-    };
-
     steam-asahi.url = "github:sm-idk/steam-asahi";
 
     thunderbird-gnome-theme = {

@@ -2,23 +2,10 @@
   config,
   lib,
   pkgs,
-  inputs,
   osConfig,
   ...
 }:
-let
-  checkSpotifyAppSupport = builtins.elem osConfig.nixpkgs.hostPlatform.system [
-    "aarch64-darwin"
-    "x86_64-darwin"
-    "x86_64-linux"
-  ];
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
 {
-  imports = with inputs; [
-    spicetify-nix.homeManagerModules.spicetify
-  ];
-
   home.packages =
     with pkgs;
     lib.mkIf pkgs.stdenv.hostPlatform.isDarwin [
@@ -48,58 +35,27 @@ in
     };
   };
 
-  programs = {
-    spicetify = lib.mkIf checkSpotifyAppSupport {
-      enable = true;
+  programs.spotify-player = {
+    enable = true;
 
-      colorScheme = lib.mkIf (config.programs.spicetify.theme == spicePkgs.themes.catppuccin) (
-        if lib.hasPrefix "catppuccin-" config.colors.scheme then
-          lib.removePrefix "catppuccin-" config.colors.scheme
-        else
-          "frappe"
-      );
-
-      enabledExtensions = with spicePkgs.extensions; [
-        adblockify
-        hidePodcasts
-        shuffle # shuffle+ (special characters are sanitized out of extension names)
-        powerBar
-        playlistIcons
-        fullAlbumDate
-        skipStats
-        wikify
-        sidebarCustomizer
+    settings = {
+      actions = [
+        {
+          action = "ToggleLiked";
+          key_sequence = "C-l";
+        }
       ];
 
-      theme =
-        if lib.hasPrefix "catppuccin-" config.colors.scheme then
-          spicePkgs.themes.catppuccin
-        else
-          spicePkgs.themes.defaultDynamic;
-    };
+      copy_command.command = if pkgs.stdenv.hostPlatform.isLinux then "wl-copy" else "pbcopy";
 
-    spotify-player = {
-      enable = true;
-
-      settings = {
-        actions = [
-          {
-            action = "ToggleLiked";
-            key_sequence = "C-l";
-          }
-        ];
-
-        copy_command.command = if pkgs.stdenv.hostPlatform.isLinux then "wl-copy" else "pbcopy";
-
-        device = {
-          audio_cache = false;
-          autoplay = false;
-          bitrate = 320;
-          device_type = "speaker";
-          name = "player@${osConfig.networking.hostName}";
-          normalization = false;
-          volume = 100;
-        };
+      device = {
+        audio_cache = false;
+        autoplay = false;
+        bitrate = 320;
+        device_type = "speaker";
+        name = "player@${osConfig.networking.hostName}";
+        normalization = false;
+        volume = 100;
       };
     };
   };
