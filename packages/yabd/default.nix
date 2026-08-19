@@ -38,7 +38,7 @@ buildPythonPackage {
     rev = "4cacc9a9083f07a67a5fcb8eebaf919984dd7e6f";
   };
 
-  version = "latest";
+  version = "0-unstable-2026-05-31";
 
   meta = with lib; {
     description = "Yet another brightness daemon";
