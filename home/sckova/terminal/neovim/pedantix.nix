@@ -12,10 +12,15 @@
       format-after-sort = false;
       format-before-sort = false;
       formatter = "off"; # use nixfmt via nixd
+      # reorder things
+      lets.sort = true;
 
-      lets = {
-        sort = true; # reorder things
-      };
+      overrides = [
+        {
+          lists.sort = true;
+          path = "**.packages";
+        }
+      ];
 
       preset = "nixos-module";
     };
