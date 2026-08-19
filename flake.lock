@@ -418,15 +418,14 @@
       "locked": {
         "lastModified": 1769548169,
         "narHash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y=",
-        "owner": "nix-community",
-        "repo": "impermanence",
         "rev": "7b1d382faf603b6d264f58627330f9faa5cba149",
-        "type": "github"
+        "revCount": 203,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/nix-community/impermanence/0.1.203%2Brev-7b1d382faf603b6d264f58627330f9faa5cba149/019c014c-22f0-7bc1-89bc-eaec73f657b8/source.tar.gz?rev=7b1d382faf603b6d264f58627330f9faa5cba149&revCount=203"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/nix-community/impermanence/%2A"
       }
     },
     "import-tree": {
@@ -893,15 +892,14 @@
       "locked": {
         "lastModified": 1786629091,
         "narHash": "sha256-gkig4nPi1CWc4Z50GBsjE4ygSE7hMpl/TwID2an2Cck=",
-        "owner": "Mic92",
-        "repo": "sops-nix",
         "rev": "a8627b21b9107c5711c96b84f32a9a4b3d45295f",
-        "type": "github"
+        "revCount": 1236,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/Mic92/sops-nix/0.1.1236%2Brev-a8627b21b9107c5711c96b84f32a9a4b3d45295f/019ffb65-6150-7103-92f8-6a032bd9ae17/source.tar.gz?rev=a8627b21b9107c5711c96b84f32a9a4b3d45295f&revCount=1236"
       },
       "original": {
-        "owner": "Mic92",
-        "repo": "sops-nix",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/Mic92/sops-nix/%2A"
       }
     },
     "spicetify-nix": {

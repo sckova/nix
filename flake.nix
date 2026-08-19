@@ -33,7 +33,7 @@
       url = "github:nix-community/home-manager/release-26.05";
     };
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/*";
 
     kernel-asahi = {
       flake = false;
@@ -97,7 +97,7 @@
 
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Mic92/sops-nix";
+      url = "https://flakehub.com/f/Mic92/sops-nix/*";
     };
 
     spicetify-nix = {
