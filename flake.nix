@@ -18,6 +18,11 @@
 
     base16.url = "github:SenchoPens/base16.nix";
 
+    fh = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "https://flakehub.com/f/DeterminateSystems/fh/*";
+    };
+
     firefox-gnome-theme = {
       flake = false;
       url = "github:rafaelmardojai/firefox-gnome-theme";

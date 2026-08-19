@@ -42,6 +42,7 @@
         inputs.nox.packages.${system}.default
         ffmpeg
         jq
+        fh
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         wl-clipboard
