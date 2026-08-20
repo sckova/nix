@@ -91,10 +91,13 @@
       };
     };
 
+    # https://github.com/tbrugere/yabd/blob/main/etc/yabd.service
     yabd = lib.mkIf (osConfig.networking.hostName == "peach") {
-      Install.WantedBy = [ "niri.service" ];
+      Install.WantedBy = [ "graphical-session.target" ];
 
       Service = {
+        BusName = "re.bruge.yabd";
+
         ExecStart = lib.getExe (
           pkgs.writeShellApplication {
             name = "yabd";
@@ -108,12 +111,12 @@
         );
 
         Restart = "on-failure";
+        Type = "dbus";
       };
 
       Unit = {
-        After = [ "niri.service" ];
-        Description = "Automatic brightness utility";
-        PartOf = [ "niri.service" ];
+        Description = "Yet another Brightness Daemon";
+        PartOf = [ "graphical-session.target" ];
       };
     };
   };
