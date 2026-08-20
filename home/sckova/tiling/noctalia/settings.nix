@@ -111,7 +111,7 @@
     nightlight = {
       enabled = true;
       temperature_day = 6500;
-      temperature_night = 5000;
+      temperature_night = 3000;
     };
 
     notification.position = "bottom_right";
