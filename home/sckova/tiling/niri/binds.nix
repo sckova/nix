@@ -9,21 +9,23 @@
   "Ctrl+Shift+S".screenshot-screen._props.show-pointer = false;
 
   "Ctrl+Shift+XF86AudioLowerVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.01-"
   ];
 
   "Ctrl+Shift+XF86AudioRaiseVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.01+"
   ];
 
   "Ctrl+Shift+XF86MonBrightnessDown".spawn._args = [
-    "${pkgs.brightnessctl}/bin/brightnessctl"
+    (lib.getExe pkgs.brightnessctl)
     "-d"
     "kbd_backlight"
     "-c"
@@ -33,7 +35,7 @@
   ];
 
   "Ctrl+Shift+XF86MonBrightnessUp".spawn._args = [
-    "${pkgs.brightnessctl}/bin/brightnessctl"
+    (lib.getExe pkgs.brightnessctl)
     "-d"
     "kbd_backlight"
     "-c"
@@ -43,28 +45,31 @@
   ];
 
   "Ctrl+XF86AudioLowerVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.05-"
   ];
 
   "Ctrl+XF86AudioMute".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-mute"
     "@DEFAULT_AUDIO_SOURCE@"
     "toggle"
   ];
 
   "Ctrl+XF86AudioRaiseVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.05+"
   ];
 
   "Ctrl+XF86MonBrightnessDown".spawn._args = [
-    "${pkgs.brightnessctl}/bin/brightnessctl"
+    (lib.getExe pkgs.brightnessctl)
     "-d"
     "kbd_backlight"
     "-c"
@@ -74,7 +79,7 @@
   ];
 
   "Ctrl+XF86MonBrightnessUp".spawn._args = [
-    "${pkgs.brightnessctl}/bin/brightnessctl"
+    (lib.getExe pkgs.brightnessctl)
     "-d"
     "kbd_backlight"
     "-c"
@@ -196,7 +201,7 @@
   "Mod+Shift+T".spawn._args = [
     "sh"
     "-c"
-    "${pkgs.ghostty}/bin/ghostty --title='fastfetch' -e sh -c 'fastfetch; sleep 10'"
+    (lib.getExe pkgs.ghostty)
   ];
 
   "Mod+Shift+U".move-workspace-down = { };
@@ -206,11 +211,11 @@
   "Mod+Shift+WheelScrollUp".focus-column-left = { };
 
   "Mod+Space".spawn._args = [
-    "${pkgs.vicinae}/bin/vicinae"
+    (lib.getExe pkgs.vicinae)
     "toggle"
   ];
 
-  "Mod+T".spawn._args = [ "${pkgs.ghostty}/bin/ghostty" ];
+  "Mod+T".spawn._args = [ (lib.getExe pkgs.ghostty) ];
   "Mod+U".focus-workspace-down = { };
   "Mod+Up".focus-window-up = { };
   "Mod+V".toggle-window-floating = { };
@@ -231,49 +236,55 @@
   };
 
   "MouseBack".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05-"
   ];
 
   "MouseForward".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05+"
   ];
 
   "Shift+MouseBack".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01-"
   ];
 
   "Shift+MouseForward".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01+"
   ];
 
   "Shift+XF86AudioLowerVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01-"
   ];
 
   "Shift+XF86AudioRaiseVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01+"
   ];
 
   "Shift+XF86MonBrightnessDown".spawn._args = [
-    "${pkgs.noctalia}/bin/noctalia"
+    (lib.getExe pkgs.noctalia)
     "msg"
     "brightness-down"
     "all"
@@ -281,7 +292,7 @@
   ];
 
   "Shift+XF86MonBrightnessUp".spawn._args = [
-    "${pkgs.noctalia}/bin/noctalia"
+    (lib.getExe pkgs.noctalia)
     "msg"
     "brightness-up"
     "all"
@@ -289,44 +300,48 @@
   ];
 
   "XF86AudioLowerVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05-"
   ];
 
   "XF86AudioMicMute".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-mute"
     "@DEFAULT_AUDIO_SOURCE@"
     "toggle"
   ];
 
   "XF86AudioMute".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-mute"
     "@DEFAULT_AUDIO_SINK@"
     "toggle"
   ];
 
   "XF86AudioNext".spawn._args = [
-    "${pkgs.playerctl}/bin/playerctl"
+    (lib.getExe pkgs.playerctl)
     "next"
   ];
 
   "XF86AudioPlay".spawn._args = [
-    "${pkgs.playerctl}/bin/playerctl"
+    (lib.getExe pkgs.playerctl)
     "play-pause"
   ];
 
   "XF86AudioPrev".spawn._args = [
-    "${pkgs.playerctl}/bin/playerctl"
+    (lib.getExe pkgs.playerctl)
     "previous"
   ];
 
   # --- Media Controls ---
   "XF86AudioRaiseVolume".spawn._args = [
-    "${pkgs.wireplumber}/bin/wpctl"
+    # upstream doesn't provide meta.mainProgram
+    (lib.getExe' pkgs.wireplumber "wireplumber")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05+"
@@ -335,7 +350,7 @@
   "XF86LaunchA".toggle-overview = { };
 
   "XF86MonBrightnessDown".spawn._args = [
-    "${pkgs.noctalia}/bin/noctalia"
+    (lib.getExe pkgs.noctalia)
     "msg"
     "brightness-down"
     "all"
@@ -343,7 +358,7 @@
   ];
 
   "XF86MonBrightnessUp".spawn._args = [
-    "${pkgs.noctalia}/bin/noctalia"
+    (lib.getExe pkgs.noctalia)
     "msg"
     "brightness-up"
     "all"
@@ -351,6 +366,6 @@
   ];
 
   # --- Launchers & System ---
-  "XF86Search".spawn._args = [ "${pkgs.vicinae}/bin/vicinae" ];
+  "XF86Search".spawn._args = [ (lib.getExe pkgs.vicinae) ];
   "XF86Sleep".power-off-monitors = { };
 }
