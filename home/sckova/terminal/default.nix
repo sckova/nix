@@ -35,7 +35,6 @@
         comma
         difftastic
         ffmpeg
-        fh
         jq
         ncdu
         nixd
@@ -46,6 +45,7 @@
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         waypipe
         wl-clipboard
+        fh # build is currently broken in darwin
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
         gnupg
