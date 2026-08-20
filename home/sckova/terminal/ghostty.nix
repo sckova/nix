@@ -12,7 +12,7 @@
     enableFishIntegration = true;
 
     settings = {
-      background-blur = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "macos-glass-clear";
+      background-blur = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "macos-glass-regular";
       background-opacity = if isLinux then 0 else 0.9;
       confirm-close-surface = if isLinux then false else true;
       # https://github.com/ghostty-org/ghostty/discussions/5948
@@ -41,8 +41,8 @@
       ];
 
       theme = "nixos";
-      window-padding-x = 4;
-      window-padding-y = 4;
+      window-padding-x = if isLinux then 4 else 8;
+      window-padding-y = if isLinux then 4 else 8;
     };
 
     systemd.enable = lib.mkIf isLinux true;

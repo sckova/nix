@@ -40,12 +40,13 @@
         nixd
         pigz
         rclone
+        rsync
         wget
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+        fh # build is currently broken in darwin
         waypipe
         wl-clipboard
-        fh # build is currently broken in darwin
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
         gnupg

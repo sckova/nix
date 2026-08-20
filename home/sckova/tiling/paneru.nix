@@ -35,15 +35,15 @@
       decorations.active.border = {
         color = config.scheme.withHashtag.${config.colors.accent};
         enabled = true;
-        radius = 8.0;
+        radius = 16.0;
         width = 2.0;
       };
 
       padding = {
-        bottom = 16;
-        left = 16;
-        right = 16;
-        top = 16;
+        bottom = 8;
+        left = 8;
+        right = 8;
+        top = 8;
       };
 
       windows.all = {

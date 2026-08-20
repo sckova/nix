@@ -15,7 +15,26 @@
     # ./networking (see https://github.com/nix-darwin/nix-darwin/issues/1035)
   ];
 
-  networking.hostName = hostname;
+  networking = {
+    computerName = hostname;
+
+    dns = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
+
+    hostName = hostname;
+
+    # list obtained from `networksetup -listallnetworkdevices`
+    knownNetworkServices = [
+      "AX88179A" # my Anker ethernet adapter
+      "Thunderbolt Bridge"
+      "Wi-Fi"
+      "iPhone USB"
+      "Tailscale"
+    ];
+  };
+
   nix.linux-builder.enable = true; # allow aarch64-linux builds via lightweight VM
   nixpkgs.hostPlatform = "aarch64-darwin";
 
