@@ -48,8 +48,16 @@
         waypipe
         wl-clipboard
       ]
+      # most of these are to provide up-to-date versions of system utils
       ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+        coreutils
+        curl
+        findutils
+        gawk
+        gnugrep
         gnupg
+        gnused
+        gnutar
         pinentry_mac
       ];
   };
