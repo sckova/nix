@@ -72,8 +72,12 @@
     };
 
     paneru = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:karinushka/paneru";
+      inputs = {
+        nix-darwin.follows = "nix-darwin";
+        nixpkgs.follows = "nixpkgs";
+      };
+
+      url = "github:karinushka/paneru/v0.4.4";
     };
 
     pedantix = {

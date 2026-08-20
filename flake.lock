@@ -446,28 +446,6 @@
         "type": "github"
       }
     },
-    "nix-darwin_2": {
-      "inputs": {
-        "nixpkgs": [
-          "paneru",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777780666,
-        "narHash": "sha256-8wURyQMdDkGUarSTKOGdCuFfYiwa3HbzwscUfn3STDE=",
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "rev": "8c62fba0854ba15c8917aed18894dbccb48a3777",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-darwin",
-        "ref": "master",
-        "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -694,21 +672,24 @@
       "inputs": {
         "flake-parts": "flake-parts_4",
         "import-tree": "import-tree",
-        "nix-darwin": "nix-darwin_2",
+        "nix-darwin": [
+          "nix-darwin"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1787126249,
-        "narHash": "sha256-GED/rp3Y2AjHLT+up/vhH38fNQuvI9qbDjvei80H/Tc=",
+        "lastModified": 1785072436,
+        "narHash": "sha256-7S4wxQYjObNM1EKYYNy12OgTICpzr9Ya9SNiZmWFnOk=",
         "owner": "karinushka",
         "repo": "paneru",
-        "rev": "fe502265f71e965363f580e61a236f03ef5bdafa",
+        "rev": "0d6c025bedf5fdba5473c1242625b518050f0cdd",
         "type": "github"
       },
       "original": {
         "owner": "karinushka",
+        "ref": "v0.4.4",
         "repo": "paneru",
         "type": "github"
       }
