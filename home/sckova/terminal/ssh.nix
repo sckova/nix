@@ -36,11 +36,6 @@
 
       "nas".HostName = "nas.taila30609.ts.net";
 
-      "oracle" = {
-        HostName = "vix.taila30609.ts.net";
-        Port = 2468;
-      };
-
       "ovips.us.to" = {
         HostName = "ovips.us.to";
         Port = 2468;
@@ -50,6 +45,12 @@
       "peach".HostName = "peach.taila30609.ts.net";
       "peach-lan".HostName = "192.168.99.200";
       "skmbp".HostName = "skmbp.taila30609.ts.net";
+
+      "tea" = {
+        HostName = "kube3.taila30609.ts.net";
+        Port = 222;
+        User = "git";
+      };
     };
   };
 }
