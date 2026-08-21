@@ -9,13 +9,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    mangohud
     p7zip
-    protontricks
     zenity
     wineWow64Packages.stable
     wineWow64Packages.waylandFull
-    archipelago
   ];
 
   hardware.nvidia = {

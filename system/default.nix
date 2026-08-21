@@ -15,6 +15,7 @@
     impermanence.nixosModules.impermanence
     ../lib
     ./apps
+    ./gaming
     ./services
     ./networking
     ./hosts/${hostname}
