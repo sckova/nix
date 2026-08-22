@@ -5,12 +5,14 @@
 {
   lib,
   pkgs,
+  isLinux,
   ...
 }:
 {
   services.tailscale = {
     enable = true;
-
+  }
+  // lib.optionalAttrs isLinux ({
     extraUpFlags = [
       "--accept-dns"
       "--accept-routes"
@@ -21,8 +23,9 @@
     ];
 
     useRoutingFeatures = "client";
-  };
-
+  });
+}
+// lib.optionalAttrs isLinux ({
   systemd.services.tailscaled.serviceConfig.ExecStartPost =
     pkgs.writeShellScript "tailscale-wait-for-ip"
       /* bash */ ''
@@ -38,4 +41,4 @@
         echo "Warning: tailscale0 did not get IP address within 15 seconds"
         exit 0
       '';
-}
+})

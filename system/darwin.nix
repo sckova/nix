@@ -13,6 +13,7 @@
     # ./apps (has nothing relevant)
     # ./services (has nothing relevant, TODO: figure out searxng for user-level?)
     # ./networking (see https://github.com/nix-darwin/nix-darwin/issues/1035)
+    ./networking/tailscale.nix
   ];
 
   networking = {
