@@ -7,6 +7,7 @@
 {
   imports = [
     ./firefox
+    ./ghostty.nix
     ./mpv.nix
   ];
 

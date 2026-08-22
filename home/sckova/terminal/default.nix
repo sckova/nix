@@ -11,7 +11,6 @@
     ./fish.nix
     ./fastfetch.nix
     ./git.nix
-    ./ghostty.nix
     ./neovim
     ./ssh.nix
     ./ytfp.nix
