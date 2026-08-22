@@ -46,15 +46,15 @@
       width = 2;
     };
 
-    default-column-width.proportion = 0.5;
+    default-column-width.proportion = 0.499999;
     focus-ring.off = { };
     gaps = 6;
     insert-hint.color = config.scheme.withHashtag.${config.colors.accent} + "80";
 
     preset-column-widths._children = [
       { proportion._args = [ 0.333333 ]; }
-      { proportion._args = [ 0.500000 ]; }
-      { proportion._args = [ 0.666667 ]; }
+      { proportion._args = [ 0.499999 ]; }
+      { proportion._args = [ 0.666666 ]; }
     ];
 
     shadow = {
