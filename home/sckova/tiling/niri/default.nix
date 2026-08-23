@@ -4,17 +4,16 @@
 {
   config,
   lib,
-  pkgs,
-  hostname,
   ...
 }:
-let
-  binds = import ./binds.nix { inherit config lib pkgs; };
-  outputs = import ./outputs.nix { inherit lib hostname; };
-  rules = import ./rules.nix;
-  settings = import ./settings.nix { inherit config lib; };
-in
 {
+  imports = [
+    ./binds.nix
+    ./outputs.nix
+    ./rules.nix
+    ./settings.nix
+  ];
+
   home = {
     # ensure include.kdl exists
     activation.ensureNiriInclude = lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
@@ -23,12 +22,14 @@ in
       [ -e "$target" ] || run touch "$target"
     '';
 
-    file.".config/niri/config.kdl".text = lib.hm.generators.toKDL { } (
-      settings
-      // {
-        inherit binds;
-        _children = outputs ++ rules;
-      }
+    file.".config/niri/config.kdl".text = lib.concatLines (
+      map (f: ''include "${f}"'') [
+        "binds.kdl"
+        "include.kdl"
+        "outputs.kdl"
+        "rules.kdl"
+        "settings.kdl"
+      ]
     );
   };
 }
