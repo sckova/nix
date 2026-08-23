@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/extensions/pwas.nix
 {
   lib,
   pkgs,

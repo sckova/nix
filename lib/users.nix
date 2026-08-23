@@ -1,3 +1,4 @@
+# lib/users.nix
 {
   lib,
   pkgs,

@@ -1,3 +1,4 @@
+# system/hosts/alien/kernel.nix
 {
   config,
   lib,

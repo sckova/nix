@@ -1,3 +1,4 @@
+# home/sckova/tiling/noctalia/colors.nix
 { config, ... }: {
   programs.noctalia.customPalettes.nixos =
     with config.scheme.withHashtag;

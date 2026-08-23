@@ -1,3 +1,4 @@
+# home/hosts/alien/default.nix
 {
   pkgs,
   ...

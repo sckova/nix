@@ -1,3 +1,4 @@
+# system/networking/default.nix
 {
   config,
   lib,

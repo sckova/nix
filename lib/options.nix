@@ -1,3 +1,4 @@
+# lib/options.nix
 {
   config,
   lib,

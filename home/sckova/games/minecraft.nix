@@ -1,3 +1,4 @@
+# home/sckova/games/minecraft.nix
 {
   config,
   pkgs,

@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/policies.nix
 {
   BlockAboutConfig = false;
   DefaultDownloadDirectory = "\${home}/Downloads";

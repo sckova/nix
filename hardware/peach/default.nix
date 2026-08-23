@@ -1,3 +1,4 @@
+# hardware/peach/default.nix
 {
   lib,
   pkgs,

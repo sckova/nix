@@ -1,3 +1,4 @@
+# home/sckova/tiling/noctalia/settings.nix
 { config, hostname, ... }: {
   programs.noctalia.settings = {
     bar.default = {

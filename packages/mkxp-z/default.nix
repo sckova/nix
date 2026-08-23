@@ -1,3 +1,4 @@
+# packages/mkxp-z/default.nix
 {
   lib,
   SDL2,

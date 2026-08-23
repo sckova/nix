@@ -1,3 +1,4 @@
+# home/sckova/terminal/neovim/app.nix
 {
   xdg.desktopEntries.nvim = {
     categories = [

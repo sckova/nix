@@ -1,3 +1,4 @@
+# home/sckova/tiling/noctalia/default.nix
 { inputs, ... }: {
   imports = with inputs; [
     noctalia.homeModules.default

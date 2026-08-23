@@ -1,3 +1,4 @@
+# lib/sops.nix
 {
   inputs,
   isLinux,

@@ -1,3 +1,4 @@
+# home/sckova/apps/ghostty.nix
 {
   config,
   lib,

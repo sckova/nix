@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/bookmarks.nix
 {
   force = true;
 

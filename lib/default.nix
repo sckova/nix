@@ -1,3 +1,4 @@
+# lib/default.nix
 {
   imports = [
     ./nix-settings.nix

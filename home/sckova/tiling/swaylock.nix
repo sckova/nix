@@ -1,3 +1,4 @@
+# home/sckova/tiling/swaylock.nix
 {
   config,
   pkgs,

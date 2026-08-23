@@ -1,3 +1,4 @@
+# home/sckova/terminal/neovim/colors.nix
 {
   config,
   lib,

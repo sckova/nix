@@ -1,3 +1,4 @@
+# home/sckova/terminal/fish.nix
 {
   config,
   lib,

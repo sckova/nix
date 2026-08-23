@@ -1,3 +1,4 @@
+# home/sckova/tiling/niri/settings.nix
 {
   config,
   lib,

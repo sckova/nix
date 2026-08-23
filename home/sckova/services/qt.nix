@@ -1,3 +1,4 @@
+# home/sckova/services/qt.nix
 {
   config,
   pkgs,

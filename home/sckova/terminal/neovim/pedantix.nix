@@ -1,3 +1,4 @@
+# home/sckova/terminal/neovim/pedantix.nix
 {
   programs.pedantix = {
     enable = true;

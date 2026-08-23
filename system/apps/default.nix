@@ -1,3 +1,4 @@
+# system/apps/default.nix
 { pkgs, ... }: {
   imports = [
     # ./obs.nix

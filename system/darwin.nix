@@ -1,3 +1,4 @@
+# system/darwin.nix
 {
   lib,
   hostname,

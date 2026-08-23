@@ -1,3 +1,4 @@
+# system/services/widevine.nix
 # https://github.com/nix-community/nixos-apple-silicon/issues/145
 # This should work with both x86_64 and aarch64. (hopefully)
 {

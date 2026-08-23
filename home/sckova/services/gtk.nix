@@ -1,3 +1,4 @@
+# home/sckova/services/gtk.nix
 {
   config,
   lib,

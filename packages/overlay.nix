@@ -1,3 +1,4 @@
+# packages/overlay.nix
 { inputs, isLinux }:
 
 with inputs;

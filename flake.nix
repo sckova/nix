@@ -1,3 +1,4 @@
+# flake.nix
 {
   description = "unified nixos/nix-darwin/home-manager configuration for three systems";
 

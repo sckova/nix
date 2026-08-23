@@ -1,3 +1,4 @@
+# home/sckova/terminal/git.nix
 {
   config,
   lib,

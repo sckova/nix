@@ -1,3 +1,4 @@
+# home/sckova/tiling/vicinae.nix
 {
   config,
   pkgs,

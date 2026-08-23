@@ -1,3 +1,4 @@
+# home/sckova/tiling/default.nix
 {
   pkgs,
   ...

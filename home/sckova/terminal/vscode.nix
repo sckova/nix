@@ -1,3 +1,4 @@
+# home/sckova/terminal/vscode.nix
 {
   config,
   lib,

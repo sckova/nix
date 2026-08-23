@@ -1,3 +1,4 @@
+# home/sckova/terminal/neovim/keybinds.nix
 {
   programs.nixvim.keymaps = [
     # --- Normal mode mappings ---

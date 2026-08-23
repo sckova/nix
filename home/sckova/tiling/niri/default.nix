@@ -1,3 +1,4 @@
+# home/sckova/tiling/niri/default.nix
 # since https://github.com/sodiboo/niri-flake doesn't currently
 # have many of the latest options, we write this directly
 # https://github.com/niri-wm/niri/wiki/

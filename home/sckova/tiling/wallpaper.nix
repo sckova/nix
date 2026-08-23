@@ -1,3 +1,4 @@
+# home/sckova/tiling/wallpaper.nix
 {
   config,
   pkgs,

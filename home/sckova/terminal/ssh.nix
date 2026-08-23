@@ -1,3 +1,4 @@
+# home/sckova/terminal/ssh.nix
 {
   programs.ssh = {
     enable = true;

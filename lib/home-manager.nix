@@ -1,3 +1,4 @@
+# lib/home-manager.nix
 {
   lib,
   pkgs,

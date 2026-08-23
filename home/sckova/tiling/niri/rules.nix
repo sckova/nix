@@ -1,3 +1,4 @@
+# home/sckova/tiling/niri/rules.nix
 {
   lib,
   ...

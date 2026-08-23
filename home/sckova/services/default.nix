@@ -1,3 +1,4 @@
+# home/sckova/services/default.nix
 {
   config,
   pkgs,

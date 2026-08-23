@@ -1,3 +1,4 @@
+# home/sckova/games/default.nix
 {
   lib,
   pkgs,

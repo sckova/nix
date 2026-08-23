@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/search.nix
 {
   config,
   lib,

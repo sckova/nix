@@ -1,3 +1,4 @@
+# home/sckova/default.nix
 {
   lib,
   isLinux,

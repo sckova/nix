@@ -1,3 +1,4 @@
+# system/apps/obs.nix
 {
   config,
   lib,

@@ -1,3 +1,4 @@
+# home/sckova/services/synology.nix
 {
   config,
   pkgs,

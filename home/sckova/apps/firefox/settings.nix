@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/settings.nix
 {
   config,
   lib,

@@ -1,3 +1,4 @@
+# system/hosts/peach/default.nix
 {
   pkgs,
   inputs,

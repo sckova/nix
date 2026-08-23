@@ -1,3 +1,4 @@
+# packages/spotify-webapp/default.nix
 {
   lib,
   chromium,

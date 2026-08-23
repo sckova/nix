@@ -1,3 +1,4 @@
+# packages/bibata-cursor/default.nix
 {
   lib,
   fetchFromGitHub,

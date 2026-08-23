@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/extensions/packages.nix
 {
   pkgs,
   ...

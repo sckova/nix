@@ -1,3 +1,4 @@
+# system/gaming/default.nix
 {
   pkgs,
   ...

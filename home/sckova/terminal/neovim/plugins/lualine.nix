@@ -1,3 +1,4 @@
+# home/sckova/terminal/neovim/plugins/lualine.nix
 {
   config,
   lib,

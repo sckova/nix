@@ -1,3 +1,4 @@
+# hardware/default.nix
 {
   lib,
   pkgs,

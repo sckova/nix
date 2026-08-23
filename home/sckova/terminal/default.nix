@@ -1,3 +1,4 @@
+# home/sckova/terminal/default.nix
 {
   lib,
   pkgs,

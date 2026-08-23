@@ -1,3 +1,4 @@
+# system/networking/tailscale.nix
 # The goal of this configuration is to make it so you can write systemd units that
 # can wait until tailscale is up and connected, by putting After=tailscaled.service
 # in their unit file.

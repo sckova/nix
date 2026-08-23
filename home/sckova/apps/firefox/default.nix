@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/default.nix
 /*
   https://discourse.nixos.org/t/combining-best-of-system-firefox-and-home-manager-firefox-settings/37721
   https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265

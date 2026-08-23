@@ -1,3 +1,4 @@
+# home/sckova/games/morrowind.nix
 { pkgs-unstable, ... }: {
   home = {
     packages = with pkgs-unstable; [ openmw ];

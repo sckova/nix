@@ -1,3 +1,4 @@
+# home/sckova/apps/mpv.nix
 {
   config,
   lib,

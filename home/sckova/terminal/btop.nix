@@ -1,3 +1,4 @@
+# home/sckova/terminal/btop.nix
 {
   config,
   ...

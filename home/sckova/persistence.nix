@@ -1,3 +1,4 @@
+# home/sckova/persistence.nix
 {
   home.persistence."/persist" = {
     directories = [

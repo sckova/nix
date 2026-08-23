@@ -1,3 +1,4 @@
+# home/sckova/terminal/fastfetch.nix
 # credit to harilvfs:
 # https://github.com/harilvfs/fastfetch/tree/old-days
 {

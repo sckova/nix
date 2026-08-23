@@ -1,3 +1,4 @@
+# home/hosts/skmbp/default.nix
 {
   lib,
   pkgs,

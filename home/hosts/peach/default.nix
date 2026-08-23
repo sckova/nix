@@ -1,3 +1,4 @@
+# home/hosts/peach/default.nix
 {
   lib,
   pkgs,

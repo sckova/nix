@@ -1,3 +1,4 @@
+# home/sckova/apps/firefox/extensions/policies.nix
 # Check about:support for extension/add-on ID strings.
 # Valid strings for installation_mode are "allowed", "blocked",
 # "force_installed" and "normal_installed".

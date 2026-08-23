@@ -1,3 +1,4 @@
+# home/sckova/terminal/neovim/default.nix
 {
   lib,
   inputs,

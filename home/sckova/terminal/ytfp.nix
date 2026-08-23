@@ -1,3 +1,4 @@
+# home/sckova/terminal/ytfp.nix
 # full credit to u/SupermarketAntique32 on reddit:
 # https://www.reddit.com/r/commandline/comments/1sd26he/youtube_search_and_play_in_20_lines_of_bash/
 {

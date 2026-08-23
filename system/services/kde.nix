@@ -1,3 +1,4 @@
+# system/services/kde.nix
 {
   inputs,
   ...
