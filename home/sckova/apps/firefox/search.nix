@@ -29,6 +29,12 @@ in
       urls = [ { template = "https://duckduckgo.com/?t=ffab&q={searchTerms}&ia=web"; } ];
     };
 
+    github = {
+      definedAliases = [ "@gh" ];
+      name = "GitHub";
+      urls = [ { template = "https://github.com/search?q={searchTerms}&type=repositories"; } ];
+    };
+
     google = {
       definedAliases = [ "@go" ];
       icon = lib.mkIf isLinux searchIcon;

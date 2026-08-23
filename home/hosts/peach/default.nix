@@ -6,7 +6,7 @@
 {
   colors = {
     accent = "base09";
-    scheme = "tokyo-night-moon";
+    scheme = "catppuccin-mocha";
   };
 
   home.packages = with pkgs; [
