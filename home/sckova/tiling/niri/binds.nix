@@ -10,7 +10,7 @@
 
   "Ctrl+Shift+XF86AudioLowerVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.01-"
@@ -18,7 +18,7 @@
 
   "Ctrl+Shift+XF86AudioRaiseVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.01+"
@@ -46,7 +46,7 @@
 
   "Ctrl+XF86AudioLowerVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.05-"
@@ -54,7 +54,7 @@
 
   "Ctrl+XF86AudioMute".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-mute"
     "@DEFAULT_AUDIO_SOURCE@"
     "toggle"
@@ -62,7 +62,7 @@
 
   "Ctrl+XF86AudioRaiseVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SOURCE@"
     "0.05+"
@@ -237,7 +237,7 @@
 
   "MouseBack".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05-"
@@ -245,7 +245,7 @@
 
   "MouseForward".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05+"
@@ -253,7 +253,7 @@
 
   "Shift+MouseBack".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01-"
@@ -261,7 +261,7 @@
 
   "Shift+MouseForward".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01+"
@@ -269,7 +269,7 @@
 
   "Shift+XF86AudioLowerVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01-"
@@ -277,7 +277,7 @@
 
   "Shift+XF86AudioRaiseVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.01+"
@@ -301,7 +301,7 @@
 
   "XF86AudioLowerVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05-"
@@ -309,7 +309,7 @@
 
   "XF86AudioMicMute".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-mute"
     "@DEFAULT_AUDIO_SOURCE@"
     "toggle"
@@ -317,7 +317,7 @@
 
   "XF86AudioMute".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-mute"
     "@DEFAULT_AUDIO_SINK@"
     "toggle"
@@ -341,7 +341,7 @@
   # --- Media Controls ---
   "XF86AudioRaiseVolume".spawn._args = [
     # upstream doesn't provide meta.mainProgram
-    (lib.getExe' pkgs.wireplumber "wireplumber")
+    (lib.getExe' pkgs.wireplumber "wpctl")
     "set-volume"
     "@DEFAULT_AUDIO_SINK@"
     "0.05+"
