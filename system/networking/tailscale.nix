@@ -1,8 +1,4 @@
 # system/networking/tailscale.nix
-# The goal of this configuration is to make it so you can write systemd units that
-# can wait until tailscale is up and connected, by putting After=tailscaled.service
-# in their unit file.
-# https://github.com/tailscale/tailscale/issues/11504#issuecomment-2113331262
 {
   lib,
   pkgs,
@@ -13,6 +9,7 @@
   services.tailscale = {
     enable = true;
   }
+  # nix-darwin does not currently (as of aug 2026) have these features.
   // lib.optionalAttrs isLinux ({
     extraUpFlags = [
       "--accept-dns"
@@ -27,6 +24,10 @@
   });
 }
 // lib.optionalAttrs isLinux ({
+  # The goal of this configuration is to make it so you can write systemd units that
+  # can wait until tailscale is up and connected, by putting After=tailscaled.service
+  # in their unit file.
+  # https://github.com/tailscale/tailscale/issues/11504#issuecomment-2113331262
   systemd.services.tailscaled.serviceConfig.ExecStartPost =
     pkgs.writeShellScript "tailscale-wait-for-ip"
       /* bash */ ''
