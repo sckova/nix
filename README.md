@@ -23,8 +23,13 @@
 
 ```shell
 user@host ~/Projects/nix (main)
-> ls --tree --recurse --icons --ignore-glob=".git"
+> ls --tree --recurse --icons --ignore-glob=".git" -a
  .
+├──  .gitea
+│   └──  workflows
+│       └──  update-headers.yml
+├── 󰊢 .gitignore
+├──  .sops.yaml
 ├──  flake.lock
 ├──  flake.nix
 ├──  hardware
@@ -129,7 +134,6 @@ user@host ~/Projects/nix (main)
 │   ├──  sops.nix
 │   └──  users.nix
 ├──  LICENSE
-├── 󱍙 Music
 ├──  packages
 │   ├──  bibata-cursor
 │   │   └──  default.nix
