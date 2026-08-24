@@ -1,0 +1,48 @@
+name: Enforce Nix Path Comments
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-paths:
+    # Abort the job if the latest commit message starts with 'runner:'
+    if: ${{ !startsWith(github.event.head_commit.message, 'runner:') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update file headers
+        run: |
+          git ls-files -z "*.nix" | while IFS= read -r -d '' file; do
+            expected="# $file"
+            first_line=$(head -n 1 "$file" 2>/dev/null || true)
+
+            if [[ "$first_line" == "$expected" ]]; then
+              continue
+            fi
+
+            if [[ "$first_line" =~ ^#[[:space:]]+.*\.nix$ ]]; then
+              tail -n +2 "$file" > "${file}.tmp"
+              mv "${file}.tmp" "$file"
+            fi
+
+            echo "$expected" | cat - "$file" > temp && mv temp "$file"
+          done
+
+      - name: Commit and push changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config --local user.name "gitea-actions"
+            git config --local user.email "gitea-actions@localhost"
+            
+            git add -v "*.nix"
+            git commit -m "runner: update headers"
+            
+            git push origin HEAD:${GITHUB_REF}
+          else
+            echo "All .nix files already have correct path comments."
+          fi
