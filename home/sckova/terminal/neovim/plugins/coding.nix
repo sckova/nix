@@ -32,6 +32,7 @@ in
     prettier
     prettierd
     stylua
+    yamlfmt
   ];
 
   programs.nixvim.plugins = {
@@ -96,6 +97,8 @@ in
           lua = [ "stylua" ];
           nix = [ "injected" ];
           python = [ "black" ];
+          yaml = [ "yamlfmt" ];
+          yml = [ "yamlfmt" ];
         };
       };
     };
