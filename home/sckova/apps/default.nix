@@ -9,7 +9,7 @@
   imports = [
     ./firefox
     ./ghostty.nix
-    ./mpv.nix
+    ./video
   ];
 
   home.packages =

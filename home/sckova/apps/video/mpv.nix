@@ -1,4 +1,4 @@
-# home/sckova/apps/mpv.nix
+# home/sckova/apps/video/mpv.nix
 {
   config,
   lib,
@@ -32,6 +32,7 @@
         cache = true; # enable cache
         demuxer-max-back-bytes = "128MiB"; # keep this amount of past stream
         demuxer-max-bytes = "512MiB"; # keep this amount of total stream
+        demuxer-seekable-cache = "yes";
       }
       # gpu-next fancy bits
       // {
