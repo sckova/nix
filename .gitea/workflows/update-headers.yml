@@ -1,12 +1,10 @@
-name: Enforce Nix Path Comments
+name: Update .nix path headers
 on:
   push:
     branches:
       - main
-
 jobs:
   update-paths:
-    # Abort the job if the latest commit message starts with 'runner:'
     if: ${{ !startsWith(github.event.head_commit.message, 'runner:') }}
     runs-on: ubuntu-latest
     steps:
@@ -14,35 +12,69 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Update file headers
+        shell: bash
         run: |
-          git ls-files -z "*.nix" | while IFS= read -r -d '' file; do
+          echo "Searching for tracked .nix files..."
+
+          total_count=0
+          unchanged_count=0
+          updated_count=0
+
+          while IFS= read -r -d '' file; do
+            ((++total_count))
             expected="# $file"
             first_line=$(head -n 1 "$file" 2>/dev/null || true)
 
             if [[ "$first_line" == "$expected" ]]; then
+              echo "[MATCH]   $file"
+              ((++unchanged_count))
               continue
             fi
 
             if [[ "$first_line" =~ ^#[[:space:]]+.*\.nix$ ]]; then
+              echo "[REPLACE] $file"
+              echo "          Existing: '$first_line'"
+              echo "          Expected: '$expected'"
               tail -n +2 "$file" > "${file}.tmp"
               mv "${file}.tmp" "$file"
+            else
+              echo "[PREPEND] $file"
+              echo "          Header missing. Adding '$expected'"
             fi
 
-            echo "$expected" | cat - "$file" > temp && mv temp "$file"
-          done
+            printf '%s\n' "$expected" | cat - "$file" > "${file}.tmp"
+            mv "${file}.tmp" "$file"
+            ((++updated_count))
+          done < <(git ls-files -z "*.nix")
 
+          echo ""
+          echo "================ Processing Summary ================"
+          echo "Total scanned : $total_count"
+          echo "Unchanged     : $unchanged_count"
+          echo "Updated       : $updated_count"
+          echo "===================================================="
       - name: Commit and push changes
+        shell: bash
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
+          echo "Inspecting repository status for modifications..."
+          status_output=$(git status --porcelain)
+
+          if [[ -n "$status_output" ]]; then
+            echo "Configuring committer identity..."
             git config --local user.name "gitea-actions"
             git config --local user.email "gitea-actions@localhost"
-            
-            git add -v "*.nix"
+
+            echo "Staging modified files..."
+            git add "*.nix"
+
+            echo "Creating commit..."
             git commit -m "runner: update headers"
-            
-            git push origin HEAD:${GITHUB_REF}
+
+            target_branch="${GITHUB_REF#refs/heads/}"
+            echo "Pushing changes to origin/${target_branch}..."
+            git push origin HEAD:"${GITHUB_REF}"
+            echo "Push complete."
           else
-            echo "All .nix files already have correct path comments."
+            echo "No header modifications required. Repository is up to date."
           fi
