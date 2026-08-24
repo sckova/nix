@@ -14,8 +14,6 @@
     extraUpFlags = [
       "--accept-dns"
       "--accept-routes"
-      "--exit-node=vix"
-      "--exit-node-allow-lan-access=true"
       "--operator=sckova"
       "--ssh"
     ];
