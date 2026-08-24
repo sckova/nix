@@ -70,7 +70,7 @@
 
     openmw = {
       flake = false;
-      url = "gitlab:OpenMW/openmw/stable";
+      url = "gitlab:OpenMW/openmw";
     };
 
     paneru = {

@@ -640,16 +640,15 @@
     "openmw": {
       "flake": false,
       "locked": {
-        "lastModified": 1780147814,
-        "narHash": "sha256-D+2nEQRkAjmDvRoas9bYPmdygQYT3MAv46n73OonE0o=",
+        "lastModified": 1787583150,
+        "narHash": "sha256-7My0XyjIkCYdiQwq9bYkt/SQ+SODOaIDpNAhq9iLQWg=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "f4bec41444214a7903bebd178389ca22ca13f646",
+        "rev": "03e02d034fed3e3c1d65f0ba09767df64c58b78e",
         "type": "gitlab"
       },
       "original": {
         "owner": "OpenMW",
-        "ref": "stable",
         "repo": "openmw",
         "type": "gitlab"
       }

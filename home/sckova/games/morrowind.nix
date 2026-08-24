@@ -5,9 +5,12 @@
   pkgs-unstable,
   ...
 }:
+let
+  pkg = if hostname == "alien" then pkgs.openmw-unstable else pkgs-unstable.openmw;
+in
 {
   home = {
-    packages = with pkgs-unstable; [ openmw ];
+    packages = [ pkg ];
 
     sessionVariables = {
       GL_THREADED_OPTIMIZATIONS = "1"; # this improves FPS considerably on nvidia
@@ -39,18 +42,18 @@
                   --force-grab-cursor \
                   --cursor-scale-height 1400 \
                   -s 3 \
-                  -r 144 \
+                  -W 3840 -H 2160 -r 144 \
                   -f \
                   -- \
                   env \
                   __NV_PRIME_RENDER_OFFLOAD=1 \
                   __GLX_VENDOR_LIBRARY_NAME=nvidia \
                   SDL_VIDEODRIVER=x11 \
-                  ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw}/bin/openmw "$@"
+                  ${pkgs.gamemode}/bin/gamemoderun ${pkg}/bin/openmw "$@"
               ''
             else
               /* bash */ ''
-                exec ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw}/bin/openmw "$@"
+                exec ${pkgs.gamemode}/bin/gamemoderun ${pkg}/bin/openmw "$@"
               ''
           );
     in
