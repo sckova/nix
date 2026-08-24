@@ -64,7 +64,7 @@ let
         modDirVersion = version;
         pname = "linux-asahi-fairydust";
         src = kernel-asahi;
-        version = "7.1.6";
+        version = "7.1.9";
       } extraArgs
     );
 in
