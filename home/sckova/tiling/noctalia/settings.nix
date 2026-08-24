@@ -54,15 +54,17 @@
       ];
 
       font_family = config.fonts.sans.name;
-      layer = "top";
+      layer = "overlay";
       margin_edge = 0;
       margin_ends = 0;
       position = "top";
       radius = 0;
-      reserve_space = true;
+      reserve_space = if hostname == "peach" then true else false;
       shadow = false;
+      smart_auto_hide = true;
 
       start = [
+        "applauncher"
         "workspaces"
         "group:g1"
         "active_window"
@@ -164,6 +166,13 @@
         title_scroll = "on_hover";
       };
 
+      applauncher = {
+        actions.left = "exec vicinae toggle";
+        capsule = true;
+        glyph = "rocket";
+        type = "custom_button";
+      };
+
       battery = {
         capsule = true;
         show_label = false;
@@ -225,6 +234,7 @@
       };
 
       workspaces = {
+        actions.right = "exec niri msg action toggle-overview";
         capsule = true;
         capsule_padding = 10.0;
       };
