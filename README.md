@@ -64,8 +64,11 @@ user@host ~/Projects/nix (main)
 │       │   │   ├──  search.nix
 │       │   │   ├──  settings.nix
 │       │   │   └──  theme.nix
-│       │   ├──  mpv.nix
-│       │   └──  thunderbird.nix
+│       │   ├──  ghostty.nix
+│       │   └──  video
+│       │       ├──  default.nix
+│       │       ├──  mpv.nix
+│       │       └──  streamlink.nix
 │       ├──  default.nix
 │       ├──  games
 │       │   ├──  default.nix
@@ -84,7 +87,6 @@ user@host ~/Projects/nix (main)
 │       │   ├──  default.nix
 │       │   ├──  fastfetch.nix
 │       │   ├──  fish.nix
-│       │   ├──  ghostty.nix
 │       │   ├──  git.nix
 │       │   ├──  neovim
 │       │   │   ├──  app.nix
@@ -122,13 +124,16 @@ user@host ~/Projects/nix (main)
 │   ├──  nix-settings.nix
 │   ├──  options.nix
 │   ├──  secrets
-│   │   └──  secrets.yaml
-│   ├──  sops-example.yaml
+│   │   └──  secrets.yaml
+│   ├──  sops-example.yaml
 │   ├──  sops.nix
 │   └──  users.nix
 ├──  LICENSE
+├── 󱍙 Music
 ├──  packages
 │   ├──  bibata-cursor
+│   │   └──  default.nix
+│   ├──  linux-asahi
 │   │   └──  default.nix
 │   ├──  mkxp-z
 │   │   └──  default.nix
@@ -144,6 +149,8 @@ user@host ~/Projects/nix (main)
     │   └──  obs.nix
     ├──  darwin.nix
     ├──  default.nix
+    ├──  gaming
+    │   └──  default.nix
     ├──  hosts
     │   ├──  alien
     │   │   ├──  default.nix
