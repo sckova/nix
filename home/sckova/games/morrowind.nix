@@ -3,15 +3,11 @@
   lib,
   pkgs,
   hostname,
-  pkgs-unstable,
   ...
 }:
-let
-  pkg = if hostname == "alien" then pkgs.openmw-unstable else pkgs-unstable.openmw;
-in
 {
   home = {
-    packages = [ pkg ];
+    packages = [ pkgs.openmw-unstable ];
 
     sessionVariables = {
       SDL_VIDEO_DRIVER = "wayland";
@@ -52,11 +48,11 @@ in
                   -- \
                   env \
                   SDL_VIDEODRIVER=x11 \
-                  ${pkgs.gamemode}/bin/gamemoderun ${pkg}/bin/openmw "$@"
+                  ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw-unstable}/bin/openmw "$@"
               ''
             else
               /* bash */ ''
-                exec ${pkgs.gamemode}/bin/gamemoderun ${pkg}/bin/openmw "$@"
+                exec ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw-unstable}/bin/openmw "$@"
               ''
           );
     in
