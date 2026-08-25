@@ -55,7 +55,8 @@
         After = [ "niri.service" ];
         Description = "Noctalia Shell - Wayland desktop shell";
         Documentation = "https://docs.noctalia.dev";
-        X-Restart-Triggers = [ config.xdg.configFile."noctalia/config.toml".source ];
+        # noctalia can do live reloading nowadays
+        # X-Restart-Triggers = [ config.xdg.configFile."noctalia/config.toml".source ];
       };
     };
 

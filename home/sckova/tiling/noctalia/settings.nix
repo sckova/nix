@@ -54,14 +54,14 @@
       ];
 
       font_family = config.fonts.sans.name;
-      layer = "overlay";
+      layer = "top";
       margin_edge = 0;
       margin_ends = 0;
       position = "top";
       radius = 0;
-      reserve_space = if hostname == "peach" then true else false;
+      reserve_space = true;
       shadow = false;
-      smart_auto_hide = true;
+      smart_auto_hide = false;
 
       start = [
         "applauncher"
@@ -70,7 +70,12 @@
         "active_window"
       ];
 
-      thickness = 47;
+      # for macbooks to get a perfect 16:10 under the notch:
+      # thickness = (notched height - notchless height) / display scale
+      # 49.33333  = (          1964 - 1890            ) / 1.5
+      # on a 14 inch apple silicon laptop, (width = 3024) the only TRULY valid
+      # scales are thusly 1.0 or 2.0. every other size doesn't factor correctly.
+      thickness = if hostname == "peach" then 49 else 40;
     };
 
     brightness.enable_ddcutil = false;
