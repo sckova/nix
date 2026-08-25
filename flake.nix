@@ -10,7 +10,7 @@
 
     apple-silicon = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nixos-apple-silicon/release-2026-07-30";
+      url = "github:nix-community/nixos-apple-silicon";
     };
 
     base16.url = "github:SenchoPens/base16.nix";

@@ -23,7 +23,7 @@ with inputs;
       ;
 
     bibata-cursor = final.callPackage ./bibata-cursor { };
-    linux-asahi = final.callPackage ./linux-asahi { inherit kernel-asahi; };
+    # linux-asahi = final.callPackage ./linux-asahi { inherit kernel-asahi; };
     mkxp-z = final.callPackage ./mkxp-z { };
 
     openmw-unstable = prev.openmw.overrideAttrs (oldAttrs: {
