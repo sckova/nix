@@ -131,7 +131,8 @@
       # `spotifyd --help`.
       volume_controller = if pkgs.stdenv.hostPlatform.isLinux then "alsa" else "softvol"; # use softvol for macOS
       # If set to true, enables volume normalisation between songs.
-      volume_normalisation = true;
+      # personal note: this also causes volume to be quieter than normal
+      volume_normalisation = false;
     };
   };
 
