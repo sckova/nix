@@ -1,0 +1,33 @@
+name: Update flake
+on:
+  schedule:
+    - cron: '0 12 * * 2'
+  workflow_dispatch:
+jobs:
+  update-flake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Update flake.lock
+        run: nix flake update
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet -- flake.lock; then
+            echo "changed=false" >> "$GITEA_OUTPUT"
+          else
+            echo "changed=true" >> "$GITEA_OUTPUT"
+          fi
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "gitea-actions"
+          git config user.email "gitea-actions@localhost"
+          git add flake.lock
+          git commit -m "runner: update flake"
+          git push origin HEAD:${{ gitea.ref_name }}
