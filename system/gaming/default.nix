@@ -1,6 +1,8 @@
 # system/gaming/default.nix
 {
+  lib,
   pkgs,
+  hostname,
   ...
 }:
 {
@@ -9,7 +11,16 @@
   ];
 
   programs = {
-    gamemode.enable = true;
+    gamemode = {
+      enable = true;
+    }
+    // lib.optionalAttrs (hostname == "alien") {
+      settings.gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+        nv_powermizer_mode = 1;
+      };
+    };
 
     gamescope = {
       enable = true;
@@ -19,7 +30,7 @@
         "--fullscreen"
       ];
 
-      capSysNice = false;
+      capSysNice = true;
     };
   };
 

@@ -1,5 +1,6 @@
 # home/sckova/games/morrowind.nix
 {
+  lib,
   pkgs,
   hostname,
   pkgs-unstable,
@@ -13,8 +14,13 @@ in
     packages = [ pkg ];
 
     sessionVariables = {
-      GL_THREADED_OPTIMIZATIONS = "1"; # this improves FPS considerably on nvidia
       SDL_VIDEO_DRIVER = "wayland";
+    }
+    # these improve FPS considerably on nvidia
+    // lib.optionalAttrs (hostname == "alien") {
+      __GL_MaxFramesAllowed = "1";
+      __GL_SHADER_DISK_CACHE = "1";
+      __GL_THREADED_OPTIMIZATIONS = "1";
     };
   };
 
@@ -39,15 +45,12 @@ in
             if isAlien then
               /* bash */ ''
                 exec ${pkgs.gamescope}/bin/gamescope \
-                  --force-grab-cursor \
-                  --cursor-scale-height 1400 \
-                  -s 3 \
+                  --force-grab-cursor --cursor-scale-height 1400 -s 3 \
+                  -w 2560 -h 1440 -F fsr --sharpness 5 \
                   -W 3840 -H 2160 -r 144 \
                   -f \
                   -- \
                   env \
-                  __NV_PRIME_RENDER_OFFLOAD=1 \
-                  __GLX_VENDOR_LIBRARY_NAME=nvidia \
                   SDL_VIDEODRIVER=x11 \
                   ${pkgs.gamemode}/bin/gamemoderun ${pkg}/bin/openmw "$@"
               ''
