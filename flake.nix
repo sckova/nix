@@ -84,7 +84,7 @@
 
     pedantix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:swarsel/pedantix";
+      url = "github:swarsel/pedantix/v1.1.0";
     };
 
     seamless-asahi-plymouth = {
