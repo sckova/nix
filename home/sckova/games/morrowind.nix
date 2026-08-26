@@ -10,7 +10,7 @@
     packages = [ pkgs.openmw-unstable ];
 
     sessionVariables = {
-      SDL_VIDEO_DRIVER = "wayland";
+      SDL_VIDEODRIVER = "wayland";
     }
     # these improve FPS considerably on nvidia
     // lib.optionalAttrs (hostname == "alien") {
@@ -31,7 +31,7 @@
     ];
   };
 
-  xdg.desktopEntries.openmw-gamescope =
+  xdg.desktopEntries.openmw-performance =
     let
       isAlien = hostname == "alien";
 
@@ -44,15 +44,23 @@
                   --force-grab-cursor --cursor-scale-height 1400 -s 3 \
                   -w 2560 -h 1440 -F fsr --sharpness 5 \
                   -W 3840 -H 2160 -r 144 \
-                  -f \
                   -- \
                   env \
                   SDL_VIDEODRIVER=x11 \
                   ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw-unstable}/bin/openmw "$@"
               ''
+            # vulkan backend not currently supported in asahi
             else
               /* bash */ ''
-                exec ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw-unstable}/bin/openmw "$@"
+                exec ${pkgs.gamescope}/bin/gamescope \
+                  --backend sdl \
+                  --force-grab-cursor --cursor-scale-height 1000 -s 0.25 \
+                  -w 1701 -h 1080 -F fsr --sharpness 5 \
+                  -W 3024 -H 1890 -r 120 \
+                  -- \
+                  env \
+                  SDL_VIDEODRIVER=x11 \
+                  ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw-unstable}/bin/openmw "$@"
               ''
           );
     in
@@ -62,12 +70,12 @@
         "RolePlaying"
       ];
 
-      comment = "OpenMW Wrapper Launcher";
+      comment = "An engine replacement for The Elder Scrolls III: Morrowind (Performance Wrapper)";
       exec = "${openmw-launcher}/bin/openmw-launcher";
-      genericName = "Role-Playing Game";
+      genericName = "Role Playing Game";
       icon = "openmw";
       name = "OpenMW (performance)";
-      settings.Keywords = "openmw;morrowind;";
+      settings.Keywords = "Morrowind;Reimplementation Mods;esm;bsa;";
       terminal = false;
     };
 }
