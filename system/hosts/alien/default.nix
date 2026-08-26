@@ -31,11 +31,6 @@
       "--nested-height 2160"
     ];
 
-    nix-ld = {
-      enable = true;
-      libraries = [ ];
-    };
-
     steam = {
       enable = true;
       extraCompatPackages = with pkgs; [ proton-ge-bin ];
