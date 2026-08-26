@@ -19,14 +19,12 @@
         "alien"
         "alien.local"
         "alien.attlocal.net"
-        "alien.taila30609.ts.net"
       ];
 
       "192.168.1.250" = [
         "peach"
         "peach.local"
         "peach.attlocal.net"
-        "peach.taila30609.ts.net"
       ];
 
       "192.168.1.64" = [
@@ -45,7 +43,6 @@
         "kube3"
         "kube3.local"
         "kube3.attlocal.net"
-        "kube3.taila30609.ts.net"
       ];
 
       "192.168.1.67" = [
