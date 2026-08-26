@@ -46,7 +46,7 @@
     gnome = {
       core-apps.enable = false;
       games.enable = false;
-      gnome-keyring.enable = false;
+      gnome-keyring.enable = true;
       sushi.enable = false;
     };
   };
