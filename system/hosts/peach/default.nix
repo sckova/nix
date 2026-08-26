@@ -14,7 +14,7 @@ let
 in
 {
   imports = with inputs; [
-    steam-asahi.nixosModules.default
+    # steam-asahi.nixosModules.default
   ];
 
   programs = {
@@ -25,7 +25,7 @@ in
       }
     ];
 
-    steam-asahi.enable = true;
+    # steam-asahi.enable = true;
   };
 
   # environment.systemPackages = with pkgs; [
@@ -34,6 +34,7 @@ in
   #   muvm
   #   fex
   # ];
+
   services.logind.settings.Login = {
     HandleLidSwitch = "lock";
     HandlePowerKey = "lock";

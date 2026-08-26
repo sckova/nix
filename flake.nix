@@ -97,7 +97,7 @@
       url = "https://flakehub.com/f/Mic92/sops-nix/*";
     };
 
-    steam-asahi.url = "github:sm-idk/steam-asahi";
+    # steam-asahi.url = "github:sm-idk/steam-asahi";
 
     tt-schemes = {
       flake = false;
