@@ -72,13 +72,13 @@
 
       # for macbooks to get a perfect 16:10 under the notch:
       # thickness = (notched height - notchless height) / display scale
-      # 49.33333  = (          1964 - 1890            ) / 1.5
+      # 49.333334 = (          1964 - 1890            ) / 1.5
       # on a 14 inch apple silicon laptop, (width = 3024) the only TRULY valid
       # scales are thusly 1.0 or 2.0. every other size doesn't factor correctly.
       thickness = if hostname == "peach" then 49 else 40;
     };
 
-    brightness.enable_ddcutil = false;
+    brightness.enable_ddcutil = (hostname == "alien");
     desktop_widgets.enabled = false;
     location.address = "Atlanta, US";
 
@@ -126,7 +126,7 @@
 
     osd = {
       background_opacity = 0.90;
-      kinds.brightness = false;
+      kinds.brightness = (hostname == "alien"); # yabd handles peach's brightness
       position = "top_right";
       position_vertical = "top_right";
     };
