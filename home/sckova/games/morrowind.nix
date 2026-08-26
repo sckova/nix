@@ -8,16 +8,7 @@
 {
   home = {
     packages = [ pkgs.openmw-unstable ];
-
-    sessionVariables = {
-      SDL_VIDEODRIVER = "wayland";
-    }
-    # these improve FPS considerably on nvidia
-    // lib.optionalAttrs (hostname == "alien") {
-      __GL_MaxFramesAllowed = "1";
-      __GL_SHADER_DISK_CACHE = "1";
-      __GL_THREADED_OPTIMIZATIONS = "1";
-    };
+    sessionVariables.SDL_VIDEODRIVER = "wayland";
   };
 
   programs.firefox.profiles.default.search.engines.uesp = {
@@ -42,11 +33,14 @@
               /* bash */ ''
                 exec ${pkgs.gamescope}/bin/gamescope \
                   --force-grab-cursor --cursor-scale-height 1400 -s 3 \
-                  -w 2560 -h 1440 -F fsr --sharpness 5 \
+                  -w 2560 -h 1400 -F fsr --sharpness 5 \
                   -W 3840 -H 2160 -r 144 \
                   -- \
                   env \
                   SDL_VIDEODRIVER=x11 \
+                  __GL_MaxFramesAllowed=1 \
+                  __GL_SHADER_DISK_CACHE=1 \
+                  __GL_THREADED_OPTIMIZATIONS=1 \
                   ${pkgs.gamemode}/bin/gamemoderun ${pkgs.openmw-unstable}/bin/openmw "$@"
               ''
             # vulkan backend not currently supported in asahi
