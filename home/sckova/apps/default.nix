@@ -2,7 +2,6 @@
 {
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 {
@@ -19,7 +18,7 @@
       # audacity # audio tool
       # google-chrome # proprietary web browser
       # helium-nightly # web browser
-      pkgs-unstable.musescore # music scoring
+      musescore # music scoring
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       calibre # ebook tool

@@ -46,8 +46,8 @@
     };
 
     nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
+
     # nixpkgs-unstable.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
-    nixpkgs-unstable.follows = "nixpkgs";
 
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";

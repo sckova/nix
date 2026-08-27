@@ -17,10 +17,10 @@
     extraSpecialArgs = {
       inherit hostname inputs isLinux;
 
-      pkgs-unstable = import inputs.nixpkgs-unstable {
-        config.allowUnfree = true;
-        system = pkgs.stdenv.hostPlatform.system;
-      };
+      # pkgs-unstable = import inputs.nixpkgs-unstable {
+      #   config.allowUnfree = true;
+      #   system = pkgs.stdenv.hostPlatform.system;
+      # };
     };
 
     sharedModules = with inputs; [
