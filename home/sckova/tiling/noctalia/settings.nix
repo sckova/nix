@@ -80,7 +80,7 @@
 
     brightness.enable_ddcutil = (hostname == "alien");
     desktop_widgets.enabled = false;
-    location.address = "Atlanta, US";
+    location.auto_locate = true;
 
     lockscreen_widgets = {
       enabled = false;
