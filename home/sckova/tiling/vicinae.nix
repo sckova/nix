@@ -22,11 +22,6 @@
       in
       [
         (config.lib.vicinae.mkRayCastExtension {
-          name = "spotify-player";
-          rev = raycast.rev;
-          sha256 = "sha256-332DOAKVOnXkL/tLpQXlSPYl2fveAX46e9vfC7RoyVA=";
-        })
-        (config.lib.vicinae.mkRayCastExtension {
           name = "tailscale";
           rev = raycast.rev;
           sha256 = "sha256-fPRHDTazFfUDvsbvbl0JyZkKSA1i/rIhMWVG+9CAfpY=";
@@ -46,10 +41,6 @@
         (config.lib.vicinae.mkExtension {
           name = "searxng";
           src = vicinae + "searxng";
-        })
-        (config.lib.vicinae.mkExtension {
-          name = "wikipedia";
-          src = vicinae + "wikipedia";
         })
       ];
 
