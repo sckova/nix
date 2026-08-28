@@ -8,7 +8,7 @@
     #   url = "github:nyakase/aerothemeplasma-nix";
     # };
 
-    apple-silicon.url = "github:nix-community/nixos-apple-silicon/release-2026-07-30";
+    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
     base16.url = "github:SenchoPens/base16.nix";
 
     fh = {
