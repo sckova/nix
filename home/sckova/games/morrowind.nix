@@ -25,7 +25,7 @@
   xdg.desktopEntries.openmw-performance =
     let
       isAlien = hostname == "alien";
-
+      # both are scaled to 0.75x resolution then upscaled
       openmw-launcher =
         pkgs.writeShellScriptBin "openmw-launcher" # bash
           (
@@ -33,7 +33,7 @@
               /* bash */ ''
                 exec ${pkgs.gamescope}/bin/gamescope \
                   --force-grab-cursor --cursor-scale-height 1400 -s 3 \
-                  -w 2560 -h 1400 -F fsr --sharpness 5 \
+                  -w 2194 -h 1234 -F fsr --sharpness 5 \
                   -W 3840 -H 2160 -r 144 \
                   -- \
                   env \
@@ -48,8 +48,8 @@
               /* bash */ ''
                 exec ${pkgs.gamescope}/bin/gamescope \
                   --backend sdl \
-                  --force-grab-cursor --cursor-scale-height 1000 -s 0.25 \
-                  -w 1701 -h 1080 -F fsr --sharpness 5 \
+                  --force-grab-cursor --cursor-scale-height 1080 -s 0.15 \
+                  -w 1728 -h 1080 -F fsr --sharpness 5 \
                   -W 3024 -H 1890 -r 120 \
                   -- \
                   env \
