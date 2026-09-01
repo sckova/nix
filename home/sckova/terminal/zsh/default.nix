@@ -1,3 +1,4 @@
+# home/sckova/terminal/zsh/default.nix
 {
   imports = [
     ./settings.nix

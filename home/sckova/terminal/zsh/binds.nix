@@ -1,3 +1,4 @@
+# home/sckova/terminal/zsh/binds.nix
 {
   home.file.".config/zsh/binds.zsh".text = /* zsh */ ''
     TRAPINT() {

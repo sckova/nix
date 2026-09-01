@@ -1,3 +1,4 @@
+# home/sckova/terminal/zsh/prompt.nix
 {
   config,
   lib,
