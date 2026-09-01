@@ -27,11 +27,10 @@
     };
 
     impermanence.url = "https://flakehub.com/f/nix-community/impermanence/*";
-
-    kernel-asahi = {
-      flake = false;
-      url = "github:AsahiLinux/linux/fairydust";
-    };
+    # kernel-asahi = {
+    #   flake = false;
+    #   url = "github:AsahiLinux/linux/fairydust";
+    # };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 

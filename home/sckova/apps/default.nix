@@ -25,7 +25,7 @@
       fractal # matrix client
       gapless # music player
       gimp # image editor
-      libreoffice-fresh # office suite
+      libreoffice-stable # office suite
       loupe # image viewer
       nautilus # file browser
       papers # GNOME's document viewer
