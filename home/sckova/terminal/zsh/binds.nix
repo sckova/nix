@@ -6,6 +6,8 @@
       zle reset-prompt
       return 0
     }
+
+    WORDCHARS=''${WORDCHARS//\//}
   '';
 
   programs.zsh.initContent = /* zsh */ ''

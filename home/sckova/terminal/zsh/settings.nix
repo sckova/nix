@@ -27,7 +27,7 @@
 
     # The default base keymap to use.
     # Type: null or one of “emacs”, “vicmd”, “viins”
-    defaultKeymap = null;
+    defaultKeymap = "emacs";
     # Directory where the zsh configuration and more should be located,
     # relative to the users home directory
     dotDir = config.xdg.configHome + "/zsh";

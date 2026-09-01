@@ -23,6 +23,8 @@
       keybind = [
         "ctrl+k=clear_screen"
         "ctrl+enter=unbind"
+        # emit ^W instead of ^H for shell deletion
+        "ctrl+backspace=text:\\x17"
       ];
 
       mouse-hide-while-typing = true;
