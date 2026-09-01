@@ -3,6 +3,7 @@
 # https://nix-community.github.io/home-manager/options/home-manager/programs/zsh.html
 {
   config,
+  pkgs,
   ...
 }:
 {
@@ -46,6 +47,23 @@
     };
 
     # Content to be added to .zshrc
-    initContent = /* zsh */ "source ~/.config/zsh/prompt.zsh";
+    initContent = /* zsh */ ''
+      source ~/.config/zsh/prompt.zsh
+      source ~/.config/zsh/binds.zsh
+    '';
+
+    plugins = [
+      # fish-like up-arrow history
+      {
+        file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
+        name = "zsh-history-substring-search";
+        src = pkgs.zsh-history-substring-search;
+      }
+      # fish-like tab autocomplete
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+      }
+    ];
   };
 }
