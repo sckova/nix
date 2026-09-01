@@ -99,23 +99,6 @@
             open-maximized-to-edges = true;
           };
         }
-        # Ghostty fastfetch window
-        {
-          window-rule = {
-            baba-is-float = true;
-
-            match._props = {
-              app-id = "^com.mitchellh.ghostty$";
-              title = "^fastfetch$";
-            };
-
-            max-height = 480;
-            max-width = 960;
-            min-height = 480;
-            min-width = 960;
-            open-floating = true;
-          };
-        }
         # apps that handle their own background opacity
         {
           window-rule = {

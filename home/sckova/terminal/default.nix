@@ -9,7 +9,7 @@
   imports = with inputs; [
     nix-index-database.homeModules.default
     ./btop.nix
-    ./fish.nix
+    ./zsh
     ./fastfetch.nix
     ./git.nix
     ./neovim
@@ -66,7 +66,7 @@
     eza = {
       enable = true;
       colors = "always";
-      enableFishIntegration = true;
+      enableZshIntegration = true;
       git = true;
       icons = "auto";
     };

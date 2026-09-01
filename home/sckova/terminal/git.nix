@@ -42,7 +42,7 @@
         "--border"
       ];
 
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
 
     gh = {
@@ -89,7 +89,7 @@
 
     lazygit = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
 
     lazysql.enable = true;
