@@ -31,6 +31,7 @@ in
     nixfmt
     prettier
     prettierd
+    shfmt
     stylua
     yamlfmt
   ];
@@ -85,10 +86,10 @@ in
         };
 
         formatters_by_ft = {
+          bash = [ "shfmt" ];
           c = [ "clang-format" ];
           cpp = [ "clang-format" ];
           css = [ "prettier" ];
-          fish = [ "fish_indent" ];
           html = [ "prettier" ];
           javascript = [ "prettier" ];
           json = [ "prettier" ];
@@ -99,6 +100,7 @@ in
           python = [ "black" ];
           yaml = [ "yamlfmt" ];
           yml = [ "yamlfmt" ];
+          zsh = [ "shfmt" ];
         };
       };
     };
@@ -164,6 +166,7 @@ in
         "markdown"
         "markdown_inline"
         "bash"
+        "zsh"
       ];
     };
   };
