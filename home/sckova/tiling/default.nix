@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./kanshi.nix
     ./niri
     ./noctalia
     ./services.nix
