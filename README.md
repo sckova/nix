@@ -27,6 +27,7 @@ user@host ~/Projects/nix (main)
  .
 ├──  .gitea
 │   └──  workflows
+│       ├──  update-flake.yml
 │       └──  update-headers.yml
 ├── 󰊢 .gitignore
 ├──  .sops.yaml
@@ -108,6 +109,7 @@ user@host ~/Projects/nix (main)
 │       │   └──  ytfp.nix
 │       └──  tiling
 │           ├──  default.nix
+│           ├──  kanshi.nix
 │           ├──  niri
 │           │   ├──  binds.nix
 │           │   ├──  default.nix
