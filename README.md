@@ -92,7 +92,6 @@ user@host ~/Projects/nix (main)
 │       │   ├──  btop.nix
 │       │   ├──  default.nix
 │       │   ├──  fastfetch.nix
-│       │   ├──  fish.nix
 │       │   ├──  git.nix
 │       │   ├──  neovim
 │       │   │   ├──  app.nix
@@ -106,7 +105,13 @@ user@host ~/Projects/nix (main)
 │       │   │   └──  settings.nix
 │       │   ├──  ssh.nix
 │       │   ├──  vscode.nix
-│       │   └──  ytfp.nix
+│       │   ├──  ytfp.nix
+│       │   └──  zsh
+│       │       ├──  aliases.nix
+│       │       ├──  binds.nix
+│       │       ├──  default.nix
+│       │       ├──  prompt.nix
+│       │       └──  settings.nix
 │       └──  tiling
 │           ├──  default.nix
 │           ├──  kanshi.nix
