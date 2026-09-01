@@ -1,3 +1,4 @@
+# home/sckova/tiling/kanshi.nix
 {
   lib,
   hostname,
