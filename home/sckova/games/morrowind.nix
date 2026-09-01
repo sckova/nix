@@ -33,8 +33,8 @@
               /* bash */ ''
                 exec ${pkgs.gamescope}/bin/gamescope \
                   --force-grab-cursor --cursor-scale-height 1400 -s 3 \
-                  -w 2194 -h 1234 -F fsr --sharpness 5 \
-                  -W 3840 -H 2160 -r 144 \
+                  -w 2560 -h 1400 -F fsr --sharpness 5 \
+                  -W 3840 -H 2100 -r 144 \
                   -- \
                   env \
                   SDL_VIDEODRIVER=x11 \

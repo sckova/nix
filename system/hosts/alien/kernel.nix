@@ -30,7 +30,7 @@
     # hostPlatform = {
     #   gcc = {
     #     arch = "x86-64-v3";
-    #     tune = "x86-64-v3";
+    #     tune = "native";
     #   };
 
     #   system = "x86_64-linux";

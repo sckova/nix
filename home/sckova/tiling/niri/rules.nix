@@ -96,7 +96,7 @@
 
             opacity = 1.00;
             open-focused = true;
-            open-maximized = true;
+            open-maximized-to-edges = true;
           };
         }
         # Ghostty fastfetch window

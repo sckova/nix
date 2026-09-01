@@ -30,7 +30,7 @@
         "--fullscreen"
       ];
 
-      capSysNice = true;
+      capSysNice = false;
     };
   };
 
