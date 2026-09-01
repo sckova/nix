@@ -15,7 +15,7 @@
           profile.outputs = [
             {
               criteria = "eDP-1";
-              mode = "3024x1964x120.000";
+              mode = "3024x1964@120.000";
               scale = 1.5;
               status = "enable";
             }
@@ -26,7 +26,7 @@
           profile.outputs = [
             {
               criteria = "HDMI-A-1";
-              mode = "3840x2160x144.000";
+              mode = "3840x2160@144.000";
               scale = 1.5;
               status = "enable";
             }
@@ -43,7 +43,7 @@
           profile.outputs = [
             {
               criteria = "DP-1";
-              mode = "3840x2160x143.999";
+              mode = "3840x2160@143.999";
               scale = 1.5;
               status = "enable";
             }
