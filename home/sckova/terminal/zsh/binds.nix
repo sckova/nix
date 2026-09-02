@@ -14,10 +14,6 @@
     # more fish-like word deletion
     WORDCHARS=''${WORDCHARS//\//}
 
-    # binds with zsh-history-substring-search
-    bindkey '^[[A' history-substring-search-up
-    bindkey '^[[B' history-substring-search-down
-
     # easier cd navigation
     setopt AUTO_PUSHD
     setopt PUSHD_IGNORE_DUPS

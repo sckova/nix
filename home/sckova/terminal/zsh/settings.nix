@@ -47,6 +47,28 @@
       settings = { };
     };
 
+    # Options related to zsh-history-substring-search
+    historySubstringSearch = {
+      # Whether to enable history substring search
+      enable = true;
+
+      # The key codes to be used when searching down.
+      # The default of ^[[B may correspond to the DOWN key
+      # if not, try $terminfo[kcud1]
+      searchDownKey = [
+        "^[[B"
+        "$terminfo[kcud1]"
+      ];
+
+      # The key codes to be used when searching up.
+      # The default of ^[[A may correspond to the UP key
+      # if not, try $terminfo[kcuu1]
+      searchUpKey = [
+        "^[[A"
+        "$terminfo[kcuu1]"
+      ];
+    };
+
     # Content to be added to ~/.config/zsh/.zshrc
     initContent = lib.mkMerge [
       (lib.concatLines (
@@ -58,13 +80,13 @@
       ))
     ];
 
+    localVariables = {
+      # for zsh-history-substring-search: make colors match what fish does
+      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=white,bg=8,bold";
+      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=white,bg=9,bold";
+    };
+
     plugins = [
-      # fish-like up-arrow history
-      {
-        file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
-        name = "zsh-history-substring-search";
-        src = pkgs.zsh-history-substring-search;
-      }
       # fish-like tab autocomplete
       {
         name = "fzf-tab";
