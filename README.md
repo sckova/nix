@@ -111,7 +111,8 @@ user@host ~/Projects/nix (main)
 │       │       ├──  binds.nix
 │       │       ├──  default.nix
 │       │       ├──  prompt.nix
-│       │       └──  settings.nix
+│       │       ├──  settings.nix
+│       │       └──  syntax-highlighting.nix
 │       └──  tiling
 │           ├──  default.nix
 │           ├──  kanshi.nix
@@ -156,8 +157,7 @@ user@host ~/Projects/nix (main)
 ├── 󰂺 README.md
 └──  system
     ├──  apps
-    │   ├──  default.nix
-    │   └──  obs.nix
+    │   └──  default.nix
     ├──  darwin.nix
     ├──  default.nix
     ├──  gaming
@@ -173,7 +173,6 @@ user@host ~/Projects/nix (main)
     │   └──  tailscale.nix
     └──  services
         ├──  default.nix
-        ├──  kde.nix
         ├──  searxng.nix
         ├──  tiling.nix
         └──  widevine.nix
