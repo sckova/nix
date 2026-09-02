@@ -1,5 +1,6 @@
 # home/sckova/terminal/default.nix
 {
+  config,
   lib,
   pkgs,
   ...
@@ -57,6 +58,11 @@
         gnutar
         pinentry_mac
       ];
+
+    sessionVariables = {
+      # allow `nh os` to run without specified dir
+      NH_OS_FLAKE = config.home.homeDirectory + "/Projects/nix";
+    };
   };
 
   programs = {
