@@ -2,12 +2,10 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 {
-  imports = with inputs; [
-    nix-index-database.homeModules.default
+  imports = [
     ./btop.nix
     ./zsh
     ./fastfetch.nix
@@ -32,7 +30,6 @@
     packages =
       with pkgs;
       [
-        comma
         difftastic
         ffmpeg
         jq

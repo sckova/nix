@@ -39,11 +39,6 @@
       url = "github:LnL7/nix-darwin";
     };
 
-    nix-index-database = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nix-index-database";
-    };
-
     nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
 
     # nixpkgs-unstable.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
