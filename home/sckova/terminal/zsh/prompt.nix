@@ -23,8 +23,6 @@
       force = true;
 
       text = /* zsh */ ''
-        source ~/.config/zsh/colors.zsh
-
         autoload -Uz vcs_info
         setopt PROMPT_SUBST
         zstyle ':vcs_info:git:*' formats ' (%b)'

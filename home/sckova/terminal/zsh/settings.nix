@@ -3,6 +3,7 @@
 # https://nix-community.github.io/home-manager/options/home-manager/programs/zsh.html
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -46,11 +47,16 @@
       settings = { };
     };
 
-    # Content to be added to .zshrc
-    initContent = /* zsh */ ''
-      source ~/.config/zsh/prompt.zsh
-      source ~/.config/zsh/binds.zsh
-    '';
+    # Content to be added to ~/.config/zsh/.zshrc
+    initContent = lib.mkMerge [
+      (lib.concatLines (
+        map (f: "source ~/.config/zsh/${f}.zsh") [
+          "binds"
+          "colors"
+          "prompt"
+        ]
+      ))
+    ];
 
     plugins = [
       # fish-like up-arrow history
