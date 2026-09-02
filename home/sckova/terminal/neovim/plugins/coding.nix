@@ -24,6 +24,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    beautysh
     black
     clang-tools
     kdlfmt
@@ -68,6 +69,11 @@ in
         };
 
         formatters = {
+          beautysh.append_args = [
+            "-i"
+            "2"
+          ];
+
           kdlfmt = {
             args = [ "$FILENAME" ];
             command = lib.getExe kdlfmtWrapper;
@@ -100,7 +106,7 @@ in
           python = [ "black" ];
           yaml = [ "yamlfmt" ];
           yml = [ "yamlfmt" ];
-          zsh = [ "shfmt" ];
+          zsh = [ "beautysh" ];
         };
       };
     };
