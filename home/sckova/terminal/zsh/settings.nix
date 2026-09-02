@@ -76,6 +76,7 @@
           "binds"
           "colors"
           "prompt"
+          "fast-syntax-colors"
         ]
       ))
     ];

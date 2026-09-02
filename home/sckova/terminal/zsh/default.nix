@@ -5,6 +5,7 @@
     ./binds.nix
     ./prompt.nix
     ./aliases.nix
+    ./syntax-highlighting.nix
   ];
 
   programs.zsh.enable = true;
