@@ -32,5 +32,21 @@
     bindkey '^[[1;5C' forward-word
     bindkey '^[[1;3D' backward-word
     bindkey '^[[1;3C' forward-word
+
+    # "zsh: ~/current/directory"
+    set_window_title_precmd() {
+      print -Pn "\e]2;zsh: %~\a"
+    }
+
+    # "zsh: command_name"
+    set_window_title_preexec() {
+      local cmd="''${1//[^[:print:]]/}"
+      print -n "\e]2;zsh: ''${cmd}\a"
+    }
+
+    # load zsh: title prepends
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd set_window_title_precmd
+    add-zsh-hook preexec set_window_title_preexec
   '';
 }
