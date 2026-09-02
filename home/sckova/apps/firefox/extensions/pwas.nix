@@ -6,18 +6,22 @@
   ...
 }:
 {
-  home.file.".local/share/firefoxpwa/profiles/01KEYXH9TC4B54J5CTPNE75JP0/prefs.js" = {
-    force = true;
+  home = {
+    file.".local/share/firefoxpwa/profiles/01KEYXH9TC4B54J5CTPNE75JP0/prefs.js" = {
+      force = true;
 
-    text = /* js */ ''
-      user_pref("firefoxpwa.alwaysUseNativeWindowControls", true);
-      user_pref("firefoxpwa.displayUrlBar", 1);
-      user_pref("firefoxpwa.enableHidingIconBar", true);
-      user_pref("firefoxpwa.dynamicWindowTitle", true);
-      user_pref("ui.key.menuAccessKeyFocuses", false);
-      user_pref("browser.aboutConfig.showWarning", false);
-      user_pref("browser.ml.enable", false);
-    '';
+      text = /* js */ ''
+        user_pref("firefoxpwa.alwaysUseNativeWindowControls", true);
+        user_pref("firefoxpwa.displayUrlBar", 1);
+        user_pref("firefoxpwa.enableHidingIconBar", true);
+        user_pref("firefoxpwa.dynamicWindowTitle", true);
+        user_pref("ui.key.menuAccessKeyFocuses", false);
+        user_pref("browser.aboutConfig.showWarning", false);
+        user_pref("browser.ml.enable", false);
+      '';
+    };
+
+    packages = with pkgs; [ firefoxpwa ];
   };
 
   programs.firefoxpwa = lib.mkIf isLinux {

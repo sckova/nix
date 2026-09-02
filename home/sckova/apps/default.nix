@@ -22,6 +22,7 @@
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       calibre # ebook tool
+      file-roller # archive utility
       fractal # matrix client
       gapless # music player
       gimp # image editor

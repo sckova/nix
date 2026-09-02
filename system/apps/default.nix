@@ -1,14 +1,5 @@
 # system/apps/default.nix
 { pkgs, ... }: {
-  imports = [
-    # ./obs.nix
-  ];
-
-  environment.systemPackages = with pkgs; [
-    git
-    firefoxpwa
-    file-roller
-  ];
-
+  imports = [ ];
   programs.nh.enable = true;
 }

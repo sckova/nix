@@ -1,13 +1,8 @@
 # system/services/default.nix
 {
-  pkgs,
-  ...
-}:
-{
   imports = [
     ./widevine.nix
     ./searxng.nix
-    # ./kde.nix
     ./tiling.nix
   ];
 
