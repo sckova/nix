@@ -14,8 +14,12 @@
     # split is done for organization
     config =
       with config.scheme.withHashtag;
-      # yt-dlp setup
+      # enable ipc server for nautilus picker
       {
+        input-ipc-server = "/tmp/mpvsocket";
+      }
+      # yt-dlp setup
+      // {
         ytdl-format = "best";
 
         ytdl-raw-options = lib.concatStringsSep "," (
@@ -66,6 +70,66 @@
       };
 
     enable = true;
+
+    bindings =
+      let
+        # use system keys on each OS
+        meta = if !isLinux then "super" else "ctrl";
+        socket = config.programs.mpv.config.input-ipc-server;
+      in
+      {
+        # open link input
+        "${meta}+l" = "run '${
+          pkgs.writeShellScript "mpv-link-picker" /* bash */ ''
+            ${
+              if isLinux then
+                /* bash */ ''
+                  LINK="$(${pkgs.zenity}/bin/zenity \
+                    --entry \
+                    --title="Open URL" \
+                    --text="Enter media link:" \
+                    2>/dev/null || true)"
+                ''
+              else
+                /* bash */ ''
+                  LINK="$(/usr/bin/osascript -e \
+                    'text returned of (display dialog "Enter media link:" default answer "")' \
+                    2>/dev/null || true)"
+                ''
+            }
+
+            if [ -n "$LINK" ] && [ -S "${socket}" ]; then
+              echo "loadfile \"$LINK\"" \
+                | ${pkgs.socat}/bin/socat - UNIX-CONNECT:"${socket}"
+            fi
+          ''
+        }'";
+
+        # open file picker
+        "${meta}+o" = "run '${
+          pkgs.writeShellScript "mpv-picker" /* bash */ ''
+            ${
+              if isLinux then
+                /* bash */ ''
+                  FILE="$(${pkgs.zenity}/bin/zenity \
+                    --file-selection \
+                    2>/dev/null || true)"
+                ''
+              else
+                /* bash */ ''
+                  FILE="$(/usr/bin/osascript -e \
+                    'POSIX path of (choose file with prompt "Select Media:")' \
+                    2>/dev/null || true)"
+                ''
+            }
+
+            if [ -n "$FILE" ] && [ -S "${socket}" ]; then
+              echo "loadfile \"$FILE\"" \
+                | ${pkgs.socat}/bin/socat - UNIX-CONNECT:"${socket}"
+            fi
+          ''
+        }'";
+      };
 
     scriptOpts.uosc = {
       color =
