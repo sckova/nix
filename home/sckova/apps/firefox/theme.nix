@@ -61,11 +61,11 @@ in
           --gnome-palette-purple-3: ${base0E} !important;
           --gnome-palette-purple-4: ${base0E} !important;
           --gnome-palette-purple-5: ${base0E} !important;
-          --gnome-palette-brown-1: ${base0F} !important;
-          --gnome-palette-brown-2: ${base0F} !important;
-          --gnome-palette-brown-3: ${base0F} !important;
-          --gnome-palette-brown-4: ${base0F} !important;
-          --gnome-palette-brown-5: ${base0F} !important;
+          --gnome-palette-brown-1: ${base08} !important;
+          --gnome-palette-brown-2: ${base08} !important;
+          --gnome-palette-brown-3: ${base08} !important;
+          --gnome-palette-brown-4: ${base08} !important;
+          --gnome-palette-brown-5: ${base08} !important;
           --gnome-palette-light-1: ${base05} !important;
           --gnome-palette-light-2: ${base05} !important;
           --gnome-palette-light-3: ${base05} !important;

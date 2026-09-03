@@ -4,7 +4,6 @@
 # "force_installed" and "normal_installed".
 {
   "*".installation_mode = "blocked"; # force declarative installation
-  "ATBC@EasonWong".installation_mode = "allowed"; # adaptive tab bar color
   "CanvasBlocker@kkapsner.de".installation_mode = "allowed"; # canvas blocker
   "deArrow@ajay.app".installation_mode = "allowed"; # dearrow
   "firefoxpwa@filips.si".installation_mode = "allowed"; # firefoxpwa
