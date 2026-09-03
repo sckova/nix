@@ -15,6 +15,7 @@
 
   home.packages = with pkgs; [
     dolphin-emu
+    mangohud # performance monitor
     melonds # Nintendo DS emulator
     # shipwright # Ocarina of Time PC port
     # mkxp-z # RPG Maker XP player

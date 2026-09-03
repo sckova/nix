@@ -12,7 +12,6 @@
     sops-nix.nixosModules.sops
     impermanence.nixosModules.impermanence
     ../lib
-    ./apps
     ./gaming
     ./services
     ./networking

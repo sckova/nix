@@ -87,8 +87,6 @@
       url = "https://flakehub.com/f/Mic92/sops-nix/*";
     };
 
-    # steam-asahi.url = "github:sm-idk/steam-asahi";
-
     tt-schemes = {
       flake = false;
       url = "github:tinted-theming/schemes/b9f335ad6a0b7d85b9c2eb932c3215f7429f7d11";

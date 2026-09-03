@@ -4,6 +4,8 @@
   ...
 }:
 {
+  environment.systemPackages = [ pkgs.tuigreet ];
+
   programs = {
     gnupg.agent = {
       enable = true;
@@ -15,39 +17,31 @@
   };
 
   security.pam.services = {
-    gdm.enableGnomeKeyring = true;
     niri.enableGnomeKeyring = true;
 
     swaylock = {
       enableGnomeKeyring = true;
-
-      gnupg = {
-        enable = true;
-        noAutostart = false;
-      };
-
-      name = "swaylock";
+      gnupg.enable = true;
     };
   };
 
   services = {
-    desktopManager.gnome.enable = false;
+    gnome.gnome-keyring.enable = true;
 
-    displayManager = {
-      autoLogin = {
-        enable = true;
-        user = "sckova";
+    greetd = {
+      enable = true;
+
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+          user = "greeter";
+        };
+
+        initial_session = {
+          command = "${pkgs.niri}/bin/niri-session";
+          user = "sckova";
+        };
       };
-
-      defaultSession = "niri";
-      gdm.enable = true;
-    };
-
-    gnome = {
-      core-apps.enable = false;
-      games.enable = false;
-      gnome-keyring.enable = true;
-      sushi.enable = false;
     };
   };
 }

@@ -1,15 +1,10 @@
 # system/gaming/default.nix
 {
   lib,
-  pkgs,
   hostname,
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [
-    mangohud
-  ];
-
   programs = {
     gamemode = {
       enable = true;

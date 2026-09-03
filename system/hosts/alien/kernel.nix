@@ -1,18 +1,13 @@
 # system/hosts/alien/kernel.nix
 {
   config,
-  lib,
   pkgs,
   inputs,
   ...
 }:
 {
   boot = {
-    kernelModules = [
-      "i2c-dev"
-      "ddcci_backlight"
-    ];
-
+    kernelModules = [ "ddcci_backlight" ];
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
   };
 
@@ -22,7 +17,14 @@
   ];
 
   hardware.i2c.enable = true;
-  nix.settings.system-features = [ "gccarch-x86-64-v3" ];
+
+  nix.settings.system-features = [
+    "nixos-test"
+    "benchmark"
+    "big-parallel"
+    "kvm"
+    "gccarch-x86-64-v3"
+  ];
 
   nixpkgs = {
     # hostPlatform = {
@@ -39,14 +41,8 @@
     ];
   };
 
-  services = {
-    # enable rgb support
-    hardware.openrgb.enable = true;
-
-    udev.extraRules = ''
-      KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
-    '';
-  };
+  # enable rgb support
+  services.hardware.openrgb.enable = true;
 
   # enable ddcutil
   users.users.${config.username}.extraGroups = [
