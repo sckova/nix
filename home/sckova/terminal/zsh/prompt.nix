@@ -28,12 +28,13 @@
         zstyle ':vcs_info:git:*' formats ' (%b)'
         precmd_functions+=(vcs_info)
 
-        typeset -g prompt_start='%F{$color_base0C}%n%f@%F{$color_accent}%m%f'
-        typeset -g prompt_dir='%F{$color_base0B}''${PWD/#$HOME/~}%f'
-        typeset -g prompt_git='$vcs_info_msg_0_'
-        typeset -g prompt_nix="''${IN_NIX_SHELL:+ <nix-shell>}"
+        typeset -g prompt_usr='%F{cyan}%n%f'
+        typeset -g prompt_hst='%F{$color_accent}%m%f'
+        typeset -g prompt_dir='%F{green}''${PWD/#$HOME/~}%f'
+        typeset -g prompt_git='$vcs_info_msg_0_%f'
+        typeset -g prompt_nix="%F{magenta}''${IN_NIX_SHELL:+ <nix-shell>}%f"
 
-        PROMPT="''${prompt_start} ''${prompt_dir}''${prompt_git}''${prompt_nix}
+        PROMPT="''${prompt_usr}@''${prompt_hst} ''${prompt_dir}''${prompt_git}''${prompt_nix}
         > "
       '';
     };
