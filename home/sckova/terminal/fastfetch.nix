@@ -1,147 +1,123 @@
 # home/sckova/terminal/fastfetch.nix
 # credit to harilvfs:
-# https://github.com/harilvfs/fastfetch/tree/old-days
+# https://github.com/harilvfs/fastfetch
+{
+  pkgs,
+  ...
+}:
 {
   programs.fastfetch = {
     enable = true;
 
     settings = {
+      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+      display.separator = " ";
+
       logo = {
-        height = 15;
-
-        padding = {
-          left = 3;
-          top = 5;
-        };
-
-        type = "builtin";
+        height = 36;
+        padding.top = 2;
+        source = pkgs.nixos-icons + "/share/icons/hicolor/512x512/apps/nix-snowflake.png";
+        type = "kitty-direct";
       };
 
       modules = [
         "break"
         {
-          format = "{#90}┌──────────────────────Hardware──────────────────────┐";
-          type = "custom";
-        }
-        {
-          key = "󰌢  PC";
-          keyColor = "green";
-          type = "host";
-        }
-        {
-          key = "│ ├󰻠 ";
-          keyColor = "green";
-          type = "cpu";
-        }
-        {
-          key = "│ ├󰍹 ";
-          keyColor = "green";
-          type = "gpu";
-        }
-        {
-          key = "│ ├󰑭 ";
-          keyColor = "green";
-          type = "memory";
-        }
-        {
-          key = "└ └󰋊 ";
-          keyColor = "green";
-          type = "disk";
-        }
-        {
-          format = "{#90}└────────────────────────────────────────────────────┘";
-          type = "custom";
+          keyWidth = 10;
+          type = "title";
         }
         "break"
         {
-          format = "{#90}┌──────────────────────Software──────────────────────┐";
-          type = "custom";
-        }
-        {
-          key = "  OS";
-          keyColor = "yellow";
+          key = " ";
+          keyColor = "34";
           type = "os";
         }
         {
-          key = "│ ├󰌽 ";
-          keyColor = "yellow";
+          key = " ";
+          keyColor = "34";
           type = "kernel";
         }
         {
-          key = "│ ├󰖡 ";
-          keyColor = "yellow";
-          type = "bios";
-        }
-        {
-          key = "│ ├󰏗 ";
-          keyColor = "yellow";
+          key = " ";
+          keyColor = "34";
           type = "packages";
         }
         {
-          key = "└ └󰞷 ";
-          keyColor = "yellow";
+          key = " ";
+          keyColor = "34";
           type = "shell";
         }
-        "break"
         {
-          key = "󰧨  DE";
-          keyColor = "blue";
-          type = "de";
-        }
-        {
-          key = "│ ├󰍁 ";
-          keyColor = "blue";
-          type = "lm";
-        }
-        {
-          key = "│ ├󱂬 ";
-          keyColor = "blue";
-          type = "wm";
-        }
-        {
-          key = "│ ├󰉦 ";
-          keyColor = "blue";
-          type = "wmtheme";
-        }
-        {
-          key = "└ └󰆍 ";
-          keyColor = "blue";
+          key = " ";
+          keyColor = "34";
           type = "terminal";
         }
         {
-          format = "{#90}└────────────────────────────────────────────────────┘";
-          type = "custom";
-        }
-        "break"
-        {
-          format = "{#90}┌────────────────────Uptime / Age / DT────────────────────┐";
-          type = "custom";
+          key = " ";
+          keyColor = "34";
+          type = "wm";
         }
         {
-          key = "  ›  OS Age  ";
-          keyColor = "magenta";
-          text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
-          type = "command";
+          key = " ";
+          keyColor = "34";
+          type = "display";
         }
         {
-          key = "  ›  Uptime  ";
-          keyColor = "magenta";
+          format = "{1}";
+          key = " ";
+          keyColor = "34";
+          type = "cpu";
+        }
+        {
+          format = "{2}";
+          key = " ";
+          keyColor = "34";
+          type = "gpu";
+        }
+        {
+          format = "{3}";
+          key = " ";
+          keyColor = "34";
+          type = "gpu";
+        }
+        {
+          key = "󰍛 ";
+          keyColor = "34";
+          type = "memory";
+        }
+        {
+          key = "󰾴 ";
+          keyColor = "34";
+          type = "swap";
+        }
+        {
+          key = " ";
+          keyColor = "34";
+          type = "disk";
+        }
+        {
+          key = " ";
+          keyColor = "34";
           type = "uptime";
         }
         {
-          key = "  ›  DateTime  ";
-          keyColor = "magenta";
-          type = "datetime";
+          key = "󱦟 ";
+          keyColor = "34";
+          text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
+          type = "command";
         }
+        "break"
         {
-          format = "{#90}└─────────────────────────────────────────────────────────┘";
+          format =
+            let
+              esc = builtins.fromJSON "\"\\u001b\"";
+            in
+            "${esc}[90m  ${esc}[31m  ${esc}[32m  ${esc}[33m  ${esc}[34m  ${esc}[35m  ${esc}[36m  ${esc}[37m${esc}[0m";
+
           type = "custom";
         }
-        {
-          paddingLeft = 2;
-          symbol = "circle";
-          type = "colors";
-        }
+        "break"
+        "break"
       ];
     };
   };
