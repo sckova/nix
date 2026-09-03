@@ -47,6 +47,13 @@
       settings = { };
     };
 
+    # Options related to commands history configuration
+    history = {
+      # If a new command line being added to the history list duplicates an older one,
+      # the older command is removed from the list (even if it is not the previous event)
+      ignoreAllDups = true;
+    };
+
     # Options related to zsh-history-substring-search
     historySubstringSearch = {
       # Whether to enable history substring search
@@ -82,9 +89,11 @@
     ];
 
     localVariables = {
-      # for zsh-history-substring-search: make colors match what fish does
+      # history-substring-search: deduplicate history
+      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE = "1";
+      # history-substring-search: make colors match what fish does
       HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=white,bg=8,bold";
-      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=white,bg=9,bold";
+      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "none";
     };
 
     plugins = [
