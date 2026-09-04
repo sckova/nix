@@ -1,279 +1,64 @@
 # home/sckova/terminal/btop.nix
 {
   config,
+  lib,
   ...
 }:
 {
   programs.btop = {
     enable = true;
+    settings.color_theme = "nixos";
 
-    settings = {
-      #* Update main ui in background when menus are showing, set this to false if the menus is flickering too much for comfort.
-      background_update = true;
-      #* true shows bitrates in base 10 (Kbps, Mbps). false shows bitrates in binary sizes (Kibps, Mibps, etc.). "Auto" uses base_10_sizes.
-      base_10_bitrate = "Auto";
-      #* Use base 10 for bits/bytes sizes, KB = "1000 instead of KiB = 1024.";
-      base_10_sizes = true;
-      #* Show cpu temperature.
-      check_temp = true;
-      #* Draw a clock at top of screen, formatting according to strftime, empty string to disable.
-      #* Special formatting: /host = "hostname | /user = username | /uptime = system uptime";
-      clock_format = "%X";
-      #? Config file for btop v. 1.4.5
-      #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
-      #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
-      color_theme = "nixos";
-      #* Show cpu box at bottom of screen instead of top.
-      cpu_bottom = false;
-      #* Set a custom mapping between core and coretemp, can be needed on certain cpus to get correct temperature for correct core.
-      #* Use lm-sensors or similar to see which cores are reporting temperatures on your machine.
-      #* Format "x:y" x=core with wrong temp, y=core with correct temp, use space as separator between multiple entries.
-      #* Example: "4:0 5:1 6:3"
-      cpu_core_map = "";
-      #* Sets the CPU stat shown in lower half of the CPU graph, "total" is always available.
-      #* Select from a list of detected attributes from the options menu.
-      cpu_graph_lower = "Auto";
-      #* Sets the CPU stat shown in upper half of the CPU graph, "total" is always available.
-      #* Select from a list of detected attributes from the options menu.
-      cpu_graph_upper = "Auto";
-      #* Toggles if the lower CPU graph should be inverted.
-      cpu_invert_lower = true;
-      #* Which sensor to use for cpu temperature, use options menu to select from list of available sensors.
-      cpu_sensor = "Auto";
-      #* Set to True to completely disable the lower CPU graph.
-      cpu_single_graph = false;
-      #* Custom cpu model name, empty string to disable.
-      custom_cpu_name = "";
-      #* Custom gpu0 model name, empty string to disable.
-      custom_gpu_name0 = "";
-      #* Custom gpu1 model name, empty string to disable.
-      custom_gpu_name1 = "";
-      #* Custom gpu2 model name, empty string to disable.
-      custom_gpu_name2 = "";
-      #* Custom gpu3 model name, empty string to disable.
-      custom_gpu_name3 = "";
-      #* Custom gpu4 model name, empty string to disable.
-      custom_gpu_name4 = "";
-      #* Custom gpu5 model name, empty string to disable.
-      custom_gpu_name5 = "";
-      #* Set to true to show available disk space for privileged users.
-      disk_free_priv = false;
-      #* Optional filter for shown disks, should be full path of a mountpoint, separate multiple values with whitespace " ".
-      #* Only disks matching the filter will be shown. Prepend exclude= to only show disks not matching the filter. Examples: disk_filter="/boot /home/user", disks_filter="exclude=/boot /home/user"
-      disks_filter = "";
-      #* Set to true to force tty mode regardless if a real tty has been detected or not.
-      #* Will force 16-color mode and TTY theme, set all graph symbols to "tty" and swap out other non tty friendly symbols.
-      force_tty = false;
-      #* Horizontally mirror the GPU graph.
-      gpu_mirror_graph = true;
-      #* Default symbols to use for graph creation, "braille", "block" or "tty".
-      #* "braille" offers the highest resolution but might not be included in all fonts.
-      #* "block" has half the resolution of braille but uses more common characters.
-      #* "tty" uses only 3 different symbols but will work with most fonts and should work in a real TTY.
-      #* Note that "tty" only has half the horizontal resolution of the other two, so will show a shorter historical view.
-      graph_symbol = "braille";
-      # Graph symbol to use for graphs in cpu box, "default", "braille", "block" or "tty".
-      graph_symbol_cpu = "default";
-      # Graph symbol to use for graphs in gpu box, "default", "braille", "block" or "tty".
-      graph_symbol_gpu = "default";
-      # Graph symbol to use for graphs in cpu box, "default", "braille", "block" or "tty".
-      graph_symbol_mem = "default";
-      # Graph symbol to use for graphs in cpu box, "default", "braille", "block" or "tty".
-      graph_symbol_net = "default";
-      # Graph symbol to use for graphs in cpu box, "default", "braille", "block" or "tty".
-      graph_symbol_proc = "default";
-      #* Set to True to show combined read/write io graphs in io mode.
-      io_graph_combined = false;
-      #* Set the top speed for the io graphs in MiB/s (100 by default), use format "mountpoint:speed" separate disks with whitespace " ".
-      #* Example: "/mnt/media:100 /:20 /boot:1".
-      io_graph_speeds = "";
-      #* Toggles io mode for disks, showing big graphs for disk read/write speeds.
-      io_mode = false;
-      #* Set loglevel for "~/.config/btop/btop.log" levels are: "ERROR" "WARNING" "INFO" "DEBUG".
-      #* The level set includes all lower levels, i.e. "DEBUG" will show all logging info.
-      log_level = "WARNING";
-      #* Show mem box below net box instead of above.
-      mem_below_net = false;
-      #* Show graphs instead of meters for memory values.
-      mem_graphs = true;
-      #* Use network graphs auto rescaling mode, ignores any values set above and rescales down to 10 Kibibytes at the lowest.
-      net_auto = true;
-      #* Set fixed values for network graphs in Mebibits. Is only used if net_auto is also set to False.
-      net_download = 100;
-      #* Starts with the Network Interface specified here.
-      net_iface = "";
-      #* Sync the auto scaling for download and upload to whichever currently has the highest scale.
-      net_sync = true;
-      net_upload = 100;
-      #* Measure PCIe throughput on NVIDIA cards, may impact performance on certain cards.
-      nvml_measure_pcie_speeds = true;
-      #* Filter out non physical disks. Set this to False to include network disks, RAM disks and similar.
-      only_physical = true;
-      #* Define presets for the layout of the boxes. Preset 0 is always all boxes shown with default settings. Max 9 presets.
-      #* Format: "box_name:P:G,box_name:P:G" P=(0 or 1) for alternate positions, G=graph symbol to use for box.
-      #* Use whitespace " " as separator between different presets.
-      #* Example: "cpu:0:default,mem:0:tty,proc:1:default cpu:0:braille,proc:0:tty"
-      presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
-      #* In tree-view, always accumulate child process resources in the parent process.
-      proc_aggregate = false;
-      #* Use the cpu graph colors in the process list.
-      proc_colors = true;
-      #* Show cpu graph for each process.
-      proc_cpu_graphs = true;
-      #* (Linux) Filter processes tied to the Linux kernel(similar behavior to htop).
-      proc_filter_kernel = false;
-      #* Use a darkening gradient in the process list.
-      proc_gradient = true;
-      #* Use /proc/[pid]/smaps for memory information in the process info box (very slow but more accurate)
-      proc_info_smaps = false;
-      #* Show proc box on left side of screen instead of right.
-      proc_left = false;
-      #* Show process memory as bytes instead of percent.
-      proc_mem_bytes = true;
-      #* If process cpu usage should be of the core it's running on or usage of the total available cpu power.
-      proc_per_core = false;
-      #* Reverse sorting order, True or False.
-      proc_reversed = false;
-      #* Processes sorting, "pid" "program" "arguments" "threads" "user" "memory" "cpu lazy" "cpu direct",
-      #* "cpu lazy" sorts top process over time (easier to follow), "cpu direct" updates top process directly.
-      proc_sorting = "cpu lazy";
-      #* Show processes as a tree.
-      proc_tree = false;
-      #* Rounded corners on boxes, is ignored if TTY mode is ON.
-      rounded_corners = true;
-      #* Measure PCIe throughput on AMD cards, may impact performance on certain cards.
-      rsmi_measure_pcie_speeds = true;
-      #* Which battery to use if multiple are present. "Auto" for auto detection.
-      selected_battery = "Auto";
-      #* Show battery stats in top right if battery is present.
-      show_battery = true;
-      #* Show power stats of battery next to charge indicator.
-      show_battery_watts = true;
-      #* Show temperatures for cpu cores also if check_temp is True and sensors has been found.
-      show_coretemp = true;
-      #* Show CPU frequency.
-      show_cpu_freq = true;
-      #* Shows the CPU package current power consumption in watts. Requires running `make setcap` or `make setuid` or running with sudo.
-      show_cpu_watts = true;
-      #* If mem box should be split to also show disks info.
-      show_disks = true;
-      #* If gpu info should be shown in the cpu box. Available values = ""Auto", "On" and "Off".";
-      show_gpu_info = "Auto";
-      #* Toggles if io activity % (disk busy time) should be shown in regular disk usage view.
-      show_io_stat = true;
-      #* If swap memory should be shown in memory box.
-      show_swap = true;
-      #* Shows the system uptime in the CPU box.
-      show_uptime = true;
-      #* Manually set which boxes to show. Available values are "cpu mem net proc" and "gpu0" through "gpu5", separate values with whitespace.
-      shown_boxes = "cpu mem net proc";
-      #* Show swap as a disk, ignores show_swap value above, inserts itself after first disk.
-      swap_disk = true;
-      #* Which temperature scale to use, available values: "celsius", "fahrenheit", "kelvin" and "rankine".
-      temp_scale = "celsius";
-      #* If the theme set background should be shown, set to False if you want terminal background transparency.
-      theme_background = false;
-      #* Sets if 24-bit truecolor should be used, will convert 24-bit colors to 256 color (6x6x6 color cube) if false.
-      truecolor = true;
-      #* Update time in milliseconds, recommended 2000 ms or above for better sample times for graphs.
-      update_ms = 2000;
-      #* Read disks list from /etc/fstab. This also disables only_physical.
-      use_fstab = true;
-      #* Set to True to enable "h,j,k,l,g,G" keys for directional control in lists.
-      #* Conflicting keys for h:"help" and k:"kill" is accessible while holding shift.
-      vim_keys = false;
-      #* Count ZFS ARC in cached and available memory.
-      zfs_arc_cached = true;
-      #* Setting this to True will hide all datasets, and only show ZFS pools. (IO stats will be calculated per-pool)
-      zfs_hide_datasets = false;
-
-    };
-
-    themes.nixos = with config.scheme.withHashtag; /* ini */ ''
-      # Credit to https://github.com/catppuccin/btop
-      # Main background, empty for terminal default, need to be empty if you want transparent background
-      theme[main_bg]=""
-
-      # Main text color
-      theme[main_fg]="${base05}"
-
-      # Title color for boxes
-      theme[title]="${base05}"
-
-      # Highlight color for keyboard shortcuts
-      theme[hi_fg]="${base0D}"
-
-      # Background color of selected item in processes box
-      theme[selected_bg]="${base02}"
-
-      # Foreground color of selected item in processes box
-      theme[selected_fg]="${base0D}"
-
-      # Color of inactive/disabled text
-      theme[inactive_fg]="${base03}"
-
-      # Color of text appearing on top of graphs, i.e uptime and current network graph scaling
-      theme[graph_text]="${base06}"
-
-      # Background color of the percentage meters
-      theme[meter_bg]="${base02}"
-
-      # Misc colors for processes box including mini cpu graphs, details memory graph and details status text
-      theme[proc_misc]="${base06}"
-
-      # CPU, Memory, Network, Proc box outline colors
-      theme[cpu_box]="${base0E}" #Mauve
-      theme[mem_box]="${base0B}" #Green
-      theme[net_box]="${base12}" #Maroon
-      theme[proc_box]="${base0D}" #Blue
-
-      # Box divider line and small boxes line color
-      theme[div_line]="${base03}"
-
-      # Temperature graph color (Green -> Yellow -> Red)
-      theme[temp_start]="${base0B}"
-      theme[temp_mid]="${base0A}"
-      theme[temp_end]="${base08}"
-
-      # CPU graph colors (Teal -> Lavender)
-      theme[cpu_start]="${base0C}"
-      theme[cpu_mid]="${base16}"
-      theme[cpu_end]="${base07}"
-
-      # Mem/Disk free meter (Mauve -> Lavender -> Blue)
-      theme[free_start]="${base0E}"
-      theme[free_mid]="${base07}"
-      theme[free_end]="${base0D}"
-
-      # Mem/Disk cached meter (Sapphire -> Lavender)
-      theme[cached_start]="${base16}"
-      theme[cached_mid]="${base0D}"
-      theme[cached_end]="${base07}"
-
-      # Mem/Disk available meter (Peach -> Red)
-      theme[available_start]="${base09}"
-      theme[available_mid]="${base12}"
-      theme[available_end]="${base08}"
-
-      # Mem/Disk used meter (Green -> Sky)
-      theme[used_start]="${base0B}"
-      theme[used_mid]="${base0C}"
-      theme[used_end]="${base15}"
-
-      # Download graph colors (Peach -> Red)
-      theme[download_start]="${base09}"
-      theme[download_mid]="${base12}"
-      theme[download_end]="${base08}"
-
-      # Upload graph colors (Green -> Sky)
-      theme[upload_start]="${base0B}"
-      theme[upload_mid]="${base0C}"
-      theme[upload_end]="${base15}"
-
-      # Process box color gradient for threads, mem and cpu usage (Sapphire -> Mauve)
-      theme[process_start]="${base16}"
-      theme[process_mid]="${base07}"
-      theme[process_end]="${base0E}"
-    '';
+    # Inspired by https://github.com/catppuccin/btop
+    themes.nixos =
+      with config.scheme.withHashtag;
+      lib.generators.toKeyValue
+        {
+          mkKeyValue = k: v: /* ini */ "theme[${k}]=\"${v}\"";
+        }
+        {
+          available_end = base08;
+          available_mid = base12;
+          available_start = base09;
+          cached_end = base07;
+          cached_mid = base0D;
+          cached_start = base16;
+          cpu_box = base0E;
+          cpu_end = base07;
+          cpu_mid = base16;
+          cpu_start = base0C;
+          div_line = base03;
+          download_end = base08;
+          download_mid = base12;
+          download_start = base09;
+          free_end = base0D;
+          free_mid = base07;
+          free_start = base0E;
+          graph_text = base06;
+          hi_fg = base0D;
+          inactive_fg = base03;
+          main_bg = "";
+          main_fg = base05;
+          mem_box = base0B;
+          meter_bg = base02;
+          net_box = base12;
+          proc_box = base0D;
+          proc_misc = base06;
+          process_end = base0E;
+          process_mid = base07;
+          process_start = base16;
+          selected_bg = base02;
+          selected_fg = base0D;
+          temp_end = base08;
+          temp_mid = base0A;
+          temp_start = base0B;
+          title = base05;
+          upload_end = base15;
+          upload_mid = base0C;
+          upload_start = base0B;
+          used_end = base15;
+          used_mid = base0C;
+          used_start = base0B;
+        };
   };
 }
