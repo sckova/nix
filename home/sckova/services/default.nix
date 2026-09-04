@@ -6,39 +6,18 @@
 }:
 {
   imports = [
+    ./cursor.nix
+    ./font.nix
     ./gtk.nix
     ./qt.nix
     ./synology.nix
   ];
 
   home = {
-    file.".icons/default/index.theme" = {
-      force = true;
-
-      text = /* ini */ ''
-        [Icon Theme]
-        Name=Default
-        Comment=Default Cursor Theme
-        Inherits=${config.cursor.name}
-      '';
-    };
-
     packages = with pkgs; [
       adwaita-icon-theme
-      config.fonts.emoji.package
-      config.fonts.mono.package
-      config.fonts.sans.package
-      config.fonts.serif.package
       morewaita-icon-theme
     ];
-
-    pointerCursor = {
-      enable = true;
-      package = config.cursor.package;
-      gtk.enable = true;
-      name = config.cursor.name;
-      size = config.cursor.size;
-    };
 
     sessionVariables = {
       # this makes electron apps work per the wiki

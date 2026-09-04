@@ -9,7 +9,7 @@
   programs = {
     bat = {
       config = {
-        style = "numbers,changes";
+        style = "changes";
         theme = "base16";
       };
 
@@ -78,11 +78,10 @@
         core.pager = lib.getExe pkgs.page;
         diff.external = lib.getExe pkgs.difftastic;
         init.defaultBranch = "main";
-        safe.directory = "/home/nix";
 
         user = {
-          email = config.email;
-          name = config.name;
+          email = "kovacsmillio@gmail.com";
+          name = "Sean Kovacs";
         };
       };
     };

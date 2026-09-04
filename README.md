@@ -82,7 +82,9 @@ user@host ~/Projects/nix (main)
 │       │   └──  morrowind.nix
 │       ├──  persistence.nix
 │       ├──  services
+│       │   ├──  cursor.nix
 │       │   ├──  default.nix
+│       │   ├──  font.nix
 │       │   ├──  gtk.css
 │       │   ├──  gtk.nix
 │       │   ├──  qt.nix
@@ -104,8 +106,7 @@ user@host ~/Projects/nix (main)
 │       │   │   │   └──  lualine.nix
 │       │   │   └──  settings.nix
 │       │   ├──  ssh.nix
-│       │   ├──  vscode.nix
-│       │   ├──  ytfp.nix
+│       │   ├──  vscode.nix                                                                                               │       │   ├──  ytfp.nix
 │       │   └──  zsh
 │       │       ├──  aliases.nix
 │       │       ├──  binds.nix
@@ -120,9 +121,7 @@ user@host ~/Projects/nix (main)
 │           │   ├──  binds.nix
 │           │   ├──  default.nix
 │           │   ├──  outputs.nix
-│           │   ├──  rules.nix
-│           │   └──  settings.nix
-│           ├──  noctalia
+│           │   ├──  rules.nix                                                                                            │           │   └──  settings.nix                                                                                         │           ├──  noctalia
 │           │   ├──  colors.nix
 │           │   ├──  default.nix
 │           │   └──  settings.nix
@@ -156,8 +155,6 @@ user@host ~/Projects/nix (main)
 │       └──  default.nix
 ├── 󰂺 README.md
 └──  system
-    ├──  apps
-    │   └──  default.nix
     ├──  darwin.nix
     ├──  default.nix
     ├──  gaming

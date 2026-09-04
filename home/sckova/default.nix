@@ -20,9 +20,4 @@
   ++ lib.optionals (isLinux != true) [
     ./tiling/paneru.nix
   ];
-
-  email = "kovacsmillio@gmail.com";
-  # the user to activate
-  name = "Sean Kovacs";
-  username = "sckova";
 }

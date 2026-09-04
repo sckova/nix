@@ -8,17 +8,7 @@
 {
   home.file.".config/niri/settings.kdl".text = lib.hm.generators.toKDL { } (
     {
-      cursor = {
-        xcursor-size = config.cursor.size;
-        xcursor-theme = config.cursor.name;
-      };
-
-      environment = {
-        DISPLAY = ":0";
-        XCURSOR_SIZE = toString config.cursor.size;
-        XCURSOR_THEME = config.cursor.name;
-      };
-
+      environment.DISPLAY = ":0";
       gestures.hot-corners.off = { };
       hotkey-overlay.skip-at-startup = { };
 
