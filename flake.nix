@@ -26,7 +26,6 @@
     #   flake = false;
     #   url = "github:AsahiLinux/linux/fairydust";
     # };
-
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     nix-darwin = {
@@ -35,11 +34,6 @@
     };
 
     nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
-
-    nixvim = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nixvim";
-    };
 
     noctalia = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,11 +59,6 @@
       url = "github:karinushka/paneru/v0.4.4";
     };
 
-    pedantix = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:swarsel/pedantix/v1.1.0";
-    };
-
     seamless-asahi-plymouth = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:luca-schlecker/seamless-asahi-plymouth";
@@ -78,6 +67,15 @@
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "https://flakehub.com/f/Mic92/sops-nix/*";
+    };
+
+    term = {
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+
+      url = "github:sckova/term";
     };
 
     tt-schemes = {

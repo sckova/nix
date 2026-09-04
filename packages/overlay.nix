@@ -12,7 +12,6 @@ with inputs;
 )
 ++ [
   nur.overlays.default
-  pedantix.overlays.default
   fh.overlays.default
   (final: prev: {
     inherit (prev.lixPackageSets.stable)
