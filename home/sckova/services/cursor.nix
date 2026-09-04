@@ -1,3 +1,4 @@
+# home/sckova/services/cursor.nix
 {
   config,
   lib,
