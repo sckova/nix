@@ -1,3 +1,4 @@
+# home/sckova/services/ssh.nix
 {
   programs.ssh.settings = {
     "Match final host *.ts.net" = {
