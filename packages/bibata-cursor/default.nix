@@ -124,6 +124,9 @@ stdenv.mkDerivation {
       --pointer-shadow=${pointerShadow} \
       --stroke-width=${strokeWidth}
 
+    echo "Create standard X11 cursor-name aliases"
+    mousegen x11Symlinks -c configs themes
+
     runHook postBuild
   '';
 
@@ -136,10 +139,7 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  nativeBuildInputs = [
-    openjdk25
-  ];
-
+  nativeBuildInputs = [ openjdk25 ];
   pname = "bibata-${themeName}-cursor";
 
   meta = with lib; {
