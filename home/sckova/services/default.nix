@@ -11,6 +11,7 @@
     ./gtk.nix
     ./persistence.nix
     ./qt.nix
+    ./ssh.nix
     ./synology.nix
   ];
 
