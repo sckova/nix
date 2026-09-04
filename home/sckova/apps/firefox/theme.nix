@@ -84,10 +84,10 @@ in
           --gnome-error-bg: ${base08};
           --gnome-toolbar-star-button: var(--gnome-palette-yellow-1);
           /* Window */
-          --gnome-window-background: ${base00};
+          --gnome-window-background: color-mix(in srgb, ${base10} 90%, transparent);
           --gnome-window-color: ${base05};
-          --gnome-view-background: ${base10};
-          --gnome-sidebar-background: ${base01};
+          --gnome-view-background: color-mix(in srgb, ${base10} 90%, transparent);
+          --gnome-sidebar-background: color-mix(in srgb, ${base01} 90%, transparent);
           --gnome-secondary-sidebar-background: ${base02};
           /* Card */
           --gnome-card-background: color-mix(in srgb, ${base06} 8%, transparent);
@@ -97,7 +97,7 @@ in
           /* Header bar */
           --gnome-headerbar-background: color-mix(
             in srgb,
-            ${base00} 90%,
+            ${base10} 90%,
             transparent
           ) !important;
           --gnome-headerbar-shade-color: ${base00};
