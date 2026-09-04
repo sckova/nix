@@ -4,6 +4,7 @@
     ./aliases.nix
     ./binds.nix
     ./prompt.nix
+    ./scripts.nix
     ./settings.nix
     ./syntax-highlighting.nix
   ];

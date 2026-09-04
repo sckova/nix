@@ -106,12 +106,14 @@ user@host ~/Projects/nix (main)
 │       │   │   │   └──  lualine.nix
 │       │   │   └──  settings.nix
 │       │   ├──  ssh.nix
-│       │   ├──  vscode.nix                                                                                               │       │   ├──  ytfp.nix
+│       │   ├──  vscode.nix
+│       │   ├──  ytfp.nix
 │       │   └──  zsh
 │       │       ├──  aliases.nix
 │       │       ├──  binds.nix
 │       │       ├──  default.nix
 │       │       ├──  prompt.nix
+│       │       ├──  scripts.nix
 │       │       ├──  settings.nix
 │       │       └──  syntax-highlighting.nix
 │       └──  tiling
@@ -121,7 +123,9 @@ user@host ~/Projects/nix (main)
 │           │   ├──  binds.nix
 │           │   ├──  default.nix
 │           │   ├──  outputs.nix
-│           │   ├──  rules.nix                                                                                            │           │   └──  settings.nix                                                                                         │           ├──  noctalia
+│           │   ├──  rules.nix
+│           │   └──  settings.nix
+│           ├──  noctalia
 │           │   ├──  colors.nix
 │           │   ├──  default.nix
 │           │   └──  settings.nix
@@ -137,7 +141,6 @@ user@host ~/Projects/nix (main)
 │   ├──  options.nix
 │   ├──  secrets
 │   │   └──  secrets.yaml
-│   ├──  sops-example.yaml
 │   ├──  sops.nix
 │   └──  users.nix
 ├──  LICENSE
