@@ -1,6 +1,5 @@
 # system/hosts/alien/default.nix
 {
-  config,
   pkgs,
   ...
 }:
@@ -43,6 +42,6 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /mnt/storage 0775 ${config.username} users - -"
+    "d /mnt/storage 2775 root users - -"
   ];
 }

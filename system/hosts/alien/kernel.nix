@@ -1,8 +1,9 @@
 # system/hosts/alien/kernel.nix
 {
-  config,
+  lib,
   pkgs,
   inputs,
+  users,
   ...
 }:
 {
@@ -45,8 +46,10 @@
   services.hardware.openrgb.enable = true;
 
   # enable ddcutil
-  users.users.${config.username}.extraGroups = [
-    "i2c"
-    "uinput"
-  ];
+  users.users = lib.genAttrs users (name: {
+    extraGroups = [
+      "i2c"
+      "uinput"
+    ];
+  });
 }
