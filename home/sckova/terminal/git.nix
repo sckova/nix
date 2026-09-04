@@ -62,7 +62,7 @@
         color_labels = "enabled";
         editor = lib.getExe pkgs.neovim;
         git_protocol = "https";
-        pager = lib.getExe pkgs.bat;
+        pager = lib.getExe pkgs.page;
         prefer_editor_prompt = "disabled";
         prompt = "enabled";
         spinner = "enabled";
@@ -75,7 +75,7 @@
 
       settings = {
         commit.gpgsign = true;
-        core.pager = lib.getExe pkgs.bat;
+        core.pager = lib.getExe pkgs.page;
         diff.external = lib.getExe pkgs.difftastic;
         init.defaultBranch = "main";
         safe.directory = "/home/nix";

@@ -1,6 +1,7 @@
 # home/sckova/terminal/neovim/default.nix
 {
   lib,
+  pkgs,
   inputs,
   isLinux,
   ...
@@ -22,7 +23,14 @@
       ./app.nix
     ];
 
-  home.sessionVariables.EDITOR = lib.mkForce "nvim";
+  home = with pkgs; {
+    packages = [ page ];
+
+    sessionVariables = {
+      EDITOR = lib.mkForce "nvim";
+      PAGER = lib.getExe page;
+    };
+  };
 
   programs.nixvim = {
     enable = true;

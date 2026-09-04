@@ -2,6 +2,38 @@
 {
   programs.nixvim.keymaps = [
     # --- Normal mode mappings ---
+    # \a: select all
+    {
+      options = {
+        desc = "Select all";
+        silent = true;
+      };
+
+      action = "<Esc>ggVG";
+      key = "<leader>a";
+
+      mode = [
+        "n"
+        "i"
+        "v"
+      ];
+    }
+    # \y: select all + copy
+    {
+      options = {
+        desc = "Select all";
+        silent = true;
+      };
+
+      action = "<Esc>ggVGy";
+      key = "<leader>y";
+
+      mode = [
+        "n"
+        "i"
+        "v"
+      ];
+    }
     {
       options = {
         noremap = true;
