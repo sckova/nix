@@ -9,6 +9,7 @@
     ./cursor.nix
     ./font.nix
     ./gtk.nix
+    ./persistence.nix
     ./qt.nix
     ./synology.nix
   ];

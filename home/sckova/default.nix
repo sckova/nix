@@ -16,7 +16,6 @@
       term.homeModules.default
     ]
     ++ lib.optionals isLinux [
-      ./persistence.nix
       ./services
       ./tiling
     ]
