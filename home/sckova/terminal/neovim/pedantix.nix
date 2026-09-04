@@ -21,6 +21,10 @@
           lists.sort = true;
           path = "**.packages";
         }
+        {
+          lists.sort = true;
+          path = "**.imports";
+        }
       ];
 
       preset = "nixos-module";

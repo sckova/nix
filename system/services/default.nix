@@ -1,9 +1,9 @@
 # system/services/default.nix
 {
   imports = [
-    ./widevine.nix
     ./searxng.nix
     ./tiling.nix
+    ./widevine.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";

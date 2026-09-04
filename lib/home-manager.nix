@@ -1,7 +1,6 @@
 # lib/home-manager.nix
 {
   lib,
-  pkgs,
   hostname,
   inputs,
   isLinux,
@@ -16,11 +15,6 @@
   home-manager = {
     extraSpecialArgs = {
       inherit hostname inputs isLinux;
-
-      # pkgs-unstable = import inputs.nixpkgs-unstable {
-      #   config.allowUnfree = true;
-      #   system = pkgs.stdenv.hostPlatform.system;
-      # };
     };
 
     sharedModules = with inputs; [
@@ -32,6 +26,12 @@
           scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
         }
       )
+      {
+        nix.settings.experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+      }
     ];
 
     useGlobalPkgs = true;
@@ -42,6 +42,7 @@
         ../home
         ../home/${user}
         ../home/hosts/${hostname}
+        ./options.nix
       ];
     });
   };

@@ -3,11 +3,6 @@
   description = "unified nixos/nix-darwin/home-manager configuration for three systems";
 
   inputs = {
-    # aerothemeplasma = {
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   url = "github:nyakase/aerothemeplasma-nix";
-    # };
-
     apple-silicon.url = "github:nix-community/nixos-apple-silicon";
     base16.url = "github:SenchoPens/base16.nix";
 
@@ -40,8 +35,6 @@
     };
 
     nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
-
-    # nixpkgs-unstable.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*";
 
     nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,10 +1,10 @@
 # home/sckova/terminal/zsh/default.nix
 {
   imports = [
-    ./settings.nix
+    ./aliases.nix
     ./binds.nix
     ./prompt.nix
-    ./aliases.nix
+    ./settings.nix
     ./syntax-highlighting.nix
   ];
 

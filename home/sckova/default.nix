@@ -13,9 +13,9 @@
     ./terminal
   ]
   ++ lib.optionals isLinux [
+    ./persistence.nix
     ./services
     ./tiling
-    ./persistence.nix
   ]
   ++ lib.optionals (isLinux != true) [
     ./tiling/paneru.nix

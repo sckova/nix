@@ -9,14 +9,14 @@
 }:
 {
   imports = with inputs; [
-    sops-nix.nixosModules.sops
-    impermanence.nixosModules.impermanence
+    ../hardware
     ../lib
     ./gaming
-    ./services
-    ./networking
     ./hosts/${hostname}
-    ../hardware
+    ./networking
+    ./services
+    impermanence.nixosModules.impermanence
+    sops-nix.nixosModules.sops
   ];
 
   # Before changing this value read the documentation for this option

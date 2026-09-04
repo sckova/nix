@@ -8,13 +8,13 @@
 }:
 {
   imports = with inputs; [
-    sops-nix.darwinModules.sops
-    ../lib
     ../hardware
+    ../lib
     # ./apps (has nothing relevant)
     # ./services (has nothing relevant, TODO: figure out searxng for user-level?)
     # ./networking (see https://github.com/nix-darwin/nix-darwin/issues/1035)
     ./networking/tailscale.nix
+    sops-nix.darwinModules.sops
   ];
 
   networking = {

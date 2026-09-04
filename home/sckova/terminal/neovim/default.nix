@@ -10,14 +10,14 @@
   imports =
     with inputs;
     [
-      nixvim.homeModules.nixvim
-      pedantix.homeModules.default
       ./colors.nix
       ./keybinds.nix
       ./pedantix.nix
-      ./plugins/lualine.nix
       ./plugins/coding.nix
+      ./plugins/lualine.nix
       ./settings.nix
+      nixvim.homeModules.nixvim
+      pedantix.homeModules.default
     ]
     ++ lib.optionals isLinux [
       ./app.nix

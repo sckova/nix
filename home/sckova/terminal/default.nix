@@ -8,12 +8,12 @@
 {
   imports = [
     ./btop.nix
-    ./zsh
     ./fastfetch.nix
     ./git.nix
     ./neovim
     ./ssh.nix
     ./ytfp.nix
+    ./zsh
     # ./vscode.nix
   ];
 
