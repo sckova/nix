@@ -1,11 +1,5 @@
 # home/sckova/terminal/neovim/plugins/lualine.nix
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, ... }:
 {
   programs.nixvim.plugins.lualine = with config.scheme.withHashtag; {
     enable = true;

@@ -12,9 +12,7 @@
     ./git.nix
     ./neovim
     ./ssh.nix
-    ./ytfp.nix
     ./zsh
-    # ./vscode.nix
   ];
 
   home = {

@@ -1,11 +1,5 @@
 # home/sckova/terminal/neovim/colors.nix
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, ... }:
 {
   programs.nixvim = {
     colorschemes.base16 = {
