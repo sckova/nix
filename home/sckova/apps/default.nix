@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./discord
     ./firefox
     ./ghostty.nix
     ./video
