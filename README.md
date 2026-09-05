@@ -80,42 +80,17 @@ user@host ~/Projects/nix (main)
 │       │   ├──  default.nix
 │       │   ├──  minecraft.nix
 │       │   └──  morrowind.nix
-│       ├──  persistence.nix
 │       ├──  services
 │       │   ├──  cursor.nix
 │       │   ├──  default.nix
 │       │   ├──  font.nix
 │       │   ├──  gtk.css
 │       │   ├──  gtk.nix
+│       │   ├──  persistence.nix
 │       │   ├──  qt.nix
 │       │   ├──  spotify.nix
-│       │   └──  synology.nix
-│       ├──  terminal
-│       │   ├──  btop.nix
-│       │   ├──  default.nix
-│       │   ├──  fastfetch.nix
-│       │   ├──  git.nix
-│       │   ├──  neovim
-│       │   │   ├──  app.nix
-│       │   │   ├──  colors.nix
-│       │   │   ├──  default.nix
-│       │   │   ├──  keybinds.nix
-│       │   │   ├──  pedantix.nix
-│       │   │   ├──  plugins
-│       │   │   │   ├──  coding.nix
-│       │   │   │   └──  lualine.nix
-│       │   │   └──  settings.nix
 │       │   ├──  ssh.nix
-│       │   ├──  vscode.nix
-│       │   ├──  ytfp.nix
-│       │   └──  zsh
-│       │       ├──  aliases.nix
-│       │       ├──  binds.nix
-│       │       ├──  default.nix
-│       │       ├──  prompt.nix
-│       │       ├──  scripts.nix
-│       │       ├──  settings.nix
-│       │       └──  syntax-highlighting.nix
+│       │   └──  synology.nix
 │       └──  tiling
 │           ├──  default.nix
 │           ├──  kanshi.nix
