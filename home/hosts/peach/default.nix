@@ -2,18 +2,22 @@
 {
   lib,
   pkgs,
+  options,
   ...
 }:
-{
-  colors = {
-    accent = "base09";
-    schemeName = "catppuccin-mocha";
-  };
-
-  home.packages = with pkgs; [
-    asahi-bless
-    asahi-btsync
-    asahi-nvram
-    asahi-wifisync
-  ];
-}
+lib.mkMerge [
+  (lib.optionalAttrs (options ? colors) {
+    colors = {
+      accent = "base09";
+      schemeName = "catppuccin-mocha";
+    };
+  })
+  {
+    home.packages = with pkgs; [
+      asahi-bless
+      asahi-btsync
+      asahi-nvram
+      asahi-wifisync
+    ];
+  }
+]
