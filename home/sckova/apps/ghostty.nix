@@ -10,7 +10,6 @@
   programs.ghostty = {
     enable = true;
     package = with pkgs; if isLinux then ghostty else ghostty-bin;
-    enableZshIntegration = true;
 
     settings = {
       background-blur = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "macos-glass-clear";
