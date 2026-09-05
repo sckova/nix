@@ -26,7 +26,6 @@
       ".config/mozilla"
       ".config/gh"
       ".config/net.imput.helium"
-      ".config/zsh"
       ".local/share/PrismLauncher"
       ".local/share/wallpaper"
       ".local/share/fractal"
@@ -38,6 +37,8 @@
       ".local/share/soh"
       ".local/share/Paradox Interactive"
       ".local/share/"
+      ".local/state/zsh/" # history location
+      ".cache/zsh" # compdump location
       ".config/age"
       ".config/openmw"
     ];
