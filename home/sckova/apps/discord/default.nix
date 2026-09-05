@@ -1,3 +1,4 @@
+# home/sckova/apps/discord/default.nix
 {
   pkgs,
   ...

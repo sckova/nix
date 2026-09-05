@@ -1,3 +1,4 @@
+# home/sckova/apps/discord/vencord.nix
 {
   autoUpdate = true;
   autoUpdateNotification = true;

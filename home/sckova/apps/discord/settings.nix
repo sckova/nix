@@ -1,3 +1,4 @@
+# home/sckova/apps/discord/settings.nix
 {
   config,
   lib,
