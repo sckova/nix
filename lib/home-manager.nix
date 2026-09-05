@@ -23,7 +23,7 @@
       (
         { config, ... }:
         {
-          scheme = "${tt-schemes}/base24/${config.colors.scheme}.yaml";
+          scheme = "${tt-schemes}/base24/${config.colors.schemeName}.yaml";
         }
       )
       {

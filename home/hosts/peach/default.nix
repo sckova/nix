@@ -7,7 +7,7 @@
 {
   colors = {
     accent = "base09";
-    scheme = "catppuccin-mocha";
+    schemeName = "catppuccin-mocha";
   };
 
   home.packages = with pkgs; [

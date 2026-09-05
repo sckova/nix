@@ -22,4 +22,7 @@
     ++ lib.optionals (isLinux != true) [
       ./tiling/paneru.nix
     ];
+
+  email = "kovacsmillio@gmail.com";
+  name = "Sean Kovacs";
 }

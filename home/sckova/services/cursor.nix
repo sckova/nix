@@ -22,7 +22,7 @@
             cursorSizes = "16,20,22,24,28,32,40,48,56,64,72,80,88,96";
             outlineColor = withHashtag.base00;
             strokeWidth = "12";
-            themeName = config.colors.scheme;
+            themeName = config.colors.schemeName;
           }
         ));
 
@@ -31,13 +31,13 @@
     };
 
     name = lib.mkOption {
-      default = config.colors.scheme;
+      default = config.colors.schemeName;
       readOnly = true;
       type = lib.types.str;
     };
 
     path = lib.mkOption {
-      default = "${config.cursor.package}/share/icons/${config.colors.scheme}";
+      default = "${config.cursor.package}/share/icons/${config.colors.schemeName}";
       readOnly = true;
       type = lib.types.str;
     };
