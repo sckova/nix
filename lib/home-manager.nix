@@ -42,7 +42,6 @@
         ../home
         ../home/${user}
         ../home/hosts/${hostname}
-        ./options.nix
       ];
     });
   };
