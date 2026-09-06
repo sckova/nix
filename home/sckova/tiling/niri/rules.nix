@@ -47,6 +47,7 @@
           window-rule = {
             _children = [
               { match._props.app-id = "org.gnome.Nautilus$"; }
+              { match._props.app-id = "vesktop"; }
             ];
 
             block-out-from = "screen-capture";
