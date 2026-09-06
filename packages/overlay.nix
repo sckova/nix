@@ -14,7 +14,7 @@ with inputs;
   nur.overlays.default
   fh.overlays.default
   (final: prev: {
-    inherit (prev.lixPackageSets.stable)
+    inherit
       nixpkgs-review
       nix-eval-jobs
       nix-fast-build

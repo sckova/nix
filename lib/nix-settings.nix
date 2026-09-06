@@ -1,6 +1,5 @@
 # lib/nix-settings.nix
 {
-  pkgs,
   inputs,
   isLinux,
   users,
@@ -8,8 +7,6 @@
 }:
 {
   nix = {
-    package = pkgs.lixPackageSets.stable.lix;
-
     gc = {
       options = "--delete-older-than 30d";
       automatic = true;
