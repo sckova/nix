@@ -1,3 +1,4 @@
+# packages/opengoal/default.nix
 {
   lib,
   SDL2,

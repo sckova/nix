@@ -1,3 +1,4 @@
+# packages/opengoal-launcher/default.nix
 {
   lib,
   SDL2,
