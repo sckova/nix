@@ -11,16 +11,6 @@ let
   chromiumWithWidevine = chromium.override {
     enableWideVine = true;
   };
-  launchScript = writeShellScriptBin "spotify-webapp" ''
-    exec ${chromiumWithWidevine}/bin/chromium \
-      --app=https://open.spotify.com \
-      --class=spotify-webapp \
-      --name=spotify-webapp \
-      --user-data-dir="$HOME/.config/spotify-webapp" \
-      --enable-features=UseOzonePlatform \
-      --ozone-platform=wayland \
-      "$@"
-  '';
   pname = "spotify-webapp";
   version = "1.0.0";
 in
@@ -54,7 +44,16 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out/bin
-    ln -s ${launchScript}/bin/spotify-webapp $out/bin/spotify-webapp
+    ln -s ${writeShellScriptBin "spotify-webapp" ''
+      exec ${chromiumWithWidevine}/bin/chromium \
+        --app=https://open.spotify.com \
+        --class=spotify-webapp \
+        --name=spotify-webapp \
+        --user-data-dir="$HOME/.config/spotify-webapp" \
+        --enable-features=UseOzonePlatform \
+        --ozone-platform=wayland \
+        "$@"
+    ''}/bin/spotify-webapp $out/bin/spotify-webapp
 
     runHook postInstall
   '';

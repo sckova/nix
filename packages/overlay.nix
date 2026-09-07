@@ -14,13 +14,6 @@ with inputs;
   nur.overlays.default
   fh.overlays.default
   (final: prev: {
-    inherit
-      nixpkgs-review
-      nix-eval-jobs
-      nix-fast-build
-      colmena
-      ;
-
     bibata-cursor = final.callPackage ./bibata-cursor { };
     # linux-asahi = final.callPackage ./linux-asahi { inherit kernel-asahi; };
     mkxp-z = final.callPackage ./mkxp-z { };
