@@ -23,14 +23,22 @@
       [ -e "$target" ] || run touch "$target"
     '';
 
-    file.".config/niri/config.kdl".text = lib.concatLines (
-      map (f: ''include "${f}"'') [
-        "binds.kdl"
-        "include.kdl"
-        "outputs.kdl"
-        "rules.kdl"
-        "settings.kdl"
-      ]
-    );
+    file = {
+      ".config/niri/binds.kdl".enable = false;
+      ".config/niri/outputs.kdl".enable = false;
+      ".config/niri/rules.kdl".enable = false;
+      ".config/niri/settings.kdl".enable = false;
+    }
+    // {
+      ".config/niri/config.kdl".text = lib.concatLines (
+        map (f: ''include "${f}"'') [
+          config.home.file.".config/niri/binds.kdl".source
+          config.home.file.".config/niri/outputs.kdl".source
+          config.home.file.".config/niri/rules.kdl".source
+          config.home.file.".config/niri/settings.kdl".source
+          "include.kdl"
+        ]
+      );
+    };
   };
 }
