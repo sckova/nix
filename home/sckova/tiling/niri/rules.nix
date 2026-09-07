@@ -10,7 +10,7 @@
         blur = true;
         noise = 0.03;
         saturation = 1.0;
-        xray = true;
+        xray = false;
       };
       cornerRadius = 8.0;
     in
@@ -117,6 +117,7 @@
               { match._props.app-id = "^org.gnome.Snapshot$"; }
               { match._props.app-id = "^org.gnome.Decibels$"; }
               { match._props.app-id = "^com.github.neithern.g4music$"; }
+              { match._props.app-id = "^vicinae$"; }
               {
                 match._props = {
                   app-id = "^mpv$";
@@ -143,6 +144,7 @@
               }
             ];
 
+            background-effect = blurConfig;
             opacity = 1.0;
           };
         }
@@ -150,6 +152,12 @@
           layer-rule = {
             match._props.namespace = "^wallpaper$";
             place-within-backdrop = true;
+          };
+        }
+        {
+          layer-rule = {
+            background-effect = blurConfig;
+            match._props.namespace = "^vicinae$";
           };
         }
       ];
