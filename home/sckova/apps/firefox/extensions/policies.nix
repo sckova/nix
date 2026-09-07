@@ -6,6 +6,7 @@
   "*".installation_mode = "blocked"; # force declarative installation
   "CanvasBlocker@kkapsner.de".installation_mode = "allowed"; # canvas blocker
   "deArrow@ajay.app".installation_mode = "allowed"; # dearrow
+  "firefox@vicinae.com".installation_mode = "force_installed"; # vicinae, doesn't exist in rycee
   "firefoxpwa@filips.si".installation_mode = "allowed"; # firefoxpwa
   "gdpr@cavi.au.dk".installation_mode = "allowed"; # consent-o-matic
   "jid1-MnnxcxisBPnSXQ@jetpack".installation_mode = "allowed"; # privacy badger

@@ -77,22 +77,6 @@
       };
     };
 
-    vicinae = {
-      Install.WantedBy = [ "niri.service" ];
-
-      Service = {
-        ExecStart = "${lib.getExe config.programs.vicinae.package} server";
-        Restart = "on-failure";
-        Type = "simple";
-      };
-
-      Unit = {
-        After = [ "niri.service" ];
-        Description = "Application launcher daemon";
-        Documentation = "https://docs.vicinae.com";
-      };
-    };
-
     # https://github.com/tbrugere/yabd/blob/main/etc/yabd.service
     yabd = lib.mkIf (osConfig.networking.hostName == "peach") {
       Install.WantedBy = [ "graphical-session.target" ];

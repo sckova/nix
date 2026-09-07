@@ -1,12 +1,17 @@
 # home/sckova/tiling/vicinae.nix
 {
   config,
+  lib,
   pkgs,
   ...
 }:
 {
+  # do not symlink the config file
+  home.file.".config/vicinae/settings.json".enable = lib.mkForce false;
+
   programs.vicinae = {
     enable = true;
+    enableFirefoxIntegration = true;
 
     extensions =
       let
@@ -15,8 +20,8 @@
           pkgs.fetchFromGitHub {
             owner = "vicinaehq";
             repo = "extensions";
-            rev = "89cc49471c3e7119bfd36d68998cefe534bddab8";
-            sha256 = "sha256-LfqeVlMwclHJKsJu5jJoztjlaCeIasQsiv3P9+eKDNw=";
+            rev = "6681a95e13b01c752e7cf4cb448162a3647b2eb8";
+            sha256 = "sha256-EeOUdF/XWkoaGGHM1Eg7aIWzZ8QTLX3fc5cmYzrePkU=";
           }
           + "/extensions/";
       in
@@ -41,6 +46,10 @@
         (config.lib.vicinae.mkExtension {
           name = "searxng";
           src = vicinae + "searxng";
+        })
+        (config.lib.vicinae.mkExtension {
+          name = "firefox";
+          src = vicinae + "firefox";
         })
       ];
 
@@ -67,6 +76,7 @@
 
       launcher_window = {
         client_side_decorations.enabled = true;
+        layer_shell.enabled = true;
         opacity = 0.9;
       };
 
@@ -85,6 +95,8 @@
           };
         };
 
+        "@knoopx/firefox".preferences.profile_dir = config.xdg.configHome + "/mozilla/firefox/";
+
         "@mattisssa/spotify-player".entrypoints = {
           addPlayingSongToPlaylist.enabled = true;
           copyArtistAndTitle.enabled = true;
@@ -102,7 +114,7 @@
       };
     };
 
-    systemd.enable = false;
+    systemd.enable = true;
 
     themes.nixos = {
       colors = with config.scheme.withHashtag; {
@@ -136,4 +148,10 @@
       };
     };
   };
+
+  # launch service with generated config
+  systemd.user.services.vicinae.Service.ExecStart = lib.mkForce /* bash */ ''
+    ${lib.getExe' config.programs.vicinae.package "vicinae"} \
+      server --config ${pkgs.writeText "vicinae-settings.json" (builtins.toJSON config.programs.vicinae.settings)}
+  '';
 }
