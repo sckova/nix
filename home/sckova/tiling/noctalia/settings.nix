@@ -3,6 +3,8 @@
   programs.noctalia.settings = {
     bar.default = {
       background_opacity = 0.9;
+      border = "primary";
+      border_width = 2.0;
 
       capsule_group = [
         {
@@ -34,6 +36,7 @@
             "speaker"
             "battery"
             "brightness"
+            "bluetooth"
             "network"
           ];
 
@@ -42,7 +45,7 @@
         }
       ];
 
-      capsule_thickness = 0.75;
+      capsule_thickness = 0.70;
       center = [ "weather" ];
       contact_shadow = false;
 
@@ -55,10 +58,12 @@
 
       font_family = config.fonts.sans.name;
       layer = "top";
-      margin_edge = 0;
-      margin_ends = 0;
+      margin_edge = 4;
+      margin_ends = 6;
       position = "top";
-      radius = 0;
+      radius = 8;
+      radius_top_left = 24;
+      radius_top_right = 24;
       reserve_space = true;
       shadow = false;
       smart_auto_hide = false;
@@ -75,7 +80,7 @@
       # 49.333334 = (          1964 - 1890            ) / 1.5
       # on a 14 inch apple silicon laptop, (width = 3024) the only TRULY valid
       # scales are thusly 1.0 or 2.0. every other size doesn't factor correctly.
-      thickness = if hostname == "peach" then 49 else 40;
+      thickness = (if hostname == "peach" then 49 else 40) - 4;
     };
 
     brightness.enable_ddcutil = (hostname == "alien");
@@ -119,6 +124,8 @@
 
       position = "left";
       radius = 8;
+      radius_bottom_right = 32;
+      radius_top_right = 32;
       reserve_space = false;
       show_dots = true;
       smart_auto_hide = true;
@@ -181,6 +188,12 @@
     shell = {
       font_family = config.fonts.sans.name;
       launch_apps_as_systemd_services = true;
+
+      panel = {
+        control_center_placement = "floating";
+        open_near_click_control_center = true;
+      };
+
       shadow.alpha = 0.90;
       telemetry_enabled = true;
     };
@@ -251,7 +264,7 @@
       media = {
         capsule = true;
         capsule_padding = 10.0;
-        max_length = 450;
+        max_length = 425;
         title_scroll = "always";
       };
 
