@@ -117,7 +117,6 @@
               { match._props.app-id = "^org.gnome.Snapshot$"; }
               { match._props.app-id = "^org.gnome.Decibels$"; }
               { match._props.app-id = "^com.github.neithern.g4music$"; }
-              { match._props.app-id = "^vicinae$"; }
               {
                 match._props = {
                   app-id = "^mpv$";
@@ -154,10 +153,19 @@
             place-within-backdrop = true;
           };
         }
+        # disable xray for shell
         {
           layer-rule = {
-            background-effect = blurConfig;
-            match._props.namespace = "^vicinae$";
+            _children = [
+              {
+                match._props.namespace = "^vicinae$";
+              }
+              {
+                match._props.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";
+              }
+            ];
+
+            background-effect.xray = false;
           };
         }
       ];

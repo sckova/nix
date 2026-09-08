@@ -9,6 +9,13 @@
   home.file.".config/niri/binds.kdl".text = lib.hm.generators.toKDL { } {
     binds = {
       "Alt+Shift+S".screenshot-window._props.show-pointer = false;
+
+      "Alt+Tab".spawn._args = [
+        "noctalia"
+        "msg"
+        "window-switcher"
+      ];
+
       "Ctrl+Alt+Delete".quit = { };
       "Ctrl+Shift+S".screenshot-screen._props.show-pointer = false;
 

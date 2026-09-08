@@ -80,6 +80,20 @@
 
     brightness.enable_ddcutil = (hostname == "alien");
     desktop_widgets.enabled = false;
+
+    dock = {
+      background_opacity = 0.90;
+      border = "primary";
+      border_width = 2.0;
+      enabled = true;
+      magnification = false;
+      margin_edge = 8;
+      position = "right";
+      radius = 8;
+      reserve_space = false;
+      smart_auto_hide = true;
+    };
+
     location.auto_locate = true;
 
     lockscreen_widgets = {
@@ -122,7 +136,10 @@
       temperature_night = 3000;
     };
 
-    notification.position = "bottom_right";
+    notification = {
+      background_opacity = 0.90;
+      position = "bottom_right";
+    };
 
     osd = {
       background_opacity = 0.90;
@@ -134,6 +151,7 @@
     shell = {
       font_family = config.fonts.sans.name;
       launch_apps_as_systemd_services = true;
+      shadow.alpha = 0.90;
       telemetry_enabled = true;
     };
 
