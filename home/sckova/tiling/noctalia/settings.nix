@@ -79,6 +79,25 @@
     };
 
     brightness.enable_ddcutil = (hostname == "alien");
+
+    control_center = {
+      hidden_tabs = [
+        "media"
+        "audio"
+        "monitor"
+        "system"
+        "power"
+        "network"
+        "bluetooth"
+        "weather"
+        "calendar"
+        "screen-time"
+      ];
+
+      sidebar_section = "none";
+      width = 700;
+    };
+
     desktop_widgets.enabled = false;
 
     dock = {
@@ -86,11 +105,22 @@
       border = "primary";
       border_width = 2.0;
       enabled = true;
-      magnification = false;
-      margin_edge = 8;
-      position = "right";
+      magnification = true;
+      magnification_scale = 1.25;
+      margin_edge = 16;
+
+      pinned = [
+        "firefox"
+        "org.gnome.Nautilus"
+        "org.gnome.Fractal"
+        "com.mitchellh.ghostty"
+        "nvim"
+      ];
+
+      position = "left";
       radius = 8;
       reserve_space = false;
+      show_dots = true;
       smart_auto_hide = true;
     };
 

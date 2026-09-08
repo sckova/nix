@@ -775,11 +775,11 @@
         "pedantix": "pedantix"
       },
       "locked": {
-        "lastModified": 1788884549,
-        "narHash": "sha256-oWVn93do/jQ7WemfqugcZyPjyqJVqYsZCJ1+qOAZMBY=",
+        "lastModified": 1788900147,
+        "narHash": "sha256-vqPb5rDucLArnQEL7TfB1VxdC8DjeoXrSbgwHlJpQi0=",
         "owner": "sckova",
         "repo": "term",
-        "rev": "26baf38a97fa2765b5078bccb4347ece0fcae51f",
+        "rev": "e7c4d3d6edca6872d33e496be68c03a665b8a802",
         "type": "github"
       },
       "original": {
