@@ -9,7 +9,7 @@ lib.mkMerge [
   (lib.optionalAttrs (options ? colors) {
     colors = {
       accent = "base09";
-      schemeName = "catppuccin-mocha";
+      schemeName = "kanagawa-dragon";
     };
   })
   {

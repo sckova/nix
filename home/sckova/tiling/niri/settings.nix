@@ -75,7 +75,7 @@
       };
 
       overview = {
-        backdrop-color = config.scheme.withHashtag.base11;
+        backdrop-color = "#000000";
         workspace-shadow.off = { };
         zoom = 0.75;
       };
