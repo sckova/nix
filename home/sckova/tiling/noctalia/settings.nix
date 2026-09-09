@@ -115,6 +115,7 @@
       margin_edge = 16;
 
       pinned = [
+        "vicinae_launcher"
         "firefox"
         "org.gnome.Nautilus"
         "org.gnome.Fractal"

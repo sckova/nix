@@ -154,4 +154,39 @@
     ${lib.getExe' config.programs.vicinae.package "vicinae"} \
       server --config ${pkgs.writeText "vicinae-settings.json" (builtins.toJSON config.programs.vicinae.settings)}
   '';
+
+  xdg = {
+    dataFile."icons/hicolor/scalable/apps/grid-dots.svg".source =
+      pkgs.runCommand "grid-dots-themed.svg" { }
+        ''
+          sed 's/currentColor/${config.scheme.withHashtag.base05}/g' \
+            ${
+              pkgs.fetchurl {
+                hash = "sha256-J3GMewBbxUTzRYhLnQJMj6XEwoPt+EPXDB7Gk7YnQPQ=";
+                url = "https://raw.githubusercontent.com/tabler/tabler-icons/55f87a73f45cf1d9eaf16d7da705065483a9e4f9/icons/outline/grid-dots.svg";
+              }
+            } > $out
+        '';
+
+    desktopEntries.vicinae_launcher = {
+      categories = [ "Utility" ];
+      comment = "Start the Vicinae service if inactive, then toggle its window";
+
+      exec =
+        let
+          vicinaeToggleLauncher = pkgs.writeShellScriptBin "vicinae_toggle_launcher" ''
+            if ! systemctl --user is-active --quiet vicinae.service; then
+              systemctl --user start vicinae.service
+            fi
+            exec vicinae toggle
+          '';
+        in
+        "${vicinaeToggleLauncher}/bin/vicinae_toggle_launcher";
+
+      icon = "grid-dots";
+      name = "Launcher";
+      terminal = false;
+      type = "Application";
+    };
+  };
 }
