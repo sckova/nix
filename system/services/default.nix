@@ -1,6 +1,7 @@
 # system/services/default.nix
 {
   imports = [
+    ./btrbk.nix
     ./searxng.nix
     ./tiling.nix
     ./widevine.nix
